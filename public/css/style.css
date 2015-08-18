@@ -1,0 +1,73 @@
+#model-container {
+    float: left !important;
+}
+
+#menu-users-model {
+    display: none;
+    margin-top: 10px;
+}
+
+.menu-users-model-user {
+    color: #337ab7; 
+    padding-left: 25px;
+    margin: 2px 0;
+}
+
+.menu-users-model-user-name {
+    padding-left: 10px;
+}
+
+.menu-users-model-user-name.master {
+    padding-left: 5px;
+}
+
+.menu-users-model-container.template {
+    display: none;
+}
+
+a.delete-model:focus, a.delete-model:hover, a.delete-model:active {
+    text-decoration: none;
+}
+
+.alert {
+    display: none;
+}
+
+/*********************************/
+
+.column {display: inline;}
+.s-100 {width: 100px;}
+.left {float: left;}
+.right {float: right;}
+.clear {clear: both;}
+
+form div {
+    margin: 5px 0;
+}
+
+a.no-underline:hover, a.no-underline:focus {
+    text-decoration:  none;
+}
+
+div.options-separator {
+    display: inline;
+    width: 20px;
+}
+
+a.inactive, a.inactive:hover, a.inactive:focus {
+    color: #879098;
+    cursor: default;
+}
+
+.center {
+    text-align: center;
+}
+
+li.sidebar-search {
+    height: 50px;
+}
+
+.actions-panel {
+    text-align: right; 
+    margin-bottom: 10px;
+}

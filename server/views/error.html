@@ -1,0 +1,7 @@
+{% extends 'layout.html' %}
+{% block main_content %}
+<h2>Error Code: {@ error.status @}</h2>
+<h2>{@ message @}</h2>
+<div>&nbsp;</div>
+<pre>{@ error.stack @}</pre>
+{% endblock %}

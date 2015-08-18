@@ -1,0 +1,98 @@
+{% extends '../layout.html' %}
+{% block extra_css %}
+<link href="/css/dataTables.bootstrap.css" rel="stylesheet">
+<link href="/css/dataTables.responsive.css" rel="stylesheet">
+{% endblock %}
+{% block main_content %}
+<div class="row">
+    <div class="col-lg-12">
+        <div class="actions-panel">
+            <a href="" id="action-cancel-new-session" class="no-underline" data-token="{@ data.token @}">
+                <i class="fa fa-users fa-fw"></i>&nbsp;Sesión existente
+            </a>
+            <div class="options-separator">&nbsp;</div>
+            <a href="" id="action-new-session" class="no-underline" data-token="{@ data.token @}">
+                <i class="fa fa-user-plus fa-fw"></i>&nbsp;Nueva Sesion
+            </a>
+            <div class="options-separator">&nbsp;</div>
+            <a href="" id="action-reload-sessions-models" class="no-underline" data-token="{@ data.token @}">
+                <i class="fa fa-refresh fa-fw"></i>&nbsp;Recargar
+            </a>
+        </div>
+        <div id="models-container" class="panel panel-default current-session">
+            <div class="panel-heading">Seleccione una de las sesiones activas</div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div class="dataTable_wrapper">
+                    <table class="table table-striped table-bordered table-hover" id="session-list-table">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Usuarios en la sesión</th>
+                                <th>Unirse</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for session in data.sessions %}
+                            <tr class="{% if loop.index0 % 2 === 0 %}even{% else %}odd{% endif %}">
+                                <td>{@ session.name @}</td>
+                                <td>{@ session.users @}</td>
+                                <td>
+                                    <a href="{@session.url@}" class="no-underline" target="_blank">
+                                        <i class="fa fa-sign-in fa-fw"></i>&nbsp;Unirse
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.table-responsive -->
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+        <div class="panel panel-default new-session">
+            <div class="panel-heading">Seleccione uno de los modelos disponibles</div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div class="dataTable_wrapper">
+                    <table class="table table-striped table-bordered table-hover" id="models-list-table">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Descripción</th>
+                                <th>Subido</th>
+                                <th>Iniciar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for model in data.models %}
+                            <tr class="{% if loop.index0 % 2 === 0 %}even{% else %}odd{% endif %}">
+                                <td>{@ model.name @}</td>
+                                <td>{@ model.description @}</td>
+                                <td>{@ model.date_uploaded @}</td>
+                                <td>
+                                    <a href="{@ data.getModelURL(model.filename, data.token) @}" class="no-underline">
+                                        <i class="fa fa-plus-circle fa-fw" /></i>&nbsp;Iniciar
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.table-responsive -->
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+{% endblock %}
+{% block extra_js %}
+<script src="/js/jquery.dataTables.min.js"></script>
+<script src="/js/dataTables.bootstrap.min.js"></script>
+<script src="/js/Session_List.js"></script>
+{% endblock %}

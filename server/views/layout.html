@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>NodeTortoise | {@ page.title @}</title>
+        <link href="/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/css/metisMenu.min.css" rel="stylesheet">
+        <link href="/css/sb-admin-2.css" rel="stylesheet">
+        <link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="/css/style.css" rel="stylesheet" type="text/css" />
+        {% block extra_css %}{% endblock %}
+    </head>
+    <body>
+        <div id="wrapper">
+            <!-- Navigation -->
+            <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html">NodeTortoise</a>
+                </div>
+                <div class="navbar-default sidebar" role="navigation">
+                    <div class="sidebar-nav navbar-collapse">
+                        <ul class="nav" id="side-menu">
+                            <li class="sidebar-search"></li>
+                            <li>
+                                <a href="/"><i class="fa fa-home fa-fw"></i> Inicio</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Modelos<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="/model/upload">Subir Nuevo Modelo</a>
+                                    </li>
+                                    <li>
+                                        <a href="/model/list">Librería de Modelos</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-university fa-fw"></i> Acerca de NetLogo-Web<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="/info/netlogo-web">Información principal</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://github.com/NetLogo/NetLogo/wiki/NetLogo-Web" target="_blank">Wiki oficial de NetLogo-Web</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://github.com/NetLogo/Galapagos/wiki" target="_blank">Wiki oficial de Galapagos</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://groups.google.com/forum/?fromgroups#!forum/netlogo-devel" target="_blank">Grupo de discusión oficial</a>
+                                    </li>
+                                    <li>
+                                        <a href="http://li425-91.members.linode.com:9000/create-standalone" target="_blank">Página de generación de modelos</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="/session/list"><i class="fa fa-wrench fa-fw"></i> Crear o unirse a una sesión</a>
+                            </li>
+                            <li id="menu-users-model">
+                                <a href="#"><i class="fa fa-users fa-fw"></i> Usuarios en la sesión<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level menu-users-model-container template">
+                                    <li class="menu-users-model-user master"><i class="fa fa-user-plus"></i><span class="menu-users-model-user-name"></span></li>
+                                    <li class="menu-users-model-user simple"><i class="fa fa-user"></i><span class="menu-users-model-user-name"></span></li>
+                                </ul>
+                                <ul class="nav nav-second-level" id="menu-users-model-container"></ul>
+                            </li>
+                        </ul>
+                    </div><!-- /.sidebar-collapse -->
+                </div><!-- /.navbar-static-side -->
+            </nav>
+            <!-- Page Content -->
+            <div id="page-wrapper">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12 page-header-container">
+                            <h1 class="page-header">{@ page.content_title @}</h1>
+                        </div><!-- /.col-lg-12 -->
+                    </div>
+                    <div class="row main-content">
+                        {% block main_content %}{% endblock %}
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div><!-- /#page-wrapper -->
+        </div><!-- /#wrapper -->
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/metisMenu.min.js"></script>
+        <script src="/js/sb-admin-2.js"></script>
+        {% block extra_js %}{% endblock %}
+    </body>
+</html>

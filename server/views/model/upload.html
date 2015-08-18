@@ -1,0 +1,29 @@
+{% extends '../layout.html' %}
+{% block main_content %}
+<form id="uploadForm" role="form" enctype="multipart/form-data" action="/model/upload" method="post">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Ingrese los datos del modelo a subir
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                <label>Nombre</label>
+                <input class="form-control" name="name">
+                <p class="help-block">Este nombre será utilizado como referencia en el listado de modelos</p>
+            </div>
+            <div class="form-group">
+                <label>Archivo</label>
+                <input type="file" name="model">
+            </div>
+            <div class="form-group">
+                <label>Descripción</label>
+                <textarea class="form-control" name="description" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-default">Subir Modelo</button>
+                <button type="reset" class="btn btn-default">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock %}

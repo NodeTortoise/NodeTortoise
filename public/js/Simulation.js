@@ -14,7 +14,7 @@ var MAIN_BROWSER = 'FIREFOX';
 Simulation = function () {
 
     var self = this;
-    var spinner, waitingForRemoteUpdate;
+    var spinner, isTimeToSendApplyUpdate;
     var inputsSelector = '.netlogo-widget-container input:visible';
     var outputsSelector = '.netlogo-widget-container output:visible';
     var buttonsSelector = 'button.netlogo-widget.netlogo-button.netlogo-command, label.netlogo-widget.netlogo-button.netlogo-command input[type="checkbox"]';
@@ -30,7 +30,7 @@ Simulation = function () {
     this.enabledControls = false;
     this.commands = {};
 
-    var sessionName, modelFile, modelControls, modelCommands, overwritedCommands, originalCommands;
+    var sessionName, modelFile, modelControls, modelCommands, overwritedCommands;
 
     /**
      * Description
@@ -38,7 +38,10 @@ Simulation = function () {
      * @return
      */
     this.init = function () {
-        waitingForRemoteUpdate = false;
+        isTimeToSendApplyUpdate = false;
+        /*setInterval(function(){
+            isTimeToSendApplyUpdate = true;
+        }, 5000);*/
         doOverwriteFunctions();
         initWidgets();
         initNoMasterConnected();
@@ -75,9 +78,10 @@ Simulation = function () {
      */
     this.applyUpdate = function (agentStreamController, modelUpdate) {
         /* TODO-FUTUREWORK: optimize to send less data in modelUpdate */
-        if (!waitingForRemoteUpdate || !self.isSocketReady) {
+        if (!self.isSocketReady) {
             return agentStreamController._applyUpdate(modelUpdate);
-        } else if (self.isMaster && isTimeForRemoteUpdate()) {
+        } else if (self.isMaster && isTimeToSendApplyUpdate) {
+            isTimeToSendApplyUpdate = false;
             var outputs = new Array();
             $(outputsSelector).each(function (index, value) {
                 var ele = $(this);
@@ -86,7 +90,7 @@ Simulation = function () {
             self.sendAction('applyUpdate', {'model': modelUpdate, 'outputs': outputs});
             return agentStreamController._applyUpdate(modelUpdate);
         } else {
-            return true;
+            return agentStreamController._applyUpdate(modelUpdate);
         }
     };
 
@@ -238,16 +242,6 @@ Simulation = function () {
     var initNoMasterConnected = function () {
         spinner = new Helper.spinner('.netlogo-widget-container', {'bgColor': '#000', 'opacity': 0.8, 'height': '100%'});
         disableControls();
-    };
-
-    /**
-     * Description
-     * @method isTimeForRemoteUpdate
-     * @return Literal
-     */
-    var isTimeForRemoteUpdate = function () {
-        /* TODO: find a good way to prevent updating everytime */
-        return true;
     };
 
     /**

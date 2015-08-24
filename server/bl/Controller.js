@@ -124,12 +124,24 @@ Controller.model.upload.error = function (req, res, next) {
  * @return 
  */
 Controller.model.list = function (req, res, next) {
+    /**
+     * Description
+     * @method onSuccess
+     * @param {} modelsList
+     * @return 
+     */
     var onSuccess = function (modelsList) {
         var models = modelsList;
         var page = {'title': 'Librería de modelos', 'content_title': 'Librería de modelos'};
         var data = {'models': models};
         res.render('model/list.html', {'page': page, 'data': data});
     };
+    /**
+     * Description
+     * @method onError
+     * @param {} error
+     * @return 
+     */
     var onError = function (error) {
         responseOnErrorHTML(req, res, next, error);
     };
@@ -146,9 +158,20 @@ Controller.model.list = function (req, res, next) {
  * @return 
  */
 Controller.model.delete = function (req, res, next) {
+    /**
+     * Description
+     * @method onSuccess
+     * @return 
+     */
     var onSuccess = function () {
         res.json({'success': true});
     };
+    /**
+     * Description
+     * @method onError
+     * @param {} error
+     * @return 
+     */
     var onError = function (error) {
         responseOnErrorJson(req, res, next, error, 400);
     };
@@ -169,6 +192,12 @@ Controller.model.delete = function (req, res, next) {
  * @return 
  */
 Controller.session.list = function (req, res, next) {
+    /**
+     * Description
+     * @method afterGetModelsList
+     * @param {} modelsList
+     * @return 
+     */
     var afterGetModelsList = function (modelsList) {
         var SessionController = App.require('/bl/SessionController');
         var controller = SessionController.getInstance();
@@ -182,6 +211,13 @@ Controller.session.list = function (req, res, next) {
             sessions[sessionName] = {'name': '', 'url': url, 'users': users};
         }
         ;
+        /**
+         * Description
+         * @method getModelURL
+         * @param {} modelFilename
+         * @param {} token
+         * @return CallExpression
+         */
         var getModelURL = function (modelFilename, token) {
             return (MODEL_URL_TEMPLATE.replace('@session@', token).replace('@model@', modelFilename));
         };
@@ -189,6 +225,12 @@ Controller.session.list = function (req, res, next) {
         var data = {'sessions': sessions, 'models': models, 'token': token, 'getModelURL': getModelURL};
         res.render('session/list.html', {'page': page, 'data': data});
     };
+    /**
+     * Description
+     * @method onError
+     * @param {} error
+     * @return 
+     */
     var onError = function (error) {
         responseOnErrorHTML(req, res, next, error);
     };

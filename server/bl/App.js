@@ -93,6 +93,14 @@ App = function () {
         });
     };
 
+    /**
+     * Description
+     * @method onUploadModel
+     * @param {} originalFile
+     * @param {} req
+     * @param {} res
+     * @return 
+     */
     var onUploadModel = function (originalFile, req, res){
         var model = App.require('/bl/Model').getInstance();
         var success = model.add(originalFile, req.body.name, req.body.description);

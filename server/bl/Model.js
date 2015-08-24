@@ -8,6 +8,14 @@ Model = function () {
 
     var Entities = App.require('/da/Entities');
 
+    /**
+     * Description
+     * @method add
+     * @param {} originalFile
+     * @param {} modelName
+     * @param {} description
+     * @return success
+     */
     this.add = function (originalFile, modelName, description) {
         var Entities = App.require('/da/Entities');
         var originalFilePath = Helper.replaceAll(originalFile.path, '\\', '/');
@@ -30,7 +38,21 @@ Model = function () {
         return success;
     };
 
+    /**
+     * Description
+     * @method delete
+     * @param {} idModel
+     * @param {} filename
+     * @param {} onSuccess
+     * @param {} onError
+     * @return 
+     */
     this.delete = function(idModel, filename, onSuccess, onError){
+        /**
+         * Description
+         * @method afterDeleteFromDB
+         * @return 
+         */
         var afterDeleteFromDB = function (){
             var fs = require('fs');
             var htmlFile = getHTMLFile(filename);
@@ -42,18 +64,45 @@ Model = function () {
         Entities.getModel().delete(idModel, afterDeleteFromDB, onError);
     };
     
+    /**
+     * Description
+     * @method list
+     * @param {} onSuccess
+     * @param {} onError
+     * @return 
+     */
     this.list = function (onSuccess, onError){
         Entities.getModel().list(onSuccess, onError);
     };
 
+    /**
+     * Description
+     * @method getHTMLFile
+     * @param {} fileName
+     * @return CallExpression
+     */
     var getHTMLFile = function (fileName){
         return App.getRootPath(MODELS_PATH + fileName + '.html');
     };
     
+    /**
+     * Description
+     * @method getJSFile
+     * @param {} fileName
+     * @return CallExpression
+     */
     var getJSFile = function (fileName){
         return App.getRootPath(MODELS_PATH + 'js/' + fileName + '.js');
     };
 
+    /**
+     * Description
+     * @method tryDeleteFile
+     * @param {} filePath
+     * @param {} fileStrID
+     * @param {} fs
+     * @return 
+     */
     var tryDeleteFile = function (filePath, fileStrID, fs) {
         try {
             fs.unlinkSync(filePath);
@@ -66,6 +115,17 @@ Model = function () {
         }
     };
 
+    /**
+     * Description
+     * @method parse
+     * @param {} originalFilePath
+     * @param {} htmlNewFilePath
+     * @param {} jsNewFilePath
+     * @param {} fileName
+     * @param {} modelName
+     * @param {} fs
+     * @return 
+     */
     var parse = function (originalFilePath, htmlNewFilePath, jsNewFilePath, fileName, modelName, fs) {
         var cheerio = require('cheerio');
         //--> Read files
@@ -95,6 +155,11 @@ Model = function () {
 
 };
 
+/**
+ * Description
+ * @method getInstance
+ * @return MemberExpression
+ */
 Model.getInstance = function () {
     if (typeof Model._instance_ !== 'object') {
         Model._instance_ = new Model();

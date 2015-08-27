@@ -1,7 +1,8 @@
 /* global App, Sockets, Helper, module */
 
 /**
- * Description
+ * Maneja una sesión individual de una simulación.
+ * @class Session
  * @param {} name
  * @return 
  */
@@ -15,7 +16,7 @@ Session = function (name) {
     this.enabledControls = false;
 
     /**
-     * Description
+     * Realiza el proceso de inicialización de variables necesarias por el objeto.
      * @method init
      * @return 
      */
@@ -24,12 +25,12 @@ Session = function (name) {
     };
 
     /**
-     * Description
+     * Agrega un usuario a la sesión.
      * @method addUser
-     * @param {} username
-     * @param {} masterPassword
-     * @param {} enabledControls
-     * @return ObjectExpression
+     * @param {String} username
+     * @param {String} masterPassword
+     * @param {Boolean} enabledControls
+     * @return {Object} Un objecto JavaScript estandar con la información sobre la sesión. 
      */
     this.addUser = function (username, masterPassword, enabledControls) {
         if (self.users[username] === username) {
@@ -55,10 +56,10 @@ Session = function (name) {
     };
 
     /**
-     * Description
+     * Elimina un usuario de una sesión de simulación. 
      * @method removeUser
-     * @param {} username
-     * @param {} token
+     * @param {String} userName El nombre del usuario
+     * @param {String} token El token de sesión del usuario
      * @return 
      */
     this.removeUser = function (username, token) {
@@ -73,9 +74,9 @@ Session = function (name) {
     };
 
     /**
-     * Description
+     * Retorna el token del usuario maestro.
      * @method getMasterToken
-     * @return ConditionalExpression
+     * @return {String} El token del usuario maestro
      */
     this.getMasterToken = function () {
         return (self.master === null) ? null : self.master.token;

@@ -1,7 +1,8 @@
 /* global App, Sockets, Helper, module, MASTER_PASSWORD, MODELS_PATH, TORTOISE_SET_SESSION_STRING  */
 
 /**
- * Description
+ * Controla las sesiones de creadas por los usuarios para ejecutar las simulaciones.
+ * @class SessionController
  * @return 
  */
 SessionController = function () {
@@ -11,7 +12,7 @@ SessionController = function () {
     var sessions, modelsBySession;
 
     /**
-     * Description
+     * Realiza el proceso de inicialización de variables necesarias por el objeto.
      * @method init
      * @return 
      */
@@ -21,13 +22,13 @@ SessionController = function () {
     };
 
     /**
-     * Description
+     * Añade un usuario a una sesión de simulación. Si la sessión no existe, crea una nueva.
      * @method joinSession
-     * @param {} sessionName
-     * @param {} modelFile
-     * @param {} userName
-     * @param {} enabledControls
-     * @return 
+     * @param {String} sessionName El nombre de la sesión
+     * @param {String} modelFile El archivo del modelo de la simulación que ejecutará la sesión
+     * @param {String} userName El nombre del usuario
+     * @param @optional {Boolean} enabledControls Determinar si la sesión habilita o no los controles a otros usuarios distintos del maestro. Parámetro obligatorio solo para el usuario maestro.
+     * @return {Object} Un objecto JavaScript estandar con la información sobre la sesión. 
      */
     this.joinSession = function (sessionName, modelFile, userName, enabledControls) {
         if (!sessions[sessionName]) {
@@ -41,12 +42,12 @@ SessionController = function () {
     };
 
     /**
-     * Description
+     * Elimina un usuario de una sesión de simulación. 
      * @method leaveSession
-     * @param {} sessionName
-     * @param {} userName
-     * @param {} token
-     * @return diedSession
+     * @param {String} sessionName El nombre de la sesión
+     * @param {String} userName El nombre del usuario
+     * @param {String} token El token de sesión del usuario
+     * @return diedSession Indica si la sesión murió, porque el que abandonó fue el usuario maestro.
      */
     this.leaveSession = function (sessionName, userName, token) {
         var diedSession = false;
@@ -62,10 +63,10 @@ SessionController = function () {
     };
 
     /**
-     * Description
+     * Establece el modelo a ejecutar en una sesión de simulación
      * @method setSessionModel
-     * @param {} sessionName
-     * @param {} modelName
+     * @param {String} sessionName
+     * @param {String} modelName
      * @return 
      */
     this.setSessionModel = function (sessionName, modelName) {
@@ -73,39 +74,39 @@ SessionController = function () {
     };
 
     /**
-     * Description
+     * Devuelve el modelo que se está utilizando en una sesión.
      * @method getSessionModel
-     * @param {} sessionName
-     * @return MemberExpression
+     * @param {String} sessionName El nombre de la sesión
+     * @return {String} El nombre del modelo utilizado en la sesión
      */
     this.getSessionModel = function (sessionName) {
         return modelsBySession[sessionName];
     };
 
     /**
-     * Description
+     * Retorna la lista de las sesiones de simulación activas.
      * @method getSessionList
-     * @return modelsBySession
+     * @return {Array} La lista de sesiones
      */
     this.getSessionList = function () {
         return modelsBySession;
     };
 
     /**
-     * Description
+     * Retorna una sesión, basado en el nombre recibido como parámetro.
      * @method getSession
-     * @param {} sessionName
-     * @return MemberExpression
+     * @param {String} sessionName Nombre de la sesión
+     * @return {Session} La sessión
      */
     this.getSession = function (sessionName) {
         return sessions[sessionName];
     };
 
     /**
-     * Description
+     * Retorna la cantidad de usuarios en una sesión, basado en el nombre recibido como parámetro.
      * @method getSessionUsersQuantity
-     * @param {} sessionName
-     * @return 
+     * @param {String} sessionName El nombre de la sesión
+     * @return {Integer} La cantidad de usuarios en la sesión
      */
     this.getSessionUsersQuantity = function (sessionName) {
         if (!sessions[sessionName]) {
@@ -116,7 +117,7 @@ SessionController = function () {
     };
     
     /**
-     * Description
+     * Constructor de la clase
      * @method __construct
      * @return 
      */
@@ -129,9 +130,9 @@ SessionController = function () {
 };
 
 /**
- * Description
+ * Basado en el patrón <i>Singleton</i>, returna una instancia del objeto SessionController
  * @method getInstance
- * @return MemberExpression
+ * @return {SessionController}
  */
 SessionController.getInstance = function () {
     if (typeof SessionController._instance_ !== 'object') {

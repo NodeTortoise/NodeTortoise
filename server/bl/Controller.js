@@ -10,7 +10,7 @@
  * @param {} next
  * @param {} error
  * @param {} status
- * @return 
+ * @return
  */
 var responseOnErrorHTML = function (req, res, next, error, status) {
     App.debug(error, 'system');
@@ -27,9 +27,9 @@ var responseOnErrorHTML = function (req, res, next, error, status) {
  * @param {} next
  * @param {} error
  * @param {} status
- * @return 
+ * @return
  */
-var responseOnErrorJson = function(req, res, next, error, status) {
+var responseOnErrorJson = function (req, res, next, error, status) {
     App.debug(error, 'system');
     res.statusCode = (status) ? status : 400;
     res.json({'success': false});
@@ -37,7 +37,7 @@ var responseOnErrorJson = function(req, res, next, error, status) {
 
 /**
  * Description
- * @return 
+ * @return
  */
 Controller = function () {
 };
@@ -49,7 +49,7 @@ Controller = function () {
  * @param {} res
  * @param {} title
  * @param {} message
- * @return 
+ * @return
  */
 Controller.message = function (req, res, title, message) {
     var page = {'title': title, 'content_title': title};
@@ -60,7 +60,7 @@ Controller.message = function (req, res, title, message) {
 /**
  * Description
  * @method model
- * @return 
+ * @return
  */
 Controller.model = function () {
 };
@@ -68,7 +68,7 @@ Controller.model = function () {
 /**
  * Description
  * @method session
- * @return 
+ * @return
  */
 Controller.session = function () {
 };
@@ -79,7 +79,7 @@ Controller.session = function () {
  * @param {} req
  * @param {} res
  * @param {} next
- * @return 
+ * @return
  */
 Controller.model.upload = function (req, res, next) {
     var page = {'title': 'Subir Nuevo Modelo', 'content_title': 'Nuevo Modelo'};
@@ -93,7 +93,7 @@ Controller.model.upload = function (req, res, next) {
  * @param {} req
  * @param {} res
  * @param {} next
- * @return 
+ * @return
  */
 Controller.model.upload.success = function (req, res, next) {
     var page = {'title': 'Modelo subido exitosamente', 'content_title': 'Modelo subido exitosamente'};
@@ -107,7 +107,7 @@ Controller.model.upload.success = function (req, res, next) {
  * @param {} req
  * @param {} res
  * @param {} next
- * @return 
+ * @return
  */
 Controller.model.upload.error = function (req, res, next) {
     var page = {'title': 'Error al subir Modelo', 'content_title': 'Error al subir Modelo'};
@@ -121,14 +121,14 @@ Controller.model.upload.error = function (req, res, next) {
  * @param {} req
  * @param {} res
  * @param {} next
- * @return 
+ * @return
  */
 Controller.model.list = function (req, res, next) {
     /**
      * Description
      * @method onSuccess
      * @param {} modelsList
-     * @return 
+     * @return
      */
     var onSuccess = function (modelsList) {
         var models = modelsList;
@@ -140,7 +140,7 @@ Controller.model.list = function (req, res, next) {
      * Description
      * @method onError
      * @param {} error
-     * @return 
+     * @return
      */
     var onError = function (error) {
         responseOnErrorHTML(req, res, next, error);
@@ -155,13 +155,13 @@ Controller.model.list = function (req, res, next) {
  * @param {} req
  * @param {} res
  * @param {} next
- * @return 
+ * @return
  */
 Controller.model.delete = function (req, res, next) {
     /**
      * Description
      * @method onSuccess
-     * @return 
+     * @return
      */
     var onSuccess = function () {
         res.json({'success': true});
@@ -170,12 +170,12 @@ Controller.model.delete = function (req, res, next) {
      * Description
      * @method onError
      * @param {} error
-     * @return 
+     * @return
      */
     var onError = function (error) {
         responseOnErrorJson(req, res, next, error, 400);
     };
-    if(!req.body.id){
+    if (!req.body.id) {
         onError('No ID to delete');
         return;
     }
@@ -189,14 +189,14 @@ Controller.model.delete = function (req, res, next) {
  * @param {} req
  * @param {} res
  * @param {} next
- * @return 
+ * @return
  */
 Controller.session.list = function (req, res, next) {
     /**
      * Description
      * @method afterGetModelsList
      * @param {} modelsList
-     * @return 
+     * @return
      */
     var afterGetModelsList = function (modelsList) {
         var SessionController = App.require('/bl/SessionController');
@@ -229,13 +229,20 @@ Controller.session.list = function (req, res, next) {
      * Description
      * @method onError
      * @param {} error
-     * @return 
+     * @return
      */
     var onError = function (error) {
         responseOnErrorHTML(req, res, next, error);
     };
     var Model = App.require('/bl/Model');
     Model.getInstance().list(afterGetModelsList, onError);
+};
+
+Controller.model.onUpload = function (originalFile, req, res, next) {
+    var model = App.require('/bl/Model').getInstance();
+    var success = model.add(originalFile, req.body.name, req.body.description);
+    req.custom_parameters_ = {};
+    req.custom_parameters_.success = success;
 };
 
 module.exports = Controller;

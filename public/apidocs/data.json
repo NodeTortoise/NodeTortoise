@@ -1,0 +1,1920 @@
+{
+    "project": {
+        "name": "API de NodeTortoise",
+        "description": "The Foo API: Proyecto Universitario para basado en archivos Galapagos independientes, ejecutado sobre una plataforma NodeJS",
+        "version": "1.0.0",
+        "url": ""
+    },
+    "files": {
+        "server\\bl\\App.js": {
+            "name": "server\\bl\\App.js",
+            "modules": {},
+            "classes": {
+                "App": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "server\\bl\\Controller.js": {
+            "name": "server\\bl\\Controller.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "server\\bl\\Model.js": {
+            "name": "server\\bl\\Model.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "server\\bl\\Session.js": {
+            "name": "server\\bl\\Session.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "server\\bl\\SessionController.js": {
+            "name": "server\\bl\\SessionController.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "server\\da\\Entities.js": {
+            "name": "server\\da\\Entities.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "server\\da\\Sockets.Actions.js": {
+            "name": "server\\da\\Sockets.Actions.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "server\\da\\Sockets.js": {
+            "name": "server\\da\\Sockets.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "server\\libs\\SQLite.js": {
+            "name": "server\\libs\\SQLite.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {},
+    "classes": {
+        "App": {
+            "name": "App",
+            "shortname": "App",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "server\\bl\\App.js",
+            "line": 3,
+            "description": "Controlador principal de la aplicación en el lado del servidor. Se encarga de \nestablecer los parámetros de configuración, configurando el framework Express, \nlas rutas y el motor de plantillas (templates).",
+            "return": {
+                "description": ""
+            }
+        }
+    },
+    "elements": {},
+    "classitems": [
+        {
+            "file": "server\\bl\\App.js",
+            "line": 14,
+            "description": "Inicializa el proceso de definición de los parámetros de configuración \nde la aplicación.",
+            "itemtype": "method",
+            "name": "init",
+            "params": [
+                {
+                    "name": "server",
+                    "description": "",
+                    "type": "http.Server"
+                }
+            ],
+            "return": {
+                "description": ""
+            },
+            "class": "App"
+        },
+        {
+            "file": "server\\bl\\App.js",
+            "line": 28,
+            "description": "Establece los parámetros de configuración de Express y el motor de \nplantillas Swig y otros (logger, cookieParser, etc).",
+            "itemtype": "method",
+            "name": "setupConfig",
+            "return": {
+                "description": ""
+            },
+            "class": "App"
+        },
+        {
+            "file": "server\\bl\\App.js",
+            "line": 68,
+            "description": "Establece los parámetros de configuración de las rutas accesibles por \nmedio del protocolo HTTP.",
+            "itemtype": "method",
+            "name": "setupRoutes",
+            "return": {
+                "description": ""
+            },
+            "class": "App"
+        },
+        {
+            "file": "server\\bl\\App.js",
+            "line": 108,
+            "description": "Constructor de la clase.",
+            "itemtype": "method",
+            "name": "__construct",
+            "return": {
+                "description": ""
+            },
+            "class": "App"
+        },
+        {
+            "file": "server\\bl\\App.js",
+            "line": 120,
+            "description": "Returna la instancia de Express utilizada.",
+            "itemtype": "method",
+            "name": "getExpress",
+            "return": {
+                "description": "app",
+                "type": "Express"
+            },
+            "class": "App"
+        },
+        {
+            "file": "server\\bl\\App.js",
+            "line": 133,
+            "description": "Retorn la ruta desde el directorio raíz de la aplicación basado en la ruta \nrecibida.",
+            "itemtype": "method",
+            "name": "getRootPath",
+            "params": [
+                {
+                    "name": "filePath",
+                    "description": "Ruta relativa del archivo",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "CallExpression"
+            },
+            "class": "App"
+        },
+        {
+            "file": "server\\bl\\App.js",
+            "line": 145,
+            "description": "Retorn la ruta desde el directorio de los archivos del servidor de la \naplicación basado en la ruta recibida.",
+            "itemtype": "method",
+            "name": "getPath",
+            "params": [
+                {
+                    "name": "filePath",
+                    "description": "Ruta relativa del archivo",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "CallExpression"
+            },
+            "class": "App"
+        },
+        {
+            "file": "server\\bl\\App.js",
+            "line": 157,
+            "description": "Incluye el cídigo de un archivo dentro de la aplicación.",
+            "itemtype": "method",
+            "name": "include",
+            "params": [
+                {
+                    "name": "file",
+                    "description": "Ruta relativa del archivo",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": ""
+            },
+            "class": "App"
+        },
+        {
+            "file": "server\\bl\\App.js",
+            "line": 168,
+            "description": "Realiza el require de cualquiera de los módulos ubicados dentro del directorio\nde los archivos del servidor de la aplicación.",
+            "itemtype": "method",
+            "name": "require",
+            "params": [
+                {
+                    "name": "module",
+                    "description": "Ruta relativa del modulo",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "CallExpression"
+            },
+            "class": "App"
+        },
+        {
+            "file": "server\\bl\\App.js",
+            "line": 179,
+            "description": "Imprime en consola un mensaje de depuración, personalizado para la aplicación.\nLa impresión del mensaje es condicionada por el valor de la variable global  \n<i>DEBUG_MODE<i> en el archivo de configuración de la aplicación y el valor del\nparámetro <i>mode</i> recibido",
+            "itemtype": "method",
+            "name": "debug",
+            "params": [
+                {
+                    "name": "message",
+                    "description": "El mensaje a imprimir en consola",
+                    "type": "String"
+                },
+                {
+                    "name": "user",
+                    "description": "El usuario que está enviando el mensaje (cuando se está en modo simulación)",
+                    "type": "String"
+                },
+                {
+                    "name": "session",
+                    "description": "La sesion del usuario que está enviando el mensaje (cuando se está en modo simulación)",
+                    "type": "String"
+                },
+                {
+                    "name": "mode",
+                    "description": "El modo de debug a aplicar al mensaje",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": ""
+            },
+            "class": "App"
+        },
+        {
+            "file": "server\\bl\\App.js",
+            "line": 204,
+            "description": "Retorna la instancia del objeto Express utilizado",
+            "itemtype": "method",
+            "name": "getInstance",
+            "return": {
+                "description": "Instancia de express",
+                "type": "Express"
+            },
+            "class": "App"
+        },
+        {
+            "file": "server\\bl\\App.js",
+            "line": 216,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "isUserMaster",
+            "params": [
+                {
+                    "name": "masterPassword",
+                    "description": "La contraseña del usuario maestro",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "BinaryExpression"
+            },
+            "class": "App"
+        },
+        {
+            "file": "server\\bl\\Controller.js",
+            "line": 5,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "responseOnErrorHTML",
+            "params": [
+                {
+                    "name": "req",
+                    "description": ""
+                },
+                {
+                    "name": "res",
+                    "description": ""
+                },
+                {
+                    "name": "next",
+                    "description": ""
+                },
+                {
+                    "name": "error",
+                    "description": ""
+                },
+                {
+                    "name": "status",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\bl\\Controller.js",
+            "line": 22,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "responseOnErrorJson",
+            "params": [
+                {
+                    "name": "req",
+                    "description": ""
+                },
+                {
+                    "name": "res",
+                    "description": ""
+                },
+                {
+                    "name": "next",
+                    "description": ""
+                },
+                {
+                    "name": "error",
+                    "description": ""
+                },
+                {
+                    "name": "status",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\bl\\Controller.js",
+            "line": 38,
+            "description": "Description",
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\bl\\Controller.js",
+            "line": 45,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "message",
+            "params": [
+                {
+                    "name": "req",
+                    "description": ""
+                },
+                {
+                    "name": "res",
+                    "description": ""
+                },
+                {
+                    "name": "title",
+                    "description": ""
+                },
+                {
+                    "name": "message",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\bl\\Controller.js",
+            "line": 60,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "model",
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\bl\\Controller.js",
+            "line": 68,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "session",
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\bl\\Controller.js",
+            "line": 76,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "upload",
+            "params": [
+                {
+                    "name": "req",
+                    "description": ""
+                },
+                {
+                    "name": "res",
+                    "description": ""
+                },
+                {
+                    "name": "next",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\bl\\Controller.js",
+            "line": 90,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "success",
+            "params": [
+                {
+                    "name": "req",
+                    "description": ""
+                },
+                {
+                    "name": "res",
+                    "description": ""
+                },
+                {
+                    "name": "next",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\bl\\Controller.js",
+            "line": 104,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "error",
+            "params": [
+                {
+                    "name": "req",
+                    "description": ""
+                },
+                {
+                    "name": "res",
+                    "description": ""
+                },
+                {
+                    "name": "next",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\bl\\Controller.js",
+            "line": 118,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "list",
+            "params": [
+                {
+                    "name": "req",
+                    "description": ""
+                },
+                {
+                    "name": "res",
+                    "description": ""
+                },
+                {
+                    "name": "next",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\bl\\Controller.js",
+            "line": 127,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "onSuccess",
+            "params": [
+                {
+                    "name": "modelsList",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\bl\\Controller.js",
+            "line": 139,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "onError",
+            "params": [
+                {
+                    "name": "error",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\bl\\Controller.js",
+            "line": 152,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "delete",
+            "params": [
+                {
+                    "name": "req",
+                    "description": ""
+                },
+                {
+                    "name": "res",
+                    "description": ""
+                },
+                {
+                    "name": "next",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\bl\\Controller.js",
+            "line": 161,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "onSuccess",
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\bl\\Controller.js",
+            "line": 169,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "onError",
+            "params": [
+                {
+                    "name": "error",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\bl\\Controller.js",
+            "line": 186,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "list",
+            "params": [
+                {
+                    "name": "req",
+                    "description": ""
+                },
+                {
+                    "name": "res",
+                    "description": ""
+                },
+                {
+                    "name": "next",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\bl\\Controller.js",
+            "line": 195,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "afterGetModelsList",
+            "params": [
+                {
+                    "name": "modelsList",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\bl\\Controller.js",
+            "line": 214,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "getModelURL",
+            "params": [
+                {
+                    "name": "modelFilename",
+                    "description": ""
+                },
+                {
+                    "name": "token",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": "CallExpression"
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\bl\\Controller.js",
+            "line": 228,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "onError",
+            "params": [
+                {
+                    "name": "error",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\bl\\Model.js",
+            "line": 3,
+            "description": "Description",
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\bl\\Model.js",
+            "line": 11,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "add",
+            "params": [
+                {
+                    "name": "originalFile",
+                    "description": ""
+                },
+                {
+                    "name": "modelName",
+                    "description": ""
+                },
+                {
+                    "name": "description",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": "success"
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\bl\\Model.js",
+            "line": 41,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "delete",
+            "params": [
+                {
+                    "name": "idModel",
+                    "description": ""
+                },
+                {
+                    "name": "filename",
+                    "description": ""
+                },
+                {
+                    "name": "onSuccess",
+                    "description": ""
+                },
+                {
+                    "name": "onError",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\bl\\Model.js",
+            "line": 51,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "afterDeleteFromDB",
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\bl\\Model.js",
+            "line": 67,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "list",
+            "params": [
+                {
+                    "name": "onSuccess",
+                    "description": ""
+                },
+                {
+                    "name": "onError",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\bl\\Model.js",
+            "line": 78,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "getHTMLFile",
+            "params": [
+                {
+                    "name": "fileName",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": "CallExpression"
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\bl\\Model.js",
+            "line": 88,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "getJSFile",
+            "params": [
+                {
+                    "name": "fileName",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": "CallExpression"
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\bl\\Model.js",
+            "line": 98,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "tryDeleteFile",
+            "params": [
+                {
+                    "name": "filePath",
+                    "description": ""
+                },
+                {
+                    "name": "fileStrID",
+                    "description": ""
+                },
+                {
+                    "name": "fs",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\bl\\Model.js",
+            "line": 118,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "parse",
+            "params": [
+                {
+                    "name": "originalFilePath",
+                    "description": ""
+                },
+                {
+                    "name": "htmlNewFilePath",
+                    "description": ""
+                },
+                {
+                    "name": "jsNewFilePath",
+                    "description": ""
+                },
+                {
+                    "name": "fileName",
+                    "description": ""
+                },
+                {
+                    "name": "modelName",
+                    "description": ""
+                },
+                {
+                    "name": "fs",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\bl\\Model.js",
+            "line": 158,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "getInstance",
+            "return": {
+                "description": "MemberExpression"
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\bl\\Session.js",
+            "line": 3,
+            "description": "Description",
+            "params": [
+                {
+                    "name": "name",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\bl\\Session.js",
+            "line": 17,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "init",
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\bl\\Session.js",
+            "line": 26,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "addUser",
+            "params": [
+                {
+                    "name": "username",
+                    "description": ""
+                },
+                {
+                    "name": "masterPassword",
+                    "description": ""
+                },
+                {
+                    "name": "enabledControls",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": "ObjectExpression"
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\bl\\Session.js",
+            "line": 57,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "removeUser",
+            "params": [
+                {
+                    "name": "username",
+                    "description": ""
+                },
+                {
+                    "name": "token",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\bl\\Session.js",
+            "line": 75,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "getMasterToken",
+            "return": {
+                "description": "ConditionalExpression"
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\bl\\SessionController.js",
+            "line": 3,
+            "description": "Description",
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\bl\\SessionController.js",
+            "line": 13,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "init",
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\bl\\SessionController.js",
+            "line": 23,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "joinSession",
+            "params": [
+                {
+                    "name": "sessionName",
+                    "description": ""
+                },
+                {
+                    "name": "modelFile",
+                    "description": ""
+                },
+                {
+                    "name": "userName",
+                    "description": ""
+                },
+                {
+                    "name": "enabledControls",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\bl\\SessionController.js",
+            "line": 43,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "leaveSession",
+            "params": [
+                {
+                    "name": "sessionName",
+                    "description": ""
+                },
+                {
+                    "name": "userName",
+                    "description": ""
+                },
+                {
+                    "name": "token",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": "diedSession"
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\bl\\SessionController.js",
+            "line": 64,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "setSessionModel",
+            "params": [
+                {
+                    "name": "sessionName",
+                    "description": ""
+                },
+                {
+                    "name": "modelName",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\bl\\SessionController.js",
+            "line": 75,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "getSessionModel",
+            "params": [
+                {
+                    "name": "sessionName",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": "MemberExpression"
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\bl\\SessionController.js",
+            "line": 85,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "getSessionList",
+            "return": {
+                "description": "modelsBySession"
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\bl\\SessionController.js",
+            "line": 94,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "getSession",
+            "params": [
+                {
+                    "name": "sessionName",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": "MemberExpression"
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\bl\\SessionController.js",
+            "line": 104,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "getSessionUsersQuantity",
+            "params": [
+                {
+                    "name": "sessionName",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\bl\\SessionController.js",
+            "line": 118,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "__construct",
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\bl\\SessionController.js",
+            "line": 131,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "getInstance",
+            "return": {
+                "description": "MemberExpression"
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\da\\Entities.js",
+            "line": 9,
+            "description": "Description",
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\da\\Entities.js",
+            "line": 16,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "model",
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\da\\Entities.js",
+            "line": 25,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "add",
+            "params": [
+                {
+                    "name": "name",
+                    "description": ""
+                },
+                {
+                    "name": "filename",
+                    "description": ""
+                },
+                {
+                    "name": "description",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\da\\Entities.js",
+            "line": 38,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "list",
+            "params": [
+                {
+                    "name": "onSuccess",
+                    "description": ""
+                },
+                {
+                    "name": "onError",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\da\\Entities.js",
+            "line": 49,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "delete",
+            "params": [
+                {
+                    "name": "idModel",
+                    "description": ""
+                },
+                {
+                    "name": "onSuccess",
+                    "description": ""
+                },
+                {
+                    "name": "onError",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\da\\Entities.js",
+            "line": 65,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "getModel",
+            "return": {
+                "description": "MemberExpression"
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\da\\Sockets.Actions.js",
+            "line": 6,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "Actions",
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\da\\Sockets.Actions.js",
+            "line": 14,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "connect",
+            "params": [
+                {
+                    "name": "socket",
+                    "description": ""
+                },
+                {
+                    "name": "token",
+                    "description": ""
+                },
+                {
+                    "name": "params",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\da\\Sockets.Actions.js",
+            "line": 39,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "disconnect",
+            "params": [
+                {
+                    "name": "socket",
+                    "description": ""
+                },
+                {
+                    "name": "token",
+                    "description": ""
+                },
+                {
+                    "name": "params",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\da\\Sockets.Actions.js",
+            "line": 60,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "executeCommand",
+            "params": [
+                {
+                    "name": "socket",
+                    "description": ""
+                },
+                {
+                    "name": "token",
+                    "description": ""
+                },
+                {
+                    "name": "params",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\da\\Sockets.Actions.js",
+            "line": 72,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "setGlobal",
+            "params": [
+                {
+                    "name": "socket",
+                    "description": ""
+                },
+                {
+                    "name": "token",
+                    "description": ""
+                },
+                {
+                    "name": "params",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\da\\Sockets.Actions.js",
+            "line": 89,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "updateSpeed",
+            "params": [
+                {
+                    "name": "socket",
+                    "description": ""
+                },
+                {
+                    "name": "token",
+                    "description": ""
+                },
+                {
+                    "name": "params",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\da\\Sockets.Actions.js",
+            "line": 106,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "applyUpdate",
+            "params": [
+                {
+                    "name": "socket",
+                    "description": ""
+                },
+                {
+                    "name": "token",
+                    "description": ""
+                },
+                {
+                    "name": "params",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\da\\Sockets.Actions.js",
+            "line": 118,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "sendMessage",
+            "params": [
+                {
+                    "name": "socket",
+                    "description": ""
+                },
+                {
+                    "name": "params",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\da\\Sockets.js",
+            "line": 3,
+            "description": "Description",
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\da\\Sockets.js",
+            "line": 12,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "sendAction",
+            "params": [
+                {
+                    "name": "socket",
+                    "description": ""
+                },
+                {
+                    "name": "sessionName",
+                    "description": ""
+                },
+                {
+                    "name": "action",
+                    "description": ""
+                },
+                {
+                    "name": "params",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\da\\Sockets.js",
+            "line": 31,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "set",
+            "params": [
+                {
+                    "name": "socket",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\da\\Sockets.js",
+            "line": 41,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "setServerActions",
+            "params": [
+                {
+                    "name": "socket",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\da\\Sockets.js",
+            "line": 62,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "sendToMe",
+            "params": [
+                {
+                    "name": "socket",
+                    "description": ""
+                },
+                {
+                    "name": "action",
+                    "description": ""
+                },
+                {
+                    "name": "params",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\da\\Sockets.js",
+            "line": 75,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "sendToOthers",
+            "params": [
+                {
+                    "name": "socket",
+                    "description": ""
+                },
+                {
+                    "name": "sessionName",
+                    "description": ""
+                },
+                {
+                    "name": "action",
+                    "description": ""
+                },
+                {
+                    "name": "params",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\da\\Sockets.js",
+            "line": 89,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "sendToAll",
+            "params": [
+                {
+                    "name": "sessionName",
+                    "description": ""
+                },
+                {
+                    "name": "action",
+                    "description": ""
+                },
+                {
+                    "name": "params",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\da\\Sockets.js",
+            "line": 102,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "init",
+            "params": [
+                {
+                    "name": "server",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\libs\\SQLite.js",
+            "line": 3,
+            "description": "Description",
+            "params": [
+                {
+                    "name": "file",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\libs\\SQLite.js",
+            "line": 14,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "insert",
+            "params": [
+                {
+                    "name": "table",
+                    "description": ""
+                },
+                {
+                    "name": "fields",
+                    "description": ""
+                },
+                {
+                    "name": "values",
+                    "description": ""
+                },
+                {
+                    "name": "onSuccess",
+                    "description": ""
+                },
+                {
+                    "name": "onError",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\libs\\SQLite.js",
+            "line": 40,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "select",
+            "params": [
+                {
+                    "name": "table",
+                    "description": ""
+                },
+                {
+                    "name": "fields",
+                    "description": ""
+                },
+                {
+                    "name": "onSuccess",
+                    "description": ""
+                },
+                {
+                    "name": "onError",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\libs\\SQLite.js",
+            "line": 53,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "callback",
+            "params": [
+                {
+                    "name": "error",
+                    "description": ""
+                },
+                {
+                    "name": "result",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\libs\\SQLite.js",
+            "line": 70,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "selectWhere",
+            "params": [
+                {
+                    "name": "table",
+                    "description": ""
+                },
+                {
+                    "name": "fields",
+                    "description": ""
+                },
+                {
+                    "name": "filters",
+                    "description": ""
+                },
+                {
+                    "name": "onSuccess",
+                    "description": ""
+                },
+                {
+                    "name": "onError",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\libs\\SQLite.js",
+            "line": 83,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "delete",
+            "params": [
+                {
+                    "name": "table",
+                    "description": ""
+                },
+                {
+                    "name": "filters",
+                    "description": ""
+                },
+                {
+                    "name": "onSuccess",
+                    "description": ""
+                },
+                {
+                    "name": "onError",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\libs\\SQLite.js",
+            "line": 99,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "callback",
+            "params": [
+                {
+                    "name": "error",
+                    "description": ""
+                },
+                {
+                    "name": "result",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\libs\\SQLite.js",
+            "line": 116,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "onCallback",
+            "params": [
+                {
+                    "name": "query",
+                    "description": ""
+                },
+                {
+                    "name": "onSuccess",
+                    "description": ""
+                },
+                {
+                    "name": "onError",
+                    "description": ""
+                },
+                {
+                    "name": "error",
+                    "description": ""
+                },
+                {
+                    "name": "result",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\libs\\SQLite.js",
+            "line": 136,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "getQueryFilters",
+            "params": [
+                {
+                    "name": "filters",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": "ObjectExpression"
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\libs\\SQLite.js",
+            "line": 153,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "getQueryValues",
+            "params": [
+                {
+                    "name": "values",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": "strValues"
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\libs\\SQLite.js",
+            "line": 168,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "getDB",
+            "return": {
+                "description": "db"
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\libs\\SQLite.js",
+            "line": 177,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "debug",
+            "params": [
+                {
+                    "name": "message",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        },
+        {
+            "file": "server\\libs\\SQLite.js",
+            "line": 189,
+            "description": "Description",
+            "itemtype": "method",
+            "name": "__construc",
+            "return": {
+                "description": ""
+            },
+            "class": ""
+        }
+    ],
+    "warnings": [
+        {
+            "message": "Missing item type\nDescription",
+            "line": " server\\bl\\Controller.js:38"
+        },
+        {
+            "message": "Missing item type\nDescription",
+            "line": " server\\bl\\Model.js:3"
+        },
+        {
+            "message": "Missing item type\nDescription",
+            "line": " server\\bl\\Session.js:3"
+        },
+        {
+            "message": "Missing item type\nDescription",
+            "line": " server\\bl\\SessionController.js:3"
+        },
+        {
+            "message": "Missing item type\nDescription",
+            "line": " server\\da\\Entities.js:9"
+        },
+        {
+            "message": "Missing item type\nDescription",
+            "line": " server\\da\\Sockets.js:3"
+        },
+        {
+            "message": "Missing item type\nDescription",
+            "line": " server\\libs\\SQLite.js:3"
+        }
+    ]
+}

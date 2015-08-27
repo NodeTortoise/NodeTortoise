@@ -1,13 +1,11 @@
-
-
 /* global App, Helper, MODEL_URL_TEMPLATE, module */
 
 /**
  * Description
  * @method responseOnErrorHTML
- * @param {} req
- * @param {} res
- * @param {} next
+ * @param {Request} req Objeto que representa la petición HTTP y contiene el <i>query string</i>, los parámetros, el cuerpo y las cabeceras HTTP, entro otros
+ * @param {Response} res El objeto res representa la respuesta HTTP que una aplicación Express envía cuando se hace una petición HTTP.
+ * @param {Function} next Función que continúa la ejecución en la búsqueda de rutas
  * @param {} error
  * @param {} status
  * @return
@@ -22,9 +20,9 @@ var responseOnErrorHTML = function (req, res, next, error, status) {
 /**
  * Description
  * @method responseOnErrorJson
- * @param {} req
- * @param {} res
- * @param {} next
+ * @param {Request} req Objeto que representa la petición HTTP y contiene el <i>query string</i>, los parámetros, el cuerpo y las cabeceras HTTP, entro otros
+ * @param {Response} res El objeto res representa la respuesta HTTP que una aplicación Express envía cuando se hace una petición HTTP.
+ * @param {Function} next Función que continúa la ejecución en la búsqueda de rutas.
  * @param {} error
  * @param {} status
  * @return
@@ -76,9 +74,9 @@ Controller.session = function () {
 /**
  * Description
  * @method upload
- * @param {} req
- * @param {} res
- * @param {} next
+ * @param {Request} req Objeto que representa la petición HTTP y contiene el <i>query string</i>, los parámetros, el cuerpo y las cabeceras HTTP, entro otros
+ * @param {Response} res El objeto res representa la respuesta HTTP que una aplicación Express envía cuando se hace una petición HTTP.
+ * @param {Function} next Función que continúa la ejecución en la búsqueda de rutas
  * @return
  */
 Controller.model.upload = function (req, res, next) {
@@ -90,9 +88,9 @@ Controller.model.upload = function (req, res, next) {
 /**
  * Description
  * @method success
- * @param {} req
- * @param {} res
- * @param {} next
+ * @param {Request} req Objeto que representa la petición HTTP y contiene el <i>query string</i>, los parámetros, el cuerpo y las cabeceras HTTP, entro otros
+ * @param {Response} res El objeto res representa la respuesta HTTP que una aplicación Express envía cuando se hace una petición HTTP.
+ * @param {Function} next Función que continúa la ejecución en la búsqueda de rutas
  * @return
  */
 Controller.model.upload.success = function (req, res, next) {
@@ -104,9 +102,9 @@ Controller.model.upload.success = function (req, res, next) {
 /**
  * Description
  * @method error
- * @param {} req
- * @param {} res
- * @param {} next
+ * @param {Request} req Objeto que representa la petición HTTP y contiene el <i>query string</i>, los parámetros, el cuerpo y las cabeceras HTTP, entro otros
+ * @param {Response} res El objeto res representa la respuesta HTTP que una aplicación Express envía cuando se hace una petición HTTP.
+ * @param {Function} next Función que continúa la ejecución en la búsqueda de rutas
  * @return
  */
 Controller.model.upload.error = function (req, res, next) {
@@ -118,9 +116,9 @@ Controller.model.upload.error = function (req, res, next) {
 /**
  * Description
  * @method list
- * @param {} req
- * @param {} res
- * @param {} next
+ * @param {Request} req Objeto que representa la petición HTTP y contiene el <i>query string</i>, los parámetros, el cuerpo y las cabeceras HTTP, entro otros
+ * @param {Response} res El objeto res representa la respuesta HTTP que una aplicación Express envía cuando se hace una petición HTTP.
+ * @param {Function} next Función que continúa la ejecución en la búsqueda de rutas
  * @return
  */
 Controller.model.list = function (req, res, next) {
@@ -152,9 +150,9 @@ Controller.model.list = function (req, res, next) {
 /**
  * Description
  * @method delete
- * @param {} req
- * @param {} res
- * @param {} next
+ * @param {Request} req Objeto que representa la petición HTTP y contiene el <i>query string</i>, los parámetros, el cuerpo y las cabeceras HTTP, entro otros
+ * @param {Response} res El objeto res representa la respuesta HTTP que una aplicación Express envía cuando se hace una petición HTTP.
+ * @param {Function} next Función que continúa la ejecución en la búsqueda de rutas
  * @return
  */
 Controller.model.delete = function (req, res, next) {
@@ -186,9 +184,9 @@ Controller.model.delete = function (req, res, next) {
 /**
  * Description
  * @method list
- * @param {} req
- * @param {} res
- * @param {} next
+ * @param {Request} req Objeto que representa la petición HTTP y contiene el <i>query string</i>, los parámetros, el cuerpo y las cabeceras HTTP, entro otros
+ * @param {Response} res El objeto res representa la respuesta HTTP que una aplicación Express envía cuando se hace una petición HTTP.
+ * @param {Function} next Función que continúa la ejecución en la búsqueda de rutas
  * @return
  */
 Controller.session.list = function (req, res, next) {

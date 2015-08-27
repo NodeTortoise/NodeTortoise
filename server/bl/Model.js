@@ -1,7 +1,7 @@
 /* global App, Helper, MODELS_PATH, TORTOISE_SET_SESSION_STRING, module, MODELS_TEMPLATE */
 
 /**
- * Description
+ * @class Model
  * @return 
  */
 Model = function () {
@@ -39,17 +39,17 @@ Model = function () {
     };
 
     /**
-     * Description
+     * Elimina un modelo del sistema
      * @method delete
-     * @param {} idModel
-     * @param {} filename
-     * @param {} onSuccess
-     * @param {} onError
+     * @param {Integer} idModel El ID del modelo
+     * @param {String} filename Nombre de archivo del modelo (sin la ruta)
+     * @param {Function} onSuccess Función a ejecutar cuando el modelo sea eliminado correctamente del sistema
+     * @param {Function} onError Función e ejecutar si hay un error al eliminar un modelo del sistema
      * @return 
      */
     this.delete = function(idModel, filename, onSuccess, onError){
         /**
-         * Description
+         * Función a ejecutar cuando el modelo sea eliminado correctamente de la base de datos
          * @method afterDeleteFromDB
          * @return 
          */
@@ -65,10 +65,10 @@ Model = function () {
     };
     
     /**
-     * Description
+     * Retorna la lista de modelos disponibles en el sistema
      * @method list
-     * @param {} onSuccess
-     * @param {} onError
+     * @param {Function} onSuccess Función a ejecutar cuando se ha recuperado la lista de modelos del sistema
+     * @param {Function} onError Función e ejecutar si hay un error al recuperar la lista de modelos del sistema
      * @return 
      */
     this.list = function (onSuccess, onError){
@@ -76,32 +76,32 @@ Model = function () {
     };
 
     /**
-     * Description
+     * Retorna la ruta al archivo HTML de un modelo.
      * @method getHTMLFile
-     * @param {} fileName
-     * @return CallExpression
+     * @param {String} fileName Nombre del archivo de modelo a recuperar
+     * @return {String} La ruta al archivo HTML de un modelo
      */
     var getHTMLFile = function (fileName){
         return App.getRootPath(MODELS_PATH + fileName + '.html');
     };
     
     /**
-     * Description
+     * Retorna la ruta al archivo JavaScript de un modelo.
      * @method getJSFile
-     * @param {} fileName
-     * @return CallExpression
+     * @param {String} fileName Nombre del archivo de modelo a recuperar
+     * @return {String} La ruta al archivo JavaScript de un modelo
      */
     var getJSFile = function (fileName){
         return App.getRootPath(MODELS_PATH + 'js/' + fileName + '.js');
     };
 
     /**
-     * Description
+     * Intenta eliminar un archivo del sistema de archivo, si falla, envía un mensaje de depuración a la aplicación.
      * @method tryDeleteFile
-     * @param {} filePath
-     * @param {} fileStrID
-     * @param {} fs
-     * @return 
+     * @param {String} filePath Ruta del archivo
+     * @param {String} fileStrID Identificador del archivo a ser mostrado en el mensaje de depuración.
+     * @param {fs} fs Objeto que controla el sistema de archivos
+     * @return {Boolean}
      */
     var tryDeleteFile = function (filePath, fileStrID, fs) {
         try {
@@ -116,14 +116,14 @@ Model = function () {
     };
 
     /**
-     * Description
+     * Procese un modelo exportado de Galapagos, para convertirlo al formato necesario para que funcione en NodeTortoise.
      * @method parse
-     * @param {} originalFilePath
-     * @param {} htmlNewFilePath
-     * @param {} jsNewFilePath
-     * @param {} fileName
-     * @param {} modelName
-     * @param {} fs
+     * @param {} originalFilePath Ruta del archivo original, subido al sistema
+     * @param {} htmlNewFilePath Ruta donde se debe guardar el archivo HTML del modelo
+     * @param {} jsNewFilePath Ruta donde se debe guardar el archivo JavaScript del modelo
+     * @param {} fileName Nombre del archivo del modelo
+     * @param {} modelName Nombre del modelo
+     * @param {fs} fs Objeto que controla el sistema de archivos
      * @return 
      */
     var parse = function (originalFilePath, htmlNewFilePath, jsNewFilePath, fileName, modelName, fs) {
@@ -156,9 +156,9 @@ Model = function () {
 };
 
 /**
- * Description
+ * Basado en el patrón <i>Singleton</i>, returna una instancia del objeto Model
  * @method getInstance
- * @return MemberExpression
+ * @return {Model}
  */
 Model.getInstance = function () {
     if (typeof Model._instance_ !== 'object') {

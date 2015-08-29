@@ -18,28 +18,40 @@
         "server\\bl\\Controller.js": {
             "name": "server\\bl\\Controller.js",
             "modules": {},
-            "classes": {},
+            "classes": {
+                "Controller": 1,
+                "Controller.model": 1,
+                "Controller.session": 1
+            },
             "fors": {},
             "namespaces": {}
         },
         "server\\bl\\Model.js": {
             "name": "server\\bl\\Model.js",
-            "modules": {},
-            "classes": {},
+            "modules": {
+                "Model": 1
+            },
+            "classes": {
+                "Model": 1
+            },
             "fors": {},
             "namespaces": {}
         },
         "server\\bl\\Session.js": {
             "name": "server\\bl\\Session.js",
             "modules": {},
-            "classes": {},
+            "classes": {
+                "Session": 1
+            },
             "fors": {},
             "namespaces": {}
         },
         "server\\bl\\SessionController.js": {
             "name": "server\\bl\\SessionController.js",
             "modules": {},
-            "classes": {},
+            "classes": {
+                "SessionController": 1
+            },
             "fors": {},
             "namespaces": {}
         },
@@ -72,7 +84,28 @@
             "namespaces": {}
         }
     },
-    "modules": {},
+    "modules": {
+        "Model": {
+            "name": "Model",
+            "submodules": {},
+            "elements": {},
+            "classes": {
+                "App": 1,
+                "Controller": 1,
+                "Controller.model": 1,
+                "Controller.session": 1,
+                "Model": 1,
+                "Session": 1,
+                "SessionController": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "server\\bl\\SessionController.js",
+            "line": 3,
+            "description": "Provee la clase Model"
+        }
+    },
     "classes": {
         "App": {
             "name": "App",
@@ -82,12 +115,102 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
+            "module": "Model",
             "file": "server\\bl\\App.js",
             "line": 3,
             "description": "Controlador principal de la aplicación en el lado del servidor. Se encarga de \nestablecer los parámetros de configuración, configurando el framework Express, \nlas rutas y el motor de plantillas (templates).",
-            "return": {
-                "description": ""
-            }
+            "is_constructor": 1
+        },
+        "Controller": {
+            "name": "Controller",
+            "shortname": "Controller",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Model",
+            "file": "server\\bl\\Controller.js",
+            "line": 36,
+            "description": "Controla la capa negocio de la aplicación, haciendo la conexión entre la capa \nde datos y las vistas y aplicando la logica de negocio necesaria."
+        },
+        "Controller.model": {
+            "name": "Controller.model",
+            "shortname": "Controller.model",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Model",
+            "file": "server\\bl\\Controller.js",
+            "line": 59,
+            "description": "Controla la capa de negocio que interactua con las acciones sobre los modelos."
+        },
+        "Controller.session": {
+            "name": "Controller.session",
+            "shortname": "Controller.session",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Model",
+            "file": "server\\bl\\Controller.js",
+            "line": 188,
+            "description": "Controla la capa de negocio que interactua con las sesiones de simulaciones."
+        },
+        "Model": {
+            "name": "Model",
+            "shortname": "Model",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Model",
+            "namespace": "",
+            "file": "server\\bl\\Model.js",
+            "line": 8,
+            "description": "Controla las acciones que se pueden ejecutar sobre un modelo.",
+            "is_constructor": 1
+        },
+        "Session": {
+            "name": "Session",
+            "shortname": "Session",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Model",
+            "namespace": "",
+            "file": "server\\bl\\Session.js",
+            "line": 3,
+            "description": "Maneja una sesión individual de una simulación.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "name",
+                    "description": "El nombre de la sesión",
+                    "type": "String"
+                }
+            ]
+        },
+        "SessionController": {
+            "name": "SessionController",
+            "shortname": "SessionController",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Model",
+            "namespace": "",
+            "file": "server\\bl\\SessionController.js",
+            "line": 3,
+            "description": "Controla las sesiones de creadas por los usuarios para ejecutar las simulaciones.",
+            "is_constructor": 1
         }
     },
     "elements": {},
@@ -98,6 +221,8 @@
             "description": "Inicializa el proceso de definición de los parámetros de configuración \nde la aplicación.",
             "itemtype": "method",
             "name": "init",
+            "access": "private",
+            "tagname": "",
             "params": [
                 {
                     "name": "server",
@@ -105,9 +230,6 @@
                     "type": "http.Server"
                 }
             ],
-            "return": {
-                "description": ""
-            },
             "class": "App"
         },
         {
@@ -116,9 +238,8 @@
             "description": "Establece los parámetros de configuración de Express y el motor de \nplantillas Swig y otros (logger, cookieParser, etc).",
             "itemtype": "method",
             "name": "setupConfig",
-            "return": {
-                "description": ""
-            },
+            "access": "private",
+            "tagname": "",
             "class": "App"
         },
         {
@@ -127,9 +248,8 @@
             "description": "Establece los parámetros de configuración de las rutas accesibles por \nmedio del protocolo HTTP.",
             "itemtype": "method",
             "name": "setupRoutes",
-            "return": {
-                "description": ""
-            },
+            "access": "private",
+            "tagname": "",
             "class": "App"
         },
         {
@@ -138,9 +258,8 @@
             "description": "Constructor de la clase.",
             "itemtype": "method",
             "name": "__construct",
-            "return": {
-                "description": ""
-            },
+            "access": "private",
+            "tagname": "",
             "class": "App"
         },
         {
@@ -150,7 +269,7 @@
             "itemtype": "method",
             "name": "getExpress",
             "return": {
-                "description": "app",
+                "description": "app Instancia de express",
                 "type": "Express"
             },
             "class": "App"
@@ -161,6 +280,7 @@
             "description": "Retorn la ruta desde el directorio raíz de la aplicación basado en la ruta \nrecibida.",
             "itemtype": "method",
             "name": "getRootPath",
+            "static": 1,
             "params": [
                 {
                     "name": "filePath",
@@ -169,16 +289,18 @@
                 }
             ],
             "return": {
-                "description": "CallExpression"
+                "description": "La ruta a la raíz de la aplicación",
+                "type": "String"
             },
             "class": "App"
         },
         {
             "file": "server\\bl\\App.js",
-            "line": 145,
+            "line": 146,
             "description": "Retorn la ruta desde el directorio de los archivos del servidor de la \naplicación basado en la ruta recibida.",
             "itemtype": "method",
             "name": "getPath",
+            "static": 1,
             "params": [
                 {
                     "name": "filePath",
@@ -187,16 +309,18 @@
                 }
             ],
             "return": {
-                "description": "CallExpression"
+                "description": "La ruta al directorio de los archivos del servidor de la aplicación",
+                "type": "String"
             },
             "class": "App"
         },
         {
             "file": "server\\bl\\App.js",
-            "line": 157,
+            "line": 159,
             "description": "Incluye el cídigo de un archivo dentro de la aplicación.",
             "itemtype": "method",
             "name": "include",
+            "static": 1,
             "params": [
                 {
                     "name": "file",
@@ -204,17 +328,15 @@
                     "type": "String"
                 }
             ],
-            "return": {
-                "description": ""
-            },
             "class": "App"
         },
         {
             "file": "server\\bl\\App.js",
-            "line": 168,
+            "line": 170,
             "description": "Realiza el require de cualquiera de los módulos ubicados dentro del directorio\nde los archivos del servidor de la aplicación.",
             "itemtype": "method",
             "name": "require",
+            "static": 1,
             "params": [
                 {
                     "name": "module",
@@ -223,16 +345,18 @@
                 }
             ],
             "return": {
-                "description": "CallExpression"
+                "description": "El <i>requite</i> del modulo",
+                "type": "Mixed"
             },
             "class": "App"
         },
         {
             "file": "server\\bl\\App.js",
-            "line": 179,
+            "line": 182,
             "description": "Imprime en consola un mensaje de depuración, personalizado para la aplicación.\nLa impresión del mensaje es condicionada por el valor de la variable global  \n<i>DEBUG_MODE<i> en el archivo de configuración de la aplicación y el valor del\nparámetro <i>mode</i> recibido",
             "itemtype": "method",
             "name": "debug",
+            "static": 1,
             "params": [
                 {
                     "name": "message",
@@ -255,17 +379,15 @@
                     "type": "String"
                 }
             ],
-            "return": {
-                "description": ""
-            },
             "class": "App"
         },
         {
             "file": "server\\bl\\App.js",
-            "line": 204,
+            "line": 207,
             "description": "Retorna la instancia del objeto Express utilizado",
             "itemtype": "method",
             "name": "getInstance",
+            "static": 1,
             "return": {
                 "description": "Instancia de express",
                 "type": "Express"
@@ -274,878 +396,916 @@
         },
         {
             "file": "server\\bl\\App.js",
-            "line": 216,
-            "description": "Description",
+            "line": 220,
+            "description": "Determina si el usuario es master comparando con la contraseña enviada por \nparámetro con la contraseña del usuario maestro.",
             "itemtype": "method",
             "name": "isUserMaster",
+            "static": 1,
             "params": [
                 {
-                    "name": "masterPassword",
-                    "description": "La contraseña del usuario maestro",
+                    "name": "userPassword",
+                    "description": "La contraseña del usuario",
                     "type": "String"
                 }
             ],
             "return": {
-                "description": "BinaryExpression"
+                "description": "El resultado de la comparación de las contraseñas",
+                "type": "Boolean"
             },
             "class": "App"
         },
         {
             "file": "server\\bl\\Controller.js",
-            "line": 5,
-            "description": "Description",
+            "line": 3,
+            "description": "Establece un error de sistema",
             "itemtype": "method",
             "name": "responseOnErrorHTML",
+            "access": "private",
+            "tagname": "",
             "params": [
                 {
                     "name": "req",
-                    "description": ""
+                    "description": "Objeto que representa la petición HTTP y contiene el <i>query string</i>, los parámetros, el cuerpo y las cabeceras HTTP, entro otros",
+                    "type": "Request"
                 },
                 {
                     "name": "res",
-                    "description": ""
+                    "description": "El objeto res representa la respuesta HTTP que una aplicación Express envía cuando se hace una petición HTTP.",
+                    "type": "Response"
                 },
                 {
                     "name": "next",
-                    "description": ""
+                    "description": "Función que continúa la ejecución en la búsqueda de rutas",
+                    "type": "Function"
                 },
                 {
                     "name": "error",
-                    "description": ""
+                    "description": "El mensaje de error",
+                    "type": "String"
                 },
                 {
                     "name": "status",
-                    "description": ""
+                    "description": "El status del error",
+                    "type": "Integer",
+                    "optional": true,
+                    "optdefault": "500"
                 }
             ],
-            "return": {
-                "description": ""
-            },
-            "class": ""
+            "class": "Controller"
         },
         {
             "file": "server\\bl\\Controller.js",
-            "line": 22,
-            "description": "Description",
+            "line": 20,
+            "description": "Establece un error de sistema para un servicio web",
             "itemtype": "method",
             "name": "responseOnErrorJson",
+            "access": "private",
+            "tagname": "",
             "params": [
                 {
                     "name": "req",
-                    "description": ""
+                    "description": "Objeto que representa la petición HTTP y contiene el <i>query string</i>, los parámetros, el cuerpo y las cabeceras HTTP, entro otros",
+                    "type": "Request"
                 },
                 {
                     "name": "res",
-                    "description": ""
+                    "description": "El objeto res representa la respuesta HTTP que una aplicación Express envía cuando se hace una petición HTTP.",
+                    "type": "Response"
                 },
                 {
                     "name": "next",
-                    "description": ""
+                    "description": "Función que continúa la ejecución en la búsqueda de rutas.",
+                    "type": "Function"
                 },
                 {
                     "name": "error",
-                    "description": ""
+                    "description": "El mensaje de error",
+                    "type": "String"
                 },
                 {
                     "name": "status",
-                    "description": ""
+                    "description": "El status del error",
+                    "type": "Integer",
+                    "optional": true,
+                    "optdefault": "400"
                 }
             ],
-            "return": {
-                "description": ""
-            },
-            "class": ""
+            "class": "Controller"
         },
         {
             "file": "server\\bl\\Controller.js",
-            "line": 38,
-            "description": "Description",
-            "return": {
-                "description": ""
-            },
-            "class": ""
-        },
-        {
-            "file": "server\\bl\\Controller.js",
-            "line": 45,
-            "description": "Description",
+            "line": 44,
+            "description": "Despliega una página genérica con un mensaje.",
             "itemtype": "method",
             "name": "message",
+            "static": 1,
             "params": [
                 {
                     "name": "req",
-                    "description": ""
+                    "description": "Objeto que representa la petición HTTP y contiene el <i>query string</i>, los parámetros, el cuerpo y las cabeceras HTTP, entro otros",
+                    "type": "Request"
                 },
                 {
                     "name": "res",
-                    "description": ""
+                    "description": "El objeto res representa la respuesta HTTP que una aplicación Express envía cuando se hace una petición HTTP.",
+                    "type": "Response"
                 },
                 {
                     "name": "title",
-                    "description": ""
+                    "description": "El titulo de la pagina",
+                    "type": "String"
                 },
                 {
                     "name": "message",
-                    "description": ""
+                    "description": "El mensaje",
+                    "type": "String"
                 }
             ],
-            "return": {
-                "description": ""
-            },
-            "class": ""
+            "class": "Controller"
         },
         {
             "file": "server\\bl\\Controller.js",
-            "line": 60,
-            "description": "Description",
-            "itemtype": "method",
-            "name": "model",
-            "return": {
-                "description": ""
-            },
-            "class": ""
-        },
-        {
-            "file": "server\\bl\\Controller.js",
-            "line": 68,
-            "description": "Description",
-            "itemtype": "method",
-            "name": "session",
-            "return": {
-                "description": ""
-            },
-            "class": ""
-        },
-        {
-            "file": "server\\bl\\Controller.js",
-            "line": 76,
-            "description": "Description",
+            "line": 66,
+            "description": "Controla la página de carga de modelos.",
             "itemtype": "method",
             "name": "upload",
+            "static": 1,
             "params": [
                 {
                     "name": "req",
-                    "description": ""
+                    "description": "Objeto que representa la petición HTTP y contiene el <i>query string</i>, los parámetros, el cuerpo y las cabeceras HTTP, entro otros",
+                    "type": "Request"
                 },
                 {
                     "name": "res",
-                    "description": ""
+                    "description": "El objeto res representa la respuesta HTTP que una aplicación Express envía cuando se hace una petición HTTP.",
+                    "type": "Response"
                 },
                 {
                     "name": "next",
-                    "description": ""
+                    "description": "Función que continúa la ejecución de búsqueda de rutas",
+                    "type": "Function"
                 }
             ],
-            "return": {
-                "description": ""
-            },
-            "class": ""
+            "class": "Controller.model"
         },
         {
             "file": "server\\bl\\Controller.js",
-            "line": 90,
-            "description": "Description",
+            "line": 80,
+            "description": "Controla la página de modelo subido exitosamente.",
             "itemtype": "method",
-            "name": "success",
+            "name": "upload.success",
+            "static": 1,
             "params": [
                 {
                     "name": "req",
-                    "description": ""
+                    "description": "Objeto que representa la petición HTTP y contiene el <i>query string</i>, los parámetros, el cuerpo y las cabeceras HTTP, entro otros",
+                    "type": "Request"
                 },
                 {
                     "name": "res",
-                    "description": ""
+                    "description": "El objeto res representa la respuesta HTTP que una aplicación Express envía cuando se hace una petición HTTP.",
+                    "type": "Response"
                 },
                 {
                     "name": "next",
-                    "description": ""
+                    "description": "Función que continúa la ejecución de búsqueda de rutas",
+                    "type": "Function"
                 }
             ],
-            "return": {
-                "description": ""
-            },
-            "class": ""
+            "class": "Controller.model"
         },
         {
             "file": "server\\bl\\Controller.js",
-            "line": 104,
-            "description": "Description",
+            "line": 94,
+            "description": "Controla la página de error al subir un modelo.",
             "itemtype": "method",
-            "name": "error",
+            "name": "upload.error",
+            "static": 1,
             "params": [
                 {
                     "name": "req",
-                    "description": ""
+                    "description": "Objeto que representa la petición HTTP y contiene el <i>query string</i>, los parámetros, el cuerpo y las cabeceras HTTP, entro otros",
+                    "type": "Request"
                 },
                 {
                     "name": "res",
-                    "description": ""
+                    "description": "El objeto res representa la respuesta HTTP que una aplicación Express envía cuando se hace una petición HTTP.",
+                    "type": "Response"
                 },
                 {
                     "name": "next",
-                    "description": ""
+                    "description": "Función que continúa la ejecución en la búsqueda de rutas",
+                    "type": "Function"
                 }
             ],
-            "return": {
-                "description": ""
-            },
-            "class": ""
+            "class": "Controller.model"
         },
         {
             "file": "server\\bl\\Controller.js",
-            "line": 118,
-            "description": "Description",
+            "line": 108,
+            "description": "Controla la subida de un archivo de modelo.",
+            "itemtype": "method",
+            "name": "onUpload",
+            "static": 1,
+            "params": [
+                {
+                    "name": "originalFile",
+                    "description": "Archivo original del modelo subido.",
+                    "type": "String"
+                },
+                {
+                    "name": "req",
+                    "description": "Objeto que representa la petición HTTP y contiene el <i>query string</i>, los parámetros, el cuerpo y las cabeceras HTTP, entro otros",
+                    "type": "Request"
+                },
+                {
+                    "name": "res",
+                    "description": "El objeto res representa la respuesta HTTP que una aplicación Express envía cuando se hace una petición HTTP.",
+                    "type": "Response"
+                },
+                {
+                    "name": "next",
+                    "description": "Función que continúa la ejecución en la búsqueda de rutas",
+                    "type": "Function"
+                }
+            ],
+            "class": "Controller.model"
+        },
+        {
+            "file": "server\\bl\\Controller.js",
+            "line": 124,
+            "description": "Controla la página de listado de modelos.",
             "itemtype": "method",
             "name": "list",
+            "static": 1,
             "params": [
                 {
                     "name": "req",
-                    "description": ""
+                    "description": "Objeto que representa la petición HTTP y contiene el <i>query string</i>, los parámetros, el cuerpo y las cabeceras HTTP, entro otros",
+                    "type": "Request"
                 },
                 {
                     "name": "res",
-                    "description": ""
+                    "description": "El objeto res representa la respuesta HTTP que una aplicación Express envía cuando se hace una petición HTTP.",
+                    "type": "Response"
                 },
                 {
                     "name": "next",
-                    "description": ""
+                    "description": "Función que continúa la ejecución en la búsqueda de rutas",
+                    "type": "Function"
                 }
             ],
-            "return": {
-                "description": ""
-            },
-            "class": ""
+            "class": "Controller.model"
         },
         {
             "file": "server\\bl\\Controller.js",
-            "line": 127,
-            "description": "Description",
-            "itemtype": "method",
-            "name": "onSuccess",
+            "line": 133,
+            "description": "Función que ejecuta después de obtener la lista de modelos.",
+            "itemtype": "event",
+            "name": "list.onSuccess",
             "params": [
                 {
                     "name": "modelsList",
-                    "description": ""
+                    "description": "Listado de modelos",
+                    "type": "Array"
                 }
             ],
-            "return": {
-                "description": ""
-            },
-            "class": ""
+            "class": "Controller.model"
         },
         {
             "file": "server\\bl\\Controller.js",
-            "line": 139,
-            "description": "Description",
-            "itemtype": "method",
-            "name": "onError",
+            "line": 144,
+            "description": "Función que ejecuta después si hay un error al obtener la lista de modelos.",
+            "itemtype": "event",
+            "name": "list.onError",
             "params": [
                 {
                     "name": "error",
-                    "description": ""
+                    "description": "El mensaje de error",
+                    "type": "String"
                 }
             ],
-            "return": {
-                "description": ""
-            },
-            "class": ""
+            "class": "Controller.model"
         },
         {
             "file": "server\\bl\\Controller.js",
-            "line": 152,
-            "description": "Description",
+            "line": 156,
+            "description": "Controla el borrado de un modelo.",
             "itemtype": "method",
             "name": "delete",
+            "static": 1,
             "params": [
                 {
                     "name": "req",
-                    "description": ""
+                    "description": "Objeto que representa la petición HTTP y contiene el <i>query string</i>, los parámetros, el cuerpo y las cabeceras HTTP, entro otros",
+                    "type": "Request"
                 },
                 {
                     "name": "res",
-                    "description": ""
+                    "description": "El objeto res representa la respuesta HTTP que una aplicación Express envía cuando se hace una petición HTTP.",
+                    "type": "Response"
                 },
                 {
                     "name": "next",
-                    "description": ""
+                    "description": "Función que continúa la ejecución en la búsqueda de rutas",
+                    "type": "Function"
                 }
             ],
-            "return": {
-                "description": ""
-            },
-            "class": ""
+            "class": "Controller.model"
         },
         {
             "file": "server\\bl\\Controller.js",
-            "line": 161,
-            "description": "Description",
-            "itemtype": "method",
-            "name": "onSuccess",
-            "return": {
-                "description": ""
-            },
-            "class": ""
+            "line": 165,
+            "description": "Función que ejecuta después de obtener la lista de modelos.",
+            "itemtype": "event",
+            "name": "delete.onSuccess",
+            "class": "Controller.model"
         },
         {
             "file": "server\\bl\\Controller.js",
-            "line": 169,
-            "description": "Description",
-            "itemtype": "method",
-            "name": "onError",
+            "line": 172,
+            "description": "Función que ejecuta después si hay un error al eliminar el modelo.",
+            "itemtype": "event",
+            "name": "delete.onError",
             "params": [
                 {
                     "name": "error",
-                    "description": ""
+                    "description": "El mensaje de error",
+                    "type": "String"
                 }
             ],
-            "return": {
-                "description": ""
-            },
-            "class": ""
-        },
-        {
-            "file": "server\\bl\\Controller.js",
-            "line": 186,
-            "description": "Description",
-            "itemtype": "method",
-            "name": "list",
-            "params": [
-                {
-                    "name": "req",
-                    "description": ""
-                },
-                {
-                    "name": "res",
-                    "description": ""
-                },
-                {
-                    "name": "next",
-                    "description": ""
-                }
-            ],
-            "return": {
-                "description": ""
-            },
-            "class": ""
+            "class": "Controller.model"
         },
         {
             "file": "server\\bl\\Controller.js",
             "line": 195,
-            "description": "Description",
+            "description": "Controla la página de listado de sesiones de simulación.",
             "itemtype": "method",
-            "name": "afterGetModelsList",
+            "name": "list",
+            "static": 1,
+            "params": [
+                {
+                    "name": "req",
+                    "description": "Objeto que representa la petición HTTP y contiene el <i>query string</i>, los parámetros, el cuerpo y las cabeceras HTTP, entro otros",
+                    "type": "Request"
+                },
+                {
+                    "name": "res",
+                    "description": "El objeto res representa la respuesta HTTP que una aplicación Express envía cuando se hace una petición HTTP.",
+                    "type": "Response"
+                },
+                {
+                    "name": "next",
+                    "description": "Función que continúa la ejecución en la búsqueda de rutas",
+                    "type": "Function"
+                }
+            ],
+            "class": "Controller.session"
+        },
+        {
+            "file": "server\\bl\\Controller.js",
+            "line": 204,
+            "description": "Función que ejecuta después de obtener la lista de modelos.",
+            "itemtype": "event",
+            "name": "list.afterGetModelsList",
             "params": [
                 {
                     "name": "modelsList",
-                    "description": ""
+                    "description": "La lista de modelos",
+                    "type": "Array"
                 }
             ],
-            "return": {
-                "description": ""
-            },
-            "class": ""
+            "class": "Controller.session"
         },
         {
             "file": "server\\bl\\Controller.js",
-            "line": 214,
-            "description": "Description",
-            "itemtype": "method",
-            "name": "getModelURL",
+            "line": 222,
+            "description": "Función para obtener la URL a un modelo.",
+            "itemtype": "event",
+            "name": "list.getModelURL",
             "params": [
                 {
                     "name": "modelFilename",
-                    "description": ""
+                    "description": "El nombre de archivo del modelo sin extensión",
+                    "type": "String"
                 },
                 {
                     "name": "token",
-                    "description": ""
+                    "description": "Token del usuario",
+                    "type": "String"
                 }
             ],
             "return": {
-                "description": "CallExpression"
+                "description": "La URL al modelo",
+                "type": "String"
             },
-            "class": ""
+            "class": "Controller.session"
         },
         {
             "file": "server\\bl\\Controller.js",
-            "line": 228,
-            "description": "Description",
-            "itemtype": "method",
-            "name": "onError",
+            "line": 236,
+            "description": "Función que ejecuta después si hay un error al obtener la lista de modelos.",
+            "itemtype": "event",
+            "name": "list.onError",
             "params": [
                 {
                     "name": "error",
-                    "description": ""
+                    "description": "El mensaje de error",
+                    "type": "String"
                 }
             ],
-            "return": {
-                "description": ""
-            },
-            "class": ""
+            "class": "Controller.session"
         },
         {
             "file": "server\\bl\\Model.js",
-            "line": 3,
-            "description": "Description",
-            "return": {
-                "description": ""
-            },
-            "class": ""
-        },
-        {
-            "file": "server\\bl\\Model.js",
-            "line": 11,
-            "description": "Description",
+            "line": 17,
+            "description": "Agregar un modelo al sistema.",
             "itemtype": "method",
             "name": "add",
             "params": [
                 {
                     "name": "originalFile",
-                    "description": ""
+                    "description": "Ruta al archivo original subido",
+                    "type": "String"
                 },
                 {
                     "name": "modelName",
-                    "description": ""
+                    "description": "Nombre del modelo",
+                    "type": "String"
                 },
                 {
                     "name": "description",
-                    "description": ""
+                    "description": "Texto descriptivo del modelo",
+                    "type": "String"
                 }
             ],
             "return": {
-                "description": "success"
+                "description": "success Resultado de la adición del modelo.",
+                "type": "Boolean"
             },
-            "class": ""
+            "class": "Model",
+            "module": "Model"
         },
         {
             "file": "server\\bl\\Model.js",
-            "line": 41,
-            "description": "Description",
+            "line": 47,
+            "description": "Elimina un modelo del sistema",
             "itemtype": "method",
             "name": "delete",
             "params": [
                 {
                     "name": "idModel",
-                    "description": ""
+                    "description": "El ID del modelo",
+                    "type": "Integer"
                 },
                 {
                     "name": "filename",
-                    "description": ""
+                    "description": "Nombre de archivo del modelo (sin la ruta)",
+                    "type": "String"
                 },
                 {
                     "name": "onSuccess",
-                    "description": ""
+                    "description": "Función a ejecutar cuando el modelo sea eliminado correctamente del sistema",
+                    "type": "Function"
                 },
                 {
                     "name": "onError",
-                    "description": ""
+                    "description": "Función e ejecutar si hay un error al eliminar un modelo del sistema",
+                    "type": "Function"
                 }
             ],
-            "return": {
-                "description": ""
-            },
-            "class": ""
+            "class": "Model",
+            "module": "Model"
         },
         {
             "file": "server\\bl\\Model.js",
-            "line": 51,
-            "description": "Description",
+            "line": 56,
+            "description": "Función a ejecutar cuando el modelo sea eliminado correctamente de la base de datos",
             "itemtype": "method",
             "name": "afterDeleteFromDB",
-            "return": {
-                "description": ""
-            },
-            "class": ""
+            "class": "Model",
+            "module": "Model"
         },
         {
             "file": "server\\bl\\Model.js",
-            "line": 67,
-            "description": "Description",
+            "line": 71,
+            "description": "Retorna la lista de modelos disponibles en el sistema",
             "itemtype": "method",
             "name": "list",
             "params": [
                 {
                     "name": "onSuccess",
-                    "description": ""
+                    "description": "Función a ejecutar cuando se ha recuperado la lista de modelos del sistema",
+                    "type": "Function"
                 },
                 {
                     "name": "onError",
-                    "description": ""
+                    "description": "Función e ejecutar si hay un error al recuperar la lista de modelos del sistema",
+                    "type": "Function"
                 }
             ],
-            "return": {
-                "description": ""
-            },
-            "class": ""
+            "class": "Model",
+            "module": "Model"
         },
         {
             "file": "server\\bl\\Model.js",
-            "line": 78,
-            "description": "Description",
+            "line": 81,
+            "description": "Retorna la ruta al archivo HTML de un modelo.",
             "itemtype": "method",
             "name": "getHTMLFile",
+            "access": "private",
+            "tagname": "",
             "params": [
                 {
                     "name": "fileName",
-                    "description": ""
+                    "description": "Nombre del archivo de modelo a recuperar",
+                    "type": "String"
                 }
             ],
             "return": {
-                "description": "CallExpression"
+                "description": "La ruta al archivo HTML de un modelo",
+                "type": "String"
             },
-            "class": ""
+            "class": "Model",
+            "module": "Model"
         },
         {
             "file": "server\\bl\\Model.js",
-            "line": 88,
-            "description": "Description",
+            "line": 92,
+            "description": "Retorna la ruta al archivo JavaScript de un modelo.",
             "itemtype": "method",
             "name": "getJSFile",
+            "access": "private",
+            "tagname": "",
             "params": [
                 {
                     "name": "fileName",
-                    "description": ""
+                    "description": "Nombre del archivo de modelo a recuperar",
+                    "type": "String"
                 }
             ],
             "return": {
-                "description": "CallExpression"
+                "description": "La ruta al archivo JavaScript de un modelo",
+                "type": "String"
             },
-            "class": ""
+            "class": "Model",
+            "module": "Model"
         },
         {
             "file": "server\\bl\\Model.js",
-            "line": 98,
-            "description": "Description",
+            "line": 103,
+            "description": "Intenta eliminar un archivo del sistema de archivo, si falla, envía un mensaje de depuración a la aplicación.",
             "itemtype": "method",
             "name": "tryDeleteFile",
+            "access": "private",
+            "tagname": "",
             "params": [
                 {
                     "name": "filePath",
-                    "description": ""
+                    "description": "Ruta del archivo",
+                    "type": "String"
                 },
                 {
                     "name": "fileStrID",
-                    "description": ""
+                    "description": "Identificador del archivo a ser mostrado en el mensaje de depuración.",
+                    "type": "String"
                 },
                 {
                     "name": "fs",
-                    "description": ""
+                    "description": "Objeto que controla el sistema de archivos",
+                    "type": "Fs"
                 }
             ],
             "return": {
-                "description": ""
+                "description": "Resultado de eliminar el archivo",
+                "type": "Boolean"
             },
-            "class": ""
+            "class": "Model",
+            "module": "Model"
         },
         {
             "file": "server\\bl\\Model.js",
-            "line": 118,
-            "description": "Description",
+            "line": 124,
+            "description": "Procese un modelo exportado de Galapagos, para convertirlo al formato necesario para que funcione en NodeTortoise.",
             "itemtype": "method",
             "name": "parse",
+            "access": "private",
+            "tagname": "",
             "params": [
                 {
                     "name": "originalFilePath",
-                    "description": ""
+                    "description": "Ruta del archivo original, subido al sistema",
+                    "type": "String"
                 },
                 {
                     "name": "htmlNewFilePath",
-                    "description": ""
+                    "description": "Ruta donde se debe guardar el archivo HTML del modelo",
+                    "type": "String"
                 },
                 {
                     "name": "jsNewFilePath",
-                    "description": ""
+                    "description": "Ruta donde se debe guardar el archivo JavaScript del modelo",
+                    "type": "String"
                 },
                 {
                     "name": "fileName",
-                    "description": ""
+                    "description": "Nombre del archivo del modelo",
+                    "type": "String"
                 },
                 {
                     "name": "modelName",
-                    "description": ""
+                    "description": "Nombre del modelo",
+                    "type": "String"
                 },
                 {
                     "name": "fs",
-                    "description": ""
+                    "description": "Objeto que controla el sistema de archivos",
+                    "type": "Fs"
                 }
             ],
-            "return": {
-                "description": ""
-            },
-            "class": ""
+            "class": "Model",
+            "module": "Model"
         },
         {
             "file": "server\\bl\\Model.js",
-            "line": 158,
-            "description": "Description",
+            "line": 164,
+            "description": "Basado en el patrón <i>Singleton</i>, returna una instancia del objeto Model",
             "itemtype": "method",
             "name": "getInstance",
+            "static": 1,
             "return": {
-                "description": "MemberExpression"
+                "description": "La instancia de Model",
+                "type": "Model"
             },
-            "class": ""
+            "class": "Model",
+            "module": "Model"
         },
         {
             "file": "server\\bl\\Session.js",
-            "line": 3,
-            "description": "Description",
-            "params": [
-                {
-                    "name": "name",
-                    "description": ""
-                }
-            ],
-            "return": {
-                "description": ""
-            },
-            "class": ""
-        },
-        {
-            "file": "server\\bl\\Session.js",
-            "line": 17,
-            "description": "Description",
+            "line": 18,
+            "description": "Realiza el proceso de inicialización de variables necesarias por el objeto.",
             "itemtype": "method",
             "name": "init",
-            "return": {
-                "description": ""
-            },
-            "class": ""
+            "class": "Session",
+            "module": "Model"
         },
         {
             "file": "server\\bl\\Session.js",
             "line": 26,
-            "description": "Description",
+            "description": "Agrega un usuario a la sesión.",
             "itemtype": "method",
             "name": "addUser",
             "params": [
                 {
                     "name": "username",
-                    "description": ""
+                    "description": "",
+                    "type": "String"
                 },
                 {
                     "name": "masterPassword",
-                    "description": ""
+                    "description": "",
+                    "type": "String"
                 },
                 {
                     "name": "enabledControls",
-                    "description": ""
+                    "description": "",
+                    "type": "Boolean"
                 }
             ],
             "return": {
-                "description": "ObjectExpression"
+                "description": "Un objecto JavaScript estandar con la información sobre la sesión.",
+                "type": "Object"
             },
-            "class": ""
+            "class": "Session",
+            "module": "Model"
         },
         {
             "file": "server\\bl\\Session.js",
             "line": 57,
-            "description": "Description",
+            "description": "Elimina un usuario de una sesión de simulación.",
             "itemtype": "method",
             "name": "removeUser",
             "params": [
                 {
-                    "name": "username",
-                    "description": ""
+                    "name": "userName",
+                    "description": "El nombre del usuario",
+                    "type": "String"
                 },
                 {
                     "name": "token",
-                    "description": ""
+                    "description": "El token de sesión del usuario",
+                    "type": "String"
                 }
             ],
-            "return": {
-                "description": ""
-            },
-            "class": ""
+            "class": "Session",
+            "module": "Model"
         },
         {
             "file": "server\\bl\\Session.js",
-            "line": 75,
-            "description": "Description",
+            "line": 74,
+            "description": "Retorna el token del usuario maestro.",
             "itemtype": "method",
             "name": "getMasterToken",
             "return": {
-                "description": "ConditionalExpression"
+                "description": "El token del usuario maestro",
+                "type": "String"
             },
-            "class": ""
+            "class": "Session",
+            "module": "Model"
         },
         {
             "file": "server\\bl\\SessionController.js",
-            "line": 3,
-            "description": "Description",
-            "return": {
-                "description": ""
-            },
-            "class": ""
-        },
-        {
-            "file": "server\\bl\\SessionController.js",
-            "line": 13,
-            "description": "Description",
+            "line": 14,
+            "description": "Realiza el proceso de inicialización de variables necesarias por el objeto.",
             "itemtype": "method",
             "name": "init",
-            "return": {
-                "description": ""
-            },
-            "class": ""
+            "class": "SessionController",
+            "module": "Model"
         },
         {
             "file": "server\\bl\\SessionController.js",
             "line": 23,
-            "description": "Description",
+            "description": "Añade un usuario a una sesión de simulación. Si la sessión no existe, crea una nueva.",
             "itemtype": "method",
             "name": "joinSession",
             "params": [
                 {
                     "name": "sessionName",
-                    "description": ""
+                    "description": "El nombre de la sesión",
+                    "type": "String"
                 },
                 {
                     "name": "modelFile",
-                    "description": ""
+                    "description": "El archivo del modelo de la simulación que ejecutará la sesión",
+                    "type": "String"
                 },
                 {
                     "name": "userName",
-                    "description": ""
+                    "description": "El nombre del usuario",
+                    "type": "String"
                 },
                 {
                     "name": "enabledControls",
-                    "description": ""
+                    "description": "Determinar si la sesión habilita o no los controles a otros usuarios distintos del maestro. Parámetro obligatorio solo para el usuario maestro.",
+                    "type": "Boolean",
+                    "optional": true
                 }
             ],
             "return": {
-                "description": ""
+                "description": "Un objecto JavaScript estandar con la información sobre la sesión.",
+                "type": "Object"
             },
-            "class": ""
+            "class": "SessionController",
+            "module": "Model"
         },
         {
             "file": "server\\bl\\SessionController.js",
             "line": 43,
-            "description": "Description",
+            "description": "Elimina un usuario de una sesión de simulación.",
             "itemtype": "method",
             "name": "leaveSession",
             "params": [
                 {
                     "name": "sessionName",
-                    "description": ""
+                    "description": "El nombre de la sesión",
+                    "type": "String"
                 },
                 {
                     "name": "userName",
-                    "description": ""
+                    "description": "El nombre del usuario",
+                    "type": "String"
                 },
                 {
                     "name": "token",
-                    "description": ""
+                    "description": "El token de sesión del usuario",
+                    "type": "String"
                 }
             ],
             "return": {
-                "description": "diedSession"
+                "description": "diedSession Indica si la sesión murió, porque el que abandonó fue el usuario maestro."
             },
-            "class": ""
+            "class": "SessionController",
+            "module": "Model"
         },
         {
             "file": "server\\bl\\SessionController.js",
             "line": 64,
-            "description": "Description",
+            "description": "Establece el modelo a ejecutar en una sesión de simulación",
             "itemtype": "method",
             "name": "setSessionModel",
             "params": [
                 {
                     "name": "sessionName",
-                    "description": ""
+                    "description": "",
+                    "type": "String"
                 },
                 {
                     "name": "modelName",
-                    "description": ""
+                    "description": "",
+                    "type": "String"
                 }
             ],
-            "return": {
-                "description": ""
-            },
-            "class": ""
+            "class": "SessionController",
+            "module": "Model"
         },
         {
             "file": "server\\bl\\SessionController.js",
-            "line": 75,
-            "description": "Description",
+            "line": 74,
+            "description": "Devuelve el modelo que se está utilizando en una sesión.",
             "itemtype": "method",
             "name": "getSessionModel",
             "params": [
                 {
                     "name": "sessionName",
-                    "description": ""
+                    "description": "El nombre de la sesión",
+                    "type": "String"
                 }
             ],
             "return": {
-                "description": "MemberExpression"
+                "description": "El nombre del modelo utilizado en la sesión",
+                "type": "String"
             },
-            "class": ""
+            "class": "SessionController",
+            "module": "Model"
         },
         {
             "file": "server\\bl\\SessionController.js",
-            "line": 85,
-            "description": "Description",
+            "line": 84,
+            "description": "Retorna la lista de las sesiones de simulación activas.",
             "itemtype": "method",
             "name": "getSessionList",
             "return": {
-                "description": "modelsBySession"
+                "description": "La lista de sesiones",
+                "type": "Array"
             },
-            "class": ""
+            "class": "SessionController",
+            "module": "Model"
         },
         {
             "file": "server\\bl\\SessionController.js",
-            "line": 94,
-            "description": "Description",
+            "line": 93,
+            "description": "Retorna una sesión, basado en el nombre recibido como parámetro.",
             "itemtype": "method",
             "name": "getSession",
             "params": [
                 {
                     "name": "sessionName",
-                    "description": ""
+                    "description": "Nombre de la sesión",
+                    "type": "String"
                 }
             ],
             "return": {
-                "description": "MemberExpression"
+                "description": "La sessión",
+                "type": "Session"
             },
-            "class": ""
+            "class": "SessionController",
+            "module": "Model"
         },
         {
             "file": "server\\bl\\SessionController.js",
-            "line": 104,
-            "description": "Description",
+            "line": 103,
+            "description": "Retorna la cantidad de usuarios en una sesión, basado en el nombre recibido como parámetro.",
             "itemtype": "method",
             "name": "getSessionUsersQuantity",
             "params": [
                 {
                     "name": "sessionName",
-                    "description": ""
+                    "description": "El nombre de la sesión",
+                    "type": "String"
                 }
             ],
             "return": {
-                "description": ""
+                "description": "La cantidad de usuarios en la sesión",
+                "type": "Integer"
             },
-            "class": ""
+            "class": "SessionController",
+            "module": "Model"
         },
         {
             "file": "server\\bl\\SessionController.js",
-            "line": 118,
-            "description": "Description",
+            "line": 117,
+            "description": "Constructor de la clase",
+            "access": "private",
+            "tagname": "",
             "itemtype": "method",
             "name": "__construct",
-            "return": {
-                "description": ""
-            },
-            "class": ""
+            "class": "SessionController",
+            "module": "Model"
         },
         {
             "file": "server\\bl\\SessionController.js",
-            "line": 131,
-            "description": "Description",
+            "line": 130,
+            "description": "Basado en el patrón <i>Singleton</i>, returna una instancia del objeto SessionController",
             "itemtype": "method",
             "name": "getInstance",
+            "static": 1,
             "return": {
-                "description": "MemberExpression"
+                "description": "",
+                "type": "SessionController"
             },
-            "class": ""
+            "class": "SessionController",
+            "module": "Model"
         },
         {
             "file": "server\\da\\Entities.js",
@@ -1154,7 +1314,8 @@
             "return": {
                 "description": ""
             },
-            "class": ""
+            "class": "",
+            "module": "Model"
         },
         {
             "file": "server\\da\\Entities.js",
@@ -1165,7 +1326,8 @@
             "return": {
                 "description": ""
             },
-            "class": ""
+            "class": "",
+            "module": "Model"
         },
         {
             "file": "server\\da\\Entities.js",
@@ -1190,7 +1352,8 @@
             "return": {
                 "description": ""
             },
-            "class": ""
+            "class": "",
+            "module": "Model"
         },
         {
             "file": "server\\da\\Entities.js",
@@ -1211,7 +1374,8 @@
             "return": {
                 "description": ""
             },
-            "class": ""
+            "class": "",
+            "module": "Model"
         },
         {
             "file": "server\\da\\Entities.js",
@@ -1236,7 +1400,8 @@
             "return": {
                 "description": ""
             },
-            "class": ""
+            "class": "",
+            "module": "Model"
         },
         {
             "file": "server\\da\\Entities.js",
@@ -1247,7 +1412,8 @@
             "return": {
                 "description": "MemberExpression"
             },
-            "class": ""
+            "class": "",
+            "module": "Model"
         },
         {
             "file": "server\\da\\Sockets.Actions.js",
@@ -1258,7 +1424,8 @@
             "return": {
                 "description": ""
             },
-            "class": ""
+            "class": "",
+            "module": "Model"
         },
         {
             "file": "server\\da\\Sockets.Actions.js",
@@ -1283,7 +1450,8 @@
             "return": {
                 "description": ""
             },
-            "class": ""
+            "class": "",
+            "module": "Model"
         },
         {
             "file": "server\\da\\Sockets.Actions.js",
@@ -1308,7 +1476,8 @@
             "return": {
                 "description": ""
             },
-            "class": ""
+            "class": "",
+            "module": "Model"
         },
         {
             "file": "server\\da\\Sockets.Actions.js",
@@ -1333,7 +1502,8 @@
             "return": {
                 "description": ""
             },
-            "class": ""
+            "class": "",
+            "module": "Model"
         },
         {
             "file": "server\\da\\Sockets.Actions.js",
@@ -1358,7 +1528,8 @@
             "return": {
                 "description": ""
             },
-            "class": ""
+            "class": "",
+            "module": "Model"
         },
         {
             "file": "server\\da\\Sockets.Actions.js",
@@ -1383,7 +1554,8 @@
             "return": {
                 "description": ""
             },
-            "class": ""
+            "class": "",
+            "module": "Model"
         },
         {
             "file": "server\\da\\Sockets.Actions.js",
@@ -1408,7 +1580,8 @@
             "return": {
                 "description": ""
             },
-            "class": ""
+            "class": "",
+            "module": "Model"
         },
         {
             "file": "server\\da\\Sockets.Actions.js",
@@ -1429,7 +1602,8 @@
             "return": {
                 "description": ""
             },
-            "class": ""
+            "class": "",
+            "module": "Model"
         },
         {
             "file": "server\\da\\Sockets.js",
@@ -1438,7 +1612,8 @@
             "return": {
                 "description": ""
             },
-            "class": ""
+            "class": "",
+            "module": "Model"
         },
         {
             "file": "server\\da\\Sockets.js",
@@ -1467,7 +1642,8 @@
             "return": {
                 "description": ""
             },
-            "class": ""
+            "class": "",
+            "module": "Model"
         },
         {
             "file": "server\\da\\Sockets.js",
@@ -1484,7 +1660,8 @@
             "return": {
                 "description": ""
             },
-            "class": ""
+            "class": "",
+            "module": "Model"
         },
         {
             "file": "server\\da\\Sockets.js",
@@ -1501,7 +1678,8 @@
             "return": {
                 "description": ""
             },
-            "class": ""
+            "class": "",
+            "module": "Model"
         },
         {
             "file": "server\\da\\Sockets.js",
@@ -1526,7 +1704,8 @@
             "return": {
                 "description": ""
             },
-            "class": ""
+            "class": "",
+            "module": "Model"
         },
         {
             "file": "server\\da\\Sockets.js",
@@ -1555,7 +1734,8 @@
             "return": {
                 "description": ""
             },
-            "class": ""
+            "class": "",
+            "module": "Model"
         },
         {
             "file": "server\\da\\Sockets.js",
@@ -1580,7 +1760,8 @@
             "return": {
                 "description": ""
             },
-            "class": ""
+            "class": "",
+            "module": "Model"
         },
         {
             "file": "server\\da\\Sockets.js",
@@ -1597,7 +1778,8 @@
             "return": {
                 "description": ""
             },
-            "class": ""
+            "class": "",
+            "module": "Model"
         },
         {
             "file": "server\\libs\\SQLite.js",
@@ -1612,7 +1794,8 @@
             "return": {
                 "description": ""
             },
-            "class": ""
+            "class": "",
+            "module": "Model"
         },
         {
             "file": "server\\libs\\SQLite.js",
@@ -1645,7 +1828,8 @@
             "return": {
                 "description": ""
             },
-            "class": ""
+            "class": "",
+            "module": "Model"
         },
         {
             "file": "server\\libs\\SQLite.js",
@@ -1674,7 +1858,8 @@
             "return": {
                 "description": ""
             },
-            "class": ""
+            "class": "",
+            "module": "Model"
         },
         {
             "file": "server\\libs\\SQLite.js",
@@ -1695,7 +1880,8 @@
             "return": {
                 "description": ""
             },
-            "class": ""
+            "class": "",
+            "module": "Model"
         },
         {
             "file": "server\\libs\\SQLite.js",
@@ -1728,7 +1914,8 @@
             "return": {
                 "description": ""
             },
-            "class": ""
+            "class": "",
+            "module": "Model"
         },
         {
             "file": "server\\libs\\SQLite.js",
@@ -1757,7 +1944,8 @@
             "return": {
                 "description": ""
             },
-            "class": ""
+            "class": "",
+            "module": "Model"
         },
         {
             "file": "server\\libs\\SQLite.js",
@@ -1778,7 +1966,8 @@
             "return": {
                 "description": ""
             },
-            "class": ""
+            "class": "",
+            "module": "Model"
         },
         {
             "file": "server\\libs\\SQLite.js",
@@ -1811,7 +2000,8 @@
             "return": {
                 "description": ""
             },
-            "class": ""
+            "class": "",
+            "module": "Model"
         },
         {
             "file": "server\\libs\\SQLite.js",
@@ -1828,7 +2018,8 @@
             "return": {
                 "description": "ObjectExpression"
             },
-            "class": ""
+            "class": "",
+            "module": "Model"
         },
         {
             "file": "server\\libs\\SQLite.js",
@@ -1845,7 +2036,8 @@
             "return": {
                 "description": "strValues"
             },
-            "class": ""
+            "class": "",
+            "module": "Model"
         },
         {
             "file": "server\\libs\\SQLite.js",
@@ -1856,7 +2048,8 @@
             "return": {
                 "description": "db"
             },
-            "class": ""
+            "class": "",
+            "module": "Model"
         },
         {
             "file": "server\\libs\\SQLite.js",
@@ -1873,7 +2066,8 @@
             "return": {
                 "description": ""
             },
-            "class": ""
+            "class": "",
+            "module": "Model"
         },
         {
             "file": "server\\libs\\SQLite.js",
@@ -1884,26 +2078,11 @@
             "return": {
                 "description": ""
             },
-            "class": ""
+            "class": "",
+            "module": "Model"
         }
     ],
     "warnings": [
-        {
-            "message": "Missing item type\nDescription",
-            "line": " server\\bl\\Controller.js:38"
-        },
-        {
-            "message": "Missing item type\nDescription",
-            "line": " server\\bl\\Model.js:3"
-        },
-        {
-            "message": "Missing item type\nDescription",
-            "line": " server\\bl\\Session.js:3"
-        },
-        {
-            "message": "Missing item type\nDescription",
-            "line": " server\\bl\\SessionController.js:3"
-        },
         {
             "message": "Missing item type\nDescription",
             "line": " server\\da\\Entities.js:9"

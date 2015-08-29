@@ -1,10 +1,24 @@
 YUI.add("yuidoc-meta", function(Y) {
    Y.YUIDoc = { meta: {
     "classes": [
-        "App"
+        "App",
+        "Controller",
+        "Controller.model",
+        "Controller.session",
+        "Model",
+        "Session",
+        "SessionController"
     ],
-    "modules": [],
-    "allModules": [],
+    "modules": [
+        "Model"
+    ],
+    "allModules": [
+        {
+            "displayName": "Model",
+            "name": "Model",
+            "description": "Provee la clase Model"
+        }
+    ],
     "elements": []
 } };
 });

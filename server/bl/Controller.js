@@ -1,14 +1,14 @@
 /* global App, Helper, MODEL_URL_TEMPLATE, module */
 
 /**
- * Description
+ * Establece un error de sistema
  * @method responseOnErrorHTML
+ * @private
  * @param {Request} req Objeto que representa la petición HTTP y contiene el <i>query string</i>, los parámetros, el cuerpo y las cabeceras HTTP, entro otros
  * @param {Response} res El objeto res representa la respuesta HTTP que una aplicación Express envía cuando se hace una petición HTTP.
  * @param {Function} next Función que continúa la ejecución en la búsqueda de rutas
- * @param {} error
- * @param {} status
- * @return
+ * @param {String} error El mensaje de error
+ * @param {Integer} [status=500] El status del error
  */
 var responseOnErrorHTML = function (req, res, next, error, status) {
     App.debug(error, 'system');
@@ -18,14 +18,14 @@ var responseOnErrorHTML = function (req, res, next, error, status) {
 };
 
 /**
- * Description
+ * Establece un error de sistema para un servicio web
  * @method responseOnErrorJson
+ * @private
  * @param {Request} req Objeto que representa la petición HTTP y contiene el <i>query string</i>, los parámetros, el cuerpo y las cabeceras HTTP, entro otros
  * @param {Response} res El objeto res representa la respuesta HTTP que una aplicación Express envía cuando se hace una petición HTTP.
  * @param {Function} next Función que continúa la ejecución en la búsqueda de rutas.
- * @param {} error
- * @param {} status
- * @return
+ * @param {String} error El mensaje de error
+ * @param {Integer} [status=400] El status del error
  */
 var responseOnErrorJson = function (req, res, next, error, status) {
     App.debug(error, 'system');
@@ -34,20 +34,21 @@ var responseOnErrorJson = function (req, res, next, error, status) {
 };
 
 /**
- * Description
- * @return
+ * Controla la capa negocio de la aplicación, haciendo la conexión entre la capa 
+ * de datos y las vistas y aplicando la logica de negocio necesaria.
+ * @class Controller
  */
 Controller = function () {
 };
 
 /**
- * Description
+ * Despliega una página genérica con un mensaje.
  * @method message
- * @param {} req
- * @param {} res
- * @param {} title
- * @param {} message
- * @return
+ * @static
+ * @param {Request} req Objeto que representa la petición HTTP y contiene el <i>query string</i>, los parámetros, el cuerpo y las cabeceras HTTP, entro otros
+ * @param {Response} res El objeto res representa la respuesta HTTP que una aplicación Express envía cuando se hace una petición HTTP.
+ * @param {String} title El titulo de la pagina
+ * @param {String} message El mensaje
  */
 Controller.message = function (req, res, title, message) {
     var page = {'title': title, 'content_title': title};
@@ -56,28 +57,19 @@ Controller.message = function (req, res, title, message) {
 };
 
 /**
- * Description
- * @method model
- * @return
+ * Controla la capa de negocio que interactua con las acciones sobre los modelos.
+ * @class Controller.model
  */
 Controller.model = function () {
 };
 
 /**
- * Description
- * @method session
- * @return
- */
-Controller.session = function () {
-};
-
-/**
- * Description
+ * Controla la página de carga de modelos.
  * @method upload
+ * @static
  * @param {Request} req Objeto que representa la petición HTTP y contiene el <i>query string</i>, los parámetros, el cuerpo y las cabeceras HTTP, entro otros
  * @param {Response} res El objeto res representa la respuesta HTTP que una aplicación Express envía cuando se hace una petición HTTP.
- * @param {Function} next Función que continúa la ejecución en la búsqueda de rutas
- * @return
+ * @param {Function} next Función que continúa la ejecución de búsqueda de rutas
  */
 Controller.model.upload = function (req, res, next) {
     var page = {'title': 'Subir Nuevo Modelo', 'content_title': 'Nuevo Modelo'};
@@ -86,12 +78,12 @@ Controller.model.upload = function (req, res, next) {
 };
 
 /**
- * Description
- * @method success
+ * Controla la página de modelo subido exitosamente.
+ * @method upload.success
+ * @static
  * @param {Request} req Objeto que representa la petición HTTP y contiene el <i>query string</i>, los parámetros, el cuerpo y las cabeceras HTTP, entro otros
  * @param {Response} res El objeto res representa la respuesta HTTP que una aplicación Express envía cuando se hace una petición HTTP.
- * @param {Function} next Función que continúa la ejecución en la búsqueda de rutas
- * @return
+ * @param {Function} next Función que continúa la ejecución de búsqueda de rutas
  */
 Controller.model.upload.success = function (req, res, next) {
     var page = {'title': 'Modelo subido exitosamente', 'content_title': 'Modelo subido exitosamente'};
@@ -100,12 +92,12 @@ Controller.model.upload.success = function (req, res, next) {
 };
 
 /**
- * Description
- * @method error
+ * Controla la página de error al subir un modelo.
+ * @method upload.error
+ * @static
  * @param {Request} req Objeto que representa la petición HTTP y contiene el <i>query string</i>, los parámetros, el cuerpo y las cabeceras HTTP, entro otros
  * @param {Response} res El objeto res representa la respuesta HTTP que una aplicación Express envía cuando se hace una petición HTTP.
  * @param {Function} next Función que continúa la ejecución en la búsqueda de rutas
- * @return
  */
 Controller.model.upload.error = function (req, res, next) {
     var page = {'title': 'Error al subir Modelo', 'content_title': 'Error al subir Modelo'};
@@ -114,19 +106,34 @@ Controller.model.upload.error = function (req, res, next) {
 };
 
 /**
- * Description
- * @method list
+ * Controla la subida de un archivo de modelo.
+ * @method onUpload
+ * @static
+ * @param {String} originalFile Archivo original del modelo subido.
  * @param {Request} req Objeto que representa la petición HTTP y contiene el <i>query string</i>, los parámetros, el cuerpo y las cabeceras HTTP, entro otros
  * @param {Response} res El objeto res representa la respuesta HTTP que una aplicación Express envía cuando se hace una petición HTTP.
  * @param {Function} next Función que continúa la ejecución en la búsqueda de rutas
- * @return
+ */
+Controller.model.onUpload = function (originalFile, req, res, next) {
+    var model = App.require('/bl/Model').getInstance();
+    var success = model.add(originalFile, req.body.name, req.body.description);
+    req.custom_parameters_ = {};
+    req.custom_parameters_.success = success;
+};
+
+/**
+ * Controla la página de listado de modelos.
+ * @method list
+ * @static
+ * @param {Request} req Objeto que representa la petición HTTP y contiene el <i>query string</i>, los parámetros, el cuerpo y las cabeceras HTTP, entro otros
+ * @param {Response} res El objeto res representa la respuesta HTTP que una aplicación Express envía cuando se hace una petición HTTP.
+ * @param {Function} next Función que continúa la ejecución en la búsqueda de rutas
  */
 Controller.model.list = function (req, res, next) {
     /**
-     * Description
-     * @method onSuccess
-     * @param {} modelsList
-     * @return
+     * Función que ejecuta después de obtener la lista de modelos.
+     * @event list.onSuccess
+     * @param {Array} modelsList Listado de modelos
      */
     var onSuccess = function (modelsList) {
         var models = modelsList;
@@ -135,10 +142,9 @@ Controller.model.list = function (req, res, next) {
         res.render('model/list.html', {'page': page, 'data': data});
     };
     /**
-     * Description
-     * @method onError
-     * @param {} error
-     * @return
+     * Función que ejecuta después si hay un error al obtener la lista de modelos.
+     * @event list.onError
+     * @param {String} error El mensaje de error
      */
     var onError = function (error) {
         responseOnErrorHTML(req, res, next, error);
@@ -148,27 +154,25 @@ Controller.model.list = function (req, res, next) {
 };
 
 /**
- * Description
+ * Controla el borrado de un modelo.
  * @method delete
+ * @static
  * @param {Request} req Objeto que representa la petición HTTP y contiene el <i>query string</i>, los parámetros, el cuerpo y las cabeceras HTTP, entro otros
  * @param {Response} res El objeto res representa la respuesta HTTP que una aplicación Express envía cuando se hace una petición HTTP.
  * @param {Function} next Función que continúa la ejecución en la búsqueda de rutas
- * @return
  */
 Controller.model.delete = function (req, res, next) {
     /**
-     * Description
-     * @method onSuccess
-     * @return
+     * Función que ejecuta después de obtener la lista de modelos.
+     * @event delete.onSuccess
      */
     var onSuccess = function () {
         res.json({'success': true});
     };
     /**
-     * Description
-     * @method onError
-     * @param {} error
-     * @return
+     * Función que ejecuta después si hay un error al eliminar el modelo.
+     * @event delete.onError
+     * @param {String} error El mensaje de error
      */
     var onError = function (error) {
         responseOnErrorJson(req, res, next, error, 400);
@@ -182,19 +186,25 @@ Controller.model.delete = function (req, res, next) {
 };
 
 /**
- * Description
+ * Controla la capa de negocio que interactua con las sesiones de simulaciones.
+ * @class Controller.session
+ */
+Controller.session = function () {
+};
+
+/**
+ * Controla la página de listado de sesiones de simulación.
  * @method list
+ * @static
  * @param {Request} req Objeto que representa la petición HTTP y contiene el <i>query string</i>, los parámetros, el cuerpo y las cabeceras HTTP, entro otros
  * @param {Response} res El objeto res representa la respuesta HTTP que una aplicación Express envía cuando se hace una petición HTTP.
  * @param {Function} next Función que continúa la ejecución en la búsqueda de rutas
- * @return
  */
 Controller.session.list = function (req, res, next) {
     /**
-     * Description
-     * @method afterGetModelsList
-     * @param {} modelsList
-     * @return
+     * Función que ejecuta después de obtener la lista de modelos.
+     * @event list.afterGetModelsList
+     * @param {Array} modelsList La lista de modelos
      */
     var afterGetModelsList = function (modelsList) {
         var SessionController = App.require('/bl/SessionController');
@@ -210,11 +220,11 @@ Controller.session.list = function (req, res, next) {
         }
         ;
         /**
-         * Description
-         * @method getModelURL
-         * @param {} modelFilename
-         * @param {} token
-         * @return CallExpression
+         * Función para obtener la URL a un modelo.
+         * @event list.getModelURL
+         * @param {String} modelFilename El nombre de archivo del modelo sin extensión
+         * @param {String} token Token del usuario
+         * @return {String} La URL al modelo
          */
         var getModelURL = function (modelFilename, token) {
             return (MODEL_URL_TEMPLATE.replace('@session@', token).replace('@model@', modelFilename));
@@ -224,23 +234,15 @@ Controller.session.list = function (req, res, next) {
         res.render('session/list.html', {'page': page, 'data': data});
     };
     /**
-     * Description
-     * @method onError
-     * @param {} error
-     * @return
+     * Función que ejecuta después si hay un error al obtener la lista de modelos.
+     * @event list.onError
+     * @param {String} error El mensaje de error
      */
     var onError = function (error) {
         responseOnErrorHTML(req, res, next, error);
     };
     var Model = App.require('/bl/Model');
     Model.getInstance().list(afterGetModelsList, onError);
-};
-
-Controller.model.onUpload = function (originalFile, req, res, next) {
-    var model = App.require('/bl/Model').getInstance();
-    var success = model.add(originalFile, req.body.name, req.body.description);
-    req.custom_parameters_ = {};
-    req.custom_parameters_.success = success;
 };
 
 module.exports = Controller;

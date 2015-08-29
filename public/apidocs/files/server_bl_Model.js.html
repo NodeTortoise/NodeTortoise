@@ -39,10 +39,17 @@
                         <div id="api-tabview-panel">
                             <ul id="api-classes" class="apis classes">
                                 <li><a href="../classes/App.html">App</a></li>
+                                <li><a href="../classes/Controller.html">Controller</a></li>
+                                <li><a href="../classes/Controller.model.html">Controller.model</a></li>
+                                <li><a href="../classes/Controller.session.html">Controller.session</a></li>
+                                <li><a href="../classes/Model.html">Model</a></li>
+                                <li><a href="../classes/Session.html">Session</a></li>
+                                <li><a href="../classes/SessionController.html">SessionController</a></li>
                             </ul>
                 
                 
                             <ul id="api-modules" class="apis modules">
+                                <li><a href="../modules/Model.html">Model</a></li>
                             </ul>
                         </div>
                     </div>
@@ -83,20 +90,26 @@
 /* global App, Helper, MODELS_PATH, TORTOISE_SET_SESSION_STRING, module, MODELS_TEMPLATE */
 
 /**
- * Description
- * @return 
+ * Provee la clase Model
+ * @module Model
+ */
+
+/**
+ * Controla las acciones que se pueden ejecutar sobre un modelo.
+ * @class Model
+ * @constructor
  */
 Model = function () {
 
     var Entities = App.require(&#x27;/da/Entities&#x27;);
 
     /**
-     * Description
+     * Agregar un modelo al sistema.
      * @method add
-     * @param {} originalFile
-     * @param {} modelName
-     * @param {} description
-     * @return success
+     * @param {String} originalFile Ruta al archivo original subido
+     * @param {String} modelName Nombre del modelo
+     * @param {String} description Texto descriptivo del modelo
+     * @return {Boolean} success Resultado de la adición del modelo.
      */
     this.add = function (originalFile, modelName, description) {
         var Entities = App.require(&#x27;/da/Entities&#x27;);
@@ -121,19 +134,17 @@ Model = function () {
     };
 
     /**
-     * Description
+     * Elimina un modelo del sistema
      * @method delete
-     * @param {} idModel
-     * @param {} filename
-     * @param {} onSuccess
-     * @param {} onError
-     * @return 
+     * @param {Integer} idModel El ID del modelo
+     * @param {String} filename Nombre de archivo del modelo (sin la ruta)
+     * @param {Function} onSuccess Función a ejecutar cuando el modelo sea eliminado correctamente del sistema
+     * @param {Function} onError Función e ejecutar si hay un error al eliminar un modelo del sistema
      */
     this.delete = function(idModel, filename, onSuccess, onError){
         /**
-         * Description
+         * Función a ejecutar cuando el modelo sea eliminado correctamente de la base de datos
          * @method afterDeleteFromDB
-         * @return 
          */
         var afterDeleteFromDB = function (){
             var fs = require(&#x27;fs&#x27;);
@@ -147,43 +158,45 @@ Model = function () {
     };
     
     /**
-     * Description
+     * Retorna la lista de modelos disponibles en el sistema
      * @method list
-     * @param {} onSuccess
-     * @param {} onError
-     * @return 
+     * @param {Function} onSuccess Función a ejecutar cuando se ha recuperado la lista de modelos del sistema
+     * @param {Function} onError Función e ejecutar si hay un error al recuperar la lista de modelos del sistema
      */
     this.list = function (onSuccess, onError){
         Entities.getModel().list(onSuccess, onError);
     };
 
     /**
-     * Description
+     * Retorna la ruta al archivo HTML de un modelo.
      * @method getHTMLFile
-     * @param {} fileName
-     * @return CallExpression
+     * @private
+     * @param {String} fileName Nombre del archivo de modelo a recuperar
+     * @return {String} La ruta al archivo HTML de un modelo
      */
     var getHTMLFile = function (fileName){
         return App.getRootPath(MODELS_PATH + fileName + &#x27;.html&#x27;);
     };
     
     /**
-     * Description
+     * Retorna la ruta al archivo JavaScript de un modelo.
      * @method getJSFile
-     * @param {} fileName
-     * @return CallExpression
+     * @private
+     * @param {String} fileName Nombre del archivo de modelo a recuperar
+     * @return {String} La ruta al archivo JavaScript de un modelo
      */
     var getJSFile = function (fileName){
         return App.getRootPath(MODELS_PATH + &#x27;js/&#x27; + fileName + &#x27;.js&#x27;);
     };
 
     /**
-     * Description
+     * Intenta eliminar un archivo del sistema de archivo, si falla, envía un mensaje de depuración a la aplicación.
      * @method tryDeleteFile
-     * @param {} filePath
-     * @param {} fileStrID
-     * @param {} fs
-     * @return 
+     * @private
+     * @param {String} filePath Ruta del archivo
+     * @param {String} fileStrID Identificador del archivo a ser mostrado en el mensaje de depuración.
+     * @param {fs} fs Objeto que controla el sistema de archivos
+     * @return {Boolean} Resultado de eliminar el archivo
      */
     var tryDeleteFile = function (filePath, fileStrID, fs) {
         try {
@@ -198,15 +211,15 @@ Model = function () {
     };
 
     /**
-     * Description
+     * Procese un modelo exportado de Galapagos, para convertirlo al formato necesario para que funcione en NodeTortoise.
      * @method parse
-     * @param {} originalFilePath
-     * @param {} htmlNewFilePath
-     * @param {} jsNewFilePath
-     * @param {} fileName
-     * @param {} modelName
-     * @param {} fs
-     * @return 
+     * @private
+     * @param {String} originalFilePath Ruta del archivo original, subido al sistema
+     * @param {String} htmlNewFilePath Ruta donde se debe guardar el archivo HTML del modelo
+     * @param {String} jsNewFilePath Ruta donde se debe guardar el archivo JavaScript del modelo
+     * @param {String} fileName Nombre del archivo del modelo
+     * @param {String} modelName Nombre del modelo
+     * @param {fs} fs Objeto que controla el sistema de archivos
      */
     var parse = function (originalFilePath, htmlNewFilePath, jsNewFilePath, fileName, modelName, fs) {
         var cheerio = require(&#x27;cheerio&#x27;);
@@ -238,9 +251,10 @@ Model = function () {
 };
 
 /**
- * Description
+ * Basado en el patrón &lt;i&gt;Singleton&lt;/i&gt;, returna una instancia del objeto Model
  * @method getInstance
- * @return MemberExpression
+ * @static
+ * @return {Model} La instancia de Model
  */
 Model.getInstance = function () {
     if (typeof Model._instance_ !== &#x27;object&#x27;) {

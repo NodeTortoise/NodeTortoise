@@ -3,8 +3,8 @@
 /**
  * Maneja una sesión individual de una simulación.
  * @class Session
- * @param {} name
- * @return 
+ * @constructor
+ * @param {String} name El nombre de la sesión
  */
 Session = function (name) {
 
@@ -18,7 +18,6 @@ Session = function (name) {
     /**
      * Realiza el proceso de inicialización de variables necesarias por el objeto.
      * @method init
-     * @return 
      */
     this.init = function () {
         self.users = {};
@@ -60,7 +59,6 @@ Session = function (name) {
      * @method removeUser
      * @param {String} userName El nombre del usuario
      * @param {String} token El token de sesión del usuario
-     * @return 
      */
     this.removeUser = function (username, token) {
         if (self.master && self.master.token === token) {

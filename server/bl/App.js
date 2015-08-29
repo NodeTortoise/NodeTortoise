@@ -5,7 +5,7 @@
  * establecer los parámetros de configuración, configurando el framework Express, 
  * las rutas y el motor de plantillas (templates).
  * @class App
- * @return 
+ * @constructor
  */
 App = function () {
 
@@ -15,8 +15,8 @@ App = function () {
      * Inicializa el proceso de definición de los parámetros de configuración 
      * de la aplicación.
      * @method init
+     * @private
      * @param {http.Server} server
-     * @return 
      */
     var init = function (server) {
         var Sockets = App.require('/da/Sockets');
@@ -29,7 +29,7 @@ App = function () {
      * Establece los parámetros de configuración de Express y el motor de 
      * plantillas Swig y otros (logger, cookieParser, etc).
      * @method setupConfig
-     * @return 
+     * @private
      */
     var setupConfig = function () {
         var favicon = require('serve-favicon');
@@ -69,7 +69,7 @@ App = function () {
      * Establece los parámetros de configuración de las rutas accesibles por 
      * medio del protocolo HTTP.
      * @method setupRoutes
-     * @return 
+     * @private
      */
     var setupRoutes = function () {
         //--> Static routes
@@ -108,7 +108,7 @@ App = function () {
     /**
      * Constructor de la clase.
      * @method __construct
-     * @return 
+     * @private
      */
     var __construct = function () {
         App.include('/commons/Helper');
@@ -120,7 +120,7 @@ App = function () {
     /**
      * Returna la instancia de Express utilizada.
      * @method getExpress
-     * @return {express} app
+     * @return {express} app Instancia de express
      */
     this.getExpress = function () {
         return app;
@@ -134,8 +134,9 @@ App = function () {
  * Retorn la ruta desde el directorio raíz de la aplicación basado en la ruta 
  * recibida.
  * @method getRootPath
+ * @static
  * @param {String} filePath Ruta relativa del archivo
- * @return CallExpression
+ * @return {String} La ruta a la raíz de la aplicación
  */
 App.getRootPath = function (filePath) {
     var path = require('path');
@@ -146,8 +147,9 @@ App.getRootPath = function (filePath) {
  * Retorn la ruta desde el directorio de los archivos del servidor de la 
  * aplicación basado en la ruta recibida.
  * @method getPath
+ * @static
  * @param {String} filePath Ruta relativa del archivo
- * @return CallExpression
+ * @return {String} La ruta al directorio de los archivos del servidor de la aplicación
  */
 App.getPath = function (filePath) {
     var path = require('path');
@@ -157,8 +159,8 @@ App.getPath = function (filePath) {
 /**
  * Incluye el cídigo de un archivo dentro de la aplicación.
  * @method include
+ * @static
  * @param {String} file Ruta relativa del archivo
- * @return 
  */
 App.include = function (filePath) {
     var fs = require('fs');
@@ -169,8 +171,9 @@ App.include = function (filePath) {
  * Realiza el require de cualquiera de los módulos ubicados dentro del directorio
  * de los archivos del servidor de la aplicación.
  * @method require
+ * @static
  * @param {String} module Ruta relativa del modulo
- * @return CallExpression
+ * @return {mixed} El <i>requite</i> del modulo
  */
 App.require = function (module) {
     return (require(App.getPath(module)));
@@ -182,11 +185,11 @@ App.require = function (module) {
  * <i>DEBUG_MODE<i> en el archivo de configuración de la aplicación y el valor del
  * parámetro <i>mode</i> recibido
  * @method debug
+ * @static
  * @param {String} message El mensaje a imprimir en consola
  * @param {String} user El usuario que está enviando el mensaje (cuando se está en modo simulación)
  * @param {String} session La sesion del usuario que está enviando el mensaje (cuando se está en modo simulación)
  * @param {String} mode El modo de debug a aplicar al mensaje
- * @return 
  */
 App.debug = function (message, user, session, mode) {
     if (!mode) {
@@ -204,6 +207,7 @@ App.debug = function (message, user, session, mode) {
 /**
  * Retorna la instancia del objeto Express utilizado
  * @method getInstance
+ * @static
  * @return {express} Instancia de express
  */
 App.getInstance = function () {
@@ -214,13 +218,15 @@ App.getInstance = function () {
 };
 
 /**
- * Description
+ * Determina si el usuario es master comparando con la contraseña enviada por 
+ * parámetro con la contraseña del usuario maestro.
  * @method isUserMaster
- * @param {String} masterPassword La contraseña del usuario maestro
- * @return BinaryExpression
+ * @static
+ * @param {String} userPassword La contraseña del usuario
+ * @return {Boolean} El resultado de la comparación de las contraseñas
  */
-App.isUserMaster = function (masterPassword) {
-    return (masterPassword === MASTER_PASSWORD);
+App.isUserMaster = function (userPassword) {
+    return (userPassword === MASTER_PASSWORD);
 };
 
 module.exports = App;

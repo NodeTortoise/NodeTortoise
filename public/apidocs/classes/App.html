@@ -39,10 +39,17 @@
                         <div id="api-tabview-panel">
                             <ul id="api-classes" class="apis classes">
                                 <li><a href="../classes/App.html">App</a></li>
+                                <li><a href="../classes/Controller.html">Controller</a></li>
+                                <li><a href="../classes/Controller.model.html">Controller.model</a></li>
+                                <li><a href="../classes/Controller.session.html">Controller.session</a></li>
+                                <li><a href="../classes/Model.html">Model</a></li>
+                                <li><a href="../classes/Session.html">Session</a></li>
+                                <li><a href="../classes/SessionController.html">SessionController</a></li>
                             </ul>
                 
                 
                             <ul id="api-modules" class="apis modules">
+                                <li><a href="../modules/Model.html">Model</a></li>
                             </ul>
                         </div>
                     </div>
@@ -84,6 +91,7 @@
             Defined in: <a href="../files/server_bl_App.js.html#l3"><code>server\bl\App.js:3</code></a>
         </div>
 
+            Module: <a href="../modules/Model.html">Model</a>
 
 </div>
 
@@ -95,6 +103,39 @@ las rutas y el motor de plantillas (templates).</p>
 
 </div>
 
+    <div class="constructor">
+        <h2>Constructor</h2>
+<div id="method_App" class="method item">
+    <h3 class="name"><code>App</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/server_bl_App.js.html#l3"><code>server\bl\App.js:3</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+
+
+
+</div>
+    </div>
 
 <div id="classdocs" class="tabview">
     <ul class="api-class-tabs">
@@ -111,13 +152,14 @@ las rutas y el motor de plantillas (templates).</p>
                     <h3>Methods</h3>
 
                     <ul class="index-list methods">
-                            <li class="index-item method">
+                            <li class="index-item method private">
                                 <a href="#method___construct">__construct</a>
 
                             </li>
                             <li class="index-item method">
                                 <a href="#method_debug">debug</a>
 
+                                    <span class="flag static">static</span>
                             </li>
                             <li class="index-item method">
                                 <a href="#method_getExpress">getExpress</a>
@@ -126,36 +168,42 @@ las rutas y el motor de plantillas (templates).</p>
                             <li class="index-item method">
                                 <a href="#method_getInstance">getInstance</a>
 
+                                    <span class="flag static">static</span>
                             </li>
                             <li class="index-item method">
                                 <a href="#method_getPath">getPath</a>
 
+                                    <span class="flag static">static</span>
                             </li>
                             <li class="index-item method">
                                 <a href="#method_getRootPath">getRootPath</a>
 
+                                    <span class="flag static">static</span>
                             </li>
                             <li class="index-item method">
                                 <a href="#method_include">include</a>
 
+                                    <span class="flag static">static</span>
                             </li>
-                            <li class="index-item method">
+                            <li class="index-item method private">
                                 <a href="#method_init">init</a>
 
                             </li>
                             <li class="index-item method">
                                 <a href="#method_isUserMaster">isUserMaster</a>
 
+                                    <span class="flag static">static</span>
                             </li>
                             <li class="index-item method">
                                 <a href="#method_require">require</a>
 
+                                    <span class="flag static">static</span>
                             </li>
-                            <li class="index-item method">
+                            <li class="index-item method private">
                                 <a href="#method_setupConfig">setupConfig</a>
 
                             </li>
-                            <li class="index-item method">
+                            <li class="index-item method private">
                                 <a href="#method_setupRoutes">setupRoutes</a>
 
                             </li>
@@ -169,16 +217,14 @@ las rutas y el motor de plantillas (templates).</p>
             <div id="methods" class="api-class-tabpanel">
                 <h2 class="off-left">Methods</h2>
 
-<div id="method___construct" class="method item">
+<div id="method___construct" class="method item private">
     <h3 class="name"><code>__construct</code></h3>
 
         <span class="paren">()</span>
 
-        <span class="returns-inline">
-            <span class="type"></span>
-        </span>
 
 
+        <span class="flag private">private</span>
 
 
 
@@ -200,12 +246,6 @@ las rutas y el motor de plantillas (templates).</p>
     </div>
 
 
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-            </div>
-        </div>
 
 
 </div>
@@ -229,20 +269,18 @@ las rutas y el motor de plantillas (templates).</p>
             </ul><span class="paren">)</span>
         </div>
 
-        <span class="returns-inline">
-            <span class="type"></span>
-        </span>
 
 
 
 
+        <span class="flag static">static</span>
 
 
 
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/server_bl_App.js.html#l179"><code>server\bl\App.js:179</code></a>
+        <a href="../files/server_bl_App.js.html#l182"><code>server\bl\App.js:182</code></a>
         </p>
 
 
@@ -308,12 +346,6 @@ parámetro <i>mode</i> recibido</p>
             </ul>
         </div>
 
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-            </div>
-        </div>
 
 
 </div>
@@ -353,7 +385,7 @@ parámetro <i>mode</i> recibido</p>
 
             <div class="returns-description">
                         <span class="type">Express</span>:
-                    <p>app</p>
+                    <p>app Instancia de express</p>
 
             </div>
         </div>
@@ -372,13 +404,14 @@ parámetro <i>mode</i> recibido</p>
 
 
 
+        <span class="flag static">static</span>
 
 
 
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/server_bl_App.js.html#l204"><code>server\bl\App.js:204</code></a>
+        <a href="../files/server_bl_App.js.html#l207"><code>server\bl\App.js:207</code></a>
         </p>
 
 
@@ -415,19 +448,20 @@ parámetro <i>mode</i> recibido</p>
         </div>
 
         <span class="returns-inline">
-            <span class="type"></span>
+            <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
         </span>
 
 
 
 
+        <span class="flag static">static</span>
 
 
 
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/server_bl_App.js.html#l145"><code>server\bl\App.js:145</code></a>
+        <a href="../files/server_bl_App.js.html#l146"><code>server\bl\App.js:146</code></a>
         </p>
 
 
@@ -462,7 +496,8 @@ aplicación basado en la ruta recibida.</p>
             <h4>Returns:</h4>
 
             <div class="returns-description">
-                    <p>CallExpression</p>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
+                    <p>La ruta al directorio de los archivos del servidor de la aplicación</p>
 
             </div>
         </div>
@@ -481,12 +516,13 @@ aplicación basado en la ruta recibida.</p>
         </div>
 
         <span class="returns-inline">
-            <span class="type"></span>
+            <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
         </span>
 
 
 
 
+        <span class="flag static">static</span>
 
 
 
@@ -528,7 +564,8 @@ recibida.</p>
             <h4>Returns:</h4>
 
             <div class="returns-description">
-                    <p>CallExpression</p>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
+                    <p>La ruta a la raíz de la aplicación</p>
 
             </div>
         </div>
@@ -546,20 +583,18 @@ recibida.</p>
             </ul><span class="paren">)</span>
         </div>
 
-        <span class="returns-inline">
-            <span class="type"></span>
-        </span>
 
 
 
 
+        <span class="flag static">static</span>
 
 
 
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/server_bl_App.js.html#l157"><code>server\bl\App.js:157</code></a>
+        <a href="../files/server_bl_App.js.html#l159"><code>server\bl\App.js:159</code></a>
         </p>
 
 
@@ -589,16 +624,10 @@ recibida.</p>
             </ul>
         </div>
 
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-            </div>
-        </div>
 
 
 </div>
-<div id="method_init" class="method item">
+<div id="method_init" class="method item private">
     <h3 class="name"><code>init</code></h3>
 
         <div class="args">
@@ -609,11 +638,9 @@ recibida.</p>
             </ul><span class="paren">)</span>
         </div>
 
-        <span class="returns-inline">
-            <span class="type"></span>
-        </span>
 
 
+        <span class="flag private">private</span>
 
 
 
@@ -652,12 +679,6 @@ de la aplicación.</p>
             </ul>
         </div>
 
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-            </div>
-        </div>
 
 
 </div>
@@ -667,25 +688,26 @@ de la aplicación.</p>
         <div class="args">
             <span class="paren">(</span><ul class="args-list inline commas">
                 <li class="arg">
-                        <code>masterPassword</code>
+                        <code>userPassword</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
 
         <span class="returns-inline">
-            <span class="type"></span>
+            <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
         </span>
 
 
 
 
+        <span class="flag static">static</span>
 
 
 
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/server_bl_App.js.html#l216"><code>server\bl\App.js:216</code></a>
+        <a href="../files/server_bl_App.js.html#l220"><code>server\bl\App.js:220</code></a>
         </p>
 
 
@@ -693,7 +715,8 @@ de la aplicación.</p>
     </div>
 
     <div class="description">
-        <p>Description</p>
+        <p>Determina si el usuario es master comparando con la contraseña enviada por
+parámetro con la contraseña del usuario maestro.</p>
 
     </div>
 
@@ -702,12 +725,12 @@ de la aplicación.</p>
 
             <ul class="params-list">
                 <li class="param">
-                        <code class="param-name">masterPassword</code>
+                        <code class="param-name">userPassword</code>
                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
 
 
                     <div class="param-description">
-                        <p>La contraseña del usuario maestro</p>
+                        <p>La contraseña del usuario</p>
 
                     </div>
 
@@ -719,7 +742,8 @@ de la aplicación.</p>
             <h4>Returns:</h4>
 
             <div class="returns-description">
-                    <p>BinaryExpression</p>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
+                    <p>El resultado de la comparación de las contraseñas</p>
 
             </div>
         </div>
@@ -738,19 +762,20 @@ de la aplicación.</p>
         </div>
 
         <span class="returns-inline">
-            <span class="type"></span>
+            <span class="type">Mixed</span>
         </span>
 
 
 
 
+        <span class="flag static">static</span>
 
 
 
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/server_bl_App.js.html#l168"><code>server\bl\App.js:168</code></a>
+        <a href="../files/server_bl_App.js.html#l170"><code>server\bl\App.js:170</code></a>
         </p>
 
 
@@ -785,23 +810,22 @@ de los archivos del servidor de la aplicación.</p>
             <h4>Returns:</h4>
 
             <div class="returns-description">
-                    <p>CallExpression</p>
+                        <span class="type">Mixed</span>:
+                    <p>El <i>requite</i> del modulo</p>
 
             </div>
         </div>
 
 
 </div>
-<div id="method_setupConfig" class="method item">
+<div id="method_setupConfig" class="method item private">
     <h3 class="name"><code>setupConfig</code></h3>
 
         <span class="paren">()</span>
 
-        <span class="returns-inline">
-            <span class="type"></span>
-        </span>
 
 
+        <span class="flag private">private</span>
 
 
 
@@ -824,25 +848,17 @@ plantillas Swig y otros (logger, cookieParser, etc).</p>
     </div>
 
 
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-            </div>
-        </div>
 
 
 </div>
-<div id="method_setupRoutes" class="method item">
+<div id="method_setupRoutes" class="method item private">
     <h3 class="name"><code>setupRoutes</code></h3>
 
         <span class="paren">()</span>
 
-        <span class="returns-inline">
-            <span class="type"></span>
-        </span>
 
 
+        <span class="flag private">private</span>
 
 
 
@@ -865,12 +881,6 @@ medio del protocolo HTTP.</p>
     </div>
 
 
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-            </div>
-        </div>
 
 
 </div>

@@ -3,7 +3,7 @@
 /**
  * Controla las sesiones de creadas por los usuarios para ejecutar las simulaciones.
  * @class SessionController
- * @return 
+ * @constructor
  */
 SessionController = function () {
 
@@ -14,7 +14,6 @@ SessionController = function () {
     /**
      * Realiza el proceso de inicialización de variables necesarias por el objeto.
      * @method init
-     * @return 
      */
     this.init = function () {
         sessions = {};
@@ -27,7 +26,7 @@ SessionController = function () {
      * @param {String} sessionName El nombre de la sesión
      * @param {String} modelFile El archivo del modelo de la simulación que ejecutará la sesión
      * @param {String} userName El nombre del usuario
-     * @param @optional {Boolean} enabledControls Determinar si la sesión habilita o no los controles a otros usuarios distintos del maestro. Parámetro obligatorio solo para el usuario maestro.
+     * @param {Boolean} [enabledControls] Determinar si la sesión habilita o no los controles a otros usuarios distintos del maestro. Parámetro obligatorio solo para el usuario maestro.
      * @return {Object} Un objecto JavaScript estandar con la información sobre la sesión. 
      */
     this.joinSession = function (sessionName, modelFile, userName, enabledControls) {
@@ -67,7 +66,6 @@ SessionController = function () {
      * @method setSessionModel
      * @param {String} sessionName
      * @param {String} modelName
-     * @return 
      */
     this.setSessionModel = function (sessionName, modelName) {
         modelsBySession[sessionName] = modelName;
@@ -118,8 +116,8 @@ SessionController = function () {
     
     /**
      * Constructor de la clase
+     * @private
      * @method __construct
-     * @return 
      */
     var __construct = function () {
         Sockets = App.require('/da/Sockets');
@@ -132,6 +130,7 @@ SessionController = function () {
 /**
  * Basado en el patrón <i>Singleton</i>, returna una instancia del objeto SessionController
  * @method getInstance
+ * @static
  * @return {SessionController}
  */
 SessionController.getInstance = function () {

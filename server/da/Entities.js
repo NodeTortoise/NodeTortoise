@@ -7,27 +7,26 @@ db.debug = (DEBUG_MODE > 1);
 var dateFormat = require('dateformat');
 
 /**
- * Description
- * @return 
+ * Maneja la relación de las distintas entidades con la base de datos.
+ * @class
  */
 Entities = function () {
 };
 
 /**
- * Description
- * @method model
- * @return 
+ * Maneja la relación de la entidad <i>model</i> con la base de datos.
+ * @class
  */
 Entities.model = function () {
 
     var table = 'models';
 
     /**
-     * Description
+     * Inserta un modelo en base de datos.
      * @method add
-     * @param {} name
-     * @param {} filename
-     * @param {} description
+     * @param {String} name Nombre del modelo
+     * @param {String} filename Nombre del archivo del modelo sin extensión
+     * @param {String} description Descripción del modelo
      * @return 
      */
     this.add = function (name, filename, description) {
@@ -36,22 +35,21 @@ Entities.model = function () {
     };
 
     /**
-     * Description
+     * Obtiene la lista de modelos en base de datos.
      * @method list
-     * @param {} onSuccess
-     * @param {} onError
-     * @return 
+     * @param {Function} onSuccess Función a ejecutar cuando se obtiene la lista de modelos
+     * @param {Function} onError Función a ejecutar en caso de error
      */
     this.list = function (onSuccess, onError) {
         db.select(table, null, onSuccess, onError);
     };
 
     /**
-     * Description
+     * Elimina un modelo de base de datos.
      * @method delete
-     * @param {} idModel
-     * @param {} onSuccess
-     * @param {} onError
+     * @param {Integer} idModel ID del modelo
+     * @param {Function} onSuccess Función a ejecutar cuando se elimina el modelo
+     * @param {Function} onError Función a ejecutar en caso de error
      * @return 
      */
     this.delete = function (idModel, onSuccess, onError) {
@@ -63,9 +61,9 @@ Entities.model = function () {
 Entities.instances = {};
 
 /**
- * Description
- * @method getModel
- * @return MemberExpression
+ * Basado en el patrón <i>Singleton</i>, returna una instancia del objeto Entities.model
+ * @method getInstance
+ * @return {Entities.model}
  */
 Entities.getModel = function () {
     if (typeof Entities.instances.model !== 'object') {

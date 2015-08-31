@@ -1,9 +1,9 @@
 /* global require */
 
 /**
- * Description
- * @param {} file
- * @return 
+ * Ejecuta acciones sobre una base de SQLite
+ * @class
+ * @param {String} file Ruta al archivo de sqlite
  */
 SQLite = function (file) {
 
@@ -14,11 +14,11 @@ SQLite = function (file) {
     /**
      * Description
      * @method insert
-     * @param {} table
-     * @param {} fields
-     * @param {} values
-     * @param {} onSuccess
-     * @param {} onError
+     * @param {String} table La tabla sobre la cuál se ejecutará la acción
+     * @param {String} fields Las columnas a insertar
+     * @param {Array} values Los valores a insertar
+     * @param {Function} onSuccess Función a ejecutar cuando el proceso en base de datos se completa exitosamente
+     * @param {Funtion} onError Función a ejecutar en caso de error
      * @return 
      */
     this.insert = function (table, fields, values, onSuccess, onError) {
@@ -38,25 +38,17 @@ SQLite = function (file) {
     };
 
     /**
-     * Description
+     * Selecciona todos los registros de una tabla.
      * @method select
-     * @param {} table
-     * @param {} fields
-     * @param {} onSuccess
-     * @param {} onError
-     * @return 
+     * @param {String} table La tabla sobre la cuál se ejecutará la acción
+     * @param [String = '*'] fields Las columnas a seleccionar
+     * @param {Function} onSuccess Función a ejecutar cuando el proceso en base de datos se completa exitosamente
+     * @param {Funtion} onError Función a ejecutar en caso de error
      */
     this.select = function (table, fields, onSuccess, onError) {
         try {
             var strFields = (fields) ? fields : '*';
             var query = 'SELECT ' + strFields + ' FROM ' + table;
-            /**
-             * Description
-             * @method callback
-             * @param {} error
-             * @param {} result
-             * @return 
-             */
             var callback = function (error, result) {
                 onCallback(query, onSuccess, onError, error, result);
             };
@@ -68,25 +60,12 @@ SQLite = function (file) {
     };
 
     /**
-     * Description
-     * @method selectWhere
-     * @param {} table
-     * @param {} fields
-     * @param {} filters
-     * @param {} onSuccess
-     * @param {} onError
-     * @return 
-     */
-    this.selectWhere = function (table, fields, filters, onSuccess, onError) {
-    };
-
-    /**
-     * Description
+     * Elimina uno o más registros de una tabla.
      * @method delete
-     * @param {} table
-     * @param {} filters
-     * @param {} onSuccess
-     * @param {} onError
+     * @param {String} table La tabla sobre la cuál se ejecutará la acción
+     * @param {Array} filters Los filtros de la consulta (<i>where</i>)
+     * @param {Function} onSuccess Función a ejecutar cuando el proceso en base de datos se completa exitosamente
+     * @param {Funtion} onError Función a ejecutar en caso de error
      * @return 
      */
     this.delete = function (table, filters, onSuccess, onError) {
@@ -96,13 +75,6 @@ SQLite = function (file) {
             }
             var queryFilters = getQueryFilters(filters);
             var query = 'DELETE FROM ' + table + ' WHERE (' + queryFilters.where + ')';
-            /**
-             * Description
-             * @method callback
-             * @param {} error
-             * @param {} result
-             * @return 
-             */
             var callback = function (error, result) {
                 onCallback(query, onSuccess, onError, error, result);
             };
@@ -114,14 +86,14 @@ SQLite = function (file) {
     };
 
     /**
-     * Description
+     * Ejecuta el <i>callback</i> indicado después de realizar una tarea de base 
+     * de datos, ya sea este de procesos exitoso o de error.
      * @method onCallback
-     * @param {} query
-     * @param {} onSuccess
-     * @param {} onError
-     * @param {} error
-     * @param {} result
-     * @return 
+     * @param {String} query La consulta previamente ejecutada
+     * @param {Function} onSuccess Función a ejecutar cuando el proceso en base de datos se completa exitosamente
+     * @param {Funtion} onError Función a ejecutar en caso de error
+     * @param {mixed} error El error o mensaje de error
+     * @param {mixed} result El resultado
      */
     var onCallback = function (query, onSuccess, onError, error, result) {
         if (error) {
@@ -134,10 +106,16 @@ SQLite = function (file) {
     };
 
     /**
-     * Description
+     * Retorna los valores necesarios para armar una consulta parametrizada con 
+     * <i>where</i>.
      * @method getQueryFilters
-     * @param {} filters
-     * @return ObjectExpression
+     * @private
+     * @param {Array} filters
+     * @return {Object} Objetos compuesto por <b>"where"</b> y <b>"values"</b> 
+     * donde <b>"where"</b> contiene la información del <i>string</i> que se 
+     * debe colocar en el lugar de los valores de filtro de la consulta y 
+     * <b>"values"</b> contiene los valores a ser utilizados para la consulta
+     * parametrizada.
      */
     var getQueryFilters = function (filters) {
         var strFilters = '';
@@ -151,10 +129,13 @@ SQLite = function (file) {
     };
 
     /**
-     * Description
+     * Retorna los valores necesarios para armar una consulta parametrizada con 
+     * <i>values</i> (ejemplo: ?, ?, ?).
      * @method getQueryValues
-     * @param {} values
-     * @return strValues
+     * @private
+     * @param {Array} values
+     * @return {String} strValues El <i>string</i> que se debe colocar en el 
+     * lugar de los valores de la consulta
      */
     var getQueryValues = function (values) {
         var strValues = '';
@@ -166,19 +147,19 @@ SQLite = function (file) {
     };
 
     /**
-     * Description
+     * Retorna la instancia de SQLite3 utilizada
      * @method getDB
-     * @return db
+     * @return {SQLite3} db Instancia de SQLite3 utilizada
      */
     this.getDB = function () {
         return db;
     };
 
     /**
-     * Description
+     * Imprime en consola un mensaje de error, si el atributo debug del objeto 
+     * es <i>true</i>.
      * @method debug
-     * @param {} message
-     * @return 
+     * @param {String} message Mensaje de error
      */
     var debug = function (message) {
         if (self.debug) {
@@ -187,11 +168,11 @@ SQLite = function (file) {
     };
 
     /**
-     * Description
-     * @method __construc
-     * @return 
+     * Constructor de la clase
+     * @method __construct
+     * @private
      */
-    var __construc = function () {
+    var __construct = function () {
         try {
             var sqlite3 = require('sqlite3').verbose();
             db = new sqlite3.Database(file);
@@ -201,6 +182,6 @@ SQLite = function (file) {
         }
     };
 
-    __construc();
+    __construct();
 
 };

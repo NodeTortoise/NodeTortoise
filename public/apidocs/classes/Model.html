@@ -2,907 +2,895 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Model - API de NodeTortoise</title>
-    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <title>Model - NodeTortoise</title>
+    <link rel="stylesheet" href="">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
-    <link rel="icon" href="../assets/favicon.ico">
-    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
 </head>
 <body class="yui3-skin-sam">
-
-<div id="doc">
-    <div id="hd" class="yui3-g header">
-        <div class="yui3-u-3-4">
-                <h1><img src="../assets/css/logo.png" title="API de NodeTortoise" width="117" height="52"></h1>
-        </div>
-        <div class="yui3-u-1-4 version">
-            <em>API Docs for: 1.0.0</em>
-        </div>
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">NodeTortoise</h1>
+	<div class="nav"></div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Buscar clases/módulos..." data-obj='["classes/App", "classes/undefined", "classes/Controller.model", "classes/Controller.session", "classes/Model", "classes/Session", "classes/Controller", "classes/Entities", "classes/Entities.model", "classes/Sockets.Actions", "classes/Sockets", "classes/SessionController"]'>
+        </form>
     </div>
-    <div id="bd" class="yui3-g">
-
-        <div class="yui3-u-1-4">
-            <div id="docs-sidebar" class="sidebar apidocs">
-                <div id="api-list">
-                    <h2 class="off-left">APIs</h2>
-                    <div id="api-tabview" class="tabview">
-                        <ul class="tabs">
-                            <li><a href="#api-classes">Classes</a></li>
-                            <li><a href="#api-modules">Modules</a></li>
-                        </ul>
-                
-                        <div id="api-tabview-filter">
-                            <input type="search" id="api-filter" placeholder="Type to filter APIs">
-                        </div>
-                
-                        <div id="api-tabview-panel">
-                            <ul id="api-classes" class="apis classes">
-                                <li><a href="../classes/App.html">App</a></li>
-                                <li><a href="../classes/Controller.html">Controller</a></li>
-                                <li><a href="../classes/Controller.model.html">Controller.model</a></li>
-                                <li><a href="../classes/Controller.session.html">Controller.session</a></li>
-                                <li><a href="../classes/Model.html">Model</a></li>
-                                <li><a href="../classes/Session.html">Session</a></li>
-                                <li><a href="../classes/SessionController.html">SessionController</a></li>
-                            </ul>
-                
-                
-                            <ul id="api-modules" class="apis modules">
-                                <li><a href="../modules/Model.html">Model</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+	    <div>
+	        <div id="sidebar">
+	            <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
+	                <li class="active"><a href="#classes" data-toggle="tab">Clases</a></li>
+	                <li><a href="#modules" data-toggle="tab">Módulos</a></li>
+	            </ul>
+	    
+	            <div id="api-tabview-filter">
+	                <input type="search" placeholder="Digite para filtrar APIs">
+	            </div>
+	    
+	            <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
+	                <div class="tab-pane active" id="classes">
+	                    <ul id="api-classes" class="nav nav-list">
+	                            <li><a href="../classes/App.html">App</a></li>
+	                            <li><a href="../classes/.html"></a></li>
+	                            <li><a href="../classes/Controller.model.html">Controller.model</a></li>
+	                            <li><a href="../classes/Controller.session.html">Controller.session</a></li>
+	                            <li><a href="../classes/Model.html">Model</a></li>
+	                            <li><a href="../classes/Session.html">Session</a></li>
+	                            <li><a href="../classes/Controller.html">Controller</a></li>
+	                            <li><a href="../classes/Entities.html">Entities</a></li>
+	                            <li><a href="../classes/Entities.model.html">Entities.model</a></li>
+	                            <li><a href="../classes/Sockets.Actions.html">Sockets.Actions</a></li>
+	                            <li><a href="../classes/Sockets.html">Sockets</a></li>
+	                            <li><a href="../classes/SessionController.html">SessionController</a></li>
+	                    </ul>
+	                </div>
+	    
+	                <div class="tab-pane" id="modules">
+	                    <ul id="api-modules" class="nav nav-list">
+	                    </ul>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
         </div>
-        <div class="yui3-u-3-4">
-                <div id="api-options">
-                    Show:
-                    <label for="api-show-inherited">
+        <div class="span9">
+                <form id="options-form" class="form-inline pull-right">
+                    Mostrar:
+                    <label for="api-show-inherited" class="checkbox" style="display:none">
                         <input type="checkbox" id="api-show-inherited" checked>
                         Inherited
                     </label>
-            
-                    <label for="api-show-protected">
+                    <label for="api-show-protected" class="checkbox">
                         <input type="checkbox" id="api-show-protected">
-                        Protected
+                        Protegidos
                     </label>
             
-                    <label for="api-show-private">
+                    <label for="api-show-private" class="checkbox">
                         <input type="checkbox" id="api-show-private">
-                        Private
+                        Privados
                     </label>
-                    <label for="api-show-deprecated">
+                    <label for="api-show-deprecated" class="checkbox">
                         <input type="checkbox" id="api-show-deprecated">
-                        Deprecated
+                        Deprecados
                     </label>
-            
-                </div>
+                </form>
             
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-<h1>Model Class</h1>
-<div class="box meta">
-
-
-        <div class="foundat">
-            Defined in: <a href="../files/server_bl_Model.js.html#l8"><code>server\bl\Model.js:8</code></a>
-        </div>
-
-            Module: <a href="../modules/Model.html">Model</a>
-
-</div>
-
-
-<div class="box intro">
-    <p>Controla las acciones que se pueden ejecutar sobre un modelo.</p>
-
-</div>
-
-    <div class="constructor">
-        <h2>Constructor</h2>
-<div id="method_Model" class="method item">
-    <h3 class="name"><code>Model</code></h3>
-
-        <span class="paren">()</span>
-
-
-
-
-
-
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/server_bl_Model.js.html#l8"><code>server\bl\Model.js:8</code></a>
-        </p>
-
-
-
-    </div>
-
-    <div class="description">
-        
-    </div>
-
-
-
-
-</div>
-    </div>
-
-<div id="classdocs" class="tabview">
-    <ul class="api-class-tabs">
-        <li class="api-class-tab index"><a href="#index">Index</a></li>
-
-            <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
-    </ul>
-
-    <div>
-        <div id="index" class="api-class-tabpanel index">
-            <h2 class="off-left">Item Index</h2>
-
-                <div class="index-section methods">
-                    <h3>Methods</h3>
-
-                    <ul class="index-list methods">
-                            <li class="index-item method">
-                                <a href="#method_add">add</a>
-
-                            </li>
-                            <li class="index-item method">
-                                <a href="#method_afterDeleteFromDB">afterDeleteFromDB</a>
-
-                            </li>
-                            <li class="index-item method">
-                                <a href="#method_delete">delete</a>
-
-                            </li>
-                            <li class="index-item method private">
-                                <a href="#method_getHTMLFile">getHTMLFile</a>
-
-                            </li>
-                            <li class="index-item method">
-                                <a href="#method_getInstance">getInstance</a>
-
-                                    <span class="flag static">static</span>
-                            </li>
-                            <li class="index-item method private">
-                                <a href="#method_getJSFile">getJSFile</a>
-
-                            </li>
-                            <li class="index-item method">
-                                <a href="#method_list">list</a>
-
-                            </li>
-                            <li class="index-item method private">
-                                <a href="#method_parse">parse</a>
-
-                            </li>
-                            <li class="index-item method private">
-                                <a href="#method_tryDeleteFile">tryDeleteFile</a>
-
-                            </li>
-                    </ul>
-                </div>
-
-
-
-        </div>
-
-            <div id="methods" class="api-class-tabpanel">
-                <h2 class="off-left">Methods</h2>
-
-<div id="method_add" class="method item">
-    <h3 class="name"><code>add</code></h3>
-
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-                <li class="arg">
-                        <code>originalFile</code>
-                </li>
-                <li class="arg">
-                        <code>modelName</code>
-                </li>
-                <li class="arg">
-                        <code>description</code>
-                </li>
-            </ul><span class="paren">)</span>
-        </div>
-
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
-        </span>
-
-
-
-
-
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/server_bl_Model.js.html#l17"><code>server\bl\Model.js:17</code></a>
-        </p>
-
-
-
-    </div>
-
-    <div class="description">
-        <p>Agregar un modelo al sistema.</p>
-
-    </div>
-
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-                <li class="param">
-                        <code class="param-name">originalFile</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-
-
-                    <div class="param-description">
-                        <p>Ruta al archivo original subido</p>
-
-                    </div>
-
-                </li>
-                <li class="param">
-                        <code class="param-name">modelName</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-
-
-                    <div class="param-description">
-                        <p>Nombre del modelo</p>
-
-                    </div>
-
-                </li>
-                <li class="param">
-                        <code class="param-name">description</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-
-
-                    <div class="param-description">
-                        <p>Texto descriptivo del modelo</p>
-
-                    </div>
-
-                </li>
-            </ul>
-        </div>
-
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
-                    <p>success Resultado de la adición del modelo.</p>
-
-            </div>
-        </div>
-
-
-</div>
-<div id="method_afterDeleteFromDB" class="method item">
-    <h3 class="name"><code>afterDeleteFromDB</code></h3>
-
-        <span class="paren">()</span>
-
-
-
-
-
-
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/server_bl_Model.js.html#l56"><code>server\bl\Model.js:56</code></a>
-        </p>
-
-
-
-    </div>
-
-    <div class="description">
-        <p>Función a ejecutar cuando el modelo sea eliminado correctamente de la base de datos</p>
-
-    </div>
-
-
-
-
-</div>
-<div id="method_delete" class="method item">
-    <h3 class="name"><code>delete</code></h3>
-
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-                <li class="arg">
-                        <code>idModel</code>
-                </li>
-                <li class="arg">
-                        <code>filename</code>
-                </li>
-                <li class="arg">
-                        <code>onSuccess</code>
-                </li>
-                <li class="arg">
-                        <code>onError</code>
-                </li>
-            </ul><span class="paren">)</span>
-        </div>
-
-
-
-
-
-
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/server_bl_Model.js.html#l47"><code>server\bl\Model.js:47</code></a>
-        </p>
-
-
-
-    </div>
-
-    <div class="description">
-        <p>Elimina un modelo del sistema</p>
-
-    </div>
-
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-                <li class="param">
-                        <code class="param-name">idModel</code>
-                        <span class="type">Integer</span>
-
-
-                    <div class="param-description">
-                        <p>El ID del modelo</p>
-
-                    </div>
-
-                </li>
-                <li class="param">
-                        <code class="param-name">filename</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-
-
-                    <div class="param-description">
-                        <p>Nombre de archivo del modelo (sin la ruta)</p>
-
-                    </div>
-
-                </li>
-                <li class="param">
-                        <code class="param-name">onSuccess</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-
-
-                    <div class="param-description">
-                        <p>Función a ejecutar cuando el modelo sea eliminado correctamente del sistema</p>
-
-                    </div>
-
-                </li>
-                <li class="param">
-                        <code class="param-name">onError</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-
-
-                    <div class="param-description">
-                        <p>Función e ejecutar si hay un error al eliminar un modelo del sistema</p>
-
-                    </div>
-
-                </li>
-            </ul>
-        </div>
-
-
-
-</div>
-<div id="method_getHTMLFile" class="method item private">
-    <h3 class="name"><code>getHTMLFile</code></h3>
-
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-                <li class="arg">
-                        <code>fileName</code>
-                </li>
-            </ul><span class="paren">)</span>
-        </div>
-
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-        </span>
-
-
-        <span class="flag private">private</span>
-
-
-
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/server_bl_Model.js.html#l81"><code>server\bl\Model.js:81</code></a>
-        </p>
-
-
-
-    </div>
-
-    <div class="description">
-        <p>Retorna la ruta al archivo HTML de un modelo.</p>
-
-    </div>
-
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-                <li class="param">
-                        <code class="param-name">fileName</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-
-
-                    <div class="param-description">
-                        <p>Nombre del archivo de modelo a recuperar</p>
-
-                    </div>
-
-                </li>
-            </ul>
-        </div>
-
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
-                    <p>La ruta al archivo HTML de un modelo</p>
-
-            </div>
-        </div>
-
-
-</div>
-<div id="method_getInstance" class="method item">
-    <h3 class="name"><code>getInstance</code></h3>
-
-        <span class="paren">()</span>
-
-        <span class="returns-inline">
-            <span class="type"><a href="../classes/Model.html" class="crosslink">Model</a></span>
-        </span>
-
-
-
-
-        <span class="flag static">static</span>
-
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/server_bl_Model.js.html#l164"><code>server\bl\Model.js:164</code></a>
-        </p>
-
-
-
-    </div>
-
-    <div class="description">
-        <p>Basado en el patrón <i>Singleton</i>, returna una instancia del objeto Model</p>
-
-    </div>
-
-
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                        <span class="type"><a href="../classes/Model.html" class="crosslink">Model</a></span>:
-                    <p>La instancia de Model</p>
-
-            </div>
-        </div>
-
-
-</div>
-<div id="method_getJSFile" class="method item private">
-    <h3 class="name"><code>getJSFile</code></h3>
-
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-                <li class="arg">
-                        <code>fileName</code>
-                </li>
-            </ul><span class="paren">)</span>
-        </div>
-
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-        </span>
-
-
-        <span class="flag private">private</span>
-
-
-
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/server_bl_Model.js.html#l92"><code>server\bl\Model.js:92</code></a>
-        </p>
-
-
-
-    </div>
-
-    <div class="description">
-        <p>Retorna la ruta al archivo JavaScript de un modelo.</p>
-
-    </div>
-
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-                <li class="param">
-                        <code class="param-name">fileName</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-
-
-                    <div class="param-description">
-                        <p>Nombre del archivo de modelo a recuperar</p>
-
-                    </div>
-
-                </li>
-            </ul>
-        </div>
-
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
-                    <p>La ruta al archivo JavaScript de un modelo</p>
-
-            </div>
-        </div>
-
-
-</div>
-<div id="method_list" class="method item">
-    <h3 class="name"><code>list</code></h3>
-
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-                <li class="arg">
-                        <code>onSuccess</code>
-                </li>
-                <li class="arg">
-                        <code>onError</code>
-                </li>
-            </ul><span class="paren">)</span>
-        </div>
-
-
-
-
-
-
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/server_bl_Model.js.html#l71"><code>server\bl\Model.js:71</code></a>
-        </p>
-
-
-
-    </div>
-
-    <div class="description">
-        <p>Retorna la lista de modelos disponibles en el sistema</p>
-
-    </div>
-
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-                <li class="param">
-                        <code class="param-name">onSuccess</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-
-
-                    <div class="param-description">
-                        <p>Función a ejecutar cuando se ha recuperado la lista de modelos del sistema</p>
-
-                    </div>
-
-                </li>
-                <li class="param">
-                        <code class="param-name">onError</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-
-
-                    <div class="param-description">
-                        <p>Función e ejecutar si hay un error al recuperar la lista de modelos del sistema</p>
-
-                    </div>
-
-                </li>
-            </ul>
-        </div>
-
-
-
-</div>
-<div id="method_parse" class="method item private">
-    <h3 class="name"><code>parse</code></h3>
-
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-                <li class="arg">
-                        <code>originalFilePath</code>
-                </li>
-                <li class="arg">
-                        <code>htmlNewFilePath</code>
-                </li>
-                <li class="arg">
-                        <code>jsNewFilePath</code>
-                </li>
-                <li class="arg">
-                        <code>fileName</code>
-                </li>
-                <li class="arg">
-                        <code>modelName</code>
-                </li>
-                <li class="arg">
-                        <code>fs</code>
-                </li>
-            </ul><span class="paren">)</span>
-        </div>
-
-
-
-        <span class="flag private">private</span>
-
-
-
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/server_bl_Model.js.html#l124"><code>server\bl\Model.js:124</code></a>
-        </p>
-
-
-
-    </div>
-
-    <div class="description">
-        <p>Procese un modelo exportado de Galapagos, para convertirlo al formato necesario para que funcione en NodeTortoise.</p>
-
-    </div>
-
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-                <li class="param">
-                        <code class="param-name">originalFilePath</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-
-
-                    <div class="param-description">
-                        <p>Ruta del archivo original, subido al sistema</p>
-
-                    </div>
-
-                </li>
-                <li class="param">
-                        <code class="param-name">htmlNewFilePath</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-
-
-                    <div class="param-description">
-                        <p>Ruta donde se debe guardar el archivo HTML del modelo</p>
-
-                    </div>
-
-                </li>
-                <li class="param">
-                        <code class="param-name">jsNewFilePath</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-
-
-                    <div class="param-description">
-                        <p>Ruta donde se debe guardar el archivo JavaScript del modelo</p>
-
-                    </div>
-
-                </li>
-                <li class="param">
-                        <code class="param-name">fileName</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-
-
-                    <div class="param-description">
-                        <p>Nombre del archivo del modelo</p>
-
-                    </div>
-
-                </li>
-                <li class="param">
-                        <code class="param-name">modelName</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-
-
-                    <div class="param-description">
-                        <p>Nombre del modelo</p>
-
-                    </div>
-
-                </li>
-                <li class="param">
-                        <code class="param-name">fs</code>
-                        <span class="type">Fs</span>
-
-
-                    <div class="param-description">
-                        <p>Objeto que controla el sistema de archivos</p>
-
-                    </div>
-
-                </li>
-            </ul>
-        </div>
-
-
-
-</div>
-<div id="method_tryDeleteFile" class="method item private">
-    <h3 class="name"><code>tryDeleteFile</code></h3>
-
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-                <li class="arg">
-                        <code>filePath</code>
-                </li>
-                <li class="arg">
-                        <code>fileStrID</code>
-                </li>
-                <li class="arg">
-                        <code>fs</code>
-                </li>
-            </ul><span class="paren">)</span>
-        </div>
-
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
-        </span>
-
-
-        <span class="flag private">private</span>
-
-
-
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/server_bl_Model.js.html#l103"><code>server\bl\Model.js:103</code></a>
-        </p>
-
-
-
-    </div>
-
-    <div class="description">
-        <p>Intenta eliminar un archivo del sistema de archivo, si falla, envía un mensaje de depuración a la aplicación.</p>
-
-    </div>
-
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-                <li class="param">
-                        <code class="param-name">filePath</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-
-
-                    <div class="param-description">
-                        <p>Ruta del archivo</p>
-
-                    </div>
-
-                </li>
-                <li class="param">
-                        <code class="param-name">fileStrID</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-
-
-                    <div class="param-description">
-                        <p>Identificador del archivo a ser mostrado en el mensaje de depuración.</p>
-
-                    </div>
-
-                </li>
-                <li class="param">
-                        <code class="param-name">fs</code>
-                        <span class="type">Fs</span>
-
-
-                    <div class="param-description">
-                        <p>Objeto que controla el sistema de archivos</p>
-
-                    </div>
-
-                </li>
-            </ul>
-        </div>
-
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
-                    <p>Resultado de eliminar el archivo</p>
-
-            </div>
-        </div>
-
-
-</div>
-            </div>
-
-
-
-    </div>
-</div>
+                        <div class="page-header">
+                            <h1>Model <small>Class</small></h1>
+                        </div>
+                        
+                        <div class="well well-small">
+                        
+                        
+                                <div class="foundat">
+                                    Definido en: <a href="../files/server_bl_Model.js.html#l3"><code>server\bl\Model.js:3</code></a>
+                                </div>
+                        
+                        
+                        </div>
+                        
+                        
+                        <div class="well well-small">
+                            <p>Controla las acciones que se pueden ejecutar sobre un modelo.</p>
+                        
+                        </div>
+                        
+                            <div class="constructor">
+                                <h2>Constructor</h2>
+                                <div id="method_Model" class="method item">
+                                    <h3 class="name"><code>Model</code></h3>
+                                
+                                        <span class="paren">()</span>
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                    <div class="meta">
+                                                <p>
+                                                Definido en
+                                        <a href="../files/server_bl_Model.js.html#l3"><code>server\bl\Model.js:3</code></a>
+                                        </p>
+                                
+                                
+                                
+                                    </div>
+                                
+                                    <div class="description">
+                                        
+                                    </div>
+                                
+                                
+                                
+                                </div>
+                            </div>
+                        
+                        <div>
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a data-toggle="tab" href="#index">Inicio</a></li>
+                        
+                                    <li><a data-toggle="tab" href="#methods">Métodos</a></li>
+                            </ul>
+                        
+                            <div class="tab-content">
+                                <div id="index" class="tab-pane active">
+                                        <div class="index-section methods">
+                                            <h3>Métodos</h3>
+                        
+                                            <ul class="index-list methods">
+                                                    <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_add" data-tablink="add">add</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_afterDeleteFromDB" data-tablink="afterDeleteFromDB">afterDeleteFromDB</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_delete" data-tablink="delete">delete</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method private">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_getHTMLFile" data-tablink="getHTMLFile">getHTMLFile</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_getInstance" data-tablink="getInstance">getInstance</a>
+                        
+                                                            <span class="flag static">static</span>
+                                                    </li>
+                                                    <li class="index-item method private">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_getJSFile" data-tablink="getJSFile">getJSFile</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_list" data-tablink="list">list</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method private">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_parse" data-tablink="parse">parse</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method private">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_tryDeleteFile" data-tablink="tryDeleteFile">tryDeleteFile</a>
+                        
+                                                    </li>
+                                            </ul>
+                                        </div>
+                        
+                        
+                        
+                                </div>
+                        
+                                    <div id="methods" class="tab-pane">
+                                        <h2 class="off-left">Métodos</h2>
+                        
+                                            <div id="method_add" class="method item">
+                                                <h3 class="name"><code>add</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>originalFile</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>modelName</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>description</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                                    <span class="returns-inline">
+                                                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+                                                    </span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Definido en
+                                                    <a href="../files/server_bl_Model.js.html#l12"><code>server\bl\Model.js:12</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Agregar un modelo al sistema.</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parameters:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">originalFile</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Ruta al archivo original subido</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">modelName</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Nombre del modelo</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">description</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Texto descriptivo del modelo</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                                    <div class="returns">
+                                                        <h4>Returns:</h4>
+                                            
+                                                        <div class="returns-description">
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
+                                                                <p>success Resultado de la adición del modelo.</p>
+                                            
+                                                        </div>
+                                                    </div>
+                                            
+                                            </div>
+                                            <div id="method_afterDeleteFromDB" class="method item">
+                                                <h3 class="name"><code>afterDeleteFromDB</code></h3>
+                                            
+                                                    <span class="paren">()</span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Definido en
+                                                    <a href="../files/server_bl_Model.js.html#l51"><code>server\bl\Model.js:51</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Función a ejecutar cuando el modelo sea eliminado correctamente de la base de datos</p>
+                                            
+                                                </div>
+                                            
+                                            
+                                            
+                                            </div>
+                                            <div id="method_delete" class="method item">
+                                                <h3 class="name"><code>delete</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>idModel</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>filename</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>onSuccess</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>onError</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Definido en
+                                                    <a href="../files/server_bl_Model.js.html#l42"><code>server\bl\Model.js:42</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Elimina un modelo del sistema</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parameters:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">idModel</code>
+                                                                    <span class="type">Integer</span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>El ID del modelo</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">filename</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Nombre de archivo del modelo (sin la ruta)</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">onSuccess</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Función a ejecutar cuando el modelo sea eliminado correctamente del sistema</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">onError</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Función e ejecutar si hay un error al eliminar un modelo del sistema</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                            
+                                            </div>
+                                            <div id="method_getHTMLFile" class="method item private">
+                                                <h3 class="name"><code>getHTMLFile</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>fileName</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                                    <span class="returns-inline">
+                                                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                                    </span>
+                                            
+                                            
+                                                    <span class="flag private">private</span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Definido en
+                                                    <a href="../files/server_bl_Model.js.html#l76"><code>server\bl\Model.js:76</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Retorna la ruta al archivo HTML de un modelo.</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parameters:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">fileName</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Nombre del archivo de modelo a recuperar</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                                    <div class="returns">
+                                                        <h4>Returns:</h4>
+                                            
+                                                        <div class="returns-description">
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
+                                                                <p>La ruta al archivo HTML de un modelo</p>
+                                            
+                                                        </div>
+                                                    </div>
+                                            
+                                            </div>
+                                            <div id="method_getInstance" class="method item">
+                                                <h3 class="name"><code>getInstance</code></h3>
+                                            
+                                                    <span class="paren">()</span>
+                                            
+                                                    <span class="returns-inline">
+                                                        <span class="type"><a href="../classes/Model.html" class="crosslink">Model</a></span>
+                                                    </span>
+                                            
+                                            
+                                            
+                                            
+                                                    <span class="flag static">static</span>
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Definido en
+                                                    <a href="../files/server_bl_Model.js.html#l159"><code>server\bl\Model.js:159</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Basado en el patrón <i>Singleton</i>, returna una instancia del objeto Model</p>
+                                            
+                                                </div>
+                                            
+                                            
+                                                    <div class="returns">
+                                                        <h4>Returns:</h4>
+                                            
+                                                        <div class="returns-description">
+                                                                    <span class="type"><a href="../classes/Model.html" class="crosslink">Model</a></span>:
+                                                                <p>La instancia de Model</p>
+                                            
+                                                        </div>
+                                                    </div>
+                                            
+                                            </div>
+                                            <div id="method_getJSFile" class="method item private">
+                                                <h3 class="name"><code>getJSFile</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>fileName</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                                    <span class="returns-inline">
+                                                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                                    </span>
+                                            
+                                            
+                                                    <span class="flag private">private</span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Definido en
+                                                    <a href="../files/server_bl_Model.js.html#l87"><code>server\bl\Model.js:87</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Retorna la ruta al archivo JavaScript de un modelo.</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parameters:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">fileName</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Nombre del archivo de modelo a recuperar</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                                    <div class="returns">
+                                                        <h4>Returns:</h4>
+                                            
+                                                        <div class="returns-description">
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
+                                                                <p>La ruta al archivo JavaScript de un modelo</p>
+                                            
+                                                        </div>
+                                                    </div>
+                                            
+                                            </div>
+                                            <div id="method_list" class="method item">
+                                                <h3 class="name"><code>list</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>onSuccess</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>onError</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Definido en
+                                                    <a href="../files/server_bl_Model.js.html#l66"><code>server\bl\Model.js:66</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Retorna la lista de modelos disponibles en el sistema</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parameters:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">onSuccess</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Función a ejecutar cuando se ha recuperado la lista de modelos del sistema</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">onError</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Función e ejecutar si hay un error al recuperar la lista de modelos del sistema</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                            
+                                            </div>
+                                            <div id="method_parse" class="method item private">
+                                                <h3 class="name"><code>parse</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>originalFilePath</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>htmlNewFilePath</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>jsNewFilePath</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>fileName</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>modelName</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>fs</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                            
+                                            
+                                                    <span class="flag private">private</span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Definido en
+                                                    <a href="../files/server_bl_Model.js.html#l119"><code>server\bl\Model.js:119</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Procese un modelo exportado de Galapagos, para convertirlo al formato necesario para que funcione en NodeTortoise.</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parameters:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">originalFilePath</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Ruta del archivo original, subido al sistema</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">htmlNewFilePath</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Ruta donde se debe guardar el archivo HTML del modelo</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">jsNewFilePath</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Ruta donde se debe guardar el archivo JavaScript del modelo</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">fileName</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Nombre del archivo del modelo</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">modelName</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Nombre del modelo</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">fs</code>
+                                                                    <span class="type">Fs</span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Objeto que controla el sistema de archivos</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                            
+                                            </div>
+                                            <div id="method_tryDeleteFile" class="method item private">
+                                                <h3 class="name"><code>tryDeleteFile</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>filePath</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>fileStrID</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>fs</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                                    <span class="returns-inline">
+                                                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+                                                    </span>
+                                            
+                                            
+                                                    <span class="flag private">private</span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Definido en
+                                                    <a href="../files/server_bl_Model.js.html#l98"><code>server\bl\Model.js:98</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Intenta eliminar un archivo del sistema de archivo, si falla, envía un mensaje de depuración a la aplicación.</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parameters:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">filePath</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Ruta del archivo</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">fileStrID</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Identificador del archivo a ser mostrado en el mensaje de depuración.</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">fs</code>
+                                                                    <span class="type">Fs</span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Objeto que controla el sistema de archivos</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                                    <div class="returns">
+                                                        <h4>Returns:</h4>
+                                            
+                                                        <div class="returns-description">
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
+                                                                <p>Resultado de eliminar el archivo</p>
+                                            
+                                                        </div>
+                                                    </div>
+                                            
+                                            </div>
+                                    </div>
+                        
+                        
+                        
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
 <script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
 <script>prettyPrint();</script>
-<script src="../assets/js/yui-prettify.js"></script>
-<script src="../assets/../api.js"></script>
-<script src="../assets/js/api-filter.js"></script>
-<script src="../assets/js/api-list.js"></script>
-<script src="../assets/js/api-search.js"></script>
-<script src="../assets/js/apidocs.js"></script>
 </body>
 </html>

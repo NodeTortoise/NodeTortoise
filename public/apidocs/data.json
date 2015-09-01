@@ -1,7 +1,7 @@
 {
     "project": {
-        "name": "API de NodeTortoise",
-        "description": "The Foo API: Proyecto Universitario para basado en archivos Galapagos independientes, ejecutado sobre una plataforma NodeJS",
+        "name": "NodeTortoise",
+        "description": "Proyecto Universitario para basado en archivos Galapagos independientes, ejecutado sobre una plataforma NodeJS",
         "version": "1.0.0",
         "url": ""
     },
@@ -28,9 +28,7 @@
         },
         "server\\bl\\Model.js": {
             "name": "server\\bl\\Model.js",
-            "modules": {
-                "Model": 1
-            },
+            "modules": {},
             "classes": {
                 "Model": 1
             },
@@ -58,54 +56,42 @@
         "server\\da\\Entities.js": {
             "name": "server\\da\\Entities.js",
             "modules": {},
-            "classes": {},
+            "classes": {
+                "Entities": 1,
+                "Entities.model": 1
+            },
             "fors": {},
             "namespaces": {}
         },
         "server\\da\\Sockets.Actions.js": {
             "name": "server\\da\\Sockets.Actions.js",
             "modules": {},
-            "classes": {},
+            "classes": {
+                "Sockets.Actions": 1
+            },
             "fors": {},
             "namespaces": {}
         },
         "server\\da\\Sockets.js": {
             "name": "server\\da\\Sockets.js",
             "modules": {},
-            "classes": {},
+            "classes": {
+                "Sockets": 1
+            },
             "fors": {},
             "namespaces": {}
         },
         "server\\libs\\SQLite.js": {
             "name": "server\\libs\\SQLite.js",
             "modules": {},
-            "classes": {},
+            "classes": {
+                "": 1
+            },
             "fors": {},
             "namespaces": {}
         }
     },
-    "modules": {
-        "Model": {
-            "name": "Model",
-            "submodules": {},
-            "elements": {},
-            "classes": {
-                "App": 1,
-                "Controller": 1,
-                "Controller.model": 1,
-                "Controller.session": 1,
-                "Model": 1,
-                "Session": 1,
-                "SessionController": 1
-            },
-            "fors": {},
-            "namespaces": {},
-            "tag": "module",
-            "file": "server\\bl\\SessionController.js",
-            "line": 3,
-            "description": "Provee la clase Model"
-        }
-    },
+    "modules": {},
     "classes": {
         "App": {
             "name": "App",
@@ -115,7 +101,6 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "Model",
             "file": "server\\bl\\App.js",
             "line": 3,
             "description": "Controlador principal de la aplicación en el lado del servidor. Se encarga de \nestablecer los parámetros de configuración, configurando el framework Express, \nlas rutas y el motor de plantillas (templates).",
@@ -129,7 +114,6 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "Model",
             "file": "server\\bl\\Controller.js",
             "line": 36,
             "description": "Controla la capa negocio de la aplicación, haciendo la conexión entre la capa \nde datos y las vistas y aplicando la logica de negocio necesaria."
@@ -142,7 +126,6 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "Model",
             "file": "server\\bl\\Controller.js",
             "line": 59,
             "description": "Controla la capa de negocio que interactua con las acciones sobre los modelos."
@@ -155,7 +138,6 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "Model",
             "file": "server\\bl\\Controller.js",
             "line": 188,
             "description": "Controla la capa de negocio que interactua con las sesiones de simulaciones."
@@ -168,10 +150,8 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "Model",
-            "namespace": "",
             "file": "server\\bl\\Model.js",
-            "line": 8,
+            "line": 3,
             "description": "Controla las acciones que se pueden ejecutar sobre un modelo.",
             "is_constructor": 1
         },
@@ -183,8 +163,6 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "Model",
-            "namespace": "",
             "file": "server\\bl\\Session.js",
             "line": 3,
             "description": "Maneja una sesión individual de una simulación.",
@@ -205,12 +183,70 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "Model",
-            "namespace": "",
             "file": "server\\bl\\SessionController.js",
             "line": 3,
             "description": "Controla las sesiones de creadas por los usuarios para ejecutar las simulaciones.",
             "is_constructor": 1
+        },
+        "Entities": {
+            "name": "Entities",
+            "shortname": "Entities",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "server\\da\\Entities.js",
+            "line": 9,
+            "description": "Maneja la relación de las distintas entidades con la base de datos."
+        },
+        "Entities.model": {
+            "name": "Entities.model",
+            "shortname": "Entities.model",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "server\\da\\Entities.js",
+            "line": 16,
+            "description": "Maneja la relación de la entidad <i>model</i> con la base de datos."
+        },
+        "Sockets.Actions": {
+            "name": "Sockets.Actions",
+            "shortname": "Sockets.Actions",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "server\\da\\Sockets.Actions.js",
+            "line": 6,
+            "description": "Maneja las acciones a ejecutar entre las simulacione, cuya comunicación es \nvía web sockets."
+        },
+        "Sockets": {
+            "name": "Sockets",
+            "shortname": "Sockets",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "server\\da\\Sockets.js",
+            "line": 3,
+            "description": "Inicializa y configura los web sockets que se utilizan para el envío de la \ninformación en el ambiente de simulación de los modelos."
+        },
+        "": {
+            "file": "server\\libs\\SQLite.js",
+            "line": 3,
+            "description": "Ejecuta acciones sobre una base de SQLite",
+            "params": [
+                {
+                    "name": "file",
+                    "description": "Ruta al archivo de sqlite",
+                    "type": "String"
+                }
+            ]
         }
     },
     "elements": {},
@@ -819,7 +855,7 @@
         },
         {
             "file": "server\\bl\\Model.js",
-            "line": 17,
+            "line": 12,
             "description": "Agregar un modelo al sistema.",
             "itemtype": "method",
             "name": "add",
@@ -844,12 +880,11 @@
                 "description": "success Resultado de la adición del modelo.",
                 "type": "Boolean"
             },
-            "class": "Model",
-            "module": "Model"
+            "class": "Model"
         },
         {
             "file": "server\\bl\\Model.js",
-            "line": 47,
+            "line": 42,
             "description": "Elimina un modelo del sistema",
             "itemtype": "method",
             "name": "delete",
@@ -875,21 +910,19 @@
                     "type": "Function"
                 }
             ],
-            "class": "Model",
-            "module": "Model"
+            "class": "Model"
         },
         {
             "file": "server\\bl\\Model.js",
-            "line": 56,
+            "line": 51,
             "description": "Función a ejecutar cuando el modelo sea eliminado correctamente de la base de datos",
             "itemtype": "method",
             "name": "afterDeleteFromDB",
-            "class": "Model",
-            "module": "Model"
+            "class": "Model"
         },
         {
             "file": "server\\bl\\Model.js",
-            "line": 71,
+            "line": 66,
             "description": "Retorna la lista de modelos disponibles en el sistema",
             "itemtype": "method",
             "name": "list",
@@ -905,12 +938,11 @@
                     "type": "Function"
                 }
             ],
-            "class": "Model",
-            "module": "Model"
+            "class": "Model"
         },
         {
             "file": "server\\bl\\Model.js",
-            "line": 81,
+            "line": 76,
             "description": "Retorna la ruta al archivo HTML de un modelo.",
             "itemtype": "method",
             "name": "getHTMLFile",
@@ -927,12 +959,11 @@
                 "description": "La ruta al archivo HTML de un modelo",
                 "type": "String"
             },
-            "class": "Model",
-            "module": "Model"
+            "class": "Model"
         },
         {
             "file": "server\\bl\\Model.js",
-            "line": 92,
+            "line": 87,
             "description": "Retorna la ruta al archivo JavaScript de un modelo.",
             "itemtype": "method",
             "name": "getJSFile",
@@ -949,12 +980,11 @@
                 "description": "La ruta al archivo JavaScript de un modelo",
                 "type": "String"
             },
-            "class": "Model",
-            "module": "Model"
+            "class": "Model"
         },
         {
             "file": "server\\bl\\Model.js",
-            "line": 103,
+            "line": 98,
             "description": "Intenta eliminar un archivo del sistema de archivo, si falla, envía un mensaje de depuración a la aplicación.",
             "itemtype": "method",
             "name": "tryDeleteFile",
@@ -981,12 +1011,11 @@
                 "description": "Resultado de eliminar el archivo",
                 "type": "Boolean"
             },
-            "class": "Model",
-            "module": "Model"
+            "class": "Model"
         },
         {
             "file": "server\\bl\\Model.js",
-            "line": 124,
+            "line": 119,
             "description": "Procese un modelo exportado de Galapagos, para convertirlo al formato necesario para que funcione en NodeTortoise.",
             "itemtype": "method",
             "name": "parse",
@@ -1024,12 +1053,11 @@
                     "type": "Fs"
                 }
             ],
-            "class": "Model",
-            "module": "Model"
+            "class": "Model"
         },
         {
             "file": "server\\bl\\Model.js",
-            "line": 164,
+            "line": 159,
             "description": "Basado en el patrón <i>Singleton</i>, returna una instancia del objeto Model",
             "itemtype": "method",
             "name": "getInstance",
@@ -1038,8 +1066,7 @@
                 "description": "La instancia de Model",
                 "type": "Model"
             },
-            "class": "Model",
-            "module": "Model"
+            "class": "Model"
         },
         {
             "file": "server\\bl\\Session.js",
@@ -1047,8 +1074,7 @@
             "description": "Realiza el proceso de inicialización de variables necesarias por el objeto.",
             "itemtype": "method",
             "name": "init",
-            "class": "Session",
-            "module": "Model"
+            "class": "Session"
         },
         {
             "file": "server\\bl\\Session.js",
@@ -1077,8 +1103,7 @@
                 "description": "Un objecto JavaScript estandar con la información sobre la sesión.",
                 "type": "Object"
             },
-            "class": "Session",
-            "module": "Model"
+            "class": "Session"
         },
         {
             "file": "server\\bl\\Session.js",
@@ -1098,8 +1123,7 @@
                     "type": "String"
                 }
             ],
-            "class": "Session",
-            "module": "Model"
+            "class": "Session"
         },
         {
             "file": "server\\bl\\Session.js",
@@ -1111,8 +1135,7 @@
                 "description": "El token del usuario maestro",
                 "type": "String"
             },
-            "class": "Session",
-            "module": "Model"
+            "class": "Session"
         },
         {
             "file": "server\\bl\\SessionController.js",
@@ -1120,8 +1143,7 @@
             "description": "Realiza el proceso de inicialización de variables necesarias por el objeto.",
             "itemtype": "method",
             "name": "init",
-            "class": "SessionController",
-            "module": "Model"
+            "class": "SessionController"
         },
         {
             "file": "server\\bl\\SessionController.js",
@@ -1156,8 +1178,7 @@
                 "description": "Un objecto JavaScript estandar con la información sobre la sesión.",
                 "type": "Object"
             },
-            "class": "SessionController",
-            "module": "Model"
+            "class": "SessionController"
         },
         {
             "file": "server\\bl\\SessionController.js",
@@ -1185,8 +1206,7 @@
             "return": {
                 "description": "diedSession Indica si la sesión murió, porque el que abandonó fue el usuario maestro."
             },
-            "class": "SessionController",
-            "module": "Model"
+            "class": "SessionController"
         },
         {
             "file": "server\\bl\\SessionController.js",
@@ -1206,8 +1226,7 @@
                     "type": "String"
                 }
             ],
-            "class": "SessionController",
-            "module": "Model"
+            "class": "SessionController"
         },
         {
             "file": "server\\bl\\SessionController.js",
@@ -1226,8 +1245,7 @@
                 "description": "El nombre del modelo utilizado en la sesión",
                 "type": "String"
             },
-            "class": "SessionController",
-            "module": "Model"
+            "class": "SessionController"
         },
         {
             "file": "server\\bl\\SessionController.js",
@@ -1239,8 +1257,7 @@
                 "description": "La lista de sesiones",
                 "type": "Array"
             },
-            "class": "SessionController",
-            "module": "Model"
+            "class": "SessionController"
         },
         {
             "file": "server\\bl\\SessionController.js",
@@ -1259,8 +1276,7 @@
                 "description": "La sessión",
                 "type": "Session"
             },
-            "class": "SessionController",
-            "module": "Model"
+            "class": "SessionController"
         },
         {
             "file": "server\\bl\\SessionController.js",
@@ -1279,8 +1295,7 @@
                 "description": "La cantidad de usuarios en la sesión",
                 "type": "Integer"
             },
-            "class": "SessionController",
-            "module": "Model"
+            "class": "SessionController"
         },
         {
             "file": "server\\bl\\SessionController.js",
@@ -1290,8 +1305,7 @@
             "tagname": "",
             "itemtype": "method",
             "name": "__construct",
-            "class": "SessionController",
-            "module": "Model"
+            "class": "SessionController"
         },
         {
             "file": "server\\bl\\SessionController.js",
@@ -1304,498 +1318,437 @@
                 "description": "",
                 "type": "SessionController"
             },
-            "class": "SessionController",
-            "module": "Model"
+            "class": "SessionController"
         },
         {
             "file": "server\\da\\Entities.js",
-            "line": 9,
-            "description": "Description",
-            "return": {
-                "description": ""
-            },
-            "class": "",
-            "module": "Model"
-        },
-        {
-            "file": "server\\da\\Entities.js",
-            "line": 16,
-            "description": "Description",
-            "itemtype": "method",
-            "name": "model",
-            "return": {
-                "description": ""
-            },
-            "class": "",
-            "module": "Model"
-        },
-        {
-            "file": "server\\da\\Entities.js",
-            "line": 25,
-            "description": "Description",
+            "line": 24,
+            "description": "Inserta un modelo en base de datos.",
             "itemtype": "method",
             "name": "add",
             "params": [
                 {
                     "name": "name",
-                    "description": ""
+                    "description": "Nombre del modelo",
+                    "type": "String"
                 },
                 {
                     "name": "filename",
-                    "description": ""
+                    "description": "Nombre del archivo del modelo sin extensión",
+                    "type": "String"
                 },
                 {
                     "name": "description",
-                    "description": ""
+                    "description": "Descripción del modelo",
+                    "type": "String"
                 }
             ],
             "return": {
                 "description": ""
             },
-            "class": "",
-            "module": "Model"
+            "class": "Entities.model"
         },
         {
             "file": "server\\da\\Entities.js",
-            "line": 38,
-            "description": "Description",
+            "line": 37,
+            "description": "Obtiene la lista de modelos en base de datos.",
             "itemtype": "method",
             "name": "list",
             "params": [
                 {
                     "name": "onSuccess",
-                    "description": ""
+                    "description": "Función a ejecutar cuando se obtiene la lista de modelos",
+                    "type": "Function"
                 },
                 {
                     "name": "onError",
-                    "description": ""
+                    "description": "Función a ejecutar en caso de error",
+                    "type": "Function"
                 }
             ],
-            "return": {
-                "description": ""
-            },
-            "class": "",
-            "module": "Model"
+            "class": "Entities.model"
         },
         {
             "file": "server\\da\\Entities.js",
-            "line": 49,
-            "description": "Description",
+            "line": 47,
+            "description": "Elimina un modelo de base de datos.",
             "itemtype": "method",
             "name": "delete",
             "params": [
                 {
                     "name": "idModel",
-                    "description": ""
+                    "description": "ID del modelo",
+                    "type": "Integer"
                 },
                 {
                     "name": "onSuccess",
-                    "description": ""
+                    "description": "Función a ejecutar cuando se elimina el modelo",
+                    "type": "Function"
                 },
                 {
                     "name": "onError",
-                    "description": ""
+                    "description": "Función a ejecutar en caso de error",
+                    "type": "Function"
                 }
             ],
             "return": {
                 "description": ""
             },
-            "class": "",
-            "module": "Model"
+            "class": "Entities.model"
         },
         {
             "file": "server\\da\\Entities.js",
-            "line": 65,
-            "description": "Description",
+            "line": 63,
+            "description": "Basado en el patrón <i>Singleton</i>, returna una instancia del objeto Entities.model",
             "itemtype": "method",
-            "name": "getModel",
+            "name": "getInstance",
             "return": {
-                "description": "MemberExpression"
+                "description": "",
+                "type": "Entities.model"
             },
-            "class": "",
-            "module": "Model"
-        },
-        {
-            "file": "server\\da\\Sockets.Actions.js",
-            "line": 6,
-            "description": "Description",
-            "itemtype": "method",
-            "name": "Actions",
-            "return": {
-                "description": ""
-            },
-            "class": "",
-            "module": "Model"
+            "class": "Entities.model"
         },
         {
             "file": "server\\da\\Sockets.Actions.js",
             "line": 14,
-            "description": "Description",
+            "description": "Conecta una nueva instancia a una sesión de simulacón",
             "itemtype": "method",
             "name": "connect",
+            "static": 1,
             "params": [
                 {
                     "name": "socket",
-                    "description": ""
+                    "description": "El web socket para la instancia actual",
+                    "type": "Socket"
                 },
                 {
                     "name": "token",
-                    "description": ""
+                    "description": "Token del usuario",
+                    "type": "String"
                 },
                 {
                     "name": "params",
-                    "description": ""
+                    "description": "Parámetros de la acción",
+                    "type": "Object"
                 }
             ],
-            "return": {
-                "description": ""
-            },
-            "class": "",
-            "module": "Model"
+            "class": "Sockets.Actions"
         },
         {
             "file": "server\\da\\Sockets.Actions.js",
             "line": 39,
-            "description": "Description",
+            "description": "Desconecta al dueño dle socket actual de una sesión.",
             "itemtype": "method",
             "name": "disconnect",
             "params": [
                 {
                     "name": "socket",
-                    "description": ""
+                    "description": "El web socket para la instancia actual",
+                    "type": "Socket"
                 },
                 {
                     "name": "token",
-                    "description": ""
+                    "description": "Token del usuario",
+                    "type": "String"
                 },
                 {
                     "name": "params",
-                    "description": ""
+                    "description": "Parámetros de la acción",
+                    "type": "Object"
                 }
             ],
-            "return": {
-                "description": ""
-            },
-            "class": "",
-            "module": "Model"
+            "class": "Sockets.Actions"
         },
         {
             "file": "server\\da\\Sockets.Actions.js",
-            "line": 60,
-            "description": "Description",
+            "line": 59,
+            "description": "Envía un mensaje de <b>Ejecutar Comando</b>, para que los \nclientes ejecuten un comando, basado en los parámetros enviados.",
             "itemtype": "method",
             "name": "executeCommand",
             "params": [
                 {
                     "name": "socket",
-                    "description": ""
+                    "description": "El web socket para la instancia actual",
+                    "type": "Socket"
                 },
                 {
                     "name": "token",
-                    "description": ""
+                    "description": "Token del usuario",
+                    "type": "String"
                 },
                 {
                     "name": "params",
-                    "description": ""
+                    "description": "Parámetros de la acción",
+                    "type": "Object"
                 }
             ],
-            "return": {
-                "description": ""
-            },
-            "class": "",
-            "module": "Model"
+            "class": "Sockets.Actions"
         },
         {
             "file": "server\\da\\Sockets.Actions.js",
-            "line": 72,
-            "description": "Description",
+            "line": 71,
+            "description": "Envía un mensaje de <b>Establecer valor de variable global</b>, para que los \nclientes establezcan un nuevo valor de variable global, basado en los \nparámetros enviados.",
             "itemtype": "method",
             "name": "setGlobal",
             "params": [
                 {
                     "name": "socket",
-                    "description": ""
+                    "description": "El web socket para la instancia actual",
+                    "type": "Socket"
                 },
                 {
                     "name": "token",
-                    "description": ""
+                    "description": "Token del usuario",
+                    "type": "String"
                 },
                 {
                     "name": "params",
-                    "description": ""
+                    "description": "Parámetros de la acción",
+                    "type": "Object"
                 }
             ],
-            "return": {
-                "description": ""
-            },
-            "class": "",
-            "module": "Model"
+            "class": "Sockets.Actions"
         },
         {
             "file": "server\\da\\Sockets.Actions.js",
             "line": 89,
-            "description": "Description",
+            "description": "Envía un mensaje de <b>Actualizar Velocidad</b>, para que los clientes \nejecuten una actualización de la velocidad de la  simulación, \nbasado en los parámetros enviados.",
             "itemtype": "method",
             "name": "updateSpeed",
             "params": [
                 {
                     "name": "socket",
-                    "description": ""
+                    "description": "El web socket para la instancia actual",
+                    "type": "Socket"
                 },
                 {
                     "name": "token",
-                    "description": ""
+                    "description": "Token del usuario",
+                    "type": "String"
                 },
                 {
                     "name": "params",
-                    "description": ""
+                    "description": "Parámetros de la acción",
+                    "type": "Object"
                 }
             ],
-            "return": {
-                "description": ""
-            },
-            "class": "",
-            "module": "Model"
+            "class": "Sockets.Actions"
         },
         {
             "file": "server\\da\\Sockets.Actions.js",
-            "line": 106,
-            "description": "Description",
+            "line": 107,
+            "description": "Envía un mensaje de <b>Aplicar actualización</b>, para que los clientes \nejecuten una actualización de la simulación, basado en los parámetros enviados.",
             "itemtype": "method",
             "name": "applyUpdate",
             "params": [
                 {
                     "name": "socket",
-                    "description": ""
+                    "description": "El web socket para la instancia actual",
+                    "type": "Socket"
                 },
                 {
                     "name": "token",
-                    "description": ""
+                    "description": "Token del usuario",
+                    "type": "String"
                 },
                 {
                     "name": "params",
-                    "description": ""
+                    "description": "Parámetros de la acción",
+                    "type": "Object"
                 }
             ],
-            "return": {
-                "description": ""
-            },
-            "class": "",
-            "module": "Model"
+            "class": "Sockets.Actions"
         },
         {
             "file": "server\\da\\Sockets.Actions.js",
-            "line": 118,
-            "description": "Description",
+            "line": 119,
+            "description": "Envía un mensaje de <b>Enviar Mensaje</b>",
             "itemtype": "method",
             "name": "sendMessage",
             "params": [
                 {
                     "name": "socket",
-                    "description": ""
+                    "description": "El web socket para la instancia actual",
+                    "type": "Socket"
                 },
                 {
                     "name": "params",
-                    "description": ""
+                    "description": "Parámetros de la acción",
+                    "type": "Object"
                 }
             ],
-            "return": {
-                "description": ""
-            },
-            "class": "",
-            "module": "Model"
+            "class": "Sockets.Actions"
         },
         {
             "file": "server\\da\\Sockets.js",
-            "line": 3,
-            "description": "Description",
-            "return": {
-                "description": ""
-            },
-            "class": "",
-            "module": "Model"
+            "line": 11,
+            "description": "Instancia de sockets.io",
+            "itemtype": "attribute",
+            "name": "io",
+            "type": "{sockets.io}",
+            "static": 1,
+            "class": "Sockets"
         },
         {
             "file": "server\\da\\Sockets.js",
-            "line": 12,
-            "description": "Description",
+            "line": 19,
+            "description": "Envía a los demás la indicación de que se ejecute una acción.",
             "itemtype": "method",
             "name": "sendAction",
+            "static": 1,
             "params": [
                 {
                     "name": "socket",
-                    "description": ""
+                    "description": "El web socket para la instancia actual",
+                    "type": "Socket"
                 },
                 {
                     "name": "sessionName",
-                    "description": ""
+                    "description": "Nombre de la sesión de simulación a la cual se va a enviar el mensaje",
+                    "type": "String"
                 },
                 {
                     "name": "action",
-                    "description": ""
+                    "description": "Acción a ejecutar",
+                    "type": "String"
                 },
                 {
                     "name": "params",
-                    "description": ""
+                    "description": "Parámetros de la acción",
+                    "type": "Object"
                 }
             ],
-            "return": {
-                "description": ""
-            },
-            "class": "",
-            "module": "Model"
+            "class": "Sockets"
         },
         {
             "file": "server\\da\\Sockets.js",
-            "line": 31,
-            "description": "Description",
+            "line": 38,
+            "description": "Alias de Sockets.setServerActions",
             "itemtype": "method",
             "name": "set",
             "params": [
                 {
                     "name": "socket",
-                    "description": ""
+                    "description": "El web socket para la instancia actual",
+                    "type": "Socket"
                 }
             ],
-            "return": {
-                "description": ""
-            },
-            "class": "",
-            "module": "Model"
+            "class": "Sockets"
         },
         {
             "file": "server\\da\\Sockets.js",
-            "line": 41,
-            "description": "Description",
+            "line": 47,
+            "description": "Configura las acciones que se pueden ejecutar sobre el socket actual",
             "itemtype": "method",
             "name": "setServerActions",
+            "static": 1,
             "params": [
                 {
                     "name": "socket",
-                    "description": ""
+                    "description": "El web socket para la instancia actual",
+                    "type": "Socket"
                 }
             ],
-            "return": {
-                "description": ""
-            },
-            "class": "",
-            "module": "Model"
+            "class": "Sockets"
         },
         {
             "file": "server\\da\\Sockets.js",
-            "line": 62,
-            "description": "Description",
+            "line": 68,
+            "description": "Envía un mensaje al dueño del socket actual",
             "itemtype": "method",
             "name": "sendToMe",
+            "static": 1,
             "params": [
                 {
                     "name": "socket",
-                    "description": ""
+                    "description": "El web socket para la instancia actual",
+                    "type": "Socket"
                 },
                 {
                     "name": "action",
-                    "description": ""
+                    "description": "Acción a ejecutar",
+                    "type": "String"
                 },
                 {
                     "name": "params",
-                    "description": ""
+                    "description": "Parámetros de la acción",
+                    "type": "Object"
                 }
             ],
-            "return": {
-                "description": ""
-            },
-            "class": "",
-            "module": "Model"
+            "class": "Sockets"
         },
         {
             "file": "server\\da\\Sockets.js",
-            "line": 75,
-            "description": "Description",
+            "line": 81,
+            "description": "Envía un mensaje de acción a los otros usuarios dentro de la sesión del dueño del socket actual.",
             "itemtype": "method",
             "name": "sendToOthers",
+            "static": 1,
             "params": [
                 {
                     "name": "socket",
-                    "description": ""
+                    "description": "El web socket para la instancia actual",
+                    "type": "Socket"
                 },
                 {
                     "name": "sessionName",
-                    "description": ""
+                    "description": "Nombre de la sesión",
+                    "type": "String"
                 },
                 {
                     "name": "action",
-                    "description": ""
+                    "description": "Acción a ejecutar",
+                    "type": "String"
                 },
                 {
                     "name": "params",
-                    "description": ""
+                    "description": "Parámetros de la acción",
+                    "type": "Object"
                 }
             ],
-            "return": {
-                "description": ""
-            },
-            "class": "",
-            "module": "Model"
+            "class": "Sockets"
         },
         {
             "file": "server\\da\\Sockets.js",
-            "line": 89,
-            "description": "Description",
+            "line": 95,
+            "description": "Envía un mensaje de acción a todos los usuarios dentro la sesión del dueño del socket actual.",
             "itemtype": "method",
             "name": "sendToAll",
+            "static": 1,
             "params": [
                 {
                     "name": "sessionName",
-                    "description": ""
+                    "description": "Nombre de la sesión",
+                    "type": "String"
                 },
                 {
                     "name": "action",
-                    "description": ""
+                    "description": "Acción a ejecutar",
+                    "type": "String"
                 },
                 {
                     "name": "params",
-                    "description": ""
+                    "description": "Parámetros de la acción",
+                    "type": "Object"
                 }
             ],
-            "return": {
-                "description": ""
-            },
-            "class": "",
-            "module": "Model"
+            "class": "Sockets"
         },
         {
             "file": "server\\da\\Sockets.js",
-            "line": 102,
-            "description": "Description",
+            "line": 108,
+            "description": "Configura la funcionalidad de los Sockets",
             "itemtype": "method",
             "name": "init",
+            "static": 1,
             "params": [
                 {
                     "name": "server",
-                    "description": ""
+                    "description": "Instancia del servidot HTTP",
+                    "type": "http.Server"
                 }
             ],
-            "return": {
-                "description": ""
-            },
-            "class": "",
-            "module": "Model"
-        },
-        {
-            "file": "server\\libs\\SQLite.js",
-            "line": 3,
-            "description": "Description",
-            "params": [
-                {
-                    "name": "file",
-                    "description": ""
-                }
-            ],
-            "return": {
-                "description": ""
-            },
-            "class": "",
-            "module": "Model"
+            "class": "Sockets"
         },
         {
             "file": "server\\libs\\SQLite.js",
@@ -1806,294 +1759,213 @@
             "params": [
                 {
                     "name": "table",
-                    "description": ""
+                    "description": "La tabla sobre la cuál se ejecutará la acción",
+                    "type": "String"
                 },
                 {
                     "name": "fields",
-                    "description": ""
+                    "description": "Las columnas a insertar",
+                    "type": "String"
                 },
                 {
                     "name": "values",
-                    "description": ""
+                    "description": "Los valores a insertar",
+                    "type": "Array"
                 },
                 {
                     "name": "onSuccess",
-                    "description": ""
+                    "description": "Función a ejecutar cuando el proceso en base de datos se completa exitosamente",
+                    "type": "Function"
                 },
                 {
                     "name": "onError",
-                    "description": ""
+                    "description": "Función a ejecutar en caso de error",
+                    "type": "Funtion"
                 }
             ],
             "return": {
                 "description": ""
             },
-            "class": "",
-            "module": "Model"
+            "class": ""
         },
         {
             "file": "server\\libs\\SQLite.js",
             "line": 40,
-            "description": "Description",
+            "description": "Selecciona todos los registros de una tabla.",
             "itemtype": "method",
             "name": "select",
             "params": [
                 {
                     "name": "table",
-                    "description": ""
+                    "description": "La tabla sobre la cuál se ejecutará la acción",
+                    "type": "String"
                 },
                 {
-                    "name": "fields",
-                    "description": ""
-                },
-                {
-                    "name": "onSuccess",
-                    "description": ""
-                },
-                {
-                    "name": "onError",
-                    "description": ""
-                }
-            ],
-            "return": {
-                "description": ""
-            },
-            "class": "",
-            "module": "Model"
-        },
-        {
-            "file": "server\\libs\\SQLite.js",
-            "line": 53,
-            "description": "Description",
-            "itemtype": "method",
-            "name": "callback",
-            "params": [
-                {
-                    "name": "error",
-                    "description": ""
-                },
-                {
-                    "name": "result",
-                    "description": ""
-                }
-            ],
-            "return": {
-                "description": ""
-            },
-            "class": "",
-            "module": "Model"
-        },
-        {
-            "file": "server\\libs\\SQLite.js",
-            "line": 70,
-            "description": "Description",
-            "itemtype": "method",
-            "name": "selectWhere",
-            "params": [
-                {
-                    "name": "table",
-                    "description": ""
-                },
-                {
-                    "name": "fields",
-                    "description": ""
-                },
-                {
-                    "name": "filters",
-                    "description": ""
+                    "name": "String ",
+                    "description": "fields Las columnas a seleccionar",
+                    "optional": true,
+                    "optdefault": " '*'"
                 },
                 {
                     "name": "onSuccess",
-                    "description": ""
+                    "description": "Función a ejecutar cuando el proceso en base de datos se completa exitosamente",
+                    "type": "Function"
                 },
                 {
                     "name": "onError",
-                    "description": ""
+                    "description": "Función a ejecutar en caso de error",
+                    "type": "Funtion"
                 }
             ],
-            "return": {
-                "description": ""
-            },
-            "class": "",
-            "module": "Model"
+            "class": ""
         },
         {
             "file": "server\\libs\\SQLite.js",
-            "line": 83,
-            "description": "Description",
+            "line": 62,
+            "description": "Elimina uno o más registros de una tabla.",
             "itemtype": "method",
             "name": "delete",
             "params": [
                 {
                     "name": "table",
-                    "description": ""
+                    "description": "La tabla sobre la cuál se ejecutará la acción",
+                    "type": "String"
                 },
                 {
                     "name": "filters",
-                    "description": ""
+                    "description": "Los filtros de la consulta (<i>where</i>)",
+                    "type": "Array"
                 },
                 {
                     "name": "onSuccess",
-                    "description": ""
+                    "description": "Función a ejecutar cuando el proceso en base de datos se completa exitosamente",
+                    "type": "Function"
                 },
                 {
                     "name": "onError",
-                    "description": ""
+                    "description": "Función a ejecutar en caso de error",
+                    "type": "Funtion"
                 }
             ],
             "return": {
                 "description": ""
             },
-            "class": "",
-            "module": "Model"
+            "class": ""
         },
         {
             "file": "server\\libs\\SQLite.js",
-            "line": 99,
-            "description": "Description",
-            "itemtype": "method",
-            "name": "callback",
-            "params": [
-                {
-                    "name": "error",
-                    "description": ""
-                },
-                {
-                    "name": "result",
-                    "description": ""
-                }
-            ],
-            "return": {
-                "description": ""
-            },
-            "class": "",
-            "module": "Model"
-        },
-        {
-            "file": "server\\libs\\SQLite.js",
-            "line": 116,
-            "description": "Description",
+            "line": 88,
+            "description": "Ejecuta el <i>callback</i> indicado después de realizar una tarea de base \nde datos, ya sea este de procesos exitoso o de error.",
             "itemtype": "method",
             "name": "onCallback",
             "params": [
                 {
                     "name": "query",
-                    "description": ""
+                    "description": "La consulta previamente ejecutada",
+                    "type": "String"
                 },
                 {
                     "name": "onSuccess",
-                    "description": ""
+                    "description": "Función a ejecutar cuando el proceso en base de datos se completa exitosamente",
+                    "type": "Function"
                 },
                 {
                     "name": "onError",
-                    "description": ""
+                    "description": "Función a ejecutar en caso de error",
+                    "type": "Funtion"
                 },
                 {
                     "name": "error",
-                    "description": ""
+                    "description": "El error o mensaje de error",
+                    "type": "Mixed"
                 },
                 {
                     "name": "result",
-                    "description": ""
+                    "description": "El resultado",
+                    "type": "Mixed"
                 }
             ],
-            "return": {
-                "description": ""
-            },
-            "class": "",
-            "module": "Model"
+            "class": ""
         },
         {
             "file": "server\\libs\\SQLite.js",
-            "line": 136,
-            "description": "Description",
+            "line": 108,
+            "description": "Retorna los valores necesarios para armar una consulta parametrizada con \n<i>where</i>.",
             "itemtype": "method",
             "name": "getQueryFilters",
+            "access": "private",
+            "tagname": "",
             "params": [
                 {
                     "name": "filters",
-                    "description": ""
+                    "description": "",
+                    "type": "Array"
                 }
             ],
             "return": {
-                "description": "ObjectExpression"
+                "description": "Objetos compuesto por <b>\"where\"</b> y <b>\"values\"</b> \ndonde <b>\"where\"</b> contiene la información del <i>string</i> que se \ndebe colocar en el lugar de los valores de filtro de la consulta y \n<b>\"values\"</b> contiene los valores a ser utilizados para la consulta\nparametrizada.",
+                "type": "Object"
             },
-            "class": "",
-            "module": "Model"
+            "class": ""
         },
         {
             "file": "server\\libs\\SQLite.js",
-            "line": 153,
-            "description": "Description",
+            "line": 131,
+            "description": "Retorna los valores necesarios para armar una consulta parametrizada con \n<i>values</i> (ejemplo: ?, ?, ?).",
             "itemtype": "method",
             "name": "getQueryValues",
+            "access": "private",
+            "tagname": "",
             "params": [
                 {
                     "name": "values",
-                    "description": ""
+                    "description": "",
+                    "type": "Array"
                 }
             ],
             "return": {
-                "description": "strValues"
+                "description": "strValues El <i>string</i> que se debe colocar en el \nlugar de los valores de la consulta",
+                "type": "String"
             },
-            "class": "",
-            "module": "Model"
+            "class": ""
         },
         {
             "file": "server\\libs\\SQLite.js",
-            "line": 168,
-            "description": "Description",
+            "line": 149,
+            "description": "Retorna la instancia de SQLite3 utilizada",
             "itemtype": "method",
             "name": "getDB",
             "return": {
-                "description": "db"
+                "description": "db Instancia de SQLite3 utilizada",
+                "type": "SQLite3"
             },
-            "class": "",
-            "module": "Model"
+            "class": ""
         },
         {
             "file": "server\\libs\\SQLite.js",
-            "line": 177,
-            "description": "Description",
+            "line": 158,
+            "description": "Imprime en consola un mensaje de error, si el atributo debug del objeto \nes <i>true</i>.",
             "itemtype": "method",
             "name": "debug",
             "params": [
                 {
                     "name": "message",
-                    "description": ""
+                    "description": "Mensaje de error",
+                    "type": "String"
                 }
             ],
-            "return": {
-                "description": ""
-            },
-            "class": "",
-            "module": "Model"
+            "class": ""
         },
         {
             "file": "server\\libs\\SQLite.js",
-            "line": 189,
-            "description": "Description",
+            "line": 170,
+            "description": "Constructor de la clase",
             "itemtype": "method",
-            "name": "__construc",
-            "return": {
-                "description": ""
-            },
-            "class": "",
-            "module": "Model"
+            "name": "__construct",
+            "access": "private",
+            "tagname": "",
+            "class": ""
         }
     ],
-    "warnings": [
-        {
-            "message": "Missing item type\nDescription",
-            "line": " server\\da\\Entities.js:9"
-        },
-        {
-            "message": "Missing item type\nDescription",
-            "line": " server\\da\\Sockets.js:3"
-        },
-        {
-            "message": "Missing item type\nDescription",
-            "line": " server\\libs\\SQLite.js:3"
-        }
-    ]
+    "warnings": []
 }

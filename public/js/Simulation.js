@@ -446,7 +446,7 @@ Simulation.getInstance = function () {
 Simulation.formatUI = function () {
     var uiResponse = $.ajax({
         type: 'GET',
-        url: '/model/ui',
+        url: '/ui',
         dataType: 'html',
         async: false
     }).responseText;

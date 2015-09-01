@@ -66,6 +66,14 @@
                                 </ul>
                             </li>
                             <li>
+                                <a href="#"><i class="fa fa-book fa-fw"></i> Acerca de NodeTortoise<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="/apidocs" target="_blank">Documentación Técnica</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
                                 <a href="/session/list"><i class="fa fa-wrench fa-fw"></i> Crear o unirse a una sesión</a>
                             </li>
                             <li id="menu-users-model">
@@ -83,11 +91,15 @@
             <!-- Page Content -->
             <div id="page-wrapper">
                 <div class="container-fluid">
+                    {% if page.no_title !== true %}
                     <div class="row">
                         <div class="col-lg-12 page-header-container">
                             <h1 class="page-header">{@ page.content_title @}</h1>
                         </div><!-- /.col-lg-12 -->
                     </div>
+                    {% else %}
+                    <div>&nbsp;</div>
+                    {% endif %}
                     <div class="row main-content">
                         {% block main_content %}{% endblock %}
                     </div><!-- /.row -->

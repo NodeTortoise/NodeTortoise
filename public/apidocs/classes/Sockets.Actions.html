@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Sockets.Actions - NodeTortoise</title>
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">NodeTortoise</h1>
+	<div class="nav"></div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Buscar clases/módulos..." data-obj='["classes/App", "classes/undefined", "classes/Controller.model", "classes/Controller.session", "classes/Model", "classes/Session", "classes/Controller", "classes/Entities", "classes/Entities.model", "classes/Sockets.Actions", "classes/Sockets", "classes/SessionController"]'>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+	    <div>
+	        <div id="sidebar">
+	            <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
+	                <li class="active"><a href="#classes" data-toggle="tab">Clases</a></li>
+	                <li><a href="#modules" data-toggle="tab">Módulos</a></li>
+	            </ul>
+	    
+	            <div id="api-tabview-filter">
+	                <input type="search" placeholder="Digite para filtrar APIs">
+	            </div>
+	    
+	            <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
+	                <div class="tab-pane active" id="classes">
+	                    <ul id="api-classes" class="nav nav-list">
+	                            <li><a href="../classes/App.html">App</a></li>
+	                            <li><a href="../classes/.html"></a></li>
+	                            <li><a href="../classes/Controller.model.html">Controller.model</a></li>
+	                            <li><a href="../classes/Controller.session.html">Controller.session</a></li>
+	                            <li><a href="../classes/Model.html">Model</a></li>
+	                            <li><a href="../classes/Session.html">Session</a></li>
+	                            <li><a href="../classes/Controller.html">Controller</a></li>
+	                            <li><a href="../classes/Entities.html">Entities</a></li>
+	                            <li><a href="../classes/Entities.model.html">Entities.model</a></li>
+	                            <li><a href="../classes/Sockets.Actions.html">Sockets.Actions</a></li>
+	                            <li><a href="../classes/Sockets.html">Sockets</a></li>
+	                            <li><a href="../classes/SessionController.html">SessionController</a></li>
+	                    </ul>
+	                </div>
+	    
+	                <div class="tab-pane" id="modules">
+	                    <ul id="api-modules" class="nav nav-list">
+	                    </ul>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+        </div>
+        <div class="span9">
+                <form id="options-form" class="form-inline pull-right">
+                    Mostrar:
+                    <label for="api-show-inherited" class="checkbox" style="display:none">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+                    <label for="api-show-protected" class="checkbox">
+                        <input type="checkbox" id="api-show-protected">
+                        Protegidos
+                    </label>
+            
+                    <label for="api-show-private" class="checkbox">
+                        <input type="checkbox" id="api-show-private">
+                        Privados
+                    </label>
+                    <label for="api-show-deprecated" class="checkbox">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecados
+                    </label>
+                </form>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <div class="page-header">
+                            <h1>Sockets.Actions <small>Class</small></h1>
+                        </div>
+                        
+                        <div class="well well-small">
+                        
+                        
+                                <div class="foundat">
+                                    Definido en: <a href="../files/server_da_Sockets.Actions.js.html#l6"><code>server\da\Sockets.Actions.js:6</code></a>
+                                </div>
+                        
+                        
+                        </div>
+                        
+                        
+                        <div class="well well-small">
+                            <p>Maneja las acciones a ejecutar entre las simulacione, cuya comunicación es
+                        vía web sockets.</p>
+                        
+                        </div>
+                        
+                        
+                        <div>
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a data-toggle="tab" href="#index">Inicio</a></li>
+                        
+                                    <li><a data-toggle="tab" href="#methods">Métodos</a></li>
+                            </ul>
+                        
+                            <div class="tab-content">
+                                <div id="index" class="tab-pane active">
+                                        <div class="index-section methods">
+                                            <h3>Métodos</h3>
+                        
+                                            <ul class="index-list methods">
+                                                    <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_applyUpdate" data-tablink="applyUpdate">applyUpdate</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_connect" data-tablink="connect">connect</a>
+                        
+                                                            <span class="flag static">static</span>
+                                                    </li>
+                                                    <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_disconnect" data-tablink="disconnect">disconnect</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_executeCommand" data-tablink="executeCommand">executeCommand</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_sendMessage" data-tablink="sendMessage">sendMessage</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_setGlobal" data-tablink="setGlobal">setGlobal</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_updateSpeed" data-tablink="updateSpeed">updateSpeed</a>
+                        
+                                                    </li>
+                                            </ul>
+                                        </div>
+                        
+                        
+                        
+                                </div>
+                        
+                                    <div id="methods" class="tab-pane">
+                                        <h2 class="off-left">Métodos</h2>
+                        
+                                            <div id="method_applyUpdate" class="method item">
+                                                <h3 class="name"><code>applyUpdate</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>socket</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>token</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>params</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Definido en
+                                                    <a href="../files/server_da_Sockets.Actions.js.html#l107"><code>server\da\Sockets.Actions.js:107</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Envía un mensaje de <b>Aplicar actualización</b>, para que los clientes
+                                            ejecuten una actualización de la simulación, basado en los parámetros enviados.</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parameters:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">socket</code>
+                                                                    <span class="type">Socket</span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>El web socket para la instancia actual</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">token</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Token del usuario</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">params</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Parámetros de la acción</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                            
+                                            </div>
+                                            <div id="method_connect" class="method item">
+                                                <h3 class="name"><code>connect</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>socket</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>token</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>params</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                    <span class="flag static">static</span>
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Definido en
+                                                    <a href="../files/server_da_Sockets.Actions.js.html#l14"><code>server\da\Sockets.Actions.js:14</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Conecta una nueva instancia a una sesión de simulacón</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parameters:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">socket</code>
+                                                                    <span class="type">Socket</span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>El web socket para la instancia actual</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">token</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Token del usuario</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">params</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Parámetros de la acción</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                            
+                                            </div>
+                                            <div id="method_disconnect" class="method item">
+                                                <h3 class="name"><code>disconnect</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>socket</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>token</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>params</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Definido en
+                                                    <a href="../files/server_da_Sockets.Actions.js.html#l39"><code>server\da\Sockets.Actions.js:39</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Desconecta al dueño dle socket actual de una sesión.</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parameters:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">socket</code>
+                                                                    <span class="type">Socket</span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>El web socket para la instancia actual</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">token</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Token del usuario</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">params</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Parámetros de la acción</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                            
+                                            </div>
+                                            <div id="method_executeCommand" class="method item">
+                                                <h3 class="name"><code>executeCommand</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>socket</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>token</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>params</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Definido en
+                                                    <a href="../files/server_da_Sockets.Actions.js.html#l59"><code>server\da\Sockets.Actions.js:59</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Envía un mensaje de <b>Ejecutar Comando</b>, para que los
+                                            clientes ejecuten un comando, basado en los parámetros enviados.</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parameters:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">socket</code>
+                                                                    <span class="type">Socket</span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>El web socket para la instancia actual</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">token</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Token del usuario</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">params</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Parámetros de la acción</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                            
+                                            </div>
+                                            <div id="method_sendMessage" class="method item">
+                                                <h3 class="name"><code>sendMessage</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>socket</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>params</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Definido en
+                                                    <a href="../files/server_da_Sockets.Actions.js.html#l119"><code>server\da\Sockets.Actions.js:119</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Envía un mensaje de <b>Enviar Mensaje</b></p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parameters:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">socket</code>
+                                                                    <span class="type">Socket</span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>El web socket para la instancia actual</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">params</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Parámetros de la acción</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                            
+                                            </div>
+                                            <div id="method_setGlobal" class="method item">
+                                                <h3 class="name"><code>setGlobal</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>socket</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>token</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>params</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Definido en
+                                                    <a href="../files/server_da_Sockets.Actions.js.html#l71"><code>server\da\Sockets.Actions.js:71</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Envía un mensaje de <b>Establecer valor de variable global</b>, para que los
+                                            clientes establezcan un nuevo valor de variable global, basado en los
+                                            parámetros enviados.</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parameters:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">socket</code>
+                                                                    <span class="type">Socket</span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>El web socket para la instancia actual</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">token</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Token del usuario</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">params</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Parámetros de la acción</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                            
+                                            </div>
+                                            <div id="method_updateSpeed" class="method item">
+                                                <h3 class="name"><code>updateSpeed</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>socket</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>token</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>params</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Definido en
+                                                    <a href="../files/server_da_Sockets.Actions.js.html#l89"><code>server\da\Sockets.Actions.js:89</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Envía un mensaje de <b>Actualizar Velocidad</b>, para que los clientes
+                                            ejecuten una actualización de la velocidad de la  simulación,
+                                            basado en los parámetros enviados.</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parameters:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">socket</code>
+                                                                    <span class="type">Socket</span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>El web socket para la instancia actual</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">token</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Token del usuario</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">params</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Parámetros de la acción</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                            
+                                            </div>
+                                    </div>
+                        
+                        
+                        
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>

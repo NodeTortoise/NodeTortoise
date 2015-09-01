@@ -5,20 +5,17 @@ YUI.add("yuidoc-meta", function(Y) {
         "Controller",
         "Controller.model",
         "Controller.session",
+        "Entities",
+        "Entities.model",
         "Model",
         "Session",
-        "SessionController"
+        "SessionController",
+        "Sockets",
+        "Sockets.Actions",
+        null
     ],
-    "modules": [
-        "Model"
-    ],
-    "allModules": [
-        {
-            "displayName": "Model",
-            "name": "Model",
-            "description": "Provee la clase Model"
-        }
-    ],
+    "modules": [],
+    "allModules": [],
     "elements": []
 } };
 });

@@ -31,10 +31,6 @@ router.get('/list', function (req, res, next) {
     Controller.model.list(req, res, next);
 });
 
-router.get('/ui', function (req, res) {
-    res.render('layout.html', {'page': {}, 'data': {}});
-});
-
 router.post('/delete/:filename', function (req, res) {
     Controller.model.delete(req, res);
 });

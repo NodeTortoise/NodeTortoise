@@ -8,14 +8,14 @@ var dateFormat = require('dateformat');
 
 /**
  * Maneja la relación de las distintas entidades con la base de datos.
- * @class
+ * @class Entities
  */
 Entities = function () {
 };
 
 /**
  * Maneja la relación de la entidad <i>model</i> con la base de datos.
- * @class
+ * @class Entities.model
  */
 Entities.model = function () {
 

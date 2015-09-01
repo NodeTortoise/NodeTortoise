@@ -1,6 +1,6 @@
 {
-    "name": "API de NodeTortoise",
-    "description": "The Foo API: Proyecto Universitario para basado en archivos Galapagos independientes, ejecutado sobre una plataforma NodeJS",
+    "name": "NodeTortoise",
+    "description": "Proyecto Universitario para basado en archivos Galapagos independientes, ejecutado sobre una plataforma NodeJS",
     "version": "1.0.0",
     "url": "",
     "options": {
@@ -9,6 +9,8 @@
         "selleck": "true",
         "ignorePaths": ["node_modules", "public", "yuidocs"],
         "paths": "server/*",
-        "outdir": "public/apidocs"
+        "outdir": "public/apidocs",
+        "themedir": "yuidoc/theme/",
+        "helpers": ["yuidoc/theme/helpers/helpers.js"]
     }
 }

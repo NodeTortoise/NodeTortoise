@@ -10,4 +10,8 @@ router.get('/', function (req, res, next) {
     res.render('index.html', {'page': page, 'data': data});
 });
 
+router.get('/ui', function (req, res) {
+    res.render('layout.html', {'page': {'no_title': true}, 'data': {}});
+});
+
 module.exports = router;

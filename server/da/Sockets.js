@@ -3,7 +3,7 @@
 /**
  * Inicializa y configura los web sockets que se utilizan para el envío de la 
  * información en el ambiente de simulación de los modelos.
- * @class
+ * @class Sockets
  */
 Sockets = function () {
 };

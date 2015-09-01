@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Entities.model - NodeTortoise</title>
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">NodeTortoise</h1>
+	<div class="nav"></div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Buscar clases/módulos..." data-obj='["classes/App", "classes/undefined", "classes/Controller.model", "classes/Controller.session", "classes/Model", "classes/Session", "classes/Controller", "classes/Entities", "classes/Entities.model", "classes/Sockets.Actions", "classes/Sockets", "classes/SessionController"]'>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+	    <div>
+	        <div id="sidebar">
+	            <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
+	                <li class="active"><a href="#classes" data-toggle="tab">Clases</a></li>
+	                <li><a href="#modules" data-toggle="tab">Módulos</a></li>
+	            </ul>
+	    
+	            <div id="api-tabview-filter">
+	                <input type="search" placeholder="Digite para filtrar APIs">
+	            </div>
+	    
+	            <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
+	                <div class="tab-pane active" id="classes">
+	                    <ul id="api-classes" class="nav nav-list">
+	                            <li><a href="../classes/App.html">App</a></li>
+	                            <li><a href="../classes/.html"></a></li>
+	                            <li><a href="../classes/Controller.model.html">Controller.model</a></li>
+	                            <li><a href="../classes/Controller.session.html">Controller.session</a></li>
+	                            <li><a href="../classes/Model.html">Model</a></li>
+	                            <li><a href="../classes/Session.html">Session</a></li>
+	                            <li><a href="../classes/Controller.html">Controller</a></li>
+	                            <li><a href="../classes/Entities.html">Entities</a></li>
+	                            <li><a href="../classes/Entities.model.html">Entities.model</a></li>
+	                            <li><a href="../classes/Sockets.Actions.html">Sockets.Actions</a></li>
+	                            <li><a href="../classes/Sockets.html">Sockets</a></li>
+	                            <li><a href="../classes/SessionController.html">SessionController</a></li>
+	                    </ul>
+	                </div>
+	    
+	                <div class="tab-pane" id="modules">
+	                    <ul id="api-modules" class="nav nav-list">
+	                    </ul>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+        </div>
+        <div class="span9">
+                <form id="options-form" class="form-inline pull-right">
+                    Mostrar:
+                    <label for="api-show-inherited" class="checkbox" style="display:none">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+                    <label for="api-show-protected" class="checkbox">
+                        <input type="checkbox" id="api-show-protected">
+                        Protegidos
+                    </label>
+            
+                    <label for="api-show-private" class="checkbox">
+                        <input type="checkbox" id="api-show-private">
+                        Privados
+                    </label>
+                    <label for="api-show-deprecated" class="checkbox">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecados
+                    </label>
+                </form>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <div class="page-header">
+                            <h1>Entities.model <small>Class</small></h1>
+                        </div>
+                        
+                        <div class="well well-small">
+                        
+                        
+                                <div class="foundat">
+                                    Definido en: <a href="../files/server_da_Entities.js.html#l16"><code>server\da\Entities.js:16</code></a>
+                                </div>
+                        
+                        
+                        </div>
+                        
+                        
+                        <div class="well well-small">
+                            <p>Maneja la relación de la entidad <i>model</i> con la base de datos.</p>
+                        
+                        </div>
+                        
+                        
+                        <div>
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a data-toggle="tab" href="#index">Inicio</a></li>
+                        
+                                    <li><a data-toggle="tab" href="#methods">Métodos</a></li>
+                            </ul>
+                        
+                            <div class="tab-content">
+                                <div id="index" class="tab-pane active">
+                                        <div class="index-section methods">
+                                            <h3>Métodos</h3>
+                        
+                                            <ul class="index-list methods">
+                                                    <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_add" data-tablink="add">add</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_delete" data-tablink="delete">delete</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_getInstance" data-tablink="getInstance">getInstance</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_list" data-tablink="list">list</a>
+                        
+                                                    </li>
+                                            </ul>
+                                        </div>
+                        
+                        
+                        
+                                </div>
+                        
+                                    <div id="methods" class="tab-pane">
+                                        <h2 class="off-left">Métodos</h2>
+                        
+                                            <div id="method_add" class="method item">
+                                                <h3 class="name"><code>add</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>name</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>filename</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>description</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                                    <span class="returns-inline">
+                                                        <span class="type"><a href="../classes/.html" class="crosslink"></a></span>
+                                                    </span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Definido en
+                                                    <a href="../files/server_da_Entities.js.html#l24"><code>server\da\Entities.js:24</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Inserta un modelo en base de datos.</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parameters:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">name</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Nombre del modelo</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">filename</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Nombre del archivo del modelo sin extensión</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">description</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Descripción del modelo</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                                    <div class="returns">
+                                                        <h4>Returns:</h4>
+                                            
+                                                        <div class="returns-description">
+                                                        </div>
+                                                    </div>
+                                            
+                                            </div>
+                                            <div id="method_delete" class="method item">
+                                                <h3 class="name"><code>delete</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>idModel</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>onSuccess</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>onError</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                                    <span class="returns-inline">
+                                                        <span class="type"><a href="../classes/.html" class="crosslink"></a></span>
+                                                    </span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Definido en
+                                                    <a href="../files/server_da_Entities.js.html#l47"><code>server\da\Entities.js:47</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Elimina un modelo de base de datos.</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parameters:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">idModel</code>
+                                                                    <span class="type">Integer</span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>ID del modelo</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">onSuccess</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Función a ejecutar cuando se elimina el modelo</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">onError</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Función a ejecutar en caso de error</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                                    <div class="returns">
+                                                        <h4>Returns:</h4>
+                                            
+                                                        <div class="returns-description">
+                                                        </div>
+                                                    </div>
+                                            
+                                            </div>
+                                            <div id="method_getInstance" class="method item">
+                                                <h3 class="name"><code>getInstance</code></h3>
+                                            
+                                                    <span class="paren">()</span>
+                                            
+                                                    <span class="returns-inline">
+                                                        <span class="type"><a href="../classes/Entities.model.html" class="crosslink">Entities.model</a></span>
+                                                    </span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Definido en
+                                                    <a href="../files/server_da_Entities.js.html#l63"><code>server\da\Entities.js:63</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Basado en el patrón <i>Singleton</i>, returna una instancia del objeto Entities.model</p>
+                                            
+                                                </div>
+                                            
+                                            
+                                                    <div class="returns">
+                                                        <h4>Returns:</h4>
+                                            
+                                                        <div class="returns-description">
+                                                                    <span class="type"><a href="../classes/Entities.model.html" class="crosslink">Entities.model</a></span>:
+                                                        </div>
+                                                    </div>
+                                            
+                                            </div>
+                                            <div id="method_list" class="method item">
+                                                <h3 class="name"><code>list</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>onSuccess</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>onError</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Definido en
+                                                    <a href="../files/server_da_Entities.js.html#l37"><code>server\da\Entities.js:37</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Obtiene la lista de modelos en base de datos.</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parameters:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">onSuccess</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Función a ejecutar cuando se obtiene la lista de modelos</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">onError</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Función a ejecutar en caso de error</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                            
+                                            </div>
+                                    </div>
+                        
+                        
+                        
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>

@@ -4,20 +4,20 @@ var Sockets = App.require('/da/Sockets');
 var SessionController = App.require('/bl/SessionController');
 
 /**
- * Description
- * @method Actions
- * @return 
+ * Maneja las acciones a ejecutar entre las simulacione, cuya comunicación es 
+ * vía web sockets.
+ * @class
  */
 Sockets.Actions = function () {
 };
 
 /**
- * Description
+ * Conecta una nueva instancia a una sesión de simulacón
  * @method connect
- * @param {} socket
- * @param {} token
- * @param {} params
- * @return 
+ * @static
+ * @param {Socket} socket El web socket para la instancia actual
+ * @param {String} token Token del usuario
+ * @param {Object} params Parámetros de la acción
  */
 Sockets.Actions.connect = function (socket, token, params) {
     var sessionName = params.session;
@@ -37,12 +37,11 @@ Sockets.Actions.connect = function (socket, token, params) {
 };
 
 /**
- * Description
+ * Desconecta al dueño dle socket actual de una sesión.
  * @method disconnect
- * @param {} socket
- * @param {} token
- * @param {} params
- * @return 
+ * @param {Socket} socket El web socket para la instancia actual
+ * @param {String} token Token del usuario
+ * @param {Object} params Parámetros de la acción
  */
 Sockets.Actions.disconnect = function (socket, token, params) {
     var diedSession = SessionController.getInstance().leaveSession(socket.session, socket.username, socket.token);
@@ -58,24 +57,25 @@ Sockets.Actions.disconnect = function (socket, token, params) {
 };
 
 /**
- * Description
+ * Envía un mensaje de <b>Ejecutar Comando</b>, para que los 
+ * clientes ejecuten un comando, basado en los parámetros enviados.
  * @method executeCommand
- * @param {} socket
- * @param {} token
- * @param {} params
- * @return 
+ * @param {Socket} socket El web socket para la instancia actual
+ * @param {String} token Token del usuario
+ * @param {Object} params Parámetros de la acción
  */
 Sockets.Actions.executeCommand = function (socket, token, params) {
     Sockets.sendAction(socket, socket.session, 'executeCommand', params);
 };
 
 /**
- * Description
+ * Envía un mensaje de <b>Establecer valor de variable global</b>, para que los 
+ * clientes establezcan un nuevo valor de variable global, basado en los 
+ * parámetros enviados.
  * @method setGlobal
- * @param {} socket
- * @param {} token
- * @param {} params
- * @return 
+ * @param {Socket} socket El web socket para la instancia actual
+ * @param {String} token Token del usuario
+ * @param {Object} params Parámetros de la acción
  */
 Sockets.Actions.setGlobal = function (socket, token, params) {
     if (SessionController.getInstance().getSession(socket.session).enabledControls) {
@@ -87,12 +87,13 @@ Sockets.Actions.setGlobal = function (socket, token, params) {
 };
 
 /**
- * Description
+ * Envía un mensaje de <b>Actualizar Velocidad</b>, para que los clientes 
+ * ejecuten una actualización de la velocidad de la  simulación, 
+ * basado en los parámetros enviados.
  * @method updateSpeed
- * @param {} socket
- * @param {} token
- * @param {} params
- * @return 
+ * @param {Socket} socket El web socket para la instancia actual
+ * @param {String} token Token del usuario
+ * @param {Object} params Parámetros de la acción
  */
 Sockets.Actions.updateSpeed = function (socket, token, params) {
     if (SessionController.getInstance().getSession(socket.session).enabledControls) {
@@ -104,23 +105,22 @@ Sockets.Actions.updateSpeed = function (socket, token, params) {
 };
 
 /**
- * Description
+ * Envía un mensaje de <b>Aplicar actualización</b>, para que los clientes 
+ * ejecuten una actualización de la simulación, basado en los parámetros enviados.
  * @method applyUpdate
- * @param {} socket
- * @param {} token
- * @param {} params
- * @return 
+ * @param {Socket} socket El web socket para la instancia actual
+ * @param {String} token Token del usuario
+ * @param {Object} params Parámetros de la acción
  */
 Sockets.Actions.applyUpdate = function (socket, token, params) {
     Sockets.sendAction(socket, socket.session, 'applyUpdate', params);
 };
 
 /**
- * Description
+ * Envía un mensaje de <b>Enviar Mensaje</b>
  * @method sendMessage
- * @param {} socket
- * @param {} params
- * @return 
+ * @param {Socket} socket El web socket para la instancia actual
+ * @param {Object} params Parámetros de la acción
  */
 Sockets.Actions.sendMessage = function (socket, params) {
     Sockets.sendAction(socket, socket.session, 'getMessage', params);

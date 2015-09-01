@@ -1,22 +1,29 @@
 /* global app, MAIN_BROWSER, DEBUG, Helper, Sockets.Actions, server, App, module, require */
 
 /**
- * Description
- * @return 
+ * Inicializa y configura los web sockets que se utilizan para el envío de la 
+ * información en el ambiente de simulación de los modelos.
+ * @class
  */
 Sockets = function () {
 };
 
+/**
+ * Instancia de sockets.io
+ * @attribute io
+ * @type {sockets.io}
+ * @static
+ */
 Sockets.io = null;
 
 /**
- * Description
+ * Envía a los demás la indicación de que se ejecute una acción.
  * @method sendAction
- * @param {} socket
- * @param {} sessionName
- * @param {} action
- * @param {} params
- * @return 
+ * @static
+ * @param {Socket} socket El web socket para la instancia actual
+ * @param {String} sessionName Nombre de la sesión de simulación a la cual se va a enviar el mensaje
+ * @param {String} action Acción a ejecutar
+ * @param {Object} params Parámetros de la acción
  */
 Sockets.sendAction = function (socket, sessionName, action, params) {
     var SessionController = App.require('/bl/SessionController');
@@ -29,20 +36,19 @@ Sockets.sendAction = function (socket, sessionName, action, params) {
 };
 
 /**
- * Description
+ * Alias de Sockets.setServerActions
  * @method set
- * @param {} socket
- * @return 
+ * @param {Socket} socket El web socket para la instancia actual
  */
 Sockets.set = function (socket) {
     Sockets.setServerActions(socket);
 };
 
 /**
- * Description
+ * Configura las acciones que se pueden ejecutar sobre el socket actual
  * @method setServerActions
- * @param {} socket
- * @return 
+ * @static
+ * @param {Socket} socket El web socket para la instancia actual
  */
 Sockets.setServerActions = function (socket) {
     Sockets.Actions = App.require('/da/Sockets.Actions');
@@ -60,12 +66,12 @@ Sockets.setServerActions = function (socket) {
 };
 
 /**
- * Description
+ * Envía un mensaje al dueño del socket actual
  * @method sendToMe
- * @param {} socket
- * @param {} action
- * @param {} params
- * @return 
+ * @static
+ * @param {Socket} socket El web socket para la instancia actual
+ * @param {String} action Acción a ejecutar
+ * @param {Object} params Parámetros de la acción
  */
 Sockets.sendToMe = function (socket, action, params) {
     action += '__fromServer';
@@ -73,13 +79,13 @@ Sockets.sendToMe = function (socket, action, params) {
 };
 
 /**
- * Description
+ * Envía un mensaje de acción a los otros usuarios dentro de la sesión del dueño del socket actual.
  * @method sendToOthers
- * @param {} socket
- * @param {} sessionName
- * @param {} action
- * @param {} params
- * @return 
+ * @static
+ * @param {Socket} socket El web socket para la instancia actual
+ * @param {String} sessionName Nombre de la sesión
+ * @param {String} action Acción a ejecutar
+ * @param {Object} params Parámetros de la acción
  */
 Sockets.sendToOthers = function (socket, sessionName, action, params) {
     action += '__fromServer';
@@ -87,12 +93,12 @@ Sockets.sendToOthers = function (socket, sessionName, action, params) {
 };
 
 /**
- * Description
+ * Envía un mensaje de acción a todos los usuarios dentro la sesión del dueño del socket actual.
  * @method sendToAll
- * @param {} sessionName
- * @param {} action
- * @param {} params
- * @return 
+ * @static
+ * @param {String} sessionName Nombre de la sesión
+ * @param {String} action Acción a ejecutar
+ * @param {Object} params Parámetros de la acción
  */
 Sockets.sendToAll = function (sessionName, action, params) {
     action += '__fromServer';
@@ -100,10 +106,10 @@ Sockets.sendToAll = function (sessionName, action, params) {
 };
 
 /**
- * Description
+ * Configura la funcionalidad de los Sockets
  * @method init
- * @param {} server
- * @return 
+ * @static
+ * @param {http.Server} server Instancia del servidot HTTP
  */
 Sockets.init = function (server) {
     Sockets.io = require('socket.io').listen(server, {log: false});

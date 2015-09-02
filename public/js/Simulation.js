@@ -8,8 +8,9 @@ var ENVIRONMENT = 'TESTING'; // TESTING, PRODUCTION
 var MAIN_BROWSER = 'FIREFOX';
 
 /**
- * Description
- * @return
+ * Provee la lógica de interacción de las simulaciones con el servidor.
+ * @class Simulation
+ * @module Public
  */
 Simulation = function () {
 
@@ -33,9 +34,8 @@ Simulation = function () {
     var sessionName, modelFile, modelControls, modelCommands, overwritedCommands;
 
     /**
-     * Description
+     * Inicializa la clase, realizando las configuraciones necesarias.
      * @method init
-     * @return
      */
     this.init = function () {
         isTimeToSendApplyUpdate = false;
@@ -53,7 +53,7 @@ Simulation = function () {
     };
 
     /**
-     * Description
+     * Realiza la conexión del cliente con el servidor por medio de <i>web sockets</i>.
      * @method connect
      * @return
      */
@@ -70,11 +70,20 @@ Simulation = function () {
     };
 
     /**
-     * Description
+     * Este método sobre-escribe el método <b>AgentStreamController.prototype.applyUpdate</b>
+     * del código original de Tortoise. Se encarga de controlar la actualización
+     * de la simulación (a nivel gráfico) y de los valores de los <i>outputs</i>.
+     * En el caso del cliente maestro, se envía un mensaje al servidor para que 
+     * los clientes realicen la actualización y finalmente se ejecuta el código
+     * original de actualización. En el caso los clientes que no son maestros, 
+     * se ignora cualquier proceso. En caso de que aún no se hara realizado 
+     * la conexión con el <i>socket</i>, se ejecuta el código original de 
+     * actualización, en ambos casos.
      * @method applyUpdate
-     * @param {} agentStreamController
-     * @param {} modelUpdate
-     * @return
+     * @param {Object} agentStreamController El objeto AgentStreamController del modelo
+     * @param {Object} modelUpdate El objeto que contiene las intrucciones de actualización
+     * @return {Object} El resultado del proceso de actualiación. Este resultado proviene de
+     * la lógica del código de Tortoise
      */
     this.applyUpdate = function (agentStreamController, modelUpdate) {
         /* TODO-FUTUREWORK: optimize to send less data in modelUpdate */
@@ -95,14 +104,16 @@ Simulation = function () {
     };
 
     /**
-     * Description
+     * Código ejecutado por los clientes no maestros al recibir un mensaje de 
+     * actualización del modelo. Ejecuta las actualizaciones del modelo, haciendo 
+     * la llamada al código de actualización original de <b>Tortoise</b> y 
+     * llevando a cabo la actualización de los <i>outputs</i>.
      * @method applyUpdate_
-     * @param {} model
-     * @param {} outputs
-     * @return
+     * @param {Object} modelUpdate El objeto que contiene las intrucciones de actualización
+     * @param {Object} outputs Objeto que contiene las actualizaciones a ejecutar sobre los <i>outputs</i>
      */
-    this.applyUpdate_ = function (model, outputs) {
-        self.viewController._applyUpdate(model);
+    this.applyUpdate_ = function (modelUpdate, outputs) {
+        self.viewController._applyUpdate(modelUpdate);
         for (var key in outputs) {
             //self.setGlobal(outputs[key].name, outputs[key].value);
             $('output[data-name="' + outputs[key].name + '"]').val(outputs[key].value);
@@ -110,29 +121,28 @@ Simulation = function () {
     };
 
     /**
-     * Description
+     * Establece el valor de la velocidad de la simulación.
      * @method updateSpeed_
-     * @param {} value
-     * @return
+     * @param {Integer} value Valor de la velocidad
      */
     this.updateSpeed_ = function (value) {
         $(speedInputSelector).val(value);
     };
 
     /**
-     * Description
+     * Dtermina si un widget es de tipo comando.
      * @method isCommandWidget
-     * @param {} widget
-     * @return LogicalExpression
+     * @param {Object} widget El widget
+     * @return {Boolean} Verdadero o Falso
      */
     var isCommandWidget = function (widget) {
         return (widget.compiledSource && widget.buttonType && (widget.buttonType).toUpperCase() === 'OBSERVER');
     };
 
     /**
-     * Description
+     * Ejecuta la acción de sobre-escribir las funciones originales de Tortoise, 
+     * necesarias para la ejecución de la lógica personalizada.
      * @method doOverwriteFunctions
-     * @return
      */
     var doOverwriteFunctions = function () {
         world.observer['setGlobal_'] = world.observer.setGlobal;
@@ -158,9 +168,11 @@ Simulation = function () {
     };
 
     /**
-     * Description
+     * Inicializa los widgets del modelo, para:
+     * 1. Obtener los widget de tipo comando para sobre-escribir su funcionalidad
+     * 2. Obtener y guardar los widget de tipo control para posteriormente 
+     * sobre-escribir su funcionalidad.
      * @method initWidgets
-     * @return
      */
     var initWidgets = function () {
         modelControls = {};
@@ -182,10 +194,11 @@ Simulation = function () {
     };
 
     /**
-     * Description
+     * Extrae de un <i>widget</i> de tipo comando la información necesaria para
+     * su posterior procesamiento.
      * @method parseCommandWidget
-     * @param {} widgetData
-     * @return result
+     * @param {Object} widgetData Los datos del <i>widget</i>
+     * @return {Object} result
      */
     var parseCommandWidget = function (widgetData) {
         var dataStr = ((widgetData.compiledSource.result).replace('Call(', '')).replace(');', '');
@@ -203,10 +216,9 @@ Simulation = function () {
     };
 
     /**
-     * Description
+     * Sobre-escribe la funcionalidad de un comando
      * @method doOverwriteCommand
-     * @param {} commandData
-     * @return
+     * @param {Object} commandData Los datos del comando
      */
     var doOverwriteCommand = function (commandData) {
         if (self.commands[commandData.fnName]) {
@@ -225,9 +237,8 @@ Simulation = function () {
     };
 
     /**
-     * Description
+     * Deshabilita los controles
      * @method disableControls
-     * @return
      */
     var disableControls = function () {
         /* TODO: make label.input buttons look like disabled */
@@ -235,9 +246,8 @@ Simulation = function () {
     };
 
     /**
-     * Description
+     * Inicializa 
      * @method initNoMasterConnected
-     * @return
      */
     var initNoMasterConnected = function () {
         spinner = new Helper.spinner('.netlogo-widget-container', {'bgColor': '#000', 'opacity': 0.8, 'height': '100%'});

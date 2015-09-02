@@ -2,7 +2,8 @@
 
 /**
  * Ejecuta acciones sobre una base de SQLite
- * @class
+ * @class SQLite
+ * @constructor
  * @param {String} file Ruta al archivo de sqlite
  */
 SQLite = function (file) {

@@ -157,7 +157,7 @@ Model = function () {
 };
 
 /**
- * Basado en el patrón <i>Singleton</i>, returna una instancia del objeto Model
+ * Basado en el patrón <i>Singleton</i>, retorna una instancia del objeto Model
  * @method getInstance
  * @static
  * @return {Model} La instancia de Model

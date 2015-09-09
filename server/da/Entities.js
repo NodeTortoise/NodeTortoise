@@ -61,7 +61,7 @@ Entities.model = function () {
 Entities.instances = {};
 
 /**
- * Basado en el patrón <i>Singleton</i>, returna una instancia del objeto Entities.model
+ * Basado en el patrón <i>Singleton</i>, retorna una instancia del objeto Entities.model
  * @method getInstance
  * @return {Entities.model}
  */

@@ -1,0 +1,92 @@
+{% extends '../layout.html' %}
+{% block main_content %}
+<div class="install-steps">
+    <h3>Instalación utilizando Script</h3>
+    <p>A continuación se describe los pasos de instalación de NodeTortoise utilizando el script de instalación. Los comandos mostrados son para cualquier sistema operativo Linux, no obstante, no existen scripts para todos ellos.</p>
+    <ol>
+        <li>
+            Descargar el script de instalación adecuado para su sistema operativo, desde el repositorio de GitHub: <br/>
+            <strong>Ubuntu</strong>:
+            <a href="https://raw.githubusercontent.com/oscarmartinezm/Scripts/master/ubuntu/Install-NodeTortoise.sh" target="_blank">Descargar</a> |
+            <a href="https://github.com/oscarmartinezm/Scripts/blob/master/ubuntu/Install-NodeTortoise.sh" target="_blank">Ver en GitHub</a>
+        </li>
+        <li>Subir el archivo al servidor y acceder a la ubicación de éste.</li>
+        <li>
+            Ejecutar el archivo con permisos de root
+            <pre>sudo ./Install-NodeTortoise.sh</pre>
+        </li>
+        <li>Seguir los pasos que se indiquen, aceptando la instalación de los paquetes necesarios.</li>
+    </ol>
+</div>
+<div class="install-steps">
+    <h3>Instalación Manual</h3>
+    <p>A continuación se describe los pasos de instalación de NodeTortoise. Los comandos mostrados son para el sistema operativo Ubuntu. No obstante, los pasos a realizar son los mismos para otros sistemas operativos.</p>
+    <ol>
+        <li>
+            Instalar NodeJS
+            <pre>apt-get install nodejs-legacy</pre>
+        </li>
+        <li>
+            Instalar NodeJS Package Manager (NPM)
+            <pre>apt-get install npm</pre>
+        </li>
+        <li>
+            Instalar GIT
+            <pre>apt-get install git</pre>
+        </li>
+        <li>
+            Instalar NodeJS Forever
+            <pre>npm install -g forever</pre>
+        </li>
+        <li>
+            Obtener repositorio de NodeTortoise en GitHub
+            <pre>git clone https://github.com/oscarmartinezm/NodeTortoise.git</pre>
+        </li>
+        <li>
+            Ingresar al direction donde está ubicado NodeTortoise
+            <pre>cd NodeTortoise</pre>
+        </li>
+        <li>
+            Instalar las extensiones de NodeJS necesarias para la ejecución de la aplicación
+            <pre>npm install</pre>
+        </li>
+    </ol>
+</div>
+<div class="install-steps">
+    <h3>Ejecución vía script</h3>
+    <p>A continuación se describe los pasos para ejecutar NodeTortoise utilizando el script. Los comandos mostrados son para cualquier sistema operativo Linux.</p>
+    <ol>
+        <li>
+            Ingresar al directorio donde está ubicado NodeTortoise
+            <pre>cd NodeTortoise</pre>
+        </li>
+        <li>
+            Elevar como usuario root (necesario para ejecutar en puerto 80)
+            <pre>sudo su</pre>
+        </li>
+        <li>
+            Ejecutar el archivo run
+            <pre>. ./run</pre>
+        </li>
+    </ol>
+</div>
+<div class="install-steps">
+    <h3>Ejecución manual</h3>
+    <p>A continuación se describe los pasos para ejecutar NodeTortoise manualmente. Los comandos mostrados son para cualquier sistema operativo Linux.</p>
+    <ol>
+        <li>
+            Ingresar al directorio donde está ubicado NodeTortoise
+            <pre>cd NodeTortoise</pre>
+        </li>
+        <li>
+            Establecer las variables de entorno necesarias
+            <pre>export PORT="80"
+export NODE_ENV="production"</pre>
+        </li>
+        <li>
+            Ejecutar la aplicación
+            <pre>forever start ./bin/www</pre>
+        </li>
+    </ol>
+</div>
+{% endblock %}

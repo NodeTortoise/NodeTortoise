@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>SessionController - NodeTortoise</title>
+    <title>SQLite - NodeTortoise</title>
     <link rel="stylesheet" href="">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -85,14 +85,14 @@
                 <div id="docs-main">
                     <div class="content">
                         <div class="page-header">
-                            <h1>SessionController <small>Class</small></h1>
+                            <h1>SQLite <small>Class</small></h1>
                         </div>
                         
                         <div class="well well-small">
                         
                         
                                 <div class="foundat">
-                                    Definido en: <a href="../files/server_bl_SessionController.js.html#l3"><code>server\bl\SessionController.js:3</code></a>
+                                    Definido en: <a href="../files/server_libs_SQLite.js.html#l3"><code>server\libs\SQLite.js:3</code></a>
                                 </div>
                         
                         
@@ -100,16 +100,22 @@
                         
                         
                         <div class="well well-small">
-                            <p>Controla las sesiones de creadas por los usuarios para ejecutar las simulaciones.</p>
+                            <p>Ejecuta acciones sobre una base de SQLite</p>
                         
                         </div>
                         
                             <div class="constructor">
                                 <h2>Constructor</h2>
-                                <div id="method_SessionController" class="method item">
-                                    <h3 class="name"><code>SessionController</code></h3>
+                                <div id="method_SQLite" class="method item">
+                                    <h3 class="name"><code>SQLite</code></h3>
                                 
-                                        <span class="paren">()</span>
+                                        <div class="args">
+                                            <span class="paren">(</span><ul class="args-list inline commas">
+                                                <li class="arg">
+                                                        <code>file</code>
+                                                </li>
+                                            </ul><span class="paren">)</span>
+                                        </div>
                                 
                                 
                                 
@@ -121,7 +127,7 @@
                                     <div class="meta">
                                                 <p>
                                                 Definido en
-                                        <a href="../files/server_bl_SessionController.js.html#l3"><code>server\bl\SessionController.js:3</code></a>
+                                        <a href="../files/server_libs_SQLite.js.html#l3"><code>server\libs\SQLite.js:3</code></a>
                                         </p>
                                 
                                 
@@ -132,6 +138,23 @@
                                         
                                     </div>
                                 
+                                        <div class="params">
+                                            <h4>Parameters:</h4>
+                                
+                                            <ul class="params-list">
+                                                <li class="param">
+                                                        <code class="param-name">file</code>
+                                                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                
+                                
+                                                    <div class="param-description">
+                                                        <p>Ruta al archivo de sqlite</p>
+                                
+                                                    </div>
+                                
+                                                </li>
+                                            </ul>
+                                        </div>
                                 
                                 
                                 </div>
@@ -155,40 +178,35 @@
                         
                                                     </li>
                                                     <li class="index-item method">
-                                                        <a href="#" data-tabid="#methods" data-anchor="#method_getInstance" data-tablink="getInstance">getInstance</a>
-                        
-                                                            <span class="flag static">static</span>
-                                                    </li>
-                                                    <li class="index-item method">
-                                                        <a href="#" data-tabid="#methods" data-anchor="#method_getSession" data-tablink="getSession">getSession</a>
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_debug" data-tablink="debug">debug</a>
                         
                                                     </li>
                                                     <li class="index-item method">
-                                                        <a href="#" data-tabid="#methods" data-anchor="#method_getSessionList" data-tablink="getSessionList">getSessionList</a>
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_delete" data-tablink="delete">delete</a>
                         
                                                     </li>
                                                     <li class="index-item method">
-                                                        <a href="#" data-tabid="#methods" data-anchor="#method_getSessionModel" data-tablink="getSessionModel">getSessionModel</a>
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_getDB" data-tablink="getDB">getDB</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method private">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_getQueryFilters" data-tablink="getQueryFilters">getQueryFilters</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method private">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_getQueryValues" data-tablink="getQueryValues">getQueryValues</a>
                         
                                                     </li>
                                                     <li class="index-item method">
-                                                        <a href="#" data-tabid="#methods" data-anchor="#method_getSessionUsersQuantity" data-tablink="getSessionUsersQuantity">getSessionUsersQuantity</a>
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_insert" data-tablink="insert">insert</a>
                         
                                                     </li>
                                                     <li class="index-item method">
-                                                        <a href="#" data-tabid="#methods" data-anchor="#method_init" data-tablink="init">init</a>
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_onCallback" data-tablink="onCallback">onCallback</a>
                         
                                                     </li>
                                                     <li class="index-item method">
-                                                        <a href="#" data-tabid="#methods" data-anchor="#method_joinSession" data-tablink="joinSession">joinSession</a>
-                        
-                                                    </li>
-                                                    <li class="index-item method">
-                                                        <a href="#" data-tabid="#methods" data-anchor="#method_leaveSession" data-tablink="leaveSession">leaveSession</a>
-                        
-                                                    </li>
-                                                    <li class="index-item method">
-                                                        <a href="#" data-tabid="#methods" data-anchor="#method_setSessionModel" data-tablink="setSessionModel">setSessionModel</a>
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_select" data-tablink="select">select</a>
                         
                                                     </li>
                                             </ul>
@@ -217,7 +235,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/server_bl_SessionController.js.html#l117"><code>server\bl\SessionController.js:117</code></a>
+                                                    <a href="../files/server_libs_SQLite.js.html#l171"><code>server\libs\SQLite.js:171</code></a>
                                                     </p>
                                             
                                             
@@ -232,61 +250,17 @@
                                             
                                             
                                             </div>
-                                            <div id="method_getInstance" class="method item">
-                                                <h3 class="name"><code>getInstance</code></h3>
-                                            
-                                                    <span class="paren">()</span>
-                                            
-                                                    <span class="returns-inline">
-                                                        <span class="type"><a href="../classes/SessionController.html" class="crosslink">SessionController</a></span>
-                                                    </span>
-                                            
-                                            
-                                            
-                                            
-                                                    <span class="flag static">static</span>
-                                            
-                                            
-                                            
-                                                <div class="meta">
-                                                            <p>
-                                                            Definido en
-                                                    <a href="../files/server_bl_SessionController.js.html#l130"><code>server\bl\SessionController.js:130</code></a>
-                                                    </p>
-                                            
-                                            
-                                            
-                                                </div>
-                                            
-                                                <div class="description">
-                                                    <p>Basado en el patrón <i>Singleton</i>, returna una instancia del objeto SessionController</p>
-                                            
-                                                </div>
-                                            
-                                            
-                                                    <div class="returns">
-                                                        <h4>Returns:</h4>
-                                            
-                                                        <div class="returns-description">
-                                                                    <span class="type"><a href="../classes/SessionController.html" class="crosslink">SessionController</a></span>:
-                                                        </div>
-                                                    </div>
-                                            
-                                            </div>
-                                            <div id="method_getSession" class="method item">
-                                                <h3 class="name"><code>getSession</code></h3>
+                                            <div id="method_debug" class="method item">
+                                                <h3 class="name"><code>debug</code></h3>
                                             
                                                     <div class="args">
                                                         <span class="paren">(</span><ul class="args-list inline commas">
                                                             <li class="arg">
-                                                                    <code>sessionName</code>
+                                                                    <code>message</code>
                                                             </li>
                                                         </ul><span class="paren">)</span>
                                                     </div>
                                             
-                                                    <span class="returns-inline">
-                                                        <span class="type"><a href="../classes/Session.html" class="crosslink">Session</a></span>
-                                                    </span>
                                             
                                             
                                             
@@ -297,7 +271,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/server_bl_SessionController.js.html#l93"><code>server\bl\SessionController.js:93</code></a>
+                                                    <a href="../files/server_libs_SQLite.js.html#l159"><code>server\libs\SQLite.js:159</code></a>
                                                     </p>
                                             
                                             
@@ -305,7 +279,8 @@
                                                 </div>
                                             
                                                 <div class="description">
-                                                    <p>Retorna una sesión, basado en el nombre recibido como parámetro.</p>
+                                                    <p>Imprime en consola un mensaje de error, si el atributo debug del objeto
+                                            es <i>true</i>.</p>
                                             
                                                 </div>
                                             
@@ -314,12 +289,12 @@
                                             
                                                         <ul class="params-list">
                                                             <li class="param">
-                                                                    <code class="param-name">sessionName</code>
+                                                                    <code class="param-name">message</code>
                                                                     <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                                             
                                             
                                                                 <div class="param-description">
-                                                                    <p>Nombre de la sesión</p>
+                                                                    <p>Mensaje de error</p>
                                             
                                                                 </div>
                                             
@@ -327,340 +302,24 @@
                                                         </ul>
                                                     </div>
                                             
-                                                    <div class="returns">
-                                                        <h4>Returns:</h4>
-                                            
-                                                        <div class="returns-description">
-                                                                    <span class="type"><a href="../classes/Session.html" class="crosslink">Session</a></span>:
-                                                                <p>La sessión</p>
-                                            
-                                                        </div>
-                                                    </div>
                                             
                                             </div>
-                                            <div id="method_getSessionList" class="method item">
-                                                <h3 class="name"><code>getSessionList</code></h3>
-                                            
-                                                    <span class="paren">()</span>
-                                            
-                                                    <span class="returns-inline">
-                                                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
-                                                    </span>
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                                <div class="meta">
-                                                            <p>
-                                                            Definido en
-                                                    <a href="../files/server_bl_SessionController.js.html#l84"><code>server\bl\SessionController.js:84</code></a>
-                                                    </p>
-                                            
-                                            
-                                            
-                                                </div>
-                                            
-                                                <div class="description">
-                                                    <p>Retorna la lista de las sesiones de simulación activas.</p>
-                                            
-                                                </div>
-                                            
-                                            
-                                                    <div class="returns">
-                                                        <h4>Returns:</h4>
-                                            
-                                                        <div class="returns-description">
-                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>:
-                                                                <p>La lista de sesiones</p>
-                                            
-                                                        </div>
-                                                    </div>
-                                            
-                                            </div>
-                                            <div id="method_getSessionModel" class="method item">
-                                                <h3 class="name"><code>getSessionModel</code></h3>
+                                            <div id="method_delete" class="method item">
+                                                <h3 class="name"><code>delete</code></h3>
                                             
                                                     <div class="args">
                                                         <span class="paren">(</span><ul class="args-list inline commas">
                                                             <li class="arg">
-                                                                    <code>sessionName</code>
-                                                            </li>
-                                                        </ul><span class="paren">)</span>
-                                                    </div>
-                                            
-                                                    <span class="returns-inline">
-                                                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                                                    </span>
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                                <div class="meta">
-                                                            <p>
-                                                            Definido en
-                                                    <a href="../files/server_bl_SessionController.js.html#l74"><code>server\bl\SessionController.js:74</code></a>
-                                                    </p>
-                                            
-                                            
-                                            
-                                                </div>
-                                            
-                                                <div class="description">
-                                                    <p>Devuelve el modelo que se está utilizando en una sesión.</p>
-                                            
-                                                </div>
-                                            
-                                                    <div class="params">
-                                                        <h4>Parameters:</h4>
-                                            
-                                                        <ul class="params-list">
-                                                            <li class="param">
-                                                                    <code class="param-name">sessionName</code>
-                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                                            
-                                            
-                                                                <div class="param-description">
-                                                                    <p>El nombre de la sesión</p>
-                                            
-                                                                </div>
-                                            
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                            
-                                                    <div class="returns">
-                                                        <h4>Returns:</h4>
-                                            
-                                                        <div class="returns-description">
-                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
-                                                                <p>El nombre del modelo utilizado en la sesión</p>
-                                            
-                                                        </div>
-                                                    </div>
-                                            
-                                            </div>
-                                            <div id="method_getSessionUsersQuantity" class="method item">
-                                                <h3 class="name"><code>getSessionUsersQuantity</code></h3>
-                                            
-                                                    <div class="args">
-                                                        <span class="paren">(</span><ul class="args-list inline commas">
-                                                            <li class="arg">
-                                                                    <code>sessionName</code>
-                                                            </li>
-                                                        </ul><span class="paren">)</span>
-                                                    </div>
-                                            
-                                                    <span class="returns-inline">
-                                                        <span class="type">Integer</span>
-                                                    </span>
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                                <div class="meta">
-                                                            <p>
-                                                            Definido en
-                                                    <a href="../files/server_bl_SessionController.js.html#l103"><code>server\bl\SessionController.js:103</code></a>
-                                                    </p>
-                                            
-                                            
-                                            
-                                                </div>
-                                            
-                                                <div class="description">
-                                                    <p>Retorna la cantidad de usuarios en una sesión, basado en el nombre recibido como parámetro.</p>
-                                            
-                                                </div>
-                                            
-                                                    <div class="params">
-                                                        <h4>Parameters:</h4>
-                                            
-                                                        <ul class="params-list">
-                                                            <li class="param">
-                                                                    <code class="param-name">sessionName</code>
-                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                                            
-                                            
-                                                                <div class="param-description">
-                                                                    <p>El nombre de la sesión</p>
-                                            
-                                                                </div>
-                                            
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                            
-                                                    <div class="returns">
-                                                        <h4>Returns:</h4>
-                                            
-                                                        <div class="returns-description">
-                                                                    <span class="type">Integer</span>:
-                                                                <p>La cantidad de usuarios en la sesión</p>
-                                            
-                                                        </div>
-                                                    </div>
-                                            
-                                            </div>
-                                            <div id="method_init" class="method item">
-                                                <h3 class="name"><code>init</code></h3>
-                                            
-                                                    <span class="paren">()</span>
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                                <div class="meta">
-                                                            <p>
-                                                            Definido en
-                                                    <a href="../files/server_bl_SessionController.js.html#l14"><code>server\bl\SessionController.js:14</code></a>
-                                                    </p>
-                                            
-                                            
-                                            
-                                                </div>
-                                            
-                                                <div class="description">
-                                                    <p>Realiza el proceso de inicialización de variables necesarias por el objeto.</p>
-                                            
-                                                </div>
-                                            
-                                            
-                                            
-                                            </div>
-                                            <div id="method_joinSession" class="method item">
-                                                <h3 class="name"><code>joinSession</code></h3>
-                                            
-                                                    <div class="args">
-                                                        <span class="paren">(</span><ul class="args-list inline commas">
-                                                            <li class="arg">
-                                                                    <code>sessionName</code>
+                                                                    <code>table</code>
                                                             </li>
                                                             <li class="arg">
-                                                                    <code>modelFile</code>
+                                                                    <code>filters</code>
                                                             </li>
                                                             <li class="arg">
-                                                                    <code>userName</code>
+                                                                    <code>onSuccess</code>
                                                             </li>
                                                             <li class="arg">
-                                                                    <code class="optional">[enabledControls]</code>
-                                                            </li>
-                                                        </ul><span class="paren">)</span>
-                                                    </div>
-                                            
-                                                    <span class="returns-inline">
-                                                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-                                                    </span>
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                                <div class="meta">
-                                                            <p>
-                                                            Definido en
-                                                    <a href="../files/server_bl_SessionController.js.html#l23"><code>server\bl\SessionController.js:23</code></a>
-                                                    </p>
-                                            
-                                            
-                                            
-                                                </div>
-                                            
-                                                <div class="description">
-                                                    <p>Añade un usuario a una sesión de simulación. Si la sessión no existe, crea una nueva.</p>
-                                            
-                                                </div>
-                                            
-                                                    <div class="params">
-                                                        <h4>Parameters:</h4>
-                                            
-                                                        <ul class="params-list">
-                                                            <li class="param">
-                                                                    <code class="param-name">sessionName</code>
-                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                                            
-                                            
-                                                                <div class="param-description">
-                                                                    <p>El nombre de la sesión</p>
-                                            
-                                                                </div>
-                                            
-                                                            </li>
-                                                            <li class="param">
-                                                                    <code class="param-name">modelFile</code>
-                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                                            
-                                            
-                                                                <div class="param-description">
-                                                                    <p>El archivo del modelo de la simulación que ejecutará la sesión</p>
-                                            
-                                                                </div>
-                                            
-                                                            </li>
-                                                            <li class="param">
-                                                                    <code class="param-name">userName</code>
-                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                                            
-                                            
-                                                                <div class="param-description">
-                                                                    <p>El nombre del usuario</p>
-                                            
-                                                                </div>
-                                            
-                                                            </li>
-                                                            <li class="param">
-                                                                    <code class="param-name optional">[enabledControls]</code>
-                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
-                                                                    <span class="flag optional" title="This parameter is optional.">optional</span>
-                                            
-                                            
-                                                                <div class="param-description">
-                                                                    <p>Determinar si la sesión habilita o no los controles a otros usuarios distintos del maestro. Parámetro obligatorio solo para el usuario maestro.</p>
-                                            
-                                                                </div>
-                                            
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                            
-                                                    <div class="returns">
-                                                        <h4>Returns:</h4>
-                                            
-                                                        <div class="returns-description">
-                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
-                                                                <p>Un objecto JavaScript estandar con la información sobre la sesión.</p>
-                                            
-                                                        </div>
-                                                    </div>
-                                            
-                                            </div>
-                                            <div id="method_leaveSession" class="method item">
-                                                <h3 class="name"><code>leaveSession</code></h3>
-                                            
-                                                    <div class="args">
-                                                        <span class="paren">(</span><ul class="args-list inline commas">
-                                                            <li class="arg">
-                                                                    <code>sessionName</code>
-                                                            </li>
-                                                            <li class="arg">
-                                                                    <code>userName</code>
-                                                            </li>
-                                                            <li class="arg">
-                                                                    <code>token</code>
+                                                                    <code>onError</code>
                                                             </li>
                                                         </ul><span class="paren">)</span>
                                                     </div>
@@ -678,7 +337,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/server_bl_SessionController.js.html#l43"><code>server\bl\SessionController.js:43</code></a>
+                                                    <a href="../files/server_libs_SQLite.js.html#l63"><code>server\libs\SQLite.js:63</code></a>
                                                     </p>
                                             
                                             
@@ -686,7 +345,7 @@
                                                 </div>
                                             
                                                 <div class="description">
-                                                    <p>Elimina un usuario de una sesión de simulación.</p>
+                                                    <p>Elimina uno o más registros de una tabla.</p>
                                             
                                                 </div>
                                             
@@ -695,34 +354,45 @@
                                             
                                                         <ul class="params-list">
                                                             <li class="param">
-                                                                    <code class="param-name">sessionName</code>
+                                                                    <code class="param-name">table</code>
                                                                     <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                                             
                                             
                                                                 <div class="param-description">
-                                                                    <p>El nombre de la sesión</p>
+                                                                    <p>La tabla sobre la cuál se ejecutará la acción</p>
                                             
                                                                 </div>
                                             
                                                             </li>
                                                             <li class="param">
-                                                                    <code class="param-name">userName</code>
-                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                                                    <code class="param-name">filters</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
                                             
                                             
                                                                 <div class="param-description">
-                                                                    <p>El nombre del usuario</p>
+                                                                    <p>Los filtros de la consulta (<i>where</i>)</p>
                                             
                                                                 </div>
                                             
                                                             </li>
                                                             <li class="param">
-                                                                    <code class="param-name">token</code>
-                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                                                    <code class="param-name">onSuccess</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
                                             
                                             
                                                                 <div class="param-description">
-                                                                    <p>El token de sesión del usuario</p>
+                                                                    <p>Función a ejecutar cuando el proceso en base de datos se completa exitosamente</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">onError</code>
+                                                                    <span class="type">Funtion</span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Función a ejecutar en caso de error</p>
                                             
                                                                 </div>
                                             
@@ -734,22 +404,326 @@
                                                         <h4>Returns:</h4>
                                             
                                                         <div class="returns-description">
-                                                                <p>diedSession Indica si la sesión murió, porque el que abandonó fue el usuario maestro.</p>
+                                                        </div>
+                                                    </div>
+                                            
+                                            </div>
+                                            <div id="method_getDB" class="method item">
+                                                <h3 class="name"><code>getDB</code></h3>
+                                            
+                                                    <span class="paren">()</span>
+                                            
+                                                    <span class="returns-inline">
+                                                        <span class="type">SQLite3</span>
+                                                    </span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Definido en
+                                                    <a href="../files/server_libs_SQLite.js.html#l150"><code>server\libs\SQLite.js:150</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Retorna la instancia de SQLite3 utilizada</p>
+                                            
+                                                </div>
+                                            
+                                            
+                                                    <div class="returns">
+                                                        <h4>Returns:</h4>
+                                            
+                                                        <div class="returns-description">
+                                                                    <span class="type">SQLite3</span>:
+                                                                <p>db Instancia de SQLite3 utilizada</p>
                                             
                                                         </div>
                                                     </div>
                                             
                                             </div>
-                                            <div id="method_setSessionModel" class="method item">
-                                                <h3 class="name"><code>setSessionModel</code></h3>
+                                            <div id="method_getQueryFilters" class="method item private">
+                                                <h3 class="name"><code>getQueryFilters</code></h3>
                                             
                                                     <div class="args">
                                                         <span class="paren">(</span><ul class="args-list inline commas">
                                                             <li class="arg">
-                                                                    <code>sessionName</code>
+                                                                    <code>filters</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                                    <span class="returns-inline">
+                                                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                                    </span>
+                                            
+                                            
+                                                    <span class="flag private">private</span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Definido en
+                                                    <a href="../files/server_libs_SQLite.js.html#l109"><code>server\libs\SQLite.js:109</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Retorna los valores necesarios para armar una consulta parametrizada con
+                                            <i>where</i>.</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parameters:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">filters</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                     
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                                    <div class="returns">
+                                                        <h4>Returns:</h4>
+                                            
+                                                        <div class="returns-description">
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
+                                                                <p>Objetos compuesto por <b>"where"</b> y <b>"values"</b>
+                                            donde <b>"where"</b> contiene la información del <i>string</i> que se
+                                            debe colocar en el lugar de los valores de filtro de la consulta y
+                                            <b>"values"</b> contiene los valores a ser utilizados para la consulta
+                                            parametrizada.</p>
+                                            
+                                                        </div>
+                                                    </div>
+                                            
+                                            </div>
+                                            <div id="method_getQueryValues" class="method item private">
+                                                <h3 class="name"><code>getQueryValues</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>values</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                                    <span class="returns-inline">
+                                                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                                    </span>
+                                            
+                                            
+                                                    <span class="flag private">private</span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Definido en
+                                                    <a href="../files/server_libs_SQLite.js.html#l132"><code>server\libs\SQLite.js:132</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Retorna los valores necesarios para armar una consulta parametrizada con
+                                            <i>values</i> (ejemplo: ?, ?, ?).</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parameters:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">values</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                     
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                                    <div class="returns">
+                                                        <h4>Returns:</h4>
+                                            
+                                                        <div class="returns-description">
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
+                                                                <p>strValues El <i>string</i> que se debe colocar en el
+                                            lugar de los valores de la consulta</p>
+                                            
+                                                        </div>
+                                                    </div>
+                                            
+                                            </div>
+                                            <div id="method_insert" class="method item">
+                                                <h3 class="name"><code>insert</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>table</code>
                                                             </li>
                                                             <li class="arg">
-                                                                    <code>modelName</code>
+                                                                    <code>fields</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>values</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>onSuccess</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>onError</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                                    <span class="returns-inline">
+                                                        <span class="type"></span>
+                                                    </span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Definido en
+                                                    <a href="../files/server_libs_SQLite.js.html#l15"><code>server\libs\SQLite.js:15</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Description</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parameters:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">table</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>La tabla sobre la cuál se ejecutará la acción</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">fields</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Las columnas a insertar</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">values</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Los valores a insertar</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">onSuccess</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Función a ejecutar cuando el proceso en base de datos se completa exitosamente</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">onError</code>
+                                                                    <span class="type">Funtion</span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Función a ejecutar en caso de error</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                                    <div class="returns">
+                                                        <h4>Returns:</h4>
+                                            
+                                                        <div class="returns-description">
+                                                        </div>
+                                                    </div>
+                                            
+                                            </div>
+                                            <div id="method_onCallback" class="method item">
+                                                <h3 class="name"><code>onCallback</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>query</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>onSuccess</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>onError</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>error</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>result</code>
                                                             </li>
                                                         </ul><span class="paren">)</span>
                                                     </div>
@@ -764,7 +738,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/server_bl_SessionController.js.html#l64"><code>server\bl\SessionController.js:64</code></a>
+                                                    <a href="../files/server_libs_SQLite.js.html#l89"><code>server\libs\SQLite.js:89</code></a>
                                                     </p>
                                             
                                             
@@ -772,7 +746,8 @@
                                                 </div>
                                             
                                                 <div class="description">
-                                                    <p>Establece el modelo a ejecutar en una sesión de simulación</p>
+                                                    <p>Ejecuta el <i>callback</i> indicado después de realizar una tarea de base
+                                            de datos, ya sea este de procesos exitoso o de error.</p>
                                             
                                                 </div>
                                             
@@ -781,22 +756,153 @@
                                             
                                                         <ul class="params-list">
                                                             <li class="param">
-                                                                    <code class="param-name">sessionName</code>
+                                                                    <code class="param-name">query</code>
                                                                     <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                                             
                                             
                                                                 <div class="param-description">
-                                                                     
+                                                                    <p>La consulta previamente ejecutada</p>
+                                            
                                                                 </div>
                                             
                                                             </li>
                                                             <li class="param">
-                                                                    <code class="param-name">modelName</code>
+                                                                    <code class="param-name">onSuccess</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Función a ejecutar cuando el proceso en base de datos se completa exitosamente</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">onError</code>
+                                                                    <span class="type">Funtion</span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Función a ejecutar en caso de error</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">error</code>
+                                                                    <span class="type">Mixed</span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>El error o mensaje de error</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">result</code>
+                                                                    <span class="type">Mixed</span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>El resultado</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                            
+                                            </div>
+                                            <div id="method_select" class="method item">
+                                                <h3 class="name"><code>select</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>table</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code class="optional">[String = &#x27;*&#x27;]</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>onSuccess</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>onError</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Definido en
+                                                    <a href="../files/server_libs_SQLite.js.html#l41"><code>server\libs\SQLite.js:41</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Selecciona todos los registros de una tabla.</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parameters:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">table</code>
                                                                     <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                                             
                                             
                                                                 <div class="param-description">
-                                                                     
+                                                                    <p>La tabla sobre la cuál se ejecutará la acción</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name optional">[String = &#x27;*&#x27;]</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>fields Las columnas a seleccionar</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">onSuccess</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Función a ejecutar cuando el proceso en base de datos se completa exitosamente</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">onError</code>
+                                                                    <span class="type">Funtion</span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Función a ejecutar en caso de error</p>
+                                            
                                                                 </div>
                                             
                                                             </li>

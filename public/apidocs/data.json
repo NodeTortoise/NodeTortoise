@@ -85,7 +85,7 @@
             "name": "server\\libs\\SQLite.js",
             "modules": {},
             "classes": {
-                "": 1
+                "SQLite": 1
             },
             "fors": {},
             "namespaces": {}
@@ -236,10 +236,18 @@
             "line": 3,
             "description": "Inicializa y configura los web sockets que se utilizan para el envío de la \ninformación en el ambiente de simulación de los modelos."
         },
-        "": {
+        "SQLite": {
+            "name": "SQLite",
+            "shortname": "SQLite",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
             "file": "server\\libs\\SQLite.js",
             "line": 3,
             "description": "Ejecuta acciones sobre una base de SQLite",
+            "is_constructor": 1,
             "params": [
                 {
                     "name": "file",
@@ -1752,7 +1760,7 @@
         },
         {
             "file": "server\\libs\\SQLite.js",
-            "line": 14,
+            "line": 15,
             "description": "Description",
             "itemtype": "method",
             "name": "insert",
@@ -1786,11 +1794,11 @@
             "return": {
                 "description": ""
             },
-            "class": ""
+            "class": "SQLite"
         },
         {
             "file": "server\\libs\\SQLite.js",
-            "line": 40,
+            "line": 41,
             "description": "Selecciona todos los registros de una tabla.",
             "itemtype": "method",
             "name": "select",
@@ -1817,11 +1825,11 @@
                     "type": "Funtion"
                 }
             ],
-            "class": ""
+            "class": "SQLite"
         },
         {
             "file": "server\\libs\\SQLite.js",
-            "line": 62,
+            "line": 63,
             "description": "Elimina uno o más registros de una tabla.",
             "itemtype": "method",
             "name": "delete",
@@ -1850,11 +1858,11 @@
             "return": {
                 "description": ""
             },
-            "class": ""
+            "class": "SQLite"
         },
         {
             "file": "server\\libs\\SQLite.js",
-            "line": 88,
+            "line": 89,
             "description": "Ejecuta el <i>callback</i> indicado después de realizar una tarea de base \nde datos, ya sea este de procesos exitoso o de error.",
             "itemtype": "method",
             "name": "onCallback",
@@ -1885,11 +1893,11 @@
                     "type": "Mixed"
                 }
             ],
-            "class": ""
+            "class": "SQLite"
         },
         {
             "file": "server\\libs\\SQLite.js",
-            "line": 108,
+            "line": 109,
             "description": "Retorna los valores necesarios para armar una consulta parametrizada con \n<i>where</i>.",
             "itemtype": "method",
             "name": "getQueryFilters",
@@ -1906,11 +1914,11 @@
                 "description": "Objetos compuesto por <b>\"where\"</b> y <b>\"values\"</b> \ndonde <b>\"where\"</b> contiene la información del <i>string</i> que se \ndebe colocar en el lugar de los valores de filtro de la consulta y \n<b>\"values\"</b> contiene los valores a ser utilizados para la consulta\nparametrizada.",
                 "type": "Object"
             },
-            "class": ""
+            "class": "SQLite"
         },
         {
             "file": "server\\libs\\SQLite.js",
-            "line": 131,
+            "line": 132,
             "description": "Retorna los valores necesarios para armar una consulta parametrizada con \n<i>values</i> (ejemplo: ?, ?, ?).",
             "itemtype": "method",
             "name": "getQueryValues",
@@ -1927,11 +1935,11 @@
                 "description": "strValues El <i>string</i> que se debe colocar en el \nlugar de los valores de la consulta",
                 "type": "String"
             },
-            "class": ""
+            "class": "SQLite"
         },
         {
             "file": "server\\libs\\SQLite.js",
-            "line": 149,
+            "line": 150,
             "description": "Retorna la instancia de SQLite3 utilizada",
             "itemtype": "method",
             "name": "getDB",
@@ -1939,11 +1947,11 @@
                 "description": "db Instancia de SQLite3 utilizada",
                 "type": "SQLite3"
             },
-            "class": ""
+            "class": "SQLite"
         },
         {
             "file": "server\\libs\\SQLite.js",
-            "line": 158,
+            "line": 159,
             "description": "Imprime en consola un mensaje de error, si el atributo debug del objeto \nes <i>true</i>.",
             "itemtype": "method",
             "name": "debug",
@@ -1954,17 +1962,17 @@
                     "type": "String"
                 }
             ],
-            "class": ""
+            "class": "SQLite"
         },
         {
             "file": "server\\libs\\SQLite.js",
-            "line": 170,
+            "line": 171,
             "description": "Constructor de la clase",
             "itemtype": "method",
             "name": "__construct",
             "access": "private",
             "tagname": "",
-            "class": ""
+            "class": "SQLite"
         }
     ],
     "warnings": []

@@ -8,11 +8,11 @@ YUI.add("yuidoc-meta", function(Y) {
         "Entities",
         "Entities.model",
         "Model",
+        "SQLite",
         "Session",
         "SessionController",
         "Sockets",
-        "Sockets.Actions",
-        null
+        "Sockets.Actions"
     ],
     "modules": [],
     "allModules": [],

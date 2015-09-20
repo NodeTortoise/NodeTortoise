@@ -10,6 +10,7 @@ var MAIN_BROWSER = 'FIREFOX';
 /**
  * Provee la lógica de interacción de las simulaciones con el servidor.
  * @class Simulation
+ * @constructor
  * @module Public
  */
 Simulation = function () {
@@ -256,11 +257,11 @@ Simulation = function () {
     };
 
     /**
-     * Description
+     * Envía un mensaje de ejecutar acción al servidor por medio de web sockets, 
+     * para que sea enviada a los demás clientes en la sesión.
      * @method sendAction
-     * @param {} action
-     * @param {} params
-     * @return
+     * @param {String} action La acción a ejecutar
+     * @param {Object} params Los parámetros de la acción
      */
     this.sendAction = function (action, params) {
         action += '__fromClient';
@@ -270,9 +271,8 @@ Simulation = function () {
     };
 
     /**
-     * Description
+     * Ejecuta la acción de inicialización de la sesión se simulación
      * @method start
-     * @return
      */
     this.start = function () {
         if (self.isMaster) {
@@ -285,9 +285,8 @@ Simulation = function () {
     };
 
     /**
-     * Description
+     * Ejecuta la acción de finalización de la sesión se simulación
      * @method end
-     * @return
      */
     this.end = function () {
         if (ENVIRONMENT === 'PRODUCTION') {
@@ -299,9 +298,8 @@ Simulation = function () {
 
     this.overwritedCommands = {
         /**
-         * Description
-         * @param {} params
-         * @return
+         * Recibe del servidor la respuesta al conectarse a los web sockets
+         * @param {Object} params Los parámetros recibidos
          */
         'connect_Response': function (params) {
             self.token = params.token;
@@ -313,17 +311,15 @@ Simulation = function () {
             self.isSocketReady = true;
         },
         /**
-         * Description
-         * @param {} params
-         * @return
+         * Recibe del servidor la acción de actualizar usuarios
+         * @param {Object} params Los parámetros de la acción
          */
         'updateUsers': function (params) {
             Simulation.formatUI.users(params.users);
         },
         /**
-         * Description
-         * @param {} params
-         * @return
+         * Recibe del servidor la acción de ejecutar comando
+         * @param {Object} params Los parámetros de la acción
          */
         'executeCommand': function (params) {
             var paramsArr = $.map(params.params, function (value, index) {
@@ -332,9 +328,9 @@ Simulation = function () {
             self.commands[params.command].apply(this, paramsArr);
         },
         /**
-         * Description
-         * @param {} params
-         * @return
+         * Recibe del servidor la acción de definir valor de variable global de 
+         * Tortoise
+         * @param {Object} params Los parámetros de la acción
          */
         'setGlobal': function (params) {
             var paramsArr = $.map(params.params, function (value, index) {
@@ -343,42 +339,37 @@ Simulation = function () {
             self.commands['setGlobal'].apply(this, paramsArr);
         },
         /**
-         * Description
-         * @param {} params
-         * @return
+         * Recibe del servidor la acción de actualizar velocidad de la simulación
+         * @param {Object} params Los parámetros de la acción
          */
         'updateSpeed': function (params) {
             self.updateSpeed_(params.value);
         },
         /**
-         * Description
-         * @param {} params
-         * @return
+         * Recibe del servidor la acción de aplicar actualización de la simulación
+         * @param {Object} params Los parámetros de la acción
          */
         'applyUpdate': function (params) {
             /* TODO-FUTUREWORK: optimize to receive less data in modelUpdate */
             self.applyUpdate_(params.model, params.outputs);
         },
         /**
-         * Description
-         * @param {} enabledControls
-         * @return
+         * Recibe del servidor la acción de iniciar sesión de simulación
+         * @param {Boolean} enabledControls Indica si los controles están habilitados o no
          */
         'start': function (enabledControls) {
             self.enabledControls = enabledControls;
             self.start();
         },
         /**
-         * Description
-         * @return
+         * Recibe del servidor la acción de finalizar sesión de simulación
          */
         'end': function () {
             self.end();
         },
         /**
-         * Description
-         * @param {} params
-         * @return
+         * Recibe del servidor la acción de obtener mensaje
+         * @param {Object} params Los parámetros de la acción
          */
         'getMessage': function (params) {
             console.log(params);
@@ -386,9 +377,9 @@ Simulation = function () {
     };
 
     /**
-     * Description
+     * Inicializa las acciones que se pueden recibir del servidor por medio de 
+     * web sockets
      * @method initSockets
-     * @return
      */
     var initSockets = function () {
         self.socket.on('connect', function () {
@@ -407,9 +398,9 @@ Simulation = function () {
 };
 
 /**
- * Description
+ * Crea un objeto Simulation 
  * @method create
- * @return modelObj
+ * @return modelObj El objeto Simulation
  */
 Simulation.create = function () {
     Ractive.DEBUG = false;
@@ -419,10 +410,10 @@ Simulation.create = function () {
 };
 
 /**
- * Description
+ * Sobre-escribe algunos de los métodos de Tortoise, necesarios antes de que 
+ * se inicialice Tortoise
  * @method setupObject
- * @param {} modelObj
- * @return
+ * @param {Object} modelObj Objeto Simulation
  */
 Simulation.setupObject = function (modelObj) {
     AgentStreamController.prototype._applyUpdate = AgentStreamController.prototype['applyUpdate'];
@@ -438,9 +429,10 @@ Simulation.setupObject = function (modelObj) {
 };
 
 /**
- * Description
+ * Basado en el patrón <i>Singleton</i>, retorna una instancia del objeto Simulation
  * @method getInstance
- * @return MemberExpression
+ * @static
+ * @return {Simulation} La instancia de Simulation
  */
 Simulation.getInstance = function () {
     if (typeof Simulation.instance !== 'object') {
@@ -450,9 +442,10 @@ Simulation.getInstance = function () {
 };
 
 /**
- * Description
+ * Formatea la interfaz de gráfica en la página de simulación, para que cuente
+ * con el menú y las demás opciones de la interfaz gráfica del resto de la 
+ * aplicación.
  * @method formatUI
- * @return
  */
 Simulation.formatUI = function () {
     var uiResponse = $.ajax({
@@ -475,10 +468,9 @@ Simulation.formatUI = function () {
 };
 
 /**
- * Description
+ * Formatea la sección de Usuarios de la sesión en interfaz de gráfica.
  * @method users
- * @param {} users
- * @return
+ * @param {Array} users La lista de usuario
  */
 Simulation.formatUI.users = function (users) {
     var usersContainer = $('#menu-users-model-container');

@@ -131,7 +131,7 @@ SessionController = function () {
 };
 
 /**
- * Basado en el patrón <i>Singleton</i>, returna una instancia del objeto SessionController
+ * Basado en el patrón <i>Singleton</i>, retorna una instancia del objeto SessionController
  * @method getInstance
  * @static
  * @return {SessionController}

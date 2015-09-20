@@ -4,6 +4,8 @@
  * Controla las acciones que se pueden ejecutar sobre un modelo.
  * @class Model
  * @constructor
+ * @module Server
+ * @submodule Server-bl
  */
 Model = function () {
 

@@ -37,6 +37,8 @@ var responseOnErrorJson = function (req, res, next, error, status) {
  * Controla la capa negocio de la aplicación, haciendo la conexión entre la capa 
  * de datos y las vistas y aplicando la logica de negocio necesaria.
  * @class Controller
+ * @module Server
+ * @submodule Server-bl
  */
 Controller = function () {
 };
@@ -59,6 +61,8 @@ Controller.message = function (req, res, title, message) {
 /**
  * Controla la capa de negocio que interactua con las acciones sobre los modelos.
  * @class Controller.model
+ * @module Server
+ * @submodule Server-bl
  */
 Controller.model = function () {
 };
@@ -188,6 +192,8 @@ Controller.model.delete = function (req, res, next) {
 /**
  * Controla la capa de negocio que interactua con las sesiones de simulaciones.
  * @class Controller.session
+ * @module Server
+ * @submodule Server-bl
  */
 Controller.session = function () {
 };
@@ -230,7 +236,6 @@ Controller.session.list = function (req, res, next) {
          * @return {String} La URL al modelo
          */
         var getModelURL = function (modelFilename, modelName, token) {
-            console.log(escape(modelName));
             return (MODEL_URL_TEMPLATE.replace('@session@', token).replace('@model@', modelFilename).replace('@name@', escape(modelName)));
         };
         var page = {'title': 'Unirse o iniciar sesión', 'content_title': 'Unirse o iniciar sesión'};

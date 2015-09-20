@@ -1,6 +1,6 @@
 /**
  * Controla las acciones que se deben ejecutar en la página de Lista de Modelos
- * @class Model_List
+ * @class Session_List
  * @constructor
  * @module Public
  */

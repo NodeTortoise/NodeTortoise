@@ -1,6 +1,7 @@
 /**
  * Funciones utilitarias.
  * @class Helper
+ * @module Commons
  */
 Helper = function () {
 };

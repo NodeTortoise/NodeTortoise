@@ -7,6 +7,8 @@ var SessionController = App.require('/bl/SessionController');
  * Maneja las acciones a ejecutar entre las simulacione, cuya comunicación es 
  * vía web sockets.
  * @class Sockets.Actions
+ * @module Server
+ * @submodule Server-da
  */
 Sockets.Actions = function () {
 };

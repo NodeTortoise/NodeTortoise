@@ -15,7 +15,7 @@
         <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">NodeTortoise</h1>
 	<div class="nav"></div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Buscar clases/módulos..." data-obj='["classes/App", "classes/Controller", "classes/Controller.model", "classes/Controller.session", "classes/Entities", "classes/Entities.model", "classes/Helper", "classes/Model", "classes/Model_List", "classes/Session", "classes/SessionController", "classes/Simulation", "classes/Sockets", "classes/Sockets.Actions", "classes/SQLite", "modules/Public", "modules/Server"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Buscar clases/módulos..." data-obj='["classes/App", "classes/Controller", "classes/Controller.model", "classes/Controller.session", "classes/Entities", "classes/Entities.model", "classes/Helper", "classes/Model", "classes/Model_List", "classes/Session", "classes/Session_List", "classes/SessionController", "classes/Simulation", "classes/Sockets", "classes/Sockets.Actions", "classes/SQLite", "modules/Commons", "modules/Public", "modules/Server", "modules/Server-bl", "modules/Server-da", "modules/Server-libs"]'>
         </form>
     </div>
 </div>
@@ -46,6 +46,7 @@
 	                            <li><a href="../classes/Model.html">Model</a></li>
 	                            <li><a href="../classes/Model_List.html">Model_List</a></li>
 	                            <li><a href="../classes/Session.html">Session</a></li>
+	                            <li><a href="../classes/Session_List.html">Session_List</a></li>
 	                            <li><a href="../classes/SessionController.html">SessionController</a></li>
 	                            <li><a href="../classes/Simulation.html">Simulation</a></li>
 	                            <li><a href="../classes/Sockets.html">Sockets</a></li>
@@ -56,8 +57,12 @@
 	    
 	                <div class="tab-pane" id="modules">
 	                    <ul id="api-modules" class="nav nav-list">
+	                            <li><a href="../modules/Commons.html">Commons</a></li>
 	                            <li><a href="../modules/Public.html">Public</a></li>
 	                            <li><a href="../modules/Server.html">Server</a></li>
+	                            <li><a href="../modules/Server-bl.html">Server-bl</a></li>
+	                            <li><a href="../modules/Server-da.html">Server-da</a></li>
+	                            <li><a href="../modules/Server-libs.html">Server-libs</a></li>
 	                    </ul>
 	                </div>
 	            </div>
@@ -90,7 +95,7 @@
                 <div id="docs-main">
                     <div class="content">
                         <div class="page-header">
-                            <h1>Simulation <small>Class</small></h1>
+                            <h1>Simulation <small>Clase</small></h1>
                         </div>
                         
                         <div class="well well-small">
@@ -100,7 +105,7 @@
                                     Definido en: <a href="../files/public_js_Simulation.js.html#l10"><code>public\js\Simulation.js:10</code></a>
                                 </div>
                         
-                                    Module: <a href="../modules/Public.html">Public</a>
+                                    Módulo: <a href="../modules/Public.html">Public</a>
                         
                         </div>
                         
@@ -218,6 +223,42 @@
                         
                                                     </li>
                                                     <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_overwritedCommands.applyUpdate" data-tablink="overwritedCommands.applyUpdate">overwritedCommands.applyUpdate</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_overwritedCommands.connect_Response" data-tablink="overwritedCommands.connect_Response">overwritedCommands.connect_Response</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_overwritedCommands.end" data-tablink="overwritedCommands.end">overwritedCommands.end</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_overwritedCommands.executeCommand" data-tablink="overwritedCommands.executeCommand">overwritedCommands.executeCommand</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_overwritedCommands.getMessage" data-tablink="overwritedCommands.getMessage">overwritedCommands.getMessage</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_overwritedCommands.setGlobal" data-tablink="overwritedCommands.setGlobal">overwritedCommands.setGlobal</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_overwritedCommands.start" data-tablink="overwritedCommands.start">overwritedCommands.start</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_overwritedCommands.updateSpeed" data-tablink="overwritedCommands.updateSpeed">overwritedCommands.updateSpeed</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_overwritedCommands.updateUsers" data-tablink="overwritedCommands.updateUsers">overwritedCommands.updateUsers</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
                                                         <a href="#" data-tabid="#methods" data-anchor="#method_parseCommandWidget" data-tablink="parseCommandWidget">parseCommandWidget</a>
                         
                                                     </li>
@@ -299,7 +340,7 @@
                                                 </div>
                                             
                                                     <div class="params">
-                                                        <h4>Parameters:</h4>
+                                                        <h4>Parámetros:</h4>
                                             
                                                         <ul class="params-list">
                                                             <li class="param">
@@ -379,7 +420,7 @@
                                                 </div>
                                             
                                                     <div class="params">
-                                                        <h4>Parameters:</h4>
+                                                        <h4>Parámetros:</h4>
                                             
                                                         <ul class="params-list">
                                                             <li class="param">
@@ -466,7 +507,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/public_js_Simulation.js.html#l400"><code>public\js\Simulation.js:400</code></a>
+                                                    <a href="../files/public_js_Simulation.js.html#l409"><code>public\js\Simulation.js:409</code></a>
                                                     </p>
                                             
                                             
@@ -553,7 +594,7 @@
                                                 </div>
                                             
                                                     <div class="params">
-                                                        <h4>Parameters:</h4>
+                                                        <h4>Parámetros:</h4>
                                             
                                                         <ul class="params-list">
                                                             <li class="param">
@@ -648,7 +689,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/public_js_Simulation.js.html#l444"><code>public\js\Simulation.js:444</code></a>
+                                                    <a href="../files/public_js_Simulation.js.html#l453"><code>public\js\Simulation.js:453</code></a>
                                                     </p>
                                             
                                             
@@ -684,7 +725,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/public_js_Simulation.js.html#l431"><code>public\js\Simulation.js:431</code></a>
+                                                    <a href="../files/public_js_Simulation.js.html#l440"><code>public\js\Simulation.js:440</code></a>
                                                     </p>
                                             
                                             
@@ -783,7 +824,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/public_js_Simulation.js.html#l379"><code>public\js\Simulation.js:379</code></a>
+                                                    <a href="../files/public_js_Simulation.js.html#l388"><code>public\js\Simulation.js:388</code></a>
                                                     </p>
                                             
                                             
@@ -871,7 +912,7 @@
                                                 </div>
                                             
                                                     <div class="params">
-                                                        <h4>Parameters:</h4>
+                                                        <h4>Parámetros:</h4>
                                             
                                                         <ul class="params-list">
                                                             <li class="param">
@@ -897,6 +938,461 @@
                                             
                                                         </div>
                                                     </div>
+                                            
+                                            </div>
+                                            <div id="method_overwritedCommands.applyUpdate" class="method item">
+                                                <h3 class="name"><code>overwritedCommands.applyUpdate</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>params</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Definido en
+                                                    <a href="../files/public_js_Simulation.js.html#l353"><code>public\js\Simulation.js:353</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Recibe del servidor la acción de aplicar actualización de la simulación</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parámetros:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">params</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Los parámetros de la acción</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                            
+                                            </div>
+                                            <div id="method_overwritedCommands.connect_Response" class="method item">
+                                                <h3 class="name"><code>overwritedCommands.connect_Response</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>params</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Definido en
+                                                    <a href="../files/public_js_Simulation.js.html#l300"><code>public\js\Simulation.js:300</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Recibe del servidor la respuesta al conectarse a los web sockets</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parámetros:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">params</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Los parámetros recibidos</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                            
+                                            </div>
+                                            <div id="method_overwritedCommands.end" class="method item">
+                                                <h3 class="name"><code>overwritedCommands.end</code></h3>
+                                            
+                                                    <span class="paren">()</span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Definido en
+                                                    <a href="../files/public_js_Simulation.js.html#l371"><code>public\js\Simulation.js:371</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Recibe del servidor la acción de finalizar sesión de simulación</p>
+                                            
+                                                </div>
+                                            
+                                            
+                                            
+                                            </div>
+                                            <div id="method_overwritedCommands.executeCommand" class="method item">
+                                                <h3 class="name"><code>overwritedCommands.executeCommand</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>params</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Definido en
+                                                    <a href="../files/public_js_Simulation.js.html#l322"><code>public\js\Simulation.js:322</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Recibe del servidor la acción de ejecutar comando</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parámetros:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">params</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Los parámetros de la acción</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                            
+                                            </div>
+                                            <div id="method_overwritedCommands.getMessage" class="method item">
+                                                <h3 class="name"><code>overwritedCommands.getMessage</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>params</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Definido en
+                                                    <a href="../files/public_js_Simulation.js.html#l378"><code>public\js\Simulation.js:378</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Recibe del servidor la acción de obtener mensaje</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parámetros:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">params</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Los parámetros de la acción</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                            
+                                            </div>
+                                            <div id="method_overwritedCommands.setGlobal" class="method item">
+                                                <h3 class="name"><code>overwritedCommands.setGlobal</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>params</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Definido en
+                                                    <a href="../files/public_js_Simulation.js.html#l333"><code>public\js\Simulation.js:333</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Recibe del servidor la acción de definir valor de variable global de
+                                            Tortoise</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parámetros:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">params</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Los parámetros de la acción</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                            
+                                            </div>
+                                            <div id="method_overwritedCommands.start" class="method item">
+                                                <h3 class="name"><code>overwritedCommands.start</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>enabledControls</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Definido en
+                                                    <a href="../files/public_js_Simulation.js.html#l362"><code>public\js\Simulation.js:362</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Recibe del servidor la acción de iniciar sesión de simulación</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parámetros:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">enabledControls</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Indica si los controles están habilitados o no</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                            
+                                            </div>
+                                            <div id="method_overwritedCommands.updateSpeed" class="method item">
+                                                <h3 class="name"><code>overwritedCommands.updateSpeed</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>params</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Definido en
+                                                    <a href="../files/public_js_Simulation.js.html#l345"><code>public\js\Simulation.js:345</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Recibe del servidor la acción de actualizar velocidad de la simulación</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parámetros:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">params</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Los parámetros de la acción</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                            
+                                            </div>
+                                            <div id="method_overwritedCommands.updateUsers" class="method item">
+                                                <h3 class="name"><code>overwritedCommands.updateUsers</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>params</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Definido en
+                                                    <a href="../files/public_js_Simulation.js.html#l314"><code>public\js\Simulation.js:314</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Recibe del servidor la acción de actualizar usuarios</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parámetros:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">params</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Los parámetros de la acción</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
                                             
                                             </div>
                                             <div id="method_parseCommandWidget" class="method item">
@@ -937,7 +1433,7 @@
                                                 </div>
                                             
                                                     <div class="params">
-                                                        <h4>Parameters:</h4>
+                                                        <h4>Parámetros:</h4>
                                             
                                                         <ul class="params-list">
                                                             <li class="param">
@@ -1003,7 +1499,7 @@
                                                 </div>
                                             
                                                     <div class="params">
-                                                        <h4>Parameters:</h4>
+                                                        <h4>Parámetros:</h4>
                                             
                                                         <ul class="params-list">
                                                             <li class="param">
@@ -1054,7 +1550,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/public_js_Simulation.js.html#l412"><code>public\js\Simulation.js:412</code></a>
+                                                    <a href="../files/public_js_Simulation.js.html#l421"><code>public\js\Simulation.js:421</code></a>
                                                     </p>
                                             
                                             
@@ -1068,7 +1564,7 @@
                                                 </div>
                                             
                                                     <div class="params">
-                                                        <h4>Parameters:</h4>
+                                                        <h4>Parámetros:</h4>
                                             
                                                         <ul class="params-list">
                                                             <li class="param">
@@ -1151,7 +1647,7 @@
                                                 </div>
                                             
                                                     <div class="params">
-                                                        <h4>Parameters:</h4>
+                                                        <h4>Parámetros:</h4>
                                             
                                                         <ul class="params-list">
                                                             <li class="param">
@@ -1191,7 +1687,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/public_js_Simulation.js.html#l470"><code>public\js\Simulation.js:470</code></a>
+                                                    <a href="../files/public_js_Simulation.js.html#l479"><code>public\js\Simulation.js:479</code></a>
                                                     </p>
                                             
                                             
@@ -1204,7 +1700,7 @@
                                                 </div>
                                             
                                                     <div class="params">
-                                                        <h4>Parameters:</h4>
+                                                        <h4>Parámetros:</h4>
                                             
                                                         <ul class="params-list">
                                                             <li class="param">

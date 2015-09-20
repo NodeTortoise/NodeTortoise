@@ -15,7 +15,7 @@
         <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">NodeTortoise</h1>
 	<div class="nav"></div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Buscar clases/módulos..." data-obj='["classes/App", "classes/Controller", "classes/Controller.model", "classes/Controller.session", "classes/Entities", "classes/Entities.model", "classes/Helper", "classes/Model", "classes/Model_List", "classes/Session", "classes/SessionController", "classes/Simulation", "classes/Sockets", "classes/Sockets.Actions", "classes/SQLite", "modules/Public", "modules/Server"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Buscar clases/módulos..." data-obj='["classes/App", "classes/Controller", "classes/Controller.model", "classes/Controller.session", "classes/Entities", "classes/Entities.model", "classes/Helper", "classes/Model", "classes/Model_List", "classes/Session", "classes/Session_List", "classes/SessionController", "classes/Simulation", "classes/Sockets", "classes/Sockets.Actions", "classes/SQLite", "modules/Commons", "modules/Public", "modules/Server", "modules/Server-bl", "modules/Server-da", "modules/Server-libs"]'>
         </form>
     </div>
 </div>
@@ -46,6 +46,7 @@
 	                            <li><a href="../classes/Model.html">Model</a></li>
 	                            <li><a href="../classes/Model_List.html">Model_List</a></li>
 	                            <li><a href="../classes/Session.html">Session</a></li>
+	                            <li><a href="../classes/Session_List.html">Session_List</a></li>
 	                            <li><a href="../classes/SessionController.html">SessionController</a></li>
 	                            <li><a href="../classes/Simulation.html">Simulation</a></li>
 	                            <li><a href="../classes/Sockets.html">Sockets</a></li>
@@ -56,8 +57,12 @@
 	    
 	                <div class="tab-pane" id="modules">
 	                    <ul id="api-modules" class="nav nav-list">
+	                            <li><a href="../modules/Commons.html">Commons</a></li>
 	                            <li><a href="../modules/Public.html">Public</a></li>
 	                            <li><a href="../modules/Server.html">Server</a></li>
+	                            <li><a href="../modules/Server-bl.html">Server-bl</a></li>
+	                            <li><a href="../modules/Server-da.html">Server-da</a></li>
+	                            <li><a href="../modules/Server-libs.html">Server-libs</a></li>
 	                    </ul>
 	                </div>
 	            </div>
@@ -90,14 +95,14 @@
                 <div id="docs-main">
                     <div class="content">
                         <div class="page-header">
-                            <h1>Server <small>Module</small></h1>
+                            <h1>Server <small>Módulo</small></h1>
                         </div>
                         
                         <div class="clearfix well well-small">
                         
                         
                                 <div class="foundat">
-                                    Definido en: <a href="../files/server_Server.js.html#l1"><code>server\Server.js:1</code></a>
+                                    Definido en: <a href="../files/server_libs_SQLite.js.html#l3"><code>server\libs\SQLite.js:3</code></a>
                                 </div>
                         
                         </div>
@@ -112,9 +117,107 @@
                         
                         <div class="yui3-g">
                             <div class="yui3-u-1-2">
+                                    <p>Este módulo provee las siguientes clases:</p>
+                        
+                                    <ul class="module-classes">
+                                        <li class="module-class">
+                                            <a href="../classes/App.html">
+                                                App
+                                            </a>
+                                        </li>
+                                        <li class="module-class">
+                                            <a href="../classes/Controller.html">
+                                                Controller
+                                            </a>
+                                        </li>
+                                        <li class="module-class">
+                                            <a href="../classes/Controller.model.html">
+                                                Controller.model
+                                            </a>
+                                        </li>
+                                        <li class="module-class">
+                                            <a href="../classes/Controller.session.html">
+                                                Controller.session
+                                            </a>
+                                        </li>
+                                        <li class="module-class">
+                                            <a href="../classes/Entities.html">
+                                                Entities
+                                            </a>
+                                        </li>
+                                        <li class="module-class">
+                                            <a href="../classes/Entities.model.html">
+                                                Entities.model
+                                            </a>
+                                        </li>
+                                        <li class="module-class">
+                                            <a href="../classes/Model.html">
+                                                Model
+                                            </a>
+                                        </li>
+                                        <li class="module-class">
+                                            <a href="../classes/Session.html">
+                                                Session
+                                            </a>
+                                        </li>
+                                        <li class="module-class">
+                                            <a href="../classes/SessionController.html">
+                                                SessionController
+                                            </a>
+                                        </li>
+                                        <li class="module-class">
+                                            <a href="../classes/Sockets.html">
+                                                Sockets
+                                            </a>
+                                        </li>
+                                        <li class="module-class">
+                                            <a href="../classes/Sockets.Actions.html">
+                                                Sockets.Actions
+                                            </a>
+                                        </li>
+                                        <li class="module-class">
+                                            <a href="../classes/SQLite.html">
+                                                SQLite
+                                            </a>
+                                        </li>
+                                    </ul>
                             </div>
                         
                             <div class="yui3-u-1-2">
+                                    <p>Este módulo es un paquete de los siguientes módulos:</p>
+                        
+                                    <ul class="module-submodules">
+                                        <li class="module-submodule">
+                                            <a href="../modules/Server-bl.html">
+                                                Server-bl
+                                            </a>
+                        
+                                            <div class="module-submodule-description">
+                                                Provee las clases relacionadas con la capa de <b>Lógica de Negocio</b>, 
+                        utilizadas en el <i>back-end</i> de la aplicación.
+                                            </div>
+                                        </li>
+                                        <li class="module-submodule">
+                                            <a href="../modules/Server-da.html">
+                                                Server-da
+                                            </a>
+                        
+                                            <div class="module-submodule-description">
+                                                Provee las clases relacionadas con la capa de <b>Acceso a Datos</b>, 
+                        utilizadas en el <i>back-end</i> de la aplicación.
+                                            </div>
+                                        </li>
+                                        <li class="module-submodule">
+                                            <a href="../modules/Server-libs.html">
+                                                Server-libs
+                                            </a>
+                        
+                                            <div class="module-submodule-description">
+                                                Provee las clases relacionadas librearías utilizadas en el <i>back-end</i> 
+                        de la aplicación.
+                                            </div>
+                                        </li>
+                                    </ul>
                             </div>
                         </div>
                     </div>

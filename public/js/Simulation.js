@@ -299,6 +299,7 @@ Simulation = function () {
     this.overwritedCommands = {
         /**
          * Recibe del servidor la respuesta al conectarse a los web sockets
+         * @method overwritedCommands.connect_Response
          * @param {Object} params Los parámetros recibidos
          */
         'connect_Response': function (params) {
@@ -312,6 +313,7 @@ Simulation = function () {
         },
         /**
          * Recibe del servidor la acción de actualizar usuarios
+         * @method overwritedCommands.updateUsers
          * @param {Object} params Los parámetros de la acción
          */
         'updateUsers': function (params) {
@@ -319,6 +321,7 @@ Simulation = function () {
         },
         /**
          * Recibe del servidor la acción de ejecutar comando
+         * @method overwritedCommands.executeCommand
          * @param {Object} params Los parámetros de la acción
          */
         'executeCommand': function (params) {
@@ -330,6 +333,7 @@ Simulation = function () {
         /**
          * Recibe del servidor la acción de definir valor de variable global de 
          * Tortoise
+         * @method overwritedCommands.setGlobal
          * @param {Object} params Los parámetros de la acción
          */
         'setGlobal': function (params) {
@@ -340,6 +344,7 @@ Simulation = function () {
         },
         /**
          * Recibe del servidor la acción de actualizar velocidad de la simulación
+         * @method overwritedCommands.updateSpeed
          * @param {Object} params Los parámetros de la acción
          */
         'updateSpeed': function (params) {
@@ -347,6 +352,7 @@ Simulation = function () {
         },
         /**
          * Recibe del servidor la acción de aplicar actualización de la simulación
+         * @method overwritedCommands.applyUpdate
          * @param {Object} params Los parámetros de la acción
          */
         'applyUpdate': function (params) {
@@ -355,6 +361,7 @@ Simulation = function () {
         },
         /**
          * Recibe del servidor la acción de iniciar sesión de simulación
+         * @method overwritedCommands.start
          * @param {Boolean} enabledControls Indica si los controles están habilitados o no
          */
         'start': function (enabledControls) {
@@ -363,12 +370,14 @@ Simulation = function () {
         },
         /**
          * Recibe del servidor la acción de finalizar sesión de simulación
+         * @method overwritedCommands.end
          */
         'end': function () {
             self.end();
         },
         /**
          * Recibe del servidor la acción de obtener mensaje
+         * @method overwritedCommands.getMessage
          * @param {Object} params Los parámetros de la acción
          */
         'getMessage': function (params) {

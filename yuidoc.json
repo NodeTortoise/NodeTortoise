@@ -1,13 +1,13 @@
 {
     "name": "NodeTortoise",
-    "description": "Proyecto Universitario para basado en archivos Galapagos independientes, ejecutado sobre una plataforma NodeJS",
+    "description": "Proyecto Universitario basado en archivos Galapagos independientes, ejecutado sobre una plataforma NodeJS",
     "version": "1.0.0",
     "url": "",
     "options": {
         "linkNatives": "true",
         "attributesEmit": "true",
         "selleck": "true",
-        "exclude": "jquery,bootstrap,dataTables,metisMenu,sb-admin-2,public/apidocs,public/css,public/fonts,public/img,public/simulation",
+        "exclude": "jquery,bootstrap,dataTables,metisMenu,sb-admin-2,apidocs,css,fonts,simulation",
         "ignorePaths": ["node_modules", "yuidocs", "bin"],
         "paths": ["*"],
         "outdir": "public/apidocs",

@@ -15,7 +15,7 @@
         <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">NodeTortoise</h1>
 	<div class="nav"></div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Buscar clases/módulos..." data-obj='["classes/App", "classes/Controller", "classes/Controller.model", "classes/Controller.session", "classes/Entities", "classes/Entities.model", "classes/Helper", "classes/Model", "classes/Model_List", "classes/Session", "classes/SessionController", "classes/Simulation", "classes/Sockets", "classes/Sockets.Actions", "classes/SQLite", "modules/Public", "modules/Server"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Buscar clases/módulos..." data-obj='["classes/App", "classes/Controller", "classes/Controller.model", "classes/Controller.session", "classes/Entities", "classes/Entities.model", "classes/Helper", "classes/Model", "classes/Model_List", "classes/Session", "classes/Session_List", "classes/SessionController", "classes/Simulation", "classes/Sockets", "classes/Sockets.Actions", "classes/SQLite", "modules/Commons", "modules/Public", "modules/Server", "modules/Server-bl", "modules/Server-da", "modules/Server-libs"]'>
         </form>
     </div>
 </div>
@@ -46,6 +46,7 @@
 	                            <li><a href="../classes/Model.html">Model</a></li>
 	                            <li><a href="../classes/Model_List.html">Model_List</a></li>
 	                            <li><a href="../classes/Session.html">Session</a></li>
+	                            <li><a href="../classes/Session_List.html">Session_List</a></li>
 	                            <li><a href="../classes/SessionController.html">SessionController</a></li>
 	                            <li><a href="../classes/Simulation.html">Simulation</a></li>
 	                            <li><a href="../classes/Sockets.html">Sockets</a></li>
@@ -56,8 +57,12 @@
 	    
 	                <div class="tab-pane" id="modules">
 	                    <ul id="api-modules" class="nav nav-list">
+	                            <li><a href="../modules/Commons.html">Commons</a></li>
 	                            <li><a href="../modules/Public.html">Public</a></li>
 	                            <li><a href="../modules/Server.html">Server</a></li>
+	                            <li><a href="../modules/Server-bl.html">Server-bl</a></li>
+	                            <li><a href="../modules/Server-da.html">Server-da</a></li>
+	                            <li><a href="../modules/Server-libs.html">Server-libs</a></li>
 	                    </ul>
 	                </div>
 	            </div>
@@ -396,6 +401,7 @@
                             this.overwritedCommands = {
                                 /**
                                  * Recibe del servidor la respuesta al conectarse a los web sockets
+                                 * @method overwritedCommands.connect_Response
                                  * @param {Object} params Los parámetros recibidos
                                  */
                                 &#x27;connect_Response&#x27;: function (params) {
@@ -409,6 +415,7 @@
                                 },
                                 /**
                                  * Recibe del servidor la acción de actualizar usuarios
+                                 * @method overwritedCommands.updateUsers
                                  * @param {Object} params Los parámetros de la acción
                                  */
                                 &#x27;updateUsers&#x27;: function (params) {
@@ -416,6 +423,7 @@
                                 },
                                 /**
                                  * Recibe del servidor la acción de ejecutar comando
+                                 * @method overwritedCommands.executeCommand
                                  * @param {Object} params Los parámetros de la acción
                                  */
                                 &#x27;executeCommand&#x27;: function (params) {
@@ -427,6 +435,7 @@
                                 /**
                                  * Recibe del servidor la acción de definir valor de variable global de 
                                  * Tortoise
+                                 * @method overwritedCommands.setGlobal
                                  * @param {Object} params Los parámetros de la acción
                                  */
                                 &#x27;setGlobal&#x27;: function (params) {
@@ -437,6 +446,7 @@
                                 },
                                 /**
                                  * Recibe del servidor la acción de actualizar velocidad de la simulación
+                                 * @method overwritedCommands.updateSpeed
                                  * @param {Object} params Los parámetros de la acción
                                  */
                                 &#x27;updateSpeed&#x27;: function (params) {
@@ -444,6 +454,7 @@
                                 },
                                 /**
                                  * Recibe del servidor la acción de aplicar actualización de la simulación
+                                 * @method overwritedCommands.applyUpdate
                                  * @param {Object} params Los parámetros de la acción
                                  */
                                 &#x27;applyUpdate&#x27;: function (params) {
@@ -452,6 +463,7 @@
                                 },
                                 /**
                                  * Recibe del servidor la acción de iniciar sesión de simulación
+                                 * @method overwritedCommands.start
                                  * @param {Boolean} enabledControls Indica si los controles están habilitados o no
                                  */
                                 &#x27;start&#x27;: function (enabledControls) {
@@ -460,12 +472,14 @@
                                 },
                                 /**
                                  * Recibe del servidor la acción de finalizar sesión de simulación
+                                 * @method overwritedCommands.end
                                  */
                                 &#x27;end&#x27;: function () {
                                     self.end();
                                 },
                                 /**
                                  * Recibe del servidor la acción de obtener mensaje
+                                 * @method overwritedCommands.getMessage
                                  * @param {Object} params Los parámetros de la acción
                                  */
                                 &#x27;getMessage&#x27;: function (params) {

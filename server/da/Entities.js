@@ -9,6 +9,8 @@ var dateFormat = require('dateformat');
 /**
  * Maneja la relación de las distintas entidades con la base de datos.
  * @class Entities
+ * @module Server
+ * @submodule Server-da
  */
 Entities = function () {
 };

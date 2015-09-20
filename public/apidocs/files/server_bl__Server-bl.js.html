@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>public\js\Public.js - NodeTortoise</title>
+    <title>server\bl\_Server-bl.js - NodeTortoise</title>
     <link rel="stylesheet" href="">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -15,7 +15,7 @@
         <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">NodeTortoise</h1>
 	<div class="nav"></div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Buscar clases/módulos..." data-obj='["classes/App", "classes/Controller", "classes/Controller.model", "classes/Controller.session", "classes/Entities", "classes/Entities.model", "classes/Helper", "classes/Model", "classes/Model_List", "classes/Session", "classes/SessionController", "classes/Simulation", "classes/Sockets", "classes/Sockets.Actions", "classes/SQLite", "modules/Public", "modules/Server"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Buscar clases/módulos..." data-obj='["classes/App", "classes/Controller", "classes/Controller.model", "classes/Controller.session", "classes/Entities", "classes/Entities.model", "classes/Helper", "classes/Model", "classes/Model_List", "classes/Session", "classes/Session_List", "classes/SessionController", "classes/Simulation", "classes/Sockets", "classes/Sockets.Actions", "classes/SQLite", "modules/Commons", "modules/Public", "modules/Server", "modules/Server-bl", "modules/Server-da", "modules/Server-libs"]'>
         </form>
     </div>
 </div>
@@ -46,6 +46,7 @@
 	                            <li><a href="../classes/Model.html">Model</a></li>
 	                            <li><a href="../classes/Model_List.html">Model_List</a></li>
 	                            <li><a href="../classes/Session.html">Session</a></li>
+	                            <li><a href="../classes/Session_List.html">Session_List</a></li>
 	                            <li><a href="../classes/SessionController.html">SessionController</a></li>
 	                            <li><a href="../classes/Simulation.html">Simulation</a></li>
 	                            <li><a href="../classes/Sockets.html">Sockets</a></li>
@@ -56,8 +57,12 @@
 	    
 	                <div class="tab-pane" id="modules">
 	                    <ul id="api-modules" class="nav nav-list">
+	                            <li><a href="../modules/Commons.html">Commons</a></li>
 	                            <li><a href="../modules/Public.html">Public</a></li>
 	                            <li><a href="../modules/Server.html">Server</a></li>
+	                            <li><a href="../modules/Server-bl.html">Server-bl</a></li>
+	                            <li><a href="../modules/Server-da.html">Server-da</a></li>
+	                            <li><a href="../modules/Server-libs.html">Server-libs</a></li>
 	                    </ul>
 	                </div>
 	            </div>
@@ -90,15 +95,17 @@
                 <div id="docs-main">
                     <div class="content">
                         <div class="page-header">
-                            <h1>public\js\Public.js <small>File</small></h1>
+                            <h1>server\bl\_Server-bl.js <small>File</small></h1>
                         </div>
                         
                         <div class="file">
                             <pre class="prettyprint linenums">
                         /**
-                         * Provee las clases utilizadas en el &lt;i&gt;front-end&lt;/i&gt; de la aplicación. Estas 
-                         * clases son procesadas por los navegadores web al cargar alguna págiga.
-                         * @module Public
+                         * Provee las clases relacionadas con la capa de &lt;b&gt;Lógica de Negocio&lt;/b&gt;, 
+                         * utilizadas en el &lt;i&gt;back-end&lt;/i&gt; de la aplicación.
+                         * @module Server
+                         * @submodule Server-bl
+                         * @main Server-bl
                          */
                             </pre>
                         </div>

@@ -4,6 +4,8 @@
  * Controla las sesiones de creadas por los usuarios para ejecutar las simulaciones.
  * @class SessionController
  * @constructor
+ * @module Server
+ * @submodule Server-bl
  */
 SessionController = function () {
 

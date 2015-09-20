@@ -6,6 +6,8 @@
  * las rutas y el motor de plantillas (templates).
  * @class App
  * @constructor
+ * @module Server
+ * @submodule Server-bl
  */
 App = function () {
 

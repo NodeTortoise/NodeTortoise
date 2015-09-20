@@ -15,7 +15,7 @@
         <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">NodeTortoise</h1>
 	<div class="nav"></div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Buscar clases/módulos..." data-obj='["classes/App", "classes/Controller", "classes/Controller.model", "classes/Controller.session", "classes/Entities", "classes/Entities.model", "classes/Model", "classes/Session", "classes/SessionController", "classes/Sockets", "classes/Sockets.Actions", "classes/SQLite"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Buscar clases/módulos..." data-obj='["classes/App", "classes/Controller", "classes/Controller.model", "classes/Controller.session", "classes/Entities", "classes/Entities.model", "classes/Helper", "classes/Model", "classes/Model_List", "classes/Session", "classes/SessionController", "classes/Simulation", "classes/Sockets", "classes/Sockets.Actions", "classes/SQLite", "modules/Public", "modules/Server"]'>
         </form>
     </div>
 </div>
@@ -42,9 +42,12 @@
 	                            <li><a href="../classes/Controller.session.html">Controller.session</a></li>
 	                            <li><a href="../classes/Entities.html">Entities</a></li>
 	                            <li><a href="../classes/Entities.model.html">Entities.model</a></li>
+	                            <li><a href="../classes/Helper.html">Helper</a></li>
 	                            <li><a href="../classes/Model.html">Model</a></li>
+	                            <li><a href="../classes/Model_List.html">Model_List</a></li>
 	                            <li><a href="../classes/Session.html">Session</a></li>
 	                            <li><a href="../classes/SessionController.html">SessionController</a></li>
+	                            <li><a href="../classes/Simulation.html">Simulation</a></li>
 	                            <li><a href="../classes/Sockets.html">Sockets</a></li>
 	                            <li><a href="../classes/Sockets.Actions.html">Sockets.Actions</a></li>
 	                            <li><a href="../classes/SQLite.html">SQLite</a></li>
@@ -53,6 +56,8 @@
 	    
 	                <div class="tab-pane" id="modules">
 	                    <ul id="api-modules" class="nav nav-list">
+	                            <li><a href="../modules/Public.html">Public</a></li>
+	                            <li><a href="../modules/Server.html">Server</a></li>
 	                    </ul>
 	                </div>
 	            </div>
@@ -95,6 +100,7 @@
                                     Definido en: <a href="../files/server_libs_SQLite.js.html#l3"><code>server\libs\SQLite.js:3</code></a>
                                 </div>
                         
+                                    Module: <a href="../modules/Public.html">Public</a>
                         
                         </div>
                         
@@ -206,7 +212,11 @@
                         
                                                     </li>
                                                     <li class="index-item method">
-                                                        <a href="#" data-tabid="#methods" data-anchor="#method_select" data-tablink="select">select</a>
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_selectAll" data-tablink="selectAll">selectAll</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_selectAll" data-tablink="selectAll">selectAll</a>
                         
                                                     </li>
                                             </ul>
@@ -235,7 +245,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/server_libs_SQLite.js.html#l171"><code>server\libs\SQLite.js:171</code></a>
+                                                    <a href="../files/server_libs_SQLite.js.html#l195"><code>server\libs\SQLite.js:195</code></a>
                                                     </p>
                                             
                                             
@@ -271,7 +281,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/server_libs_SQLite.js.html#l159"><code>server\libs\SQLite.js:159</code></a>
+                                                    <a href="../files/server_libs_SQLite.js.html#l183"><code>server\libs\SQLite.js:183</code></a>
                                                     </p>
                                             
                                             
@@ -337,7 +347,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/server_libs_SQLite.js.html#l63"><code>server\libs\SQLite.js:63</code></a>
+                                                    <a href="../files/server_libs_SQLite.js.html#l87"><code>server\libs\SQLite.js:87</code></a>
                                                     </p>
                                             
                                             
@@ -426,7 +436,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/server_libs_SQLite.js.html#l150"><code>server\libs\SQLite.js:150</code></a>
+                                                    <a href="../files/server_libs_SQLite.js.html#l174"><code>server\libs\SQLite.js:174</code></a>
                                                     </p>
                                             
                                             
@@ -475,7 +485,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/server_libs_SQLite.js.html#l109"><code>server\libs\SQLite.js:109</code></a>
+                                                    <a href="../files/server_libs_SQLite.js.html#l133"><code>server\libs\SQLite.js:133</code></a>
                                                     </p>
                                             
                                             
@@ -545,7 +555,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/server_libs_SQLite.js.html#l132"><code>server\libs\SQLite.js:132</code></a>
+                                                    <a href="../files/server_libs_SQLite.js.html#l156"><code>server\libs\SQLite.js:156</code></a>
                                                     </p>
                                             
                                             
@@ -738,7 +748,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/server_libs_SQLite.js.html#l89"><code>server\libs\SQLite.js:89</code></a>
+                                                    <a href="../files/server_libs_SQLite.js.html#l113"><code>server\libs\SQLite.js:113</code></a>
                                                     </p>
                                             
                                             
@@ -815,8 +825,118 @@
                                             
                                             
                                             </div>
-                                            <div id="method_select" class="method item">
-                                                <h3 class="name"><code>select</code></h3>
+                                            <div id="method_selectAll" class="method item">
+                                                <h3 class="name"><code>selectAll</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>table</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>filters</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code class="optional">[String = &#x27;*&#x27;]</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>onSuccess</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>onError</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Definido en
+                                                    <a href="../files/server_libs_SQLite.js.html#l41"><code>server\libs\SQLite.js:41</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Selecciona los registros de una tabla, basado en los filtros obtenidos</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parameters:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">table</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>La tabla sobre la cuál se ejecutará la acción</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">filters</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Los filtros de la consulta (<i>where</i>)</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name optional">[String = &#x27;*&#x27;]</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>fields Las columnas a seleccionar</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">onSuccess</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Función a ejecutar cuando el proceso en base de datos se completa exitosamente</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">onError</code>
+                                                                    <span class="type">Funtion</span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Función a ejecutar en caso de error</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                            
+                                            </div>
+                                            <div id="method_selectAll" class="method item">
+                                                <h3 class="name"><code>selectAll</code></h3>
                                             
                                                     <div class="args">
                                                         <span class="paren">(</span><ul class="args-list inline commas">
@@ -845,7 +965,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/server_libs_SQLite.js.html#l41"><code>server\libs\SQLite.js:41</code></a>
+                                                    <a href="../files/server_libs_SQLite.js.html#l65"><code>server\libs\SQLite.js:65</code></a>
                                                     </p>
                                             
                                             

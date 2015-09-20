@@ -217,7 +217,7 @@ Controller.session.list = function (req, res, next) {
             if(usersInSession > 0){
                 var sessionData = sessionsData[sessionName];
                 var url = MODEL_URL_TEMPLATE.replace('@session@', sessionName).replace('@model@', controller.getSessionModel(sessionName));
-                var sessionName = sessionData.name + ' (' + sessionData.master + ')';
+                var sessionName = unescape(sessionData.name) + ' (' + sessionData.master + ')';
                 sessions[sessionName] = {'name': sessionName, 'url': url.replace('.html.html', '.html'), 'users': usersInSession};
             }
         }
@@ -230,7 +230,8 @@ Controller.session.list = function (req, res, next) {
          * @return {String} La URL al modelo
          */
         var getModelURL = function (modelFilename, modelName, token) {
-            return (MODEL_URL_TEMPLATE.replace('@session@', token).replace('@model@', modelFilename).replace('@name@', modelName));
+            console.log(escape(modelName));
+            return (MODEL_URL_TEMPLATE.replace('@session@', token).replace('@model@', modelFilename).replace('@name@', escape(modelName)));
         };
         var page = {'title': 'Unirse o iniciar sesión', 'content_title': 'Unirse o iniciar sesión'};
         var data = {'sessions': sessions, 'models': modelsList, 'token': token, 'getModelURL': getModelURL};

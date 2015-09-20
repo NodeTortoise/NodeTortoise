@@ -265,3 +265,27 @@ Helper.trimLeft = function (string, charlist) {
 
     return string.replace(new RegExp("^[" + charlist + "]+"), "");
 };
+
+/**
+ * Convierte una cadena de caracteres a entidades HTML
+ * @method toHTMLEntities
+ * @static
+ * @param {String} string Cadena de caracteres a la cual se le aplicara la función
+ */
+Helper.toHTMLEntities = function (string) {
+    return string.replace(/./gm, function (s) {
+        return "&#" + s.charCodeAt(0) + ";";
+    });
+};
+
+/**
+ * Crea una cadena de caracteres desde una entidad HTML
+ * @method fromHTMLEntities
+ * @static
+ * @param {String} string Cadena de caracteres a la cual se le aplicara la función
+ */
+Helper.fromHTMLEntities = function (string) {
+    return (string + "").replace(/&#\d+;/gm, function (s) {
+        return String.fromCharCode(s.match(/\d+/gm)[0]);
+    })
+};

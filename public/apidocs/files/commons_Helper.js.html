@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>commons\Helper.js - NodeTortoise</title>
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">NodeTortoise</h1>
+	<div class="nav"></div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Buscar clases/módulos..." data-obj='["classes/App", "classes/Controller", "classes/Controller.model", "classes/Controller.session", "classes/Entities", "classes/Entities.model", "classes/Helper", "classes/Model", "classes/Model_List", "classes/Session", "classes/SessionController", "classes/Simulation", "classes/Sockets", "classes/Sockets.Actions", "classes/SQLite", "modules/Public", "modules/Server"]'>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+	    <div>
+	        <div id="sidebar">
+	            <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
+	                <li class="active"><a href="#classes" data-toggle="tab">Clases</a></li>
+	                <li><a href="#modules" data-toggle="tab">Módulos</a></li>
+	            </ul>
+	    
+	            <div id="api-tabview-filter">
+	                <input type="search" placeholder="Digite para filtrar APIs">
+	            </div>
+	    
+	            <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
+	                <div class="tab-pane active" id="classes">
+	                    <ul id="api-classes" class="nav nav-list">
+	                            <li><a href="../classes/App.html">App</a></li>
+	                            <li><a href="../classes/Controller.html">Controller</a></li>
+	                            <li><a href="../classes/Controller.model.html">Controller.model</a></li>
+	                            <li><a href="../classes/Controller.session.html">Controller.session</a></li>
+	                            <li><a href="../classes/Entities.html">Entities</a></li>
+	                            <li><a href="../classes/Entities.model.html">Entities.model</a></li>
+	                            <li><a href="../classes/Helper.html">Helper</a></li>
+	                            <li><a href="../classes/Model.html">Model</a></li>
+	                            <li><a href="../classes/Model_List.html">Model_List</a></li>
+	                            <li><a href="../classes/Session.html">Session</a></li>
+	                            <li><a href="../classes/SessionController.html">SessionController</a></li>
+	                            <li><a href="../classes/Simulation.html">Simulation</a></li>
+	                            <li><a href="../classes/Sockets.html">Sockets</a></li>
+	                            <li><a href="../classes/Sockets.Actions.html">Sockets.Actions</a></li>
+	                            <li><a href="../classes/SQLite.html">SQLite</a></li>
+	                    </ul>
+	                </div>
+	    
+	                <div class="tab-pane" id="modules">
+	                    <ul id="api-modules" class="nav nav-list">
+	                            <li><a href="../modules/Public.html">Public</a></li>
+	                            <li><a href="../modules/Server.html">Server</a></li>
+	                    </ul>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+        </div>
+        <div class="span9">
+                <form id="options-form" class="form-inline pull-right">
+                    Mostrar:
+                    <label for="api-show-inherited" class="checkbox" style="display:none">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+                    <label for="api-show-protected" class="checkbox">
+                        <input type="checkbox" id="api-show-protected">
+                        Protegidos
+                    </label>
+            
+                    <label for="api-show-private" class="checkbox">
+                        <input type="checkbox" id="api-show-private">
+                        Privados
+                    </label>
+                    <label for="api-show-deprecated" class="checkbox">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecados
+                    </label>
+                </form>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <div class="page-header">
+                            <h1>commons\Helper.js <small>File</small></h1>
+                        </div>
+                        
+                        <div class="file">
+                            <pre class="prettyprint linenums">
+                        /**
+                         * Funciones utilitarias.
+                         * @class Helper
+                         */
+                        Helper = function () {
+                        };
+                        
+                        /**
+                         * Genera un hash a partir de una cadena de caracteres (&lt;i&gt;string&lt;/i&gt;).
+                         * @method getHash
+                         * @static
+                         * @param {String} string Cada de caracteres base para el hash
+                         * @param {Booolean} addTimestamp Indica si se concatena la hora actual a la cadena de caracteres
+                         */
+                        Helper.getHash = function (string, addTimestamp) {
+                            var crypto = require(&#x27;crypto&#x27;);
+                            var shasum = crypto.createHash(&#x27;sha1&#x27;);
+                            if (addTimestamp) {
+                                string += (&#x27;_&#x27; + Date.now());
+                            }
+                            shasum.update(string);
+                            return shasum.digest(&#x27;hex&#x27;);
+                        };
+                        
+                        /**
+                         * Indica si una variable tiene valor asignado.
+                         * @method hasValue
+                         * @static
+                         * @param {String} value Variable a analizar
+                         */
+                        Helper.hasValue = function (value) {
+                            return (value !== undefined &amp;&amp; value !== null);
+                        };
+                        
+                        /**
+                         * Genera un &lt;i&gt;spinner&lt;/i&gt; sobre un elemento del HTML.
+                         * @method spinner
+                         * @static
+                         * @param {String} elementSelector Selector del elemento HTML
+                         * @param {Object} options Opciones para el &lt;i&gt;spinner&lt;/i&gt;
+                         */
+                        Helper.spinner = function (elementSelector, options) {
+                            // Becomes this.options
+                            this.container = $(elementSelector);
+                            var defaults = {
+                                bgColor: &#x27;transparent&#x27;,
+                                duration: 800,
+                                opacity: 0.7,
+                                classOveride: false,
+                                top: &#x27;0&#x27;,
+                                left: &#x27;0&#x27;,
+                                position: &#x27;relative&#x27;,
+                                width: this.container.width(),
+                                height: this.container.height()
+                            };
+                            this.options = jQuery.extend(defaults, options);
+                            this.init = function () {
+                                var container = this.container;
+                                // Delete any other loaders
+                                this.remove();
+                                // Create the overlay
+                                var overlay = $(&#x27;&lt;div&gt;&lt;/div&gt;&#x27;).css({
+                                    &#x27;background-color&#x27;: this.options.bgColor,
+                                    &#x27;opacity&#x27;: this.options.opacity,
+                                    &#x27;width&#x27;: this.options.width,
+                                    &#x27;height&#x27;: this.options.height,
+                                    &#x27;position&#x27;: this.options.position,
+                                    &#x27;top&#x27;: this.options.top,
+                                    &#x27;left&#x27;: this.options.left,
+                                    &#x27;z-index&#x27;: 99999
+                                }).addClass(&#x27;ajax_overlay&#x27;);
+                                // add an overiding class name to set new loader style
+                                if (this.options.classOveride) {
+                                    overlay.addClass(this.options.classOveride);
+                                }
+                                // insert overlay and loader into DOM
+                                container.append(overlay.append($(&#x27;&lt;div&gt;&lt;/div&gt;&#x27;).addClass(&#x27;ajax_loader&#x27;)).fadeIn(this.options.duration));
+                            };
+                            this.remove = function () {
+                                var overlay = this.container.children(&quot;.ajax_overlay&quot;);
+                                if (overlay.length) {
+                                    overlay.fadeOut(this.options.classOveride, function () {
+                                        overlay.remove();
+                                    });
+                                }
+                            };
+                            this.init();
+                        };
+                        
+                        /**
+                         * Ejecuta una función a partir del nombre
+                         * @method executeFunctionByName
+                         * @static
+                         * @param {String} functionName Nombre de la función
+                         * @param {Array|String} context Contexto(s) de la función
+                         */
+                        Helper.executeFunctionByName = function (functionName, context /*, args */) {
+                            var args = Array.prototype.slice.call(arguments, 2);
+                            var namespaces = functionName.split(&quot;.&quot;);
+                            var func = namespaces.pop();
+                            for (var i = 0; i &lt; namespaces.length; i++) {
+                                context = context[namespaces[i]];
+                            }
+                            return context[func].apply(context, args);
+                        };
+                        
+                        /**
+                         * Obtiene el valor almacenado en una variable o un valor por defecto si esta no
+                         * está asignada o es nula.
+                         * @method get
+                         * @static
+                         * @param {String} value Variable a analizar
+                         * @param {String} defaultValue Valor por defecto
+                         */
+                        Helper.get = function (value, defaultValue) {
+                            return ((value === undefined || value === null) ? defaultValue : value);
+                        };
+                        
+                        /**
+                         * Obtiene la versión de navegador de Internet utilizada.
+                         * @method getBrowser
+                         * @static
+                         */
+                        Helper.getBrowser = function () {
+                            if (!!window.opera || navigator.userAgent.indexOf(&#x27; OPR/&#x27;) &gt;= 0) { // Opera 8.0+ (UA detection to detect Blink/v8-powered Opera)
+                                return &#x27;Opera&#x27;;
+                            } else if (typeof InstallTrigger !== &#x27;undefined&#x27;) { //Firefox 1.0+
+                                return &#x27;Firefox&#x27;;
+                            } else if (Object.prototype.toString.call(window.HTMLElement).indexOf(&#x27;Constructor&#x27;) &gt; 0) { // At least Safari 3+: &quot;[object HTMLElementConstructor]&quot;
+                                return &#x27;Safari&#x27;;
+                            } else if (!!window.chrome) { // Chrome 1+
+                                return &#x27;Chrome&#x27;;
+                            } else if (/*@cc_on!@*/false || !!document.documentMode) { // At least IE6
+                                return &#x27;Internet Explorer&#x27;;
+                            } else {
+                                return &#x27;Unknown&#x27;;
+                            }
+                        };
+                        
+                        /**
+                         * Asigna la ejecución de una función, cual se termina la carga de una página.
+                         * @method onload
+                         * @static
+                         * @param {Function} functionName Función a asignar
+                         */
+                        Helper.onload = function (functionName) {
+                            if (window.attachEvent) {
+                                window.attachEvent(&#x27;onload&#x27;, functionName);
+                            } else {
+                                if (window.onload) {
+                                    var curronload = window.onload;
+                                    var newonload = function () {
+                                        curronload();
+                                        functionName();
+                                    };
+                                    window.onload = newonload;
+                                } else {
+                                    window.onload = functionName;
+                                }
+                            }
+                        };
+                        
+                        /**
+                         * Busca un fragmento en una cadena de caracteres y reemplaza todas las 
+                         * coincidencias.
+                         * @method replaceAll
+                         * @static
+                         * @param {String} string Cadena de caracteres donde se buscarán las coincidencias
+                         * @param {String} find Cadena de caracteres a buscar
+                         * @param {String} replace Cadena de caracteres que reemplazará
+                         */
+                        Helper.replaceAll = function (string, find, replace) {
+                            return string.replace(new RegExp(Helper.escapeRegExp(find), &#x27;g&#x27;), replace);
+                        };
+                        
+                        /**
+                         * Agrega el caracter de escape, a los caracteres especiales en una cadena.
+                         * @method escapeRegExp
+                         * @static
+                         * @param {String} string La cadena de caracteres
+                         */
+                        Helper.escapeRegExp = function (string) {
+                            return string.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, &quot;\\$1&quot;);
+                        };
+                        
+                        /**
+                         * Formate un nombre de archivo, eliminando los caracteres especiales, 
+                         * convirtiéndolo a minúsculas y remplazando los espaciones por guiones bajos.
+                         * convirtiéndole.
+                         * @method cleanFileName
+                         * @static
+                         * @param {String} fileName Nombre del archivo
+                         */
+                        Helper.cleanFileName = function (fileName) {
+                            return Helper.replaceAll(fileName, &#x27; &#x27;, &#x27;_&#x27;).replace(/[^a-zA-Z0-9-_]/g, &#x27;&#x27;).toLowerCase();
+                        };
+                        
+                        /**
+                         * Indica si una variable tiene valor asignado.
+                         * @method getRandomNumber
+                         * @static
+                         * @param {Integer} min Valor mínimo
+                         * @param {Integer} max Valor máximo
+                         */
+                        Helper.getRandomNumber = function (min, max) {
+                            return (Math.random() * (max - min) + min);
+                        };
+                        
+                        /**
+                         * Obtiene un parámetro &lt;i&gt;GET&lt;/i&gt; de una URL.
+                         * @method getURLParameter
+                         * @static
+                         * @param {String} name Nombre del parámetro
+                         * @param {String} url La URL
+                         */
+                        Helper.getURLParameter = function (name, url) {
+                            if (!url)
+                                url = location.href;
+                            name = name.replace(/[\[]/, &quot;\\\[&quot;).replace(/[\]]/, &quot;\\\]&quot;);
+                            var regexS = &quot;[\\?&amp;]&quot; + name + &quot;=([^&amp;#]*)&quot;;
+                            var regex = new RegExp(regexS);
+                            var results = regex.exec(url);
+                            return results === null ? null : results[1];
+                        };
+                        
+                        /**
+                         * Obtiene la última sección de un URL.
+                         * @method getLastURLPiece
+                         * @static
+                         * @param {String} url La URL
+                         */
+                        Helper.getLastURLPiece = function (url) {
+                            if (!url)
+                                url = location.pathname;
+                            var segmentArray = url.split(&#x27;/&#x27;);
+                            return segmentArray[segmentArray.length - 1];
+                        };
+                        
+                        /**
+                         * Elimina caracteres al final de una cadena de caracteres.
+                         * @method trimRight
+                         * @static
+                         * @param {String} string Cadena de caracteres a la cual se le aplicara la función
+                         * @param [String] string Cadena de caracteres con los caracteres a reemplazar. 
+                         * Por defecto se reemplazan los espacios.
+                         */
+                        Helper.trimRight = function (string, charlist) {
+                            if (charlist === undefined) {
+                                charlist = &quot;\s&quot;;
+                            }
+                            return string.replace(new RegExp(&quot;[&quot; + charlist + &quot;]+$&quot;), &quot;&quot;);
+                        };
+                        
+                        /**
+                         * Elimina caracteres al inicio de una cadena de caracteres.
+                         * @method trimLeft
+                         * @static
+                         * @param {String} string Cadena de caracteres a la cual se le aplicara la función
+                         * @param [String] string Cadena de caracteres con los caracteres a reemplazar. 
+                         * Por defecto se reemplazan los espacios.
+                         */
+                        Helper.trimLeft = function (string, charlist) {
+                            if (charlist === undefined)
+                                charlist = &quot;\s&quot;;
+                        
+                            return string.replace(new RegExp(&quot;^[&quot; + charlist + &quot;]+&quot;), &quot;&quot;);
+                        };
+                        
+                        /**
+                         * Convierte una cadena de caracteres a entidades HTML
+                         * @method toHTMLEntities
+                         * @static
+                         * @param {String} string Cadena de caracteres a la cual se le aplicara la función
+                         */
+                        Helper.toHTMLEntities = function (string) {
+                            return string.replace(/./gm, function (s) {
+                                return &quot;&amp;#&quot; + s.charCodeAt(0) + &quot;;&quot;;
+                            });
+                        };
+                        
+                        /**
+                         * Crea una cadena de caracteres desde una entidad HTML
+                         * @method fromHTMLEntities
+                         * @static
+                         * @param {String} string Cadena de caracteres a la cual se le aplicara la función
+                         */
+                        Helper.fromHTMLEntities = function (string) {
+                            return (string + &quot;&quot;).replace(/&amp;#\d+;/gm, function (s) {
+                                return String.fromCharCode(s.match(/\d+/gm)[0]);
+                            })
+                        };
+                            </pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>

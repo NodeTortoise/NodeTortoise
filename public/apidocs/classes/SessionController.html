@@ -15,7 +15,7 @@
         <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">NodeTortoise</h1>
 	<div class="nav"></div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Buscar clases/módulos..." data-obj='["classes/App", "classes/Controller", "classes/Controller.model", "classes/Controller.session", "classes/Entities", "classes/Entities.model", "classes/Model", "classes/Session", "classes/SessionController", "classes/Sockets", "classes/Sockets.Actions", "classes/SQLite"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Buscar clases/módulos..." data-obj='["classes/App", "classes/Controller", "classes/Controller.model", "classes/Controller.session", "classes/Entities", "classes/Entities.model", "classes/Helper", "classes/Model", "classes/Model_List", "classes/Session", "classes/SessionController", "classes/Simulation", "classes/Sockets", "classes/Sockets.Actions", "classes/SQLite", "modules/Public", "modules/Server"]'>
         </form>
     </div>
 </div>
@@ -42,9 +42,12 @@
 	                            <li><a href="../classes/Controller.session.html">Controller.session</a></li>
 	                            <li><a href="../classes/Entities.html">Entities</a></li>
 	                            <li><a href="../classes/Entities.model.html">Entities.model</a></li>
+	                            <li><a href="../classes/Helper.html">Helper</a></li>
 	                            <li><a href="../classes/Model.html">Model</a></li>
+	                            <li><a href="../classes/Model_List.html">Model_List</a></li>
 	                            <li><a href="../classes/Session.html">Session</a></li>
 	                            <li><a href="../classes/SessionController.html">SessionController</a></li>
+	                            <li><a href="../classes/Simulation.html">Simulation</a></li>
 	                            <li><a href="../classes/Sockets.html">Sockets</a></li>
 	                            <li><a href="../classes/Sockets.Actions.html">Sockets.Actions</a></li>
 	                            <li><a href="../classes/SQLite.html">SQLite</a></li>
@@ -53,6 +56,8 @@
 	    
 	                <div class="tab-pane" id="modules">
 	                    <ul id="api-modules" class="nav nav-list">
+	                            <li><a href="../modules/Public.html">Public</a></li>
+	                            <li><a href="../modules/Server.html">Server</a></li>
 	                    </ul>
 	                </div>
 	            </div>
@@ -95,6 +100,7 @@
                                     Definido en: <a href="../files/server_bl_SessionController.js.html#l3"><code>server\bl\SessionController.js:3</code></a>
                                 </div>
                         
+                                    Module: <a href="../modules/Public.html">Public</a>
                         
                         </div>
                         
@@ -217,7 +223,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/server_bl_SessionController.js.html#l117"><code>server\bl\SessionController.js:117</code></a>
+                                                    <a href="../files/server_bl_SessionController.js.html#l120"><code>server\bl\SessionController.js:120</code></a>
                                                     </p>
                                             
                                             
@@ -251,7 +257,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/server_bl_SessionController.js.html#l130"><code>server\bl\SessionController.js:130</code></a>
+                                                    <a href="../files/server_bl_SessionController.js.html#l133"><code>server\bl\SessionController.js:133</code></a>
                                                     </p>
                                             
                                             
@@ -259,7 +265,7 @@
                                                 </div>
                                             
                                                 <div class="description">
-                                                    <p>Basado en el patrón <i>Singleton</i>, returna una instancia del objeto SessionController</p>
+                                                    <p>Basado en el patrón <i>Singleton</i>, retorna una instancia del objeto SessionController</p>
                                             
                                                 </div>
                                             
@@ -297,7 +303,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/server_bl_SessionController.js.html#l93"><code>server\bl\SessionController.js:93</code></a>
+                                                    <a href="../files/server_bl_SessionController.js.html#l96"><code>server\bl\SessionController.js:96</code></a>
                                                     </p>
                                             
                                             
@@ -356,7 +362,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/server_bl_SessionController.js.html#l84"><code>server\bl\SessionController.js:84</code></a>
+                                                    <a href="../files/server_bl_SessionController.js.html#l87"><code>server\bl\SessionController.js:87</code></a>
                                                     </p>
                                             
                                             
@@ -404,7 +410,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/server_bl_SessionController.js.html#l74"><code>server\bl\SessionController.js:74</code></a>
+                                                    <a href="../files/server_bl_SessionController.js.html#l77"><code>server\bl\SessionController.js:77</code></a>
                                                     </p>
                                             
                                             
@@ -469,7 +475,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/server_bl_SessionController.js.html#l103"><code>server\bl\SessionController.js:103</code></a>
+                                                    <a href="../files/server_bl_SessionController.js.html#l106"><code>server\bl\SessionController.js:106</code></a>
                                                     </p>
                                             
                                             
@@ -549,10 +555,13 @@
                                                                     <code>sessionName</code>
                                                             </li>
                                                             <li class="arg">
+                                                                    <code>userName</code>
+                                                            </li>
+                                                            <li class="arg">
                                                                     <code>modelFile</code>
                                                             </li>
                                                             <li class="arg">
-                                                                    <code>userName</code>
+                                                                    <code>modelName</code>
                                                             </li>
                                                             <li class="arg">
                                                                     <code class="optional">[enabledControls]</code>
@@ -601,6 +610,17 @@
                                             
                                                             </li>
                                                             <li class="param">
+                                                                    <code class="param-name">userName</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>El nombre del usuario</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
                                                                     <code class="param-name">modelFile</code>
                                                                     <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                                             
@@ -612,12 +632,12 @@
                                             
                                                             </li>
                                                             <li class="param">
-                                                                    <code class="param-name">userName</code>
+                                                                    <code class="param-name">modelName</code>
                                                                     <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                                             
                                             
                                                                 <div class="param-description">
-                                                                    <p>El nombre del usuario</p>
+                                                                    <p>El nombre del modelo de la simulación que ejecutará la sesión</p>
                                             
                                                                 </div>
                                             
@@ -678,7 +698,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/server_bl_SessionController.js.html#l43"><code>server\bl\SessionController.js:43</code></a>
+                                                    <a href="../files/server_bl_SessionController.js.html#l44"><code>server\bl\SessionController.js:44</code></a>
                                                     </p>
                                             
                                             
@@ -749,7 +769,13 @@
                                                                     <code>sessionName</code>
                                                             </li>
                                                             <li class="arg">
+                                                                    <code>modelFile</code>
+                                                            </li>
+                                                            <li class="arg">
                                                                     <code>modelName</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>masterName</code>
                                                             </li>
                                                         </ul><span class="paren">)</span>
                                                     </div>
@@ -764,7 +790,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/server_bl_SessionController.js.html#l64"><code>server\bl\SessionController.js:64</code></a>
+                                                    <a href="../files/server_bl_SessionController.js.html#l65"><code>server\bl\SessionController.js:65</code></a>
                                                     </p>
                                             
                                             
@@ -786,7 +812,19 @@
                                             
                                             
                                                                 <div class="param-description">
-                                                                     
+                                                                    <p>El nombre de la sesion</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">modelFile</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>El archivo del modelo</p>
+                                            
                                                                 </div>
                                             
                                                             </li>
@@ -796,7 +834,19 @@
                                             
                                             
                                                                 <div class="param-description">
-                                                                     
+                                                                    <p>El nombre del modelo</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">masterName</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>El nombre del usuario maestro</p>
+                                            
                                                                 </div>
                                             
                                                             </li>

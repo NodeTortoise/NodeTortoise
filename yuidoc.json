@@ -7,8 +7,9 @@
         "linkNatives": "true",
         "attributesEmit": "true",
         "selleck": "true",
-        "ignorePaths": ["node_modules", "public", "yuidocs"],
-        "paths": "server/*",
+        "exclude": "jquery,bootstrap,dataTables,metisMenu,sb-admin-2,public/apidocs,public/css,public/fonts,public/img,public/simulation",
+        "ignorePaths": ["node_modules", "yuidocs", "bin"],
+        "paths": ["*"],
         "outdir": "public/apidocs",
         "themedir": "yuidoc/theme/",
         "helpers": ["yuidoc/theme/helpers/helpers.js"]

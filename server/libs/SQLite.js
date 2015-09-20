@@ -39,14 +39,38 @@ SQLite = function (file) {
     };
 
     /**
+     * Selecciona los registros de una tabla, basado en los filtros obtenidos
+     * @method selectAll
+     * @param {String} table La tabla sobre la cuál se ejecutará la acción
+     * @param {Array} filters Los filtros de la consulta (<i>where</i>)
+     * @param [String = '*'] fields Las columnas a seleccionar
+     * @param {Function} onSuccess Función a ejecutar cuando el proceso en base de datos se completa exitosamente
+     * @param {Funtion} onError Función a ejecutar en caso de error
+     */
+    this.select = function (table, filters, fields, onSuccess, onError) {
+        try {
+            var strFields = (fields) ? fields : '*';
+            var queryFilters = getQueryFilters(filters);
+            var query = 'SELECT ' + strFields + ' FROM ' + table + ' WHERE (' + queryFilters.where + ')';
+            var callback = function (error, result) {
+                onCallback(query, onSuccess, onError, error, result);
+            };
+            debug(query);
+            db.all(query, queryFilters.values, callback);
+        } catch (err) {
+            onError(err);
+        }
+    };
+
+    /**
      * Selecciona todos los registros de una tabla.
-     * @method select
+     * @method selectAll
      * @param {String} table La tabla sobre la cuál se ejecutará la acción
      * @param [String = '*'] fields Las columnas a seleccionar
      * @param {Function} onSuccess Función a ejecutar cuando el proceso en base de datos se completa exitosamente
      * @param {Funtion} onError Función a ejecutar en caso de error
      */
-    this.select = function (table, fields, onSuccess, onError) {
+    this.selectAll = function (table, fields, onSuccess, onError) {
         try {
             var strFields = (fields) ? fields : '*';
             var query = 'SELECT ' + strFields + ' FROM ' + table;

@@ -35,13 +35,35 @@ Entities.model = function () {
     };
 
     /**
+     * Obtiene un modelo por ID de modelo.
+     * @method getByID
+     * @param {Integer} idModel ID del modelo
+     * @param {Function} onSuccess Función a ejecutar cuando se obtiene el modelo
+     * @param {Function} onError Función a ejecutar en caso de error
+     */
+    this.getByID = function(idModel, onSuccess, onError){
+        db.selectAll(table, {'id': idModel}, onSuccess, onError);
+    };
+    
+    /**
+     * Obtiene un modelo por nombre de archivo.
+     * @method getByFilename
+     * @param {Integer} filename Nombre del archivo
+     * @param {Function} onSuccess Función a ejecutar cuando se obtiene el modelo
+     * @param {Function} onError Función a ejecutar en caso de error
+     */
+    this.getByFilename = function(filename, onSuccess, onError){
+        db.selectAll(table, {'filename': filename}, null, onSuccess, onError);
+    };
+
+    /**
      * Obtiene la lista de modelos en base de datos.
      * @method list
      * @param {Function} onSuccess Función a ejecutar cuando se obtiene la lista de modelos
      * @param {Function} onError Función a ejecutar en caso de error
      */
     this.list = function (onSuccess, onError) {
-        db.select(table, null, onSuccess, onError);
+        db.selectAll(table, null, onSuccess, onError);
     };
 
     /**

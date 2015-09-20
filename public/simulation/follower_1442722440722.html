@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>NodeTortoise | Follower</title>
+        <link href="/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/css/metisMenu.min.css" rel="stylesheet">
+        <link href="/css/sb-admin-2.css" rel="stylesheet">
+        <link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="/css/style.css" rel="stylesheet" type="text/css">
+        <style>
+            
+      .netlogo-model {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 20px;
+    -webkit-flex-flow: column;
+        -ms-flex-flow: column;
+            flex-flow: column;
+}
+
+.netlogo-header {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-flow: row;
+        -ms-flex-flow: row;
+            flex-flow: row;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
+.netlogo-widget {
+    font-size: 12px;
+    font-family: "Lucida Grande", sans-serif;
+    -moz-box-sizing: border-box;
+         box-sizing: border-box;
+    background-color: #CCC;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.netlogo-command,.netlogo-input {
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+}
+
+.netlogo-command:hover,.netlogo-input:hover {
+    cursor:     pointer;
+    box-shadow: 0 0 6px 3px rgba(15, 15, 15, .40);
+}
+
+.netlogo-tabs {
+    margin-top: 20px;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-flow: row;
+        -ms-flex-flow: row;
+            flex-flow: row;
+    -webkit-justify-content: space-around;
+        -ms-flex-pack: distribute;
+            justify-content: space-around;
+}
+
+.netlogo-tab {
+  border: 3px outset;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+.netlogo-tab input[type=checkbox] {
+    display: none;
+}
+
+.netlogo-tab:active {
+    border: 3px inset;
+}
+.netlogo-tab.netlogo-active {
+    border: 3px inset;
+}
+
+.netlogo-model-text {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-flow: row;
+        -ms-flex-flow: row;
+            flex-flow: row;
+    background-color: white;
+}
+
+.netlogo-code-container {
+    -webkit-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-flow: column;
+        -ms-flex-flow: column;
+            flex-flow: column;
+    background-color: white;
+    margin: 10px;
+}
+
+.netlogo-export-button {
+    -webkit-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    text-align: center;
+    background-color: rgb(240, 240, 240);
+    border-color: rgb(238, 238, 238);
+}
+
+.netlogo-code {
+    -webkit-flex: 1 1 auto;
+        -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+    font-family: monospace;
+    overflow-x: scroll;
+    border: inset;
+}
+.netlogo-code .CodeMirror {
+    height: 500px;
+}
+
+.netlogo-info-editor .CodeMirror {
+    height: 500px;
+}
+
+.netlogo-toggle-edit-mode {
+    display: block;
+    margin: 10px 0;
+}
+
+.netlogo-info {
+    -webkit-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    margin: 10px;
+}
+
+.netlogo-command-center {
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 175px;
+  padding: 5px;
+}
+
+.netlogo-output-widget {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 5px;
+}
+
+.netlogo-output-area {
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background-color: white;
+  margin: 0px;
+  overflow: auto;
+}
+
+.netlogo-command-center-input {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+          flex-shrink: 0;
+}
+
+.netlogo-command-center-input input {
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+
+.netlogo-speed-slider {
+    background-color: transparent;
+    border: none;
+    margin-right: 10px;
+    -webkit-flex: auto;
+        -ms-flex: auto;
+            flex: auto;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: baseline;
+        -ms-flex-align: baseline;
+            align-items: baseline;
+}
+
+.netlogo-widget input[type=range]::-ms-tooltip {
+  display: none;
+}
+
+.netlogo-speed-slider input {
+    border: none;
+    -webkit-flex: auto;
+        -ms-flex: auto;
+            flex: auto;
+}
+
+.netlogo-model input[type=range] {
+    cursor: pointer;
+    cursor: -webkit-grab;
+    cursor: -moz-grab;
+    cursor: grab;
+}
+
+.netlogo-model input[type=range]:active {
+    cursor: pointer;
+    cursor: -webkit-grabbing;
+    cursor: -moz-grabbing;
+    cursor: grabbing;
+}
+
+.netlogo-tick-counter {
+    font-size: 13px;
+    margin: 3px;
+    border: none;
+    height: 15px;
+}
+
+.netlogo-button {
+    border: inherit;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-justify-content: space-around;
+        -ms-flex-pack: distribute;
+            justify-content: space-around;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding: 0px;
+}
+
+.netlogo-button.clear-button {
+    padding: 5px;
+}
+
+.netlogo-button > span {
+    /* For some reason, Safari doesn't like justify-content in buttons,
+       we have to resort to putting a span in the button that can then be
+       centered.
+       BCH 11/14/2014 */
+    margin: auto;
+}
+
+.netlogo-button:active {
+    background-color: gray;
+    color: white;
+}
+
+.netlogo-forever-button.netlogo-active {
+    background-color: gray;
+    color: white;
+}
+
+.netlogo-text-box {
+    background-color: transparent;
+    border: none;
+    margin: 0;
+    white-space: pre-wrap;
+}
+
+.netlogo-switcher {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
+.netlogo-slider {
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+.netlogo-slider:hover {
+    cursor: default;
+}
+
+.netlogo-slider input[type=range] {
+    padding: 0px;
+    width: 100%;
+    margin: 0px;
+    height: 22px;
+    margin-bottom: -4px;
+    margin-top: -3px;
+    background-color: transparent;
+}
+
+.netlogo-slider-label {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+}
+
+.netlogo-slider-label .netlogo-label {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    min-width: 0;
+    -webkit-flex: 1 1 auto;
+        -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+}
+
+.netlogo-slider-label .netlogo-slider-value {
+    -webkit-flex: 0 0 auto;
+        -ms-flex: 0 0 auto;
+            flex: 0 0 auto;
+}
+
+.netlogo-slider-label input[type=number] {
+    margin: 0px;
+    border: 1px;
+    padding: 0px;
+}
+
+
+.netlogo-monitor {
+    padding: 2px 4px;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-flow: column;
+        -ms-flex-flow: column;
+            flex-flow: column;
+    -webkit-justify-content: space-around;
+        -ms-flex-pack: distribute;
+            justify-content: space-around;
+}
+
+.netlogo-monitor > .netlogo-value {
+    background-color: white;
+    padding: 2px 2px;
+}
+
+.netlogo-value {
+    overflow: hidden;
+}
+
+.netlogo-input-box {
+    padding: 2px 4px;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-flow: column;
+        -ms-flex-flow: column;
+            flex-flow: column;
+    -webkit-justify-content: space-around;
+        -ms-flex-pack: distribute;
+            justify-content: space-around;
+}
+
+.netlogo-chooser {
+    padding: 2px 4px;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-flow: column;
+        -ms-flex-flow: column;
+            flex-flow: column;
+    -webkit-justify-content: space-around;
+        -ms-flex-pack: distribute;
+            justify-content: space-around;
+}
+
+.netlogo-plot {
+    -moz-box-sizing: content-box;
+         box-sizing: content-box; /* otherwise border gets cut off -- BCH 11/9/2014 */
+    border: 1px solid black;
+}
+
+.netlogo-forever-button > input {
+    display: none;
+}
+
+.netlogo-subheader {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-flow: column;
+        -ms-flex-flow: column;
+            flex-flow: column;
+}
+
+/*# sourceMappingURL=widgets.css.map */
+.netlogo-command {
+    background-color: #BCBCE5;
+}
+.netlogo-command:active {
+    background-color: #000;
+    color: #BCBCE5;
+}
+.netlogo-command.netlogo-active {
+    background-color: #000;
+    color: #BCBCE5;
+}
+.netlogo-input {
+    background-color: #82BCB7;
+}
+.netlogo-output {
+    background-color: #E0E0B5;
+}
+
+
+/*# sourceMappingURL=classic.css.map */
+.cm-s-netlogo-default .cm-operator {
+    color: #000000;
+}
+.cm-s-netlogo-default .cm-reporter {
+    color: #660096;
+}
+.cm-s-netlogo-default .cm-command {
+    color: #0000AA;
+}
+.cm-s-netlogo-default .cm-keyword {
+    color: #007F69;
+}
+.cm-s-netlogo-default .cm-comment {
+    color: #5A5A5A;
+}
+.cm-s-netlogo-default .cm-string,
+.cm-s-netlogo-default .cm-number,
+.cm-s-netlogo-default .cm-constant {
+    color: #963700;
+}
+
+/*# sourceMappingURL=netlogo-syntax.css.map */
+/* BASICS */
+
+.CodeMirror {
+  /* Set height, width, borders, and global font properties here */
+  font-family: monospace;
+  height: 300px;
+  color: black;
+}
+
+/* PADDING */
+
+.CodeMirror-lines {
+  padding: 4px 0; /* Vertical padding around content */
+}
+.CodeMirror pre {
+  padding: 0 4px; /* Horizontal padding of content */
+}
+
+.CodeMirror-scrollbar-filler, .CodeMirror-gutter-filler {
+  background-color: white; /* The little square between H and V scrollbars */
+}
+
+/* GUTTER */
+
+.CodeMirror-gutters {
+  border-right: 1px solid #ddd;
+  background-color: #f7f7f7;
+  white-space: nowrap;
+}
+.CodeMirror-linenumbers {}
+.CodeMirror-linenumber {
+  padding: 0 3px 0 5px;
+  min-width: 20px;
+  text-align: right;
+  color: #999;
+  white-space: nowrap;
+}
+
+.CodeMirror-guttermarker { color: black; }
+.CodeMirror-guttermarker-subtle { color: #999; }
+
+/* CURSOR */
+
+.CodeMirror div.CodeMirror-cursor {
+  border-left: 1px solid black;
+}
+/* Shown when moving in bi-directional text */
+.CodeMirror div.CodeMirror-secondarycursor {
+  border-left: 1px solid silver;
+}
+.CodeMirror.cm-fat-cursor div.CodeMirror-cursor {
+  width: auto;
+  border: 0;
+  background: #7e7;
+}
+.CodeMirror.cm-fat-cursor div.CodeMirror-cursors {
+  z-index: 1;
+}
+
+.cm-animate-fat-cursor {
+  width: auto;
+  border: 0;
+  -webkit-animation: blink 1.06s steps(1) infinite;
+  -moz-animation: blink 1.06s steps(1) infinite;
+  animation: blink 1.06s steps(1) infinite;
+}
+@-moz-keyframes blink {
+  0% { background: #7e7; }
+  50% { background: none; }
+  100% { background: #7e7; }
+}
+@-webkit-keyframes blink {
+  0% { background: #7e7; }
+  50% { background: none; }
+  100% { background: #7e7; }
+}
+@keyframes blink {
+  0% { background: #7e7; }
+  50% { background: none; }
+  100% { background: #7e7; }
+}
+
+/* Can style cursor different in overwrite (non-insert) mode */
+div.CodeMirror-overwrite div.CodeMirror-cursor {}
+
+.cm-tab { display: inline-block; text-decoration: inherit; }
+
+.CodeMirror-ruler {
+  border-left: 1px solid #ccc;
+  position: absolute;
+}
+
+/* DEFAULT THEME */
+
+.cm-s-default .cm-header {color: blue;}
+.cm-s-default .cm-quote {color: #090;}
+.cm-negative {color: #d44;}
+.cm-positive {color: #292;}
+.cm-header, .cm-strong {font-weight: bold;}
+.cm-em {font-style: italic;}
+.cm-link {text-decoration: underline;}
+.cm-strikethrough {text-decoration: line-through;}
+
+.cm-s-default .cm-keyword {color: #708;}
+.cm-s-default .cm-atom {color: #219;}
+.cm-s-default .cm-number {color: #164;}
+.cm-s-default .cm-def {color: #00f;}
+.cm-s-default .cm-variable,
+.cm-s-default .cm-punctuation,
+.cm-s-default .cm-property,
+.cm-s-default .cm-operator {}
+.cm-s-default .cm-variable-2 {color: #05a;}
+.cm-s-default .cm-variable-3 {color: #085;}
+.cm-s-default .cm-comment {color: #a50;}
+.cm-s-default .cm-string {color: #a11;}
+.cm-s-default .cm-string-2 {color: #f50;}
+.cm-s-default .cm-meta {color: #555;}
+.cm-s-default .cm-qualifier {color: #555;}
+.cm-s-default .cm-builtin {color: #30a;}
+.cm-s-default .cm-bracket {color: #997;}
+.cm-s-default .cm-tag {color: #170;}
+.cm-s-default .cm-attribute {color: #00c;}
+.cm-s-default .cm-hr {color: #999;}
+.cm-s-default .cm-link {color: #00c;}
+
+.cm-s-default .cm-error {color: #f00;}
+.cm-invalidchar {color: #f00;}
+
+.CodeMirror-composing { border-bottom: 2px solid; }
+
+/* Default styles for common addons */
+
+div.CodeMirror span.CodeMirror-matchingbracket {color: #0f0;}
+div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
+.CodeMirror-matchingtag { background: rgba(255, 150, 0, .3); }
+.CodeMirror-activeline-background {background: #e8f2ff;}
+
+/* STOP */
+
+/* The rest of this file contains styles related to the mechanics of
+   the editor. You probably shouldn't touch them. */
+
+.CodeMirror {
+  position: relative;
+  overflow: hidden;
+  background: white;
+}
+
+.CodeMirror-scroll {
+  overflow: scroll !important; /* Things will break if this is overridden */
+  /* 30px is the magic margin used to hide the element's real scrollbars */
+  /* See overflow: hidden in .CodeMirror */
+  margin-bottom: -30px; margin-right: -30px;
+  padding-bottom: 30px;
+  height: 100%;
+  outline: none; /* Prevent dragging from highlighting the element */
+  position: relative;
+}
+.CodeMirror-sizer {
+  position: relative;
+  border-right: 30px solid transparent;
+}
+
+/* The fake, visible scrollbars. Used to force redraw during scrolling
+   before actuall scrolling happens, thus preventing shaking and
+   flickering artifacts. */
+.CodeMirror-vscrollbar, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-gutter-filler {
+  position: absolute;
+  z-index: 6;
+  display: none;
+}
+.CodeMirror-vscrollbar {
+  right: 0; top: 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.CodeMirror-hscrollbar {
+  bottom: 0; left: 0;
+  overflow-y: hidden;
+  overflow-x: scroll;
+}
+.CodeMirror-scrollbar-filler {
+  right: 0; bottom: 0;
+}
+.CodeMirror-gutter-filler {
+  left: 0; bottom: 0;
+}
+
+.CodeMirror-gutters {
+  position: absolute; left: 0; top: 0;
+  z-index: 3;
+}
+.CodeMirror-gutter {
+  white-space: normal;
+  height: 100%;
+  display: inline-block;
+  margin-bottom: -30px;
+  /* Hack to make IE7 behave */
+  *zoom:1;
+  *display:inline;
+}
+.CodeMirror-gutter-wrapper {
+  position: absolute;
+  z-index: 4;
+  height: 100%;
+}
+.CodeMirror-gutter-elt {
+  position: absolute;
+  cursor: default;
+  z-index: 4;
+}
+.CodeMirror-gutter-wrapper {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+.CodeMirror-lines {
+  cursor: text;
+  min-height: 1px; /* prevents collapsing before first draw */
+}
+.CodeMirror pre {
+  /* Reset some styles that the rest of the page might have set */
+  -moz-border-radius: 0; -webkit-border-radius: 0; border-radius: 0;
+  border-width: 0;
+  background: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  margin: 0;
+  white-space: pre;
+  word-wrap: normal;
+  line-height: inherit;
+  color: inherit;
+  z-index: 2;
+  position: relative;
+  overflow: visible;
+  -webkit-tap-highlight-color: transparent;
+}
+.CodeMirror-wrap pre {
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  word-break: normal;
+}
+
+.CodeMirror-linebackground {
+  position: absolute;
+  left: 0; right: 0; top: 0; bottom: 0;
+  z-index: 0;
+}
+
+.CodeMirror-linewidget {
+  position: relative;
+  z-index: 2;
+  overflow: auto;
+}
+
+.CodeMirror-widget {}
+
+.CodeMirror-code {
+  outline: none;
+}
+
+/* Force content-box sizing for the elements where we expect it */
+.CodeMirror-scroll,
+.CodeMirror-sizer,
+.CodeMirror-gutter,
+.CodeMirror-gutters,
+.CodeMirror-linenumber {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
+.CodeMirror-measure {
+  position: absolute;
+  width: 100%;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+}
+.CodeMirror-measure pre { position: static; }
+
+.CodeMirror div.CodeMirror-cursor {
+  position: absolute;
+  border-right: none;
+  width: 0;
+}
+
+div.CodeMirror-cursors {
+  visibility: hidden;
+  position: relative;
+  z-index: 3;
+}
+.CodeMirror-focused div.CodeMirror-cursors {
+  visibility: visible;
+}
+
+.CodeMirror-selected { background: #d9d9d9; }
+.CodeMirror-focused .CodeMirror-selected { background: #d7d4f0; }
+.CodeMirror-crosshair { cursor: crosshair; }
+.CodeMirror ::selection { background: #d7d4f0; }
+.CodeMirror ::-moz-selection { background: #d7d4f0; }
+
+.cm-searching {
+  background: #ffa;
+  background: rgba(255, 255, 0, .4);
+}
+
+/* IE7 hack to prevent it from returning funny offsetTops on the spans */
+.CodeMirror span { *vertical-align: text-bottom; }
+
+/* Used to force a border model for a node */
+.cm-force-border { padding-right: .1px; }
+
+@media print {
+  /* Hide the cursor when printing */
+  .CodeMirror div.CodeMirror-cursors {
+    visibility: hidden;
+  }
+}
+
+/* See issue #2901 */
+.cm-tab-wrap-hack:after { content: ''; }
+
+/* Help users use markselection to safely style text background */
+span.CodeMirror-selectedtext { background: none; }
+
+    
+        </style>
+    </head>
+    <body>
+        <div class="model-main-content">
+            <div id="model-container">
+                <div class="netlogo-model" style="width: 816px;"><div class="netlogo-header"><label class="netlogo-widget netlogo-speed-slider"><span class="netlogo-label">speed</span> <input type="range" min="-1" max="1" step="0.01" value="0"></label> <div class="netlogo-subheader"> <div class="netlogo-powered-by"><a href="http://ccl.northwestern.edu/netlogo/"><img style="vertical-align: middle;" alt="NetLogo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAANcSURBVHjarJRdaFxFFMd/M/dj7252uxubKms+bGprVyIVbNMWWqkQqtLUSpQWfSiV+oVFTcE3DeiDgvoiUSiCYLH2oVoLtQ+iaaIWWtE2FKGkkSrkq5svN+sm7ma/7p3x4W42lEbjQw8MM8yc87/nzPnNFVprbqWJXyMyXuMqx1Ni6N3ny3cX8tOHNLoBUMvESoFI2Xbs4zeO1lzREpSrMSNS1zkBDv6uo1/noz1H7mpvS4SjprAl2AZYEqzKbEowBAgBAkjPKX2599JjT7R0bj412D0JYNplPSBD1G2SmR/e6u1ikEHG2vYiGxoJmxAyIGSCI8GpCItKimtvl2JtfGujDNkX6epuAhCjNeAZxM1ocPy2Qh4toGQ5DLU+ysiuA2S3P0KgJkjAgEAlQylAA64CG/jlUk6//ng4cNWmLK0yOPNMnG99Rs9LQINVKrD+wmke7upg55PrWP3eYcwrlykpKCkoelDy/HVegQhoABNAepbACwjOt72gZkJhypX70YDWEEklue+rbnYc2MiGp1upPfYReiJJUUG58gFXu4udch1wHcjFIgy0HyIjb2yvBpT2F6t+6+f+D15lW8c9JDo7iPSdgVIRLUqL2AyHDQAOf9hfbqxvMF98eT3RuTS1avHyl+Stcphe2chP9+4k/t3RbXVl3W+Ws17FY56/w3VcbO/koS/eZLoAqrQMxADZMTYOfwpwoWjL4+bCYcgssMqGOzPD6CIkZ/3SxTJ0ayFIN6/BnBrZb2XdE1JUgkJWkfrUNRJnPyc16zsbgPyXIUJBpvc+y89nk/S8/4nek3NPGeBWMwzGvhUPnP6RubRLwfODlqqx3LSCyee2MnlwMwA2RwgO5qouVcHmksUdJweYyi8hZkrUjgT5t/ejNq0jBsSqNWsKyT9uFtxw7Bs585d3g46KOeT2bWHmtd14KyP+5mzqpsYU3OyioACMhGiqPTMocsrHId9cy9BLDzKxq8X3ctMwlV6yKSHL4fr4dd0DeQBTBUgUkvpE1kVPbqkX117ZzuSaFf4zyfz5n9A4lk0yNU7vyb7jTy1kmFGipejKvh6h9n0W995ZPTu227hqmCz33xXgFV1v9NzI96NfjndWt7XWCB/7BSICFWL+j3lAofpCtfYFb6X9MwCJZ07mUsXRGwAAAABJRU5ErkJggg=="> <span style="font-size: 16px;">powered by NetLogo</span></a></div></div></div> <div style="position: relative; width: 816px; height: 529px" class="netlogo-widget-container"><div class="netlogo-widget netlogo-view-container" style="position: absolute; left: 318px; top: 10px; width: 498px; height: 519px;"><div class="netlogo-widget netlogo-tick-counter">ticks: <span></span></div><canvas width="976" height="976" style="width: 100%;"></canvas></div>              <label class="netlogo-widget netlogo-button netlogo-forever-button  netlogo-command" style="position: absolute; left: 153px; top: 73px; width: 87px; height: 33px;"><input type="checkbox" value="on"> <span class="netlogo-label">go</span></label>         <button class="netlogo-widget netlogo-button netlogo-command" type="button" style="position: absolute; left: 53px; top: 73px; width: 85px; height: 33px;"><span>setup</span></button>            <label class="netlogo-widget netlogo-slider netlogo-input" style="position: absolute; left: 73px; top: 186px; width: 150px; height: 33px;"><input type="range" max="359" min="0" step="1.0" value="70"> <div class="netlogo-slider-label"><span class="netlogo-label">waver</span> <span class="netlogo-slider-value"><input type="number" style="width: 4.5ch" min="0" max="359" step="1.0" value="70"> </span></div></label>          <label class="netlogo-widget netlogo-slider netlogo-input" style="position: absolute; left: 73px; top: 151px; width: 150px; height: 33px;"><input type="range" max="50" min="0" step="1.0" value="10"> <div class="netlogo-slider-label"><span class="netlogo-label">far-radius</span> <span class="netlogo-slider-value"><input type="number" style="width: 4.5ch" min="0" max="50" step="1.0" value="10"> </span></div></label>          <label class="netlogo-widget netlogo-slider netlogo-input" style="position: absolute; left: 52px; top: 33px; width: 188px; height: 33px;"><input type="range" max="10000" min="0" step="10" value="1500"> <div class="netlogo-slider-label"><span class="netlogo-label">population</span> <span class="netlogo-slider-value"><input type="number" style="width: 6.5ch" min="0" max="10000" step="10" value="1500"> </span></div></label>          <label class="netlogo-widget netlogo-slider netlogo-input" style="position: absolute; left: 73px; top: 116px; width: 150px; height: 33px;"><input type="range" max="50" min="0" step="1.0" value="5"> <div class="netlogo-slider-label"><span class="netlogo-label">near-radius</span> <span class="netlogo-slider-value"><input type="number" style="width: 3.5ch" min="0" max="50" step="1.0" value="5"> </span></div></label>              <div class="netlogo-widget netlogo-plot netlogo-plot-0 netlogo-output" style="position: absolute; left: 5px; top: 232px; width: 308px; height: 297px;" data-highcharts-chart="1"><div class="highcharts-container" id="highcharts-2" style="position: relative; overflow: hidden; width: 308px; height: 297px; text-align: left; line-height: normal; z-index: 0; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><svg version="1.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="308" height="297"><desc>Created with Highcharts 4.1.6</desc><defs><clippath id="highcharts-3"><rect x="0" y="0" width="224" height="129"/></clippath></defs><rect x="0" y="0" width="308" height="297" strokewidth="0" fill="#FFFFFF" class=" highcharts-background"/><g class="highcharts-button" style="cursor:default;" stroke-linecap="round" transform="translate(274,10)"><title>Chart context menu</title><rect x="0.5" y="0.5" width="24" height="22" strokewidth="1" fill="white" stroke="none" stroke-width="1" rx="2" ry="2"/><path fill="#E0E0E0" d="M 6 6.5 L 20 6.5 M 6 11.5 L 20 11.5 M 6 16.5 L 20 16.5" stroke="#666" stroke-width="3" zindex="1"/><text x="0" zindex="1" style="color:black;fill:black;" y="12"/></g><g class="highcharts-grid" zindex="1"/><g class="highcharts-grid" zindex="1"><path fill="none" d="M 74 182.5 L 298 182.5" stroke="#D8D8D8" stroke-width="1" zindex="1" opacity="1"/><path fill="none" d="M 74 118.5 L 298 118.5" stroke="#D8D8D8" stroke-width="1" zindex="1" opacity="1"/><path fill="none" d="M 74 52.5 L 298 52.5" stroke="#D8D8D8" stroke-width="1" zindex="1" opacity="1"/></g><g class="highcharts-axis" zindex="2"><path fill="none" d="M 73.5 182 L 73.5 192" stroke="#C0D0E0" stroke-width="1" opacity="1"/><path fill="none" d="M 163.5 182 L 163.5 192" stroke="#C0D0E0" stroke-width="1" opacity="1"/><path fill="none" d="M 252.5 182 L 252.5 192" stroke="#C0D0E0" stroke-width="1" opacity="1"/><text x="186" zindex="7" text-anchor="middle" transform="translate(0,0)" class=" highcharts-xaxis-title" style="color:#707070;fill:#707070;" visibility="visible" y="224">time</text><path fill="none" d="M 74 182.5 L 298 182.5" stroke="#C0D0E0" stroke-width="1" zindex="7" visibility="visible"/></g><g class="highcharts-axis" zindex="2"><text x="28.140625" zindex="7" text-anchor="middle" transform="translate(0,0) rotate(270 28.140625 117.5)" class=" highcharts-yaxis-title" style="color:#707070;fill:#707070;" visibility="visible" y="117.5">#</text></g><g class="highcharts-series-group" zindex="3"><g class="highcharts-series" visibility="visible" zindex="0.1" transform="translate(74,53) scale(1 1)" clip-path="url(#highcharts-3)"><path fill="none" d="M 0 0" stroke-linejoin="round" visibility="visible" stroke="rgba(192,192,192,0.0001)" stroke-width="22" zindex="2" class=" highcharts-tracker" style=""/></g><g class="highcharts-markers highcharts-tracker" visibility="visible" zindex="0.1" transform="translate(74,53) scale(1 1)" clip-path="url(#highcharts-4)" style=""/><g class="highcharts-series" visibility="visible" zindex="0.1" transform="translate(74,53) scale(1 1)" clip-path="url(#highcharts-3)"><path fill="none" d="M 0 0" stroke-linejoin="round" visibility="visible" stroke="rgba(192,192,192,0.0001)" stroke-width="22" zindex="2" class=" highcharts-tracker" style=""/></g><g class="highcharts-markers highcharts-tracker" visibility="visible" zindex="0.1" transform="translate(74,53) scale(1 1)" clip-path="url(#highcharts-4)" style=""/><g class="highcharts-series" visibility="visible" zindex="0.1" transform="translate(74,53) scale(1 1)" clip-path="url(#highcharts-3)"><path fill="none" d="M 0 0" stroke-linejoin="round" visibility="visible" stroke="rgba(192,192,192,0.0001)" stroke-width="22" zindex="2" class=" highcharts-tracker" style=""/></g><g class="highcharts-markers highcharts-tracker" visibility="visible" zindex="0.1" transform="translate(74,53) scale(1 1)" clip-path="url(#highcharts-4)" style=""/><g class="highcharts-series" visibility="visible" zindex="0.1" transform="translate(74,53) scale(1 1)" clip-path="url(#highcharts-3)"><path fill="none" d="M 0 0" stroke-linejoin="round" visibility="visible" stroke="rgba(192,192,192,0.0001)" stroke-width="22" zindex="2" class=" highcharts-tracker" style=""/></g><g class="highcharts-markers highcharts-tracker" visibility="visible" zindex="0.1" transform="translate(74,53) scale(1 1)" clip-path="url(#highcharts-6)" style=""/></g><text x="154" text-anchor="middle" class="highcharts-title" zindex="4" style="color:#333333;font-size:18px;fill:#333333;width:244px;" y="24"><tspan>Turtle Count</tspan></text><g class="highcharts-legend" zindex="7" transform="translate(23,235)"><g zindex="1"><g><g class="highcharts-legend-item" zindex="1" transform="translate(8,3)"><path fill="none" d="M 0 11 L 16 11" stroke="rgb(167, 27, 106)" stroke-width="2"/><text x="21" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zindex="2" y="15">unattached</text></g><g class="highcharts-legend-item" zindex="1" transform="translate(116.359375,3)"><path fill="none" d="M 0 11 L 16 11" stroke="rgb(237, 237, 49)" stroke-width="2"/><text x="21" y="15" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zindex="2">heads</text></g><g class="highcharts-legend-item" zindex="1" transform="translate(192.984375,3)"><path fill="none" d="M 0 11 L 16 11" stroke="rgb(45, 141, 190)" stroke-width="2"/><text x="21" y="15" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zindex="2">bodies</text></g><g class="highcharts-legend-item" zindex="1" transform="translate(8,21)"><path fill="none" d="M 0 11 L 16 11" stroke="rgb(89, 176, 60)" stroke-width="2"/><text x="21" y="15" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zindex="2">tails</text></g></g></g></g><g class="highcharts-axis-labels highcharts-xaxis-labels" zindex="7"><text x="74" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:102px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="201" opacity="1">0</text><text x="163.60000000000002" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:102px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="201" opacity="1">20</text><text x="253.20000000000002" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:102px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="201" opacity="1">40</text></g><g class="highcharts-axis-labels highcharts-yaxis-labels" zindex="7"><text x="59" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:92px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="185" opacity="1">0</text><text x="59" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:92px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="120" opacity="1">200</text><text x="59" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:92px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="56" opacity="1">400</text></g><g class="highcharts-tooltip" zindex="8" style="cursor:default;padding:0;white-space:nowrap;" transform="translate(0,-9999)"><path fill="none" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isshadow="true" stroke="black" stroke-opacity="0.049999999999999996" stroke-width="5" transform="translate(1, 1)"/><path fill="none" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isshadow="true" stroke="black" stroke-opacity="0.09999999999999999" stroke-width="3" transform="translate(1, 1)"/><path fill="none" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isshadow="true" stroke="black" stroke-opacity="0.15" stroke-width="1" transform="translate(1, 1)"/><path fill="rgba(249, 249, 249, .85)" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5"/><text x="8" zindex="1" style="font-size:12px;color:#333333;fill:#333333;" y="20"/></g></svg></div></div> </div> <div class="netlogo-tabs"> <label class="netlogo-code-tab netlogo-tab netlogo-command "><input type="checkbox" value="on"> NetLogo Code</label> <label class="netlogo-info-tab netlogo-tab netlogo-command "><input type="checkbox" value="on"> Model Info</label></div> <div class="netlogo-model-text">  </div></div>
+            </div>
+        </div>
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/metisMenu.min.js"></script>
+        <script src="/js/sb-admin-2.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="/libs/Helper.js"></script>
+        <script src="/js/Simulation.js"></script>
+        <script src="/simulation/js/follower_1442722440722.js"></script>
+    </body>
+</html>

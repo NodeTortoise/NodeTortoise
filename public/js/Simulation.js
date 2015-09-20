@@ -31,7 +31,7 @@ Simulation = function () {
     this.enabledControls = false;
     this.commands = {};
 
-    var sessionName, modelFile, modelControls, modelCommands, overwritedCommands;
+    var sessionName, modelName, modelFile, modelControls, modelCommands, overwritedCommands;
 
     /**
      * Inicializa la clase, realizando las configuraciones necesarias.
@@ -47,6 +47,7 @@ Simulation = function () {
         initNoMasterConnected();
         //initControls();
         sessionName = Helper.getURLParameter('s');
+        modelName = Helper.getURLParameter('n');
         modelFile = Helper.getLastURLPiece();
         self.socket = io.connect(SERVER_);
         initSockets();
@@ -65,7 +66,7 @@ Simulation = function () {
         //var name = prompt('Digite su nombre');
         //var hash = prompt('Digite su contraseña de usuario maestro');
         //var enabledControls = ENABLED_CONTROLS_ALL_USERS;
-        var params = {'session': sessionName, 'name': name, 'password': password, 'controls': enabledControls, 'modelFile': modelFile};
+        var params = {'session': sessionName, 'name': name, 'password': password, 'controls': enabledControls, 'modelFile': modelFile, 'modelName': modelName};
         self.sendAction('connect', params);
     };
 

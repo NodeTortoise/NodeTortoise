@@ -9,7 +9,7 @@ SessionController = function () {
 
     var self = this;
     var Sockets, Session;
-    var sessions, modelsBySession;
+    var sessions, sessionData;
 
     /**
      * Realiza el proceso de inicialización de variables necesarias por el objeto.
@@ -17,23 +17,24 @@ SessionController = function () {
      */
     this.init = function () {
         sessions = {};
-        modelsBySession = {};
+        sessionData = {};
     };
 
     /**
      * Añade un usuario a una sesión de simulación. Si la sessión no existe, crea una nueva.
      * @method joinSession
      * @param {String} sessionName El nombre de la sesión
-     * @param {String} modelFile El archivo del modelo de la simulación que ejecutará la sesión
      * @param {String} userName El nombre del usuario
+     * @param {String} modelFile El archivo del modelo de la simulación que ejecutará la sesión
+     * @param {String} modelName El nombre del modelo de la simulación que ejecutará la sesión
      * @param {Boolean} [enabledControls] Determinar si la sesión habilita o no los controles a otros usuarios distintos del maestro. Parámetro obligatorio solo para el usuario maestro.
      * @return {Object} Un objecto JavaScript estandar con la información sobre la sesión. 
      */
-    this.joinSession = function (sessionName, modelFile, userName, enabledControls) {
+    this.joinSession = function (sessionName, userName, modelFile, modelName, enabledControls) {
         if (!sessions[sessionName]) {
             sessions[sessionName] = new Session(sessionName);
             sessions[sessionName].init();
-            modelsBySession[sessionName] = modelFile;
+            self.setSessionModel(sessionName, modelFile, modelName, userName);
             return sessions[sessionName].addUser(userName, MASTER_PASSWORD, enabledControls);
         } else {
             return sessions[sessionName].addUser(userName, null, null);
@@ -64,11 +65,13 @@ SessionController = function () {
     /**
      * Establece el modelo a ejecutar en una sesión de simulación
      * @method setSessionModel
-     * @param {String} sessionName
-     * @param {String} modelName
+     * @param {String} sessionName El nombre de la sesion
+     * @param {String} modelFile El archivo del modelo
+     * @param {String} modelName El nombre del modelo
+     * @param {String} masterName El nombre del usuario maestro
      */
-    this.setSessionModel = function (sessionName, modelName) {
-        modelsBySession[sessionName] = modelName;
+    this.setSessionModel = function (sessionName, modelFile, modelName, masterName) {
+        sessionData[sessionName] = {'file': modelFile, 'name': modelName, 'master': masterName};
     };
 
     /**
@@ -78,7 +81,7 @@ SessionController = function () {
      * @return {String} El nombre del modelo utilizado en la sesión
      */
     this.getSessionModel = function (sessionName) {
-        return modelsBySession[sessionName];
+        return sessionData[sessionName].file;
     };
 
     /**
@@ -87,7 +90,7 @@ SessionController = function () {
      * @return {Array} La lista de sesiones
      */
     this.getSessionList = function () {
-        return modelsBySession;
+        return sessionData;
     };
 
     /**

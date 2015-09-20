@@ -70,10 +70,10 @@
                             {% for model in data.models %}
                             <tr class="{% if loop.index0 % 2 === 0 %}even{% else %}odd{% endif %}">
                                 <td>{@ model.name @}</td>
-                                <td>{@ model.description @}</td>
+                                <td style="max-width: 550px">{@ model.description @}</td>
                                 <td>{@ model.date_uploaded @}</td>
                                 <td>
-                                    <a href="{@ data.getModelURL(model.filename, data.token) @}" class="no-underline">
+                                    <a href="{@ data.getModelURL(model.filename, model.name, data.token) @}" class="no-underline">
                                         <i class="fa fa-plus-circle fa-fw" /></i>&nbsp;Iniciar
                                     </a>
                                 </td>

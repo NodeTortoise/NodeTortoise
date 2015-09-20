@@ -211,26 +211,29 @@ Controller.session.list = function (req, res, next) {
         var controller = SessionController.getInstance();
         var sessionsData = controller.getSessionList();
         var token = Helper.getHash(Helper.getRandomNumber(1, 1000), true);
-        var models = modelsList;
         var sessions = {};
         for (var sessionName in sessionsData) {
-            var users = controller.getSessionUsersQuantity(sessionName);
-            var url = MODEL_URL_TEMPLATE.replace('@session@', sessionName).replace('@model@', controller.getSessionModel(sessionName));
-            sessions[sessionName] = {'name': '', 'url': url, 'users': users};
+            var usersInSession = controller.getSessionUsersQuantity(sessionName);
+            if(usersInSession > 0){
+                var sessionData = sessionsData[sessionName];
+                var url = MODEL_URL_TEMPLATE.replace('@session@', sessionName).replace('@model@', controller.getSessionModel(sessionName));
+                var sessionName = sessionData.name + ' (' + sessionData.master + ')';
+                sessions[sessionName] = {'name': sessionName, 'url': url.replace('.html.html', '.html'), 'users': usersInSession};
+            }
         }
-        ;
         /**
          * Función para obtener la URL a un modelo.
          * @event list.getModelURL
          * @param {String} modelFilename El nombre de archivo del modelo sin extensión
+         * @param {String} modelName El nombre del modelo
          * @param {String} token Token del usuario
          * @return {String} La URL al modelo
          */
-        var getModelURL = function (modelFilename, token) {
-            return (MODEL_URL_TEMPLATE.replace('@session@', token).replace('@model@', modelFilename));
+        var getModelURL = function (modelFilename, modelName, token) {
+            return (MODEL_URL_TEMPLATE.replace('@session@', token).replace('@model@', modelFilename).replace('@name@', modelName));
         };
         var page = {'title': 'Unirse o iniciar sesión', 'content_title': 'Unirse o iniciar sesión'};
-        var data = {'sessions': sessions, 'models': models, 'token': token, 'getModelURL': getModelURL};
+        var data = {'sessions': sessions, 'models': modelsList, 'token': token, 'getModelURL': getModelURL};
         res.render('session/list.html', {'page': page, 'data': data});
     };
     /**

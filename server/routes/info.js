@@ -21,4 +21,10 @@ router.get('/install-nodetortoise', function (req, res, next) {
     res.render('info/install-nodetortoise.html', {'page': page, 'data': data});
 });
 
+router.get('/help', function (req, res, next) {
+    var page = {'title': 'Ayuda', 'content_title': 'Documentación de usuario'};
+    var data = {};
+    res.render('info/help.html', {'page': page, 'data': data});
+});
+
 module.exports = router;

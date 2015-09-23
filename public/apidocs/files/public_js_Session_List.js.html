@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>public\js\Session_List.js - NodeTortoise</title>
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">NodeTortoise</h1>
+	<div class="nav"></div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Buscar clases/módulos..." data-obj='["classes/App", "classes/Controller", "classes/Controller.model", "classes/Controller.session", "classes/Entities", "classes/Entities.model", "classes/Helper", "classes/Model", "classes/Model_List", "classes/Session", "classes/Session_List", "classes/SessionController", "classes/Simulation", "classes/Sockets", "classes/Sockets.Actions", "classes/SQLite", "modules/Commons", "modules/Public", "modules/Server", "modules/Server-bl", "modules/Server-da", "modules/Server-libs"]'>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+	    <div>
+	        <div id="sidebar">
+	            <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
+	                <li class="active"><a href="#classes" data-toggle="tab">Clases</a></li>
+	                <li><a href="#modules" data-toggle="tab">Módulos</a></li>
+	            </ul>
+	    
+	            <div id="api-tabview-filter">
+	                <input type="search" placeholder="Digite para filtrar APIs">
+	            </div>
+	    
+	            <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
+	                <div class="tab-pane active" id="classes">
+	                    <ul id="api-classes" class="nav nav-list">
+	                            <li><a href="../classes/App.html">App</a></li>
+	                            <li><a href="../classes/Controller.html">Controller</a></li>
+	                            <li><a href="../classes/Controller.model.html">Controller.model</a></li>
+	                            <li><a href="../classes/Controller.session.html">Controller.session</a></li>
+	                            <li><a href="../classes/Entities.html">Entities</a></li>
+	                            <li><a href="../classes/Entities.model.html">Entities.model</a></li>
+	                            <li><a href="../classes/Helper.html">Helper</a></li>
+	                            <li><a href="../classes/Model.html">Model</a></li>
+	                            <li><a href="../classes/Model_List.html">Model_List</a></li>
+	                            <li><a href="../classes/Session.html">Session</a></li>
+	                            <li><a href="../classes/Session_List.html">Session_List</a></li>
+	                            <li><a href="../classes/SessionController.html">SessionController</a></li>
+	                            <li><a href="../classes/Simulation.html">Simulation</a></li>
+	                            <li><a href="../classes/Sockets.html">Sockets</a></li>
+	                            <li><a href="../classes/Sockets.Actions.html">Sockets.Actions</a></li>
+	                            <li><a href="../classes/SQLite.html">SQLite</a></li>
+	                    </ul>
+	                </div>
+	    
+	                <div class="tab-pane" id="modules">
+	                    <ul id="api-modules" class="nav nav-list">
+	                            <li><a href="../modules/Commons.html">Commons</a></li>
+	                            <li><a href="../modules/Public.html">Public</a></li>
+	                            <li><a href="../modules/Server.html">Server</a></li>
+	                            <li><a href="../modules/Server-bl.html">Server-bl</a></li>
+	                            <li><a href="../modules/Server-da.html">Server-da</a></li>
+	                            <li><a href="../modules/Server-libs.html">Server-libs</a></li>
+	                    </ul>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+        </div>
+        <div class="span9">
+                <form id="options-form" class="form-inline pull-right">
+                    Mostrar:
+                    <label for="api-show-inherited" class="checkbox" style="display:none">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+                    <label for="api-show-protected" class="checkbox">
+                        <input type="checkbox" id="api-show-protected">
+                        Protegidos
+                    </label>
+            
+                    <label for="api-show-private" class="checkbox">
+                        <input type="checkbox" id="api-show-private">
+                        Privados
+                    </label>
+                    <label for="api-show-deprecated" class="checkbox">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecados
+                    </label>
+                </form>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <div class="page-header">
+                            <h1>public\js\Session_List.js <small>File</small></h1>
+                        </div>
+                        
+                        <div class="file">
+                            <pre class="prettyprint linenums">
+                        /**
+                         * Controla las acciones que se deben ejecutar en la página de Lista de Modelos
+                         * @class Session_List
+                         * @constructor
+                         * @module Public
+                         */
+                        Session_List = function () {
+                        
+                            /**
+                             * Ejecuta las acciones de configuración necesarias
+                             * @method init
+                             */
+                            this.init = function () {
+                                initDataTables();
+                                $(&#x27;.new-session&#x27;).hide();
+                                $(&#x27;#action-new-session&#x27;).click(function (event) {
+                                    event.preventDefault();
+                                    var ele = $(this);
+                                    if (!ele.hasClass(&#x27;inactive&#x27;)) {
+                                        ele.blur();
+                                        ele.addClass(&#x27;inactive&#x27;);
+                                        $(&#x27;#action-cancel-new-session&#x27;).removeClass(&#x27;inactive&#x27;);
+                                        $(&#x27;.current-session&#x27;).hide();
+                                        $(&#x27;.new-session&#x27;).show();
+                                    }
+                                });
+                                $(&#x27;#action-cancel-new-session&#x27;).click(function (event) {
+                                    event.preventDefault();
+                                    var ele = $(this);
+                                    if (!ele.hasClass(&#x27;inactive&#x27;)) {
+                                        ele.blur();
+                                        ele.addClass(&#x27;inactive&#x27;);
+                                        $(&#x27;#action-new-session&#x27;).removeClass(&#x27;inactive&#x27;);
+                                        $(&#x27;.new-session&#x27;).hide();
+                                        $(&#x27;.current-session&#x27;).show();
+                                    }
+                                });
+                                $(&#x27;#action-reload-sessions-models&#x27;).click(function (event) {
+                                    event.preventDefault();
+                                    $(this).blur();
+                                });
+                                $(&#x27;#action-cancel-new-session&#x27;).click();
+                            };
+                        
+                            /**
+                             * Inicializa la tabla que contiene la lista de sesiones
+                             * @method initModelsTable
+                             */
+                            var initDataTables = function () {
+                                $(&#x27;#session-list-table&#x27;).DataTable({
+                                    &#x27;responsive&#x27;: true,
+                                    &#x27;language&#x27;: {
+                                        &#x27;url&#x27;: &#x27;/js/dataTables.spanish.lang&#x27;
+                                    }
+                                });
+                                $(&#x27;#models-list-table&#x27;).DataTable({
+                                    &#x27;responsive&#x27;: true,
+                                    &#x27;language&#x27;: {
+                                        &#x27;url&#x27;: &#x27;/js/dataTables.spanish.lang&#x27;
+                                    }
+                                });
+                            };
+                        
+                        };
+                        
+                        /**
+                         * Crea e inicializa el objeto Session_List
+                         * @method init
+                         */
+                        Session_List.init = function () {
+                            var app = new Session_List();
+                            app.init();
+                        };
+                        
+                        $(Session_List.init);
+                            </pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>

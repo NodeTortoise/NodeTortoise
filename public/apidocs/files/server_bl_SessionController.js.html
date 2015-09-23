@@ -15,7 +15,7 @@
         <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">NodeTortoise</h1>
 	<div class="nav"></div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Buscar clases/módulos..." data-obj='["classes/App", "classes/undefined", "classes/Controller.model", "classes/Controller.session", "classes/Model", "classes/Session", "classes/Controller", "classes/Entities", "classes/Entities.model", "classes/Sockets.Actions", "classes/Sockets", "classes/SessionController"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Buscar clases/módulos..." data-obj='["classes/App", "classes/Controller", "classes/Controller.model", "classes/Controller.session", "classes/Entities", "classes/Entities.model", "classes/Helper", "classes/Model", "classes/Model_List", "classes/Session", "classes/Session_List", "classes/SessionController", "classes/Simulation", "classes/Sockets", "classes/Sockets.Actions", "classes/SQLite", "modules/Commons", "modules/Public", "modules/Server", "modules/Server-bl", "modules/Server-da", "modules/Server-libs"]'>
         </form>
     </div>
 </div>
@@ -37,22 +37,32 @@
 	                <div class="tab-pane active" id="classes">
 	                    <ul id="api-classes" class="nav nav-list">
 	                            <li><a href="../classes/App.html">App</a></li>
-	                            <li><a href="../classes/.html"></a></li>
+	                            <li><a href="../classes/Controller.html">Controller</a></li>
 	                            <li><a href="../classes/Controller.model.html">Controller.model</a></li>
 	                            <li><a href="../classes/Controller.session.html">Controller.session</a></li>
-	                            <li><a href="../classes/Model.html">Model</a></li>
-	                            <li><a href="../classes/Session.html">Session</a></li>
-	                            <li><a href="../classes/Controller.html">Controller</a></li>
 	                            <li><a href="../classes/Entities.html">Entities</a></li>
 	                            <li><a href="../classes/Entities.model.html">Entities.model</a></li>
-	                            <li><a href="../classes/Sockets.Actions.html">Sockets.Actions</a></li>
-	                            <li><a href="../classes/Sockets.html">Sockets</a></li>
+	                            <li><a href="../classes/Helper.html">Helper</a></li>
+	                            <li><a href="../classes/Model.html">Model</a></li>
+	                            <li><a href="../classes/Model_List.html">Model_List</a></li>
+	                            <li><a href="../classes/Session.html">Session</a></li>
+	                            <li><a href="../classes/Session_List.html">Session_List</a></li>
 	                            <li><a href="../classes/SessionController.html">SessionController</a></li>
+	                            <li><a href="../classes/Simulation.html">Simulation</a></li>
+	                            <li><a href="../classes/Sockets.html">Sockets</a></li>
+	                            <li><a href="../classes/Sockets.Actions.html">Sockets.Actions</a></li>
+	                            <li><a href="../classes/SQLite.html">SQLite</a></li>
 	                    </ul>
 	                </div>
 	    
 	                <div class="tab-pane" id="modules">
 	                    <ul id="api-modules" class="nav nav-list">
+	                            <li><a href="../modules/Commons.html">Commons</a></li>
+	                            <li><a href="../modules/Public.html">Public</a></li>
+	                            <li><a href="../modules/Server.html">Server</a></li>
+	                            <li><a href="../modules/Server-bl.html">Server-bl</a></li>
+	                            <li><a href="../modules/Server-da.html">Server-da</a></li>
+	                            <li><a href="../modules/Server-libs.html">Server-libs</a></li>
 	                    </ul>
 	                </div>
 	            </div>
@@ -96,12 +106,14 @@
                          * Controla las sesiones de creadas por los usuarios para ejecutar las simulaciones.
                          * @class SessionController
                          * @constructor
+                         * @module Server
+                         * @submodule Server-bl
                          */
                         SessionController = function () {
                         
                             var self = this;
                             var Sockets, Session;
-                            var sessions, modelsBySession;
+                            var sessions, sessionData;
                         
                             /**
                              * Realiza el proceso de inicialización de variables necesarias por el objeto.
@@ -109,23 +121,24 @@
                              */
                             this.init = function () {
                                 sessions = {};
-                                modelsBySession = {};
+                                sessionData = {};
                             };
                         
                             /**
                              * Añade un usuario a una sesión de simulación. Si la sessión no existe, crea una nueva.
                              * @method joinSession
                              * @param {String} sessionName El nombre de la sesión
-                             * @param {String} modelFile El archivo del modelo de la simulación que ejecutará la sesión
                              * @param {String} userName El nombre del usuario
+                             * @param {String} modelFile El archivo del modelo de la simulación que ejecutará la sesión
+                             * @param {String} modelName El nombre del modelo de la simulación que ejecutará la sesión
                              * @param {Boolean} [enabledControls] Determinar si la sesión habilita o no los controles a otros usuarios distintos del maestro. Parámetro obligatorio solo para el usuario maestro.
                              * @return {Object} Un objecto JavaScript estandar con la información sobre la sesión. 
                              */
-                            this.joinSession = function (sessionName, modelFile, userName, enabledControls) {
+                            this.joinSession = function (sessionName, userName, modelFile, modelName, enabledControls) {
                                 if (!sessions[sessionName]) {
                                     sessions[sessionName] = new Session(sessionName);
                                     sessions[sessionName].init();
-                                    modelsBySession[sessionName] = modelFile;
+                                    self.setSessionModel(sessionName, modelFile, modelName, userName);
                                     return sessions[sessionName].addUser(userName, MASTER_PASSWORD, enabledControls);
                                 } else {
                                     return sessions[sessionName].addUser(userName, null, null);
@@ -156,11 +169,13 @@
                             /**
                              * Establece el modelo a ejecutar en una sesión de simulación
                              * @method setSessionModel
-                             * @param {String} sessionName
-                             * @param {String} modelName
+                             * @param {String} sessionName El nombre de la sesion
+                             * @param {String} modelFile El archivo del modelo
+                             * @param {String} modelName El nombre del modelo
+                             * @param {String} masterName El nombre del usuario maestro
                              */
-                            this.setSessionModel = function (sessionName, modelName) {
-                                modelsBySession[sessionName] = modelName;
+                            this.setSessionModel = function (sessionName, modelFile, modelName, masterName) {
+                                sessionData[sessionName] = {&#x27;file&#x27;: modelFile, &#x27;name&#x27;: modelName, &#x27;master&#x27;: masterName};
                             };
                         
                             /**
@@ -170,7 +185,7 @@
                              * @return {String} El nombre del modelo utilizado en la sesión
                              */
                             this.getSessionModel = function (sessionName) {
-                                return modelsBySession[sessionName];
+                                return sessionData[sessionName].file;
                             };
                         
                             /**
@@ -179,7 +194,7 @@
                              * @return {Array} La lista de sesiones
                              */
                             this.getSessionList = function () {
-                                return modelsBySession;
+                                return sessionData;
                             };
                         
                             /**
@@ -220,7 +235,7 @@
                         };
                         
                         /**
-                         * Basado en el patrón &lt;i&gt;Singleton&lt;/i&gt;, returna una instancia del objeto SessionController
+                         * Basado en el patrón &lt;i&gt;Singleton&lt;/i&gt;, retorna una instancia del objeto SessionController
                          * @method getInstance
                          * @static
                          * @return {SessionController}

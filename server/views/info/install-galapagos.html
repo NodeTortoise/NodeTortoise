@@ -1,0 +1,100 @@
+{% extends '../layout.html' %}
+{% block main_content %}
+<div class="install-steps">
+    <h3>Instalación utilizando Script</h3>
+    <p>A continuación se describe los pasos de instalación de Galapagos utilizando el script de instalación. Los comandos mostrados son para cualquier sistema operativo Linux, no obstante, no existen scripts para todos ellos.</p>
+    <ol>
+        <li>
+            Descargar el script de instalación adecuado para su sistema operativo, desde el repositorio de GitHub: <br/>
+            <strong>Ubuntu</strong>:
+            <a href="https://raw.githubusercontent.com/oscarmartinezm/Scripts/master/ubuntu/Install-Galapagos.sh" target="_blank">Descargar</a> |
+            <a href="https://github.com/oscarmartinezm/Scripts/blob/master/ubuntu/Install-Galapagos.sh" target="_blank">Ver en GitHub</a>
+        </li>
+        <li>Subir el archivo al servidor y acceder a la ubicación de éste.</li>
+        <li>
+            Dar permisos de ejecución al archivo
+            <code>chmod 771 Install-Galapagos.sh</code>
+        </li>
+        <li>
+            Ejecutar el archivo con permisos de root
+            <pre>sudo ./Install-Galapagos.sh</pre>
+        </li>
+        <li>Seguir los pasos que se indiquen, aceptando la instalación de los paquetes necesarios.</li>
+    </ol>
+</div>
+<div class="install-steps">
+    <h3>Instalación Manual</h3>
+    <p>A continuación se describe los pasos de instalación de Galapagos. Los comandos mostrados son para el sistema operativo Ubuntu. No obstante, los pasos a realizar son los mismos para otros sistemas operativos.</p>
+    <ol>
+        <li>
+            Instalar NodeJS
+            <pre>apt-get install nodejs-legacy</pre>
+        </li>
+        <li>
+            Instalar NodeJS Package Manager (NPM)
+            <pre>apt-get install npm</pre>
+        </li>
+        <li>
+            Instalar SBT
+            <pre>echo "deb https://dl.bintray.com/sbt/debian /" | tee -a /etc/apt/sources.list.d/sbt.list
+apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 642AC823
+apt-get update
+apt-get install sbt</pre>
+        </li>
+        <li>
+            Instalar GIT
+            <pre>apt-get install git</pre>
+        </li>
+        <li>
+            Instalar UnZip
+            <pre>apt-get install unzip</pre>
+        </li>
+        <li>
+            Desinstalar OpenJDK. Se debe realizar este paso, porque se necesitar contar con la versión 8 del JDK, pero a la fecha (2015-09-19) no estaba aún disponible.
+            <pre>apt-get purge $OPENJDK_PKG*</pre>
+        </li>
+        <li>
+            Instalar Oracle Java 8 JDK
+            <pre>add-apt-repository ppa:webupd8team/java
+ apt-get update
+ apt-get install openjdk</pre>
+        </li>
+        <li>
+            Instalar Play Framework
+            <pre>wget http://downloads.typesafe.com/typesafe-activator/1.3.5/typesafe-activator-1.3.5-minimal.zip
+ unzip typesafe-activator-1.3.5-minimal.zip
+ rm typesafe-activator-1.3.5-minimal.zip</pre>
+        </li>
+        <li>
+            Obtener repositorio de Galapagos en GitHub
+            <pre>git clone https://github.com/oscarmartinezm/Galapagos.git</pre>
+        </li>
+        <li>
+            Ingresar al direction donde está ubicado Galagos
+            <pre>cd Galapagos</pre>
+        </li>
+        <li>
+            Crear link simbólico a Play Framework dentro de Galapagos
+            <pre>ln -s ../activator-1.3.5-minimal/activator start</pre>
+        </li>
+        <li>
+            Instalar UnZip
+            <pre>apt-get install unzip</pre>
+        </li>
+    </ol>
+</div>
+<div class="install-steps">
+    <h3>Ejecución</h3>
+    <p>A continuación se describe los pasos para ejecutar Galapagos. Los comandos mostrados son para cualquier sistema operativo Linux.</p>
+    <ol>
+        <li>
+            Ingresar al directorio donde está ubicado Galapagos
+            <pre>cd Galapagos</pre>
+        </li>
+        <li>
+            Ejecutar el archivo start, con derechos de root
+            <pre>sudo ./start run</pre>
+        </li>
+    </ol>
+    {% endblock %}
+</div>

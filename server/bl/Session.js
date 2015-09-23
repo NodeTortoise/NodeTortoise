@@ -4,6 +4,8 @@
  * Maneja una sesión individual de una simulación.
  * @class Session
  * @constructor
+ * @module Server
+ * @submodule Server-bl
  * @param {String} name El nombre de la sesión
  */
 Session = function (name) {

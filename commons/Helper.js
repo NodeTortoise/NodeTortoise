@@ -1,6 +1,18 @@
+/**
+ * Funciones utilitarias.
+ * @class Helper
+ * @module Commons
+ */
 Helper = function () {
 };
 
+/**
+ * Genera un hash a partir de una cadena de caracteres (<i>string</i>).
+ * @method getHash
+ * @static
+ * @param {String} string Cada de caracteres base para el hash
+ * @param {Booolean} addTimestamp Indica si se concatena la hora actual a la cadena de caracteres
+ */
 Helper.getHash = function (string, addTimestamp) {
     var crypto = require('crypto');
     var shasum = crypto.createHash('sha1');
@@ -11,13 +23,26 @@ Helper.getHash = function (string, addTimestamp) {
     return shasum.digest('hex');
 };
 
+/**
+ * Indica si una variable tiene valor asignado.
+ * @method hasValue
+ * @static
+ * @param {String} value Variable a analizar
+ */
 Helper.hasValue = function (value) {
     return (value !== undefined && value !== null);
 };
 
-Helper.spinner = function (el, options) {
+/**
+ * Genera un <i>spinner</i> sobre un elemento del HTML.
+ * @method spinner
+ * @static
+ * @param {String} elementSelector Selector del elemento HTML
+ * @param {Object} options Opciones para el <i>spinner</i>
+ */
+Helper.spinner = function (elementSelector, options) {
     // Becomes this.options
-    this.container = $(el);
+    this.container = $(elementSelector);
     var defaults = {
         bgColor: 'transparent',
         duration: 800,
@@ -63,6 +88,13 @@ Helper.spinner = function (el, options) {
     this.init();
 };
 
+/**
+ * Ejecuta una función a partir del nombre
+ * @method executeFunctionByName
+ * @static
+ * @param {String} functionName Nombre de la función
+ * @param {Array|String} context Contexto(s) de la función
+ */
 Helper.executeFunctionByName = function (functionName, context /*, args */) {
     var args = Array.prototype.slice.call(arguments, 2);
     var namespaces = functionName.split(".");
@@ -73,10 +105,23 @@ Helper.executeFunctionByName = function (functionName, context /*, args */) {
     return context[func].apply(context, args);
 };
 
+/**
+ * Obtiene el valor almacenado en una variable o un valor por defecto si esta no
+ * está asignada o es nula.
+ * @method get
+ * @static
+ * @param {String} value Variable a analizar
+ * @param {String} defaultValue Valor por defecto
+ */
 Helper.get = function (value, defaultValue) {
     return ((value === undefined || value === null) ? defaultValue : value);
 };
 
+/**
+ * Obtiene la versión de navegador de Internet utilizada.
+ * @method getBrowser
+ * @static
+ */
 Helper.getBrowser = function () {
     if (!!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0) { // Opera 8.0+ (UA detection to detect Blink/v8-powered Opera)
         return 'Opera';
@@ -93,6 +138,12 @@ Helper.getBrowser = function () {
     }
 };
 
+/**
+ * Asigna la ejecución de una función, cual se termina la carga de una página.
+ * @method onload
+ * @static
+ * @param {Function} functionName Función a asignar
+ */
 Helper.onload = function (functionName) {
     if (window.attachEvent) {
         window.attachEvent('onload', functionName);
@@ -110,22 +161,59 @@ Helper.onload = function (functionName) {
     }
 };
 
+/**
+ * Busca un fragmento en una cadena de caracteres y reemplaza todas las 
+ * coincidencias.
+ * @method replaceAll
+ * @static
+ * @param {String} string Cadena de caracteres donde se buscarán las coincidencias
+ * @param {String} find Cadena de caracteres a buscar
+ * @param {String} replace Cadena de caracteres que reemplazará
+ */
 Helper.replaceAll = function (string, find, replace) {
     return string.replace(new RegExp(Helper.escapeRegExp(find), 'g'), replace);
 };
 
+/**
+ * Agrega el caracter de escape, a los caracteres especiales en una cadena.
+ * @method escapeRegExp
+ * @static
+ * @param {String} string La cadena de caracteres
+ */
 Helper.escapeRegExp = function (string) {
     return string.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
 };
 
+/**
+ * Formate un nombre de archivo, eliminando los caracteres especiales, 
+ * convirtiéndolo a minúsculas y remplazando los espaciones por guiones bajos.
+ * convirtiéndole.
+ * @method cleanFileName
+ * @static
+ * @param {String} fileName Nombre del archivo
+ */
 Helper.cleanFileName = function (fileName) {
     return Helper.replaceAll(fileName, ' ', '_').replace(/[^a-zA-Z0-9-_]/g, '').toLowerCase();
 };
 
+/**
+ * Indica si una variable tiene valor asignado.
+ * @method getRandomNumber
+ * @static
+ * @param {Integer} min Valor mínimo
+ * @param {Integer} max Valor máximo
+ */
 Helper.getRandomNumber = function (min, max) {
     return (Math.random() * (max - min) + min);
 };
 
+/**
+ * Obtiene un parámetro <i>GET</i> de una URL.
+ * @method getURLParameter
+ * @static
+ * @param {String} name Nombre del parámetro
+ * @param {String} url La URL
+ */
 Helper.getURLParameter = function (name, url) {
     if (!url)
         url = location.href;
@@ -136,6 +224,12 @@ Helper.getURLParameter = function (name, url) {
     return results === null ? null : results[1];
 };
 
+/**
+ * Obtiene la última sección de un URL.
+ * @method getLastURLPiece
+ * @static
+ * @param {String} url La URL
+ */
 Helper.getLastURLPiece = function (url) {
     if (!url)
         url = location.pathname;
@@ -143,6 +237,14 @@ Helper.getLastURLPiece = function (url) {
     return segmentArray[segmentArray.length - 1];
 };
 
+/**
+ * Elimina caracteres al final de una cadena de caracteres.
+ * @method trimRight
+ * @static
+ * @param {String} string Cadena de caracteres a la cual se le aplicara la función
+ * @param [String] string Cadena de caracteres con los caracteres a reemplazar. 
+ * Por defecto se reemplazan los espacios.
+ */
 Helper.trimRight = function (string, charlist) {
     if (charlist === undefined) {
         charlist = "\s";
@@ -150,9 +252,41 @@ Helper.trimRight = function (string, charlist) {
     return string.replace(new RegExp("[" + charlist + "]+$"), "");
 };
 
+/**
+ * Elimina caracteres al inicio de una cadena de caracteres.
+ * @method trimLeft
+ * @static
+ * @param {String} string Cadena de caracteres a la cual se le aplicara la función
+ * @param [String] string Cadena de caracteres con los caracteres a reemplazar. 
+ * Por defecto se reemplazan los espacios.
+ */
 Helper.trimLeft = function (string, charlist) {
     if (charlist === undefined)
         charlist = "\s";
 
     return string.replace(new RegExp("^[" + charlist + "]+"), "");
+};
+
+/**
+ * Convierte una cadena de caracteres a entidades HTML
+ * @method toHTMLEntities
+ * @static
+ * @param {String} string Cadena de caracteres a la cual se le aplicara la función
+ */
+Helper.toHTMLEntities = function (string) {
+    return string.replace(/./gm, function (s) {
+        return "&#" + s.charCodeAt(0) + ";";
+    });
+};
+
+/**
+ * Crea una cadena de caracteres desde una entidad HTML
+ * @method fromHTMLEntities
+ * @static
+ * @param {String} string Cadena de caracteres a la cual se le aplicara la función
+ */
+Helper.fromHTMLEntities = function (string) {
+    return (string + "").replace(/&#\d+;/gm, function (s) {
+        return String.fromCharCode(s.match(/\d+/gm)[0]);
+    })
 };

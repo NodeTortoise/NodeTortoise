@@ -34,7 +34,7 @@
                             {% for model in data.models %}
                             <tr class="{% if loop.index0 % 2 === 0 %}even{% else %}odd{% endif %}">
                                 <td>{@ model.name @}</td>
-                                <td>{@ model.description @}</td>
+                                <td style="max-width: 550px">{@ model.description @}</td>
                                 <td>{@ model.date_uploaded @}</td>
                                 <td>
                                     <a class="delete-model" data-id="{@ model.id @}" data-name="{@ model.name @}" href="/model/delete/{@ model.filename @}">

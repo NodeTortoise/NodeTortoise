@@ -15,8 +15,6 @@
         <style>
             
       .netlogo-model {
-    border: 2px solid black;
-    border-radius: 20px;
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
@@ -33,9 +31,9 @@
     -webkit-flex-flow: row;
         -ms-flex-flow: row;
             flex-flow: row;
-    -webkit-align-items: baseline;
-        -ms-flex-align: baseline;
-            align-items: baseline;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
 }
 
 .netlogo-widget {
@@ -113,6 +111,16 @@
     background-color: white;
     margin: 10px;
 }
+
+.netlogo-export-button {
+    -webkit-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    text-align: center;
+    background-color: rgb(240, 240, 240);
+    border-color: rgb(238, 238, 238);
+}
+
 .netlogo-code {
     -webkit-flex: 1 1 auto;
         -ms-flex: 1 1 auto;
@@ -178,9 +186,9 @@
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-flex-shrink: 0;
       -ms-flex-negative: 0;
-      -webkit-flex-shrink: 0;
-              flex-shrink: 0;
+          flex-shrink: 0;
 }
 
 .netlogo-command-center-input input {
@@ -396,6 +404,16 @@
 .netlogo-forever-button > input {
     display: none;
 }
+
+.netlogo-subheader {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-flow: column;
+        -ms-flex-flow: column;
+            flex-flow: column;
+}
+
 /*# sourceMappingURL=widgets.css.map */
 .netlogo-command {
     background-color: #BCBCE5;
@@ -414,6 +432,8 @@
 .netlogo-output {
     background-color: #E0E0B5;
 }
+
+
 /*# sourceMappingURL=classic.css.map */
 .cm-s-netlogo-default .cm-operator {
     color: #000000;
@@ -435,6 +455,7 @@
 .cm-s-netlogo-default .cm-constant {
     color: #963700;
 }
+
 /*# sourceMappingURL=netlogo-syntax.css.map */
 /* BASICS */
 
@@ -768,7 +789,7 @@ span.CodeMirror-selectedtext { background: none; }
     <body>
         <div class="model-main-content">
             <div id="model-container">
-                <div class="netlogo-model" style="width: 693px;"><div class="netlogo-header"><label class="netlogo-widget netlogo-speed-slider"><span class="netlogo-label">speed</span> <input type="range" min="-1" max="1" step="0.01" value="0"></label> <div class="netlogo-powered-by"><a href="http://ccl.northwestern.edu/netlogo/"><img style="vertical-align: middle;" alt="NetLogo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAANcSURBVHjarJRdaFxFFMd/M/dj7252uxubKms+bGprVyIVbNMWWqkQqtLUSpQWfSiV+oVFTcE3DeiDgvoiUSiCYLH2oVoLtQ+iaaIWWtE2FKGkkSrkq5svN+sm7ma/7p3x4W42lEbjQw8MM8yc87/nzPnNFVprbqWJXyMyXuMqx1Ni6N3ny3cX8tOHNLoBUMvESoFI2Xbs4zeO1lzREpSrMSNS1zkBDv6uo1/noz1H7mpvS4SjprAl2AZYEqzKbEowBAgBAkjPKX2599JjT7R0bj412D0JYNplPSBD1G2SmR/e6u1ikEHG2vYiGxoJmxAyIGSCI8GpCItKimtvl2JtfGujDNkX6epuAhCjNeAZxM1ocPy2Qh4toGQ5DLU+ysiuA2S3P0KgJkjAgEAlQylAA64CG/jlUk6//ng4cNWmLK0yOPNMnG99Rs9LQINVKrD+wmke7upg55PrWP3eYcwrlykpKCkoelDy/HVegQhoABNAepbACwjOt72gZkJhypX70YDWEEklue+rbnYc2MiGp1upPfYReiJJUUG58gFXu4udch1wHcjFIgy0HyIjb2yvBpT2F6t+6+f+D15lW8c9JDo7iPSdgVIRLUqL2AyHDQAOf9hfbqxvMF98eT3RuTS1avHyl+Stcphe2chP9+4k/t3RbXVl3W+Ws17FY56/w3VcbO/koS/eZLoAqrQMxADZMTYOfwpwoWjL4+bCYcgssMqGOzPD6CIkZ/3SxTJ0ayFIN6/BnBrZb2XdE1JUgkJWkfrUNRJnPyc16zsbgPyXIUJBpvc+y89nk/S8/4nek3NPGeBWMwzGvhUPnP6RubRLwfODlqqx3LSCyee2MnlwMwA2RwgO5qouVcHmksUdJweYyi8hZkrUjgT5t/ejNq0jBsSqNWsKyT9uFtxw7Bs585d3g46KOeT2bWHmtd14KyP+5mzqpsYU3OyioACMhGiqPTMocsrHId9cy9BLDzKxq8X3ctMwlV6yKSHL4fr4dd0DeQBTBUgUkvpE1kVPbqkX117ZzuSaFf4zyfz5n9A4lk0yNU7vyb7jTy1kmFGipejKvh6h9n0W995ZPTu227hqmCz33xXgFV1v9NzI96NfjndWt7XWCB/7BSICFWL+j3lAofpCtfYFb6X9MwCJZ07mUsXRGwAAAABJRU5ErkJggg=="> <span style="font-size: 16px;">powered by NetLogo</span></a></div></div> <div style="position: relative; width: 693px; height: 527px" class="netlogo-widget-container"><div class="netlogo-widget netlogo-view-container" style="position: absolute; left: 317px; top: 10px; width: 376px; height: 517px;"><div class="netlogo-widget netlogo-tick-counter">ticks: <span></span></div><canvas width="366" height="486" style="width: 100%;"></canvas></div>             <button class="netlogo-widget netlogo-button netlogo-command" type="button" style="position: absolute; left: 83px; top: 192px; width: 65px; height: 33px;"><span>setup</span></button>            <label class="netlogo-widget netlogo-slider netlogo-input" style="position: absolute; left: 18px; top: 84px; width: 137px; height: 33px;"><input type="range" max="59" min="1" step="1" value="20"> <div class="netlogo-slider-label"><span class="netlogo-label">kick-line</span> <span class="netlogo-slider-value"><input type="number" style="width: 4.5ch" min="1" max="59" step="1" value="20"> </span></div></label>          <label class="netlogo-widget netlogo-slider netlogo-input" style="position: absolute; left: 82px; top: 121px; width: 137px; height: 33px;"><input type="range" max="22" min="1" step="1" value="11"> <div class="netlogo-slider-label"><span class="netlogo-label">goal-size</span> <span class="netlogo-slider-value"><input type="number" style="width: 4.5ch" min="1" max="22" step="1" value="11"> </span></div></label>          <label class="netlogo-widget netlogo-slider netlogo-input" style="position: absolute; left: 159px; top: 84px; width: 137px; height: 33px;"><input type="range" max="49" min="1" step="1" value="40"> <div class="netlogo-slider-label"><span class="netlogo-label">goal-pos</span> <span class="netlogo-slider-value"><input type="number" style="width: 4.5ch" min="1" max="49" step="1" value="40"> </span></div></label>         <label class="netlogo-widget netlogo-button netlogo-forever-button  netlogo-command" style="position: absolute; left: 160px; top: 192px; width: 66px; height: 33px;"><input type="checkbox" value="on"> <span class="netlogo-label">go</span></label>             <div class="netlogo-widget netlogo-monitor netlogo-output" style="position: absolute; left: 132px; top: 258px; width: 169px; height: 45px; font-size: 11px;"><div class="netlogo-label">best distance (experimental)</div> <output class="netlogo-value">0</output></div>          <div class="netlogo-widget netlogo-monitor netlogo-output" style="position: absolute; left: 132px; top: 308px; width: 169px; height: 45px; font-size: 11px;"><div class="netlogo-label">best distance (analytic)</div> <output class="netlogo-value">0</output></div>     <label class="netlogo-widget netlogo-switcher netlogo-input" style="position: absolute; left: 63px; top: 47px; width: 176px; height: 33px;"><input type="checkbox" value="on"> <span class="netlogo-label">show-level-curves?</span></label>               <div class="netlogo-widget netlogo-monitor netlogo-output" style="position: absolute; left: 15px; top: 258px; width: 101px; height: 45px; font-size: 11px;"><div class="netlogo-label">kicks</div> <output class="netlogo-value">0</output></div>          <div class="netlogo-widget netlogo-monitor netlogo-output" style="position: absolute; left: 15px; top: 308px; width: 101px; height: 45px; font-size: 11px;"><div class="netlogo-label">goals</div> <output class="netlogo-value">0</output></div>   </div> <div class="netlogo-tabs"> <label class="netlogo-code-tab netlogo-tab netlogo-command "><input type="checkbox" value="on"> NetLogo Code</label> <label class="netlogo-info-tab netlogo-tab netlogo-command "><input type="checkbox" value="on"> Model Info</label></div> <div class="netlogo-model-text">  </div></div>
+                <div class="netlogo-model" style="width: 693px;"><div class="netlogo-header"><label class="netlogo-widget netlogo-speed-slider"><span class="netlogo-label">speed</span> <input type="range" min="-1" max="1" step="0.01" value="0"></label> <div class="netlogo-subheader"> <div class="netlogo-powered-by"><a href="http://ccl.northwestern.edu/netlogo/"><img style="vertical-align: middle;" alt="NetLogo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAANcSURBVHjarJRdaFxFFMd/M/dj7252uxubKms+bGprVyIVbNMWWqkQqtLUSpQWfSiV+oVFTcE3DeiDgvoiUSiCYLH2oVoLtQ+iaaIWWtE2FKGkkSrkq5svN+sm7ma/7p3x4W42lEbjQw8MM8yc87/nzPnNFVprbqWJXyMyXuMqx1Ni6N3ny3cX8tOHNLoBUMvESoFI2Xbs4zeO1lzREpSrMSNS1zkBDv6uo1/noz1H7mpvS4SjprAl2AZYEqzKbEowBAgBAkjPKX2599JjT7R0bj412D0JYNplPSBD1G2SmR/e6u1ikEHG2vYiGxoJmxAyIGSCI8GpCItKimtvl2JtfGujDNkX6epuAhCjNeAZxM1ocPy2Qh4toGQ5DLU+ysiuA2S3P0KgJkjAgEAlQylAA64CG/jlUk6//ng4cNWmLK0yOPNMnG99Rs9LQINVKrD+wmke7upg55PrWP3eYcwrlykpKCkoelDy/HVegQhoABNAepbACwjOt72gZkJhypX70YDWEEklue+rbnYc2MiGp1upPfYReiJJUUG58gFXu4udch1wHcjFIgy0HyIjb2yvBpT2F6t+6+f+D15lW8c9JDo7iPSdgVIRLUqL2AyHDQAOf9hfbqxvMF98eT3RuTS1avHyl+Stcphe2chP9+4k/t3RbXVl3W+Ws17FY56/w3VcbO/koS/eZLoAqrQMxADZMTYOfwpwoWjL4+bCYcgssMqGOzPD6CIkZ/3SxTJ0ayFIN6/BnBrZb2XdE1JUgkJWkfrUNRJnPyc16zsbgPyXIUJBpvc+y89nk/S8/4nek3NPGeBWMwzGvhUPnP6RubRLwfODlqqx3LSCyee2MnlwMwA2RwgO5qouVcHmksUdJweYyi8hZkrUjgT5t/ejNq0jBsSqNWsKyT9uFtxw7Bs585d3g46KOeT2bWHmtd14KyP+5mzqpsYU3OyioACMhGiqPTMocsrHId9cy9BLDzKxq8X3ctMwlV6yKSHL4fr4dd0DeQBTBUgUkvpE1kVPbqkX117ZzuSaFf4zyfz5n9A4lk0yNU7vyb7jTy1kmFGipejKvh6h9n0W995ZPTu227hqmCz33xXgFV1v9NzI96NfjndWt7XWCB/7BSICFWL+j3lAofpCtfYFb6X9MwCJZ07mUsXRGwAAAABJRU5ErkJggg=="> <span style="font-size: 16px;">powered by NetLogo</span></a></div></div></div> <div style="position: relative; width: 693px; height: 527px" class="netlogo-widget-container"><div class="netlogo-widget netlogo-view-container" style="position: absolute; left: 317px; top: 10px; width: 376px; height: 517px;"><div class="netlogo-widget netlogo-tick-counter">ticks: <span></span></div><canvas width="732" height="972" style="width: 100%;"></canvas></div>             <button class="netlogo-widget netlogo-button netlogo-command" type="button" style="position: absolute; left: 83px; top: 192px; width: 65px; height: 33px;"><span>setup</span></button>            <label class="netlogo-widget netlogo-slider netlogo-input" style="position: absolute; left: 18px; top: 84px; width: 137px; height: 33px;"><input type="range" max="59" min="1" step="1" value="20"> <div class="netlogo-slider-label"><span class="netlogo-label">kick-line</span> <span class="netlogo-slider-value"><input type="number" style="width: 4.5ch" min="1" max="59" step="1" value="20"> </span></div></label>          <label class="netlogo-widget netlogo-slider netlogo-input" style="position: absolute; left: 82px; top: 121px; width: 137px; height: 33px;"><input type="range" max="22" min="1" step="1" value="11"> <div class="netlogo-slider-label"><span class="netlogo-label">goal-size</span> <span class="netlogo-slider-value"><input type="number" style="width: 4.5ch" min="1" max="22" step="1" value="11"> </span></div></label>          <label class="netlogo-widget netlogo-slider netlogo-input" style="position: absolute; left: 159px; top: 84px; width: 137px; height: 33px;"><input type="range" max="49" min="1" step="1" value="40"> <div class="netlogo-slider-label"><span class="netlogo-label">goal-pos</span> <span class="netlogo-slider-value"><input type="number" style="width: 4.5ch" min="1" max="49" step="1" value="40"> </span></div></label>         <label class="netlogo-widget netlogo-button netlogo-forever-button  netlogo-command" style="position: absolute; left: 160px; top: 192px; width: 66px; height: 33px;"><input type="checkbox" value="on"> <span class="netlogo-label">go</span></label>             <div class="netlogo-widget netlogo-monitor netlogo-output" style="position: absolute; left: 132px; top: 258px; width: 169px; height: 45px; font-size: 11px;"><div class="netlogo-label">best distance (experimental)</div> <output class="netlogo-value">0</output></div>          <div class="netlogo-widget netlogo-monitor netlogo-output" style="position: absolute; left: 132px; top: 308px; width: 169px; height: 45px; font-size: 11px;"><div class="netlogo-label">best distance (analytic)</div> <output class="netlogo-value">0</output></div>     <label class="netlogo-widget netlogo-switcher netlogo-input" style="position: absolute; left: 63px; top: 47px; width: 176px; height: 33px;"><input type="checkbox" value="on"> <span class="netlogo-label">show-level-curves?</span></label>               <div class="netlogo-widget netlogo-monitor netlogo-output" style="position: absolute; left: 15px; top: 258px; width: 101px; height: 45px; font-size: 11px;"><div class="netlogo-label">kicks</div> <output class="netlogo-value">0</output></div>          <div class="netlogo-widget netlogo-monitor netlogo-output" style="position: absolute; left: 15px; top: 308px; width: 101px; height: 45px; font-size: 11px;"><div class="netlogo-label">goals</div> <output class="netlogo-value">0</output></div>   </div> <div class="netlogo-tabs"> <label class="netlogo-code-tab netlogo-tab netlogo-command "><input type="checkbox" value="on"> NetLogo Code</label> <label class="netlogo-info-tab netlogo-tab netlogo-command "><input type="checkbox" value="on"> Model Info</label></div> <div class="netlogo-model-text">  </div></div>
             </div>
         </div>
         <script src="/js/jquery.min.js"></script>
@@ -778,6 +799,6 @@ span.CodeMirror-selectedtext { background: none; }
         <script src="/socket.io/socket.io.js"></script>
         <script src="/libs/Helper.js"></script>
         <script src="/js/Simulation.js"></script>
-        <script src="/simulation/js/rugby_1439945101317.js"></script>
+        <script src="/simulation/js/rugby_1442720192450.js"></script>
     </body>
 </html>

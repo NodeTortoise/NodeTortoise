@@ -7,5 +7,5 @@ GLOBAL.MODELS_TEMPLATE = '/views/model/model-template.html';
 GLOBAL.LIBS_PATH = '/commons/';
 GLOBAL.DB_PATH = '/db/server.db';
 GLOBAL.TEMP_PATH = '/tmp/';
-GLOBAL.MODEL_URL_TEMPLATE = '/simulation/@model@.html?s=@session@';
+GLOBAL.MODEL_URL_TEMPLATE = '/simulation/@model@.html?s=@session@&n=@name@';
 GLOBAL.TORTOISE_SET_SESSION_STRING = 'var session =';

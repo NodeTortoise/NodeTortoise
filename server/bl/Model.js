@@ -4,6 +4,8 @@
  * Controla las acciones que se pueden ejecutar sobre un modelo.
  * @class Model
  * @constructor
+ * @module Server
+ * @submodule Server-bl
  */
 Model = function () {
 
@@ -40,6 +42,39 @@ Model = function () {
     };
 
     /**
+     * Obtiene un modelo por ID de modelo.
+     * @method getByID
+     * @param {Integer} idModel ID del modelo
+     * @param {Function} onSuccess Función a ejecutar cuando se obtiene el modelo
+     * @param {Function} onError Función a ejecutar en caso de error
+     */
+    this.getByID = function(idModel, onSuccess, onError){
+        return Entities.getModel().getByFilename(idModel, onSuccess, onError);
+    };
+    
+    /**
+     * Obtiene un modelo por nombre de archivo.
+     * @method getByFilename
+     * @param {Integer} filename Nombre del archivo
+     * @param {Function} onSuccess Función a ejecutar cuando se obtiene el modelo
+     * @param {Function} onError Función a ejecutar en caso de error
+     */
+    this.getByFilename = function(filename, onSuccess, onError){
+        return Entities.getModel().getByFilename(filename, onSuccess, onError);
+    };
+
+    
+    /**
+     * Retorna la lista de modelos disponibles en el sistema
+     * @method list
+     * @param {Function} onSuccess Función a ejecutar cuando se ha recuperado la lista de modelos del sistema
+     * @param {Function} onError Función e ejecutar si hay un error al recuperar la lista de modelos del sistema
+     */
+    this.list = function (onSuccess, onError){
+        Entities.getModel().list(onSuccess, onError);
+    };
+
+    /**
      * Elimina un modelo del sistema
      * @method delete
      * @param {Integer} idModel El ID del modelo
@@ -61,16 +96,6 @@ Model = function () {
             onSuccess();
         };
         Entities.getModel().delete(idModel, afterDeleteFromDB, onError);
-    };
-    
-    /**
-     * Retorna la lista de modelos disponibles en el sistema
-     * @method list
-     * @param {Function} onSuccess Función a ejecutar cuando se ha recuperado la lista de modelos del sistema
-     * @param {Function} onError Función e ejecutar si hay un error al recuperar la lista de modelos del sistema
-     */
-    this.list = function (onSuccess, onError){
-        Entities.getModel().list(onSuccess, onError);
     };
 
     /**
@@ -157,7 +182,7 @@ Model = function () {
 };
 
 /**
- * Basado en el patrón <i>Singleton</i>, returna una instancia del objeto Model
+ * Basado en el patrón <i>Singleton</i>, retorna una instancia del objeto Model
  * @method getInstance
  * @static
  * @return {Model} La instancia de Model

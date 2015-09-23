@@ -1,5 +1,5 @@
 <div class="page-header">
-    <h1>{{name}} <small>Module</small></h1>
+    <h1>{{name}} <small>Módulo</small></h1>
 </div>
 
 <div class="clearfix well well-small">
@@ -27,7 +27,7 @@
     {{/if}}
 
     {{#if since}}
-        <p>Available since {{since}}</p>
+        <p>Disponible desde {{since}}</p>
     {{/if}}
 </div>
 
@@ -35,9 +35,9 @@
     <div class="well well-small">
         <p>
         {{#if deprecationMessage}}
-            <strong>Deprecated:</strong> {{deprecationMessage}}
+            <strong>Deprecado:</strong> {{deprecationMessage}}
         {{else}}
-            This module is deprecated.
+            Este módulo ha sido deprecado.
         {{/if}}
         </p>
     </div>
@@ -59,7 +59,7 @@
 <div class="yui3-g">
     <div class="yui3-u-1-2">
         {{#if moduleClasses}}
-            <p>This module provides the following classes:</p>
+            <p>Este módulo provee las siguientes clases:</p>
 
             <ul class="module-classes">
             {{#moduleClasses}}
@@ -75,7 +75,7 @@
 
     <div class="yui3-u-1-2">
         {{#if subModules}}
-            <p>This module is a rollup of the following modules:</p>
+            <p>Este módulo es un paquete de los siguientes módulos:</p>
 
             <ul class="module-submodules">
             {{#subModules}}

@@ -15,7 +15,7 @@
         <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">NodeTortoise</h1>
 	<div class="nav"></div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Buscar clases/módulos..." data-obj='["classes/App", "classes/undefined", "classes/Controller.model", "classes/Controller.session", "classes/Model", "classes/Session", "classes/Controller", "classes/Entities", "classes/Entities.model", "classes/Sockets.Actions", "classes/Sockets", "classes/SessionController"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Buscar clases/módulos..." data-obj='["classes/App", "classes/Controller", "classes/Controller.model", "classes/Controller.session", "classes/Entities", "classes/Entities.model", "classes/Helper", "classes/Model", "classes/Model_List", "classes/Session", "classes/Session_List", "classes/SessionController", "classes/Simulation", "classes/Sockets", "classes/Sockets.Actions", "classes/SQLite", "modules/Commons", "modules/Public", "modules/Server", "modules/Server-bl", "modules/Server-da", "modules/Server-libs"]'>
         </form>
     </div>
 </div>
@@ -37,22 +37,32 @@
 	                <div class="tab-pane active" id="classes">
 	                    <ul id="api-classes" class="nav nav-list">
 	                            <li><a href="../classes/App.html">App</a></li>
-	                            <li><a href="../classes/.html"></a></li>
+	                            <li><a href="../classes/Controller.html">Controller</a></li>
 	                            <li><a href="../classes/Controller.model.html">Controller.model</a></li>
 	                            <li><a href="../classes/Controller.session.html">Controller.session</a></li>
-	                            <li><a href="../classes/Model.html">Model</a></li>
-	                            <li><a href="../classes/Session.html">Session</a></li>
-	                            <li><a href="../classes/Controller.html">Controller</a></li>
 	                            <li><a href="../classes/Entities.html">Entities</a></li>
 	                            <li><a href="../classes/Entities.model.html">Entities.model</a></li>
-	                            <li><a href="../classes/Sockets.Actions.html">Sockets.Actions</a></li>
-	                            <li><a href="../classes/Sockets.html">Sockets</a></li>
+	                            <li><a href="../classes/Helper.html">Helper</a></li>
+	                            <li><a href="../classes/Model.html">Model</a></li>
+	                            <li><a href="../classes/Model_List.html">Model_List</a></li>
+	                            <li><a href="../classes/Session.html">Session</a></li>
+	                            <li><a href="../classes/Session_List.html">Session_List</a></li>
 	                            <li><a href="../classes/SessionController.html">SessionController</a></li>
+	                            <li><a href="../classes/Simulation.html">Simulation</a></li>
+	                            <li><a href="../classes/Sockets.html">Sockets</a></li>
+	                            <li><a href="../classes/Sockets.Actions.html">Sockets.Actions</a></li>
+	                            <li><a href="../classes/SQLite.html">SQLite</a></li>
 	                    </ul>
 	                </div>
 	    
 	                <div class="tab-pane" id="modules">
 	                    <ul id="api-modules" class="nav nav-list">
+	                            <li><a href="../modules/Commons.html">Commons</a></li>
+	                            <li><a href="../modules/Public.html">Public</a></li>
+	                            <li><a href="../modules/Server.html">Server</a></li>
+	                            <li><a href="../modules/Server-bl.html">Server-bl</a></li>
+	                            <li><a href="../modules/Server-da.html">Server-da</a></li>
+	                            <li><a href="../modules/Server-libs.html">Server-libs</a></li>
 	                    </ul>
 	                </div>
 	            </div>
@@ -96,6 +106,8 @@
                          * Controla las acciones que se pueden ejecutar sobre un modelo.
                          * @class Model
                          * @constructor
+                         * @module Server
+                         * @submodule Server-bl
                          */
                         Model = function () {
                         
@@ -132,6 +144,39 @@
                             };
                         
                             /**
+                             * Obtiene un modelo por ID de modelo.
+                             * @method getByID
+                             * @param {Integer} idModel ID del modelo
+                             * @param {Function} onSuccess Función a ejecutar cuando se obtiene el modelo
+                             * @param {Function} onError Función a ejecutar en caso de error
+                             */
+                            this.getByID = function(idModel, onSuccess, onError){
+                                return Entities.getModel().getByFilename(idModel, onSuccess, onError);
+                            };
+                            
+                            /**
+                             * Obtiene un modelo por nombre de archivo.
+                             * @method getByFilename
+                             * @param {Integer} filename Nombre del archivo
+                             * @param {Function} onSuccess Función a ejecutar cuando se obtiene el modelo
+                             * @param {Function} onError Función a ejecutar en caso de error
+                             */
+                            this.getByFilename = function(filename, onSuccess, onError){
+                                return Entities.getModel().getByFilename(filename, onSuccess, onError);
+                            };
+                        
+                            
+                            /**
+                             * Retorna la lista de modelos disponibles en el sistema
+                             * @method list
+                             * @param {Function} onSuccess Función a ejecutar cuando se ha recuperado la lista de modelos del sistema
+                             * @param {Function} onError Función e ejecutar si hay un error al recuperar la lista de modelos del sistema
+                             */
+                            this.list = function (onSuccess, onError){
+                                Entities.getModel().list(onSuccess, onError);
+                            };
+                        
+                            /**
                              * Elimina un modelo del sistema
                              * @method delete
                              * @param {Integer} idModel El ID del modelo
@@ -153,16 +198,6 @@
                                     onSuccess();
                                 };
                                 Entities.getModel().delete(idModel, afterDeleteFromDB, onError);
-                            };
-                            
-                            /**
-                             * Retorna la lista de modelos disponibles en el sistema
-                             * @method list
-                             * @param {Function} onSuccess Función a ejecutar cuando se ha recuperado la lista de modelos del sistema
-                             * @param {Function} onError Función e ejecutar si hay un error al recuperar la lista de modelos del sistema
-                             */
-                            this.list = function (onSuccess, onError){
-                                Entities.getModel().list(onSuccess, onError);
                             };
                         
                             /**
@@ -249,7 +284,7 @@
                         };
                         
                         /**
-                         * Basado en el patrón &lt;i&gt;Singleton&lt;/i&gt;, returna una instancia del objeto Model
+                         * Basado en el patrón &lt;i&gt;Singleton&lt;/i&gt;, retorna una instancia del objeto Model
                          * @method getInstance
                          * @static
                          * @return {Model} La instancia de Model

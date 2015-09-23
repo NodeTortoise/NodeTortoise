@@ -1,15 +1,14 @@
 /**
- * Description
- * @return
- * @return 
+ * Controla las acciones que se deben ejecutar en la página de Lista de Modelos
+ * @class Session_List
+ * @constructor
+ * @module Public
  */
 Session_List = function () {
 
     /**
-     * Description
-     * @return
+     * Ejecuta las acciones de configuración necesarias
      * @method init
-     * @return 
      */
     this.init = function () {
         initDataTables();
@@ -44,9 +43,8 @@ Session_List = function () {
     };
 
     /**
-     * Description
-     * @method initDataTables
-     * @return 
+     * Inicializa la tabla que contiene la lista de sesiones
+     * @method initModelsTable
      */
     var initDataTables = function () {
         $('#session-list-table').DataTable({
@@ -66,10 +64,8 @@ Session_List = function () {
 };
 
 /**
- * Description
- * @return
+ * Crea e inicializa el objeto Session_List
  * @method init
- * @return 
  */
 Session_List.init = function () {
     var app = new Session_List();

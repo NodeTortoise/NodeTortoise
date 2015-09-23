@@ -15,7 +15,7 @@
         <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">NodeTortoise</h1>
 	<div class="nav"></div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Buscar clases/módulos..." data-obj='["classes/App", "classes/undefined", "classes/Controller.model", "classes/Controller.session", "classes/Model", "classes/Session", "classes/Controller", "classes/Entities", "classes/Entities.model", "classes/Sockets.Actions", "classes/Sockets", "classes/SessionController"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Buscar clases/módulos..." data-obj='["classes/App", "classes/Controller", "classes/Controller.model", "classes/Controller.session", "classes/Entities", "classes/Entities.model", "classes/Helper", "classes/Model", "classes/Model_List", "classes/Session", "classes/Session_List", "classes/SessionController", "classes/Simulation", "classes/Sockets", "classes/Sockets.Actions", "classes/SQLite", "modules/Commons", "modules/Public", "modules/Server", "modules/Server-bl", "modules/Server-da", "modules/Server-libs"]'>
         </form>
     </div>
 </div>
@@ -37,22 +37,32 @@
 	                <div class="tab-pane active" id="classes">
 	                    <ul id="api-classes" class="nav nav-list">
 	                            <li><a href="../classes/App.html">App</a></li>
-	                            <li><a href="../classes/.html"></a></li>
+	                            <li><a href="../classes/Controller.html">Controller</a></li>
 	                            <li><a href="../classes/Controller.model.html">Controller.model</a></li>
 	                            <li><a href="../classes/Controller.session.html">Controller.session</a></li>
-	                            <li><a href="../classes/Model.html">Model</a></li>
-	                            <li><a href="../classes/Session.html">Session</a></li>
-	                            <li><a href="../classes/Controller.html">Controller</a></li>
 	                            <li><a href="../classes/Entities.html">Entities</a></li>
 	                            <li><a href="../classes/Entities.model.html">Entities.model</a></li>
-	                            <li><a href="../classes/Sockets.Actions.html">Sockets.Actions</a></li>
-	                            <li><a href="../classes/Sockets.html">Sockets</a></li>
+	                            <li><a href="../classes/Helper.html">Helper</a></li>
+	                            <li><a href="../classes/Model.html">Model</a></li>
+	                            <li><a href="../classes/Model_List.html">Model_List</a></li>
+	                            <li><a href="../classes/Session.html">Session</a></li>
+	                            <li><a href="../classes/Session_List.html">Session_List</a></li>
 	                            <li><a href="../classes/SessionController.html">SessionController</a></li>
+	                            <li><a href="../classes/Simulation.html">Simulation</a></li>
+	                            <li><a href="../classes/Sockets.html">Sockets</a></li>
+	                            <li><a href="../classes/Sockets.Actions.html">Sockets.Actions</a></li>
+	                            <li><a href="../classes/SQLite.html">SQLite</a></li>
 	                    </ul>
 	                </div>
 	    
 	                <div class="tab-pane" id="modules">
 	                    <ul id="api-modules" class="nav nav-list">
+	                            <li><a href="../modules/Commons.html">Commons</a></li>
+	                            <li><a href="../modules/Public.html">Public</a></li>
+	                            <li><a href="../modules/Server.html">Server</a></li>
+	                            <li><a href="../modules/Server-bl.html">Server-bl</a></li>
+	                            <li><a href="../modules/Server-da.html">Server-da</a></li>
+	                            <li><a href="../modules/Server-libs.html">Server-libs</a></li>
 	                    </ul>
 	                </div>
 	            </div>
@@ -129,6 +139,8 @@
                          * Controla la capa negocio de la aplicación, haciendo la conexión entre la capa 
                          * de datos y las vistas y aplicando la logica de negocio necesaria.
                          * @class Controller
+                         * @module Server
+                         * @submodule Server-bl
                          */
                         Controller = function () {
                         };
@@ -151,6 +163,8 @@
                         /**
                          * Controla la capa de negocio que interactua con las acciones sobre los modelos.
                          * @class Controller.model
+                         * @module Server
+                         * @submodule Server-bl
                          */
                         Controller.model = function () {
                         };
@@ -280,6 +294,8 @@
                         /**
                          * Controla la capa de negocio que interactua con las sesiones de simulaciones.
                          * @class Controller.session
+                         * @module Server
+                         * @submodule Server-bl
                          */
                         Controller.session = function () {
                         };
@@ -303,26 +319,29 @@
                                 var controller = SessionController.getInstance();
                                 var sessionsData = controller.getSessionList();
                                 var token = Helper.getHash(Helper.getRandomNumber(1, 1000), true);
-                                var models = modelsList;
                                 var sessions = {};
                                 for (var sessionName in sessionsData) {
-                                    var users = controller.getSessionUsersQuantity(sessionName);
-                                    var url = MODEL_URL_TEMPLATE.replace(&#x27;@session@&#x27;, sessionName).replace(&#x27;@model@&#x27;, controller.getSessionModel(sessionName));
-                                    sessions[sessionName] = {&#x27;name&#x27;: &#x27;&#x27;, &#x27;url&#x27;: url, &#x27;users&#x27;: users};
+                                    var usersInSession = controller.getSessionUsersQuantity(sessionName);
+                                    if(usersInSession &gt; 0){
+                                        var sessionData = sessionsData[sessionName];
+                                        var url = MODEL_URL_TEMPLATE.replace(&#x27;@session@&#x27;, sessionName).replace(&#x27;@model@&#x27;, controller.getSessionModel(sessionName));
+                                        var sessionName = unescape(sessionData.name) + &#x27; (&#x27; + sessionData.master + &#x27;)&#x27;;
+                                        sessions[sessionName] = {&#x27;name&#x27;: sessionName, &#x27;url&#x27;: url.replace(&#x27;.html.html&#x27;, &#x27;.html&#x27;), &#x27;users&#x27;: usersInSession};
+                                    }
                                 }
-                                ;
                                 /**
                                  * Función para obtener la URL a un modelo.
                                  * @event list.getModelURL
                                  * @param {String} modelFilename El nombre de archivo del modelo sin extensión
+                                 * @param {String} modelName El nombre del modelo
                                  * @param {String} token Token del usuario
                                  * @return {String} La URL al modelo
                                  */
-                                var getModelURL = function (modelFilename, token) {
-                                    return (MODEL_URL_TEMPLATE.replace(&#x27;@session@&#x27;, token).replace(&#x27;@model@&#x27;, modelFilename));
+                                var getModelURL = function (modelFilename, modelName, token) {
+                                    return (MODEL_URL_TEMPLATE.replace(&#x27;@session@&#x27;, token).replace(&#x27;@model@&#x27;, modelFilename).replace(&#x27;@name@&#x27;, escape(modelName)));
                                 };
                                 var page = {&#x27;title&#x27;: &#x27;Unirse o iniciar sesión&#x27;, &#x27;content_title&#x27;: &#x27;Unirse o iniciar sesión&#x27;};
-                                var data = {&#x27;sessions&#x27;: sessions, &#x27;models&#x27;: models, &#x27;token&#x27;: token, &#x27;getModelURL&#x27;: getModelURL};
+                                var data = {&#x27;sessions&#x27;: sessions, &#x27;models&#x27;: modelsList, &#x27;token&#x27;: token, &#x27;getModelURL&#x27;: getModelURL};
                                 res.render(&#x27;session/list.html&#x27;, {&#x27;page&#x27;: page, &#x27;data&#x27;: data});
                             };
                             /**

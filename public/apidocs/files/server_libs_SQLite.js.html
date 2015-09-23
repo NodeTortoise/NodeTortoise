@@ -15,7 +15,7 @@
         <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">NodeTortoise</h1>
 	<div class="nav"></div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Buscar clases/módulos..." data-obj='["classes/App", "classes/undefined", "classes/Controller.model", "classes/Controller.session", "classes/Model", "classes/Session", "classes/Controller", "classes/Entities", "classes/Entities.model", "classes/Sockets.Actions", "classes/Sockets", "classes/SessionController"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Buscar clases/módulos..." data-obj='["classes/App", "classes/Controller", "classes/Controller.model", "classes/Controller.session", "classes/Entities", "classes/Entities.model", "classes/Helper", "classes/Model", "classes/Model_List", "classes/Session", "classes/Session_List", "classes/SessionController", "classes/Simulation", "classes/Sockets", "classes/Sockets.Actions", "classes/SQLite", "modules/Commons", "modules/Public", "modules/Server", "modules/Server-bl", "modules/Server-da", "modules/Server-libs"]'>
         </form>
     </div>
 </div>
@@ -37,22 +37,32 @@
 	                <div class="tab-pane active" id="classes">
 	                    <ul id="api-classes" class="nav nav-list">
 	                            <li><a href="../classes/App.html">App</a></li>
-	                            <li><a href="../classes/.html"></a></li>
+	                            <li><a href="../classes/Controller.html">Controller</a></li>
 	                            <li><a href="../classes/Controller.model.html">Controller.model</a></li>
 	                            <li><a href="../classes/Controller.session.html">Controller.session</a></li>
-	                            <li><a href="../classes/Model.html">Model</a></li>
-	                            <li><a href="../classes/Session.html">Session</a></li>
-	                            <li><a href="../classes/Controller.html">Controller</a></li>
 	                            <li><a href="../classes/Entities.html">Entities</a></li>
 	                            <li><a href="../classes/Entities.model.html">Entities.model</a></li>
-	                            <li><a href="../classes/Sockets.Actions.html">Sockets.Actions</a></li>
-	                            <li><a href="../classes/Sockets.html">Sockets</a></li>
+	                            <li><a href="../classes/Helper.html">Helper</a></li>
+	                            <li><a href="../classes/Model.html">Model</a></li>
+	                            <li><a href="../classes/Model_List.html">Model_List</a></li>
+	                            <li><a href="../classes/Session.html">Session</a></li>
+	                            <li><a href="../classes/Session_List.html">Session_List</a></li>
 	                            <li><a href="../classes/SessionController.html">SessionController</a></li>
+	                            <li><a href="../classes/Simulation.html">Simulation</a></li>
+	                            <li><a href="../classes/Sockets.html">Sockets</a></li>
+	                            <li><a href="../classes/Sockets.Actions.html">Sockets.Actions</a></li>
+	                            <li><a href="../classes/SQLite.html">SQLite</a></li>
 	                    </ul>
 	                </div>
 	    
 	                <div class="tab-pane" id="modules">
 	                    <ul id="api-modules" class="nav nav-list">
+	                            <li><a href="../modules/Commons.html">Commons</a></li>
+	                            <li><a href="../modules/Public.html">Public</a></li>
+	                            <li><a href="../modules/Server.html">Server</a></li>
+	                            <li><a href="../modules/Server-bl.html">Server-bl</a></li>
+	                            <li><a href="../modules/Server-da.html">Server-da</a></li>
+	                            <li><a href="../modules/Server-libs.html">Server-libs</a></li>
 	                    </ul>
 	                </div>
 	            </div>
@@ -94,7 +104,10 @@
                         
                         /**
                          * Ejecuta acciones sobre una base de SQLite
-                         * @class
+                         * @class SQLite
+                         * @constructor
+                         * @module Server
+                         * @submodule Server-libs
                          * @param {String} file Ruta al archivo de sqlite
                          */
                         SQLite = function (file) {
@@ -130,14 +143,38 @@
                             };
                         
                             /**
+                             * Selecciona los registros de una tabla, basado en los filtros obtenidos
+                             * @method selectAll
+                             * @param {String} table La tabla sobre la cuál se ejecutará la acción
+                             * @param {Array} filters Los filtros de la consulta (&lt;i&gt;where&lt;/i&gt;)
+                             * @param [String = &#x27;*&#x27;] fields Las columnas a seleccionar
+                             * @param {Function} onSuccess Función a ejecutar cuando el proceso en base de datos se completa exitosamente
+                             * @param {Funtion} onError Función a ejecutar en caso de error
+                             */
+                            this.select = function (table, filters, fields, onSuccess, onError) {
+                                try {
+                                    var strFields = (fields) ? fields : &#x27;*&#x27;;
+                                    var queryFilters = getQueryFilters(filters);
+                                    var query = &#x27;SELECT &#x27; + strFields + &#x27; FROM &#x27; + table + &#x27; WHERE (&#x27; + queryFilters.where + &#x27;)&#x27;;
+                                    var callback = function (error, result) {
+                                        onCallback(query, onSuccess, onError, error, result);
+                                    };
+                                    debug(query);
+                                    db.all(query, queryFilters.values, callback);
+                                } catch (err) {
+                                    onError(err);
+                                }
+                            };
+                        
+                            /**
                              * Selecciona todos los registros de una tabla.
-                             * @method select
+                             * @method selectAll
                              * @param {String} table La tabla sobre la cuál se ejecutará la acción
                              * @param [String = &#x27;*&#x27;] fields Las columnas a seleccionar
                              * @param {Function} onSuccess Función a ejecutar cuando el proceso en base de datos se completa exitosamente
                              * @param {Funtion} onError Función a ejecutar en caso de error
                              */
-                            this.select = function (table, fields, onSuccess, onError) {
+                            this.selectAll = function (table, fields, onSuccess, onError) {
                                 try {
                                     var strFields = (fields) ? fields : &#x27;*&#x27;;
                                     var query = &#x27;SELECT &#x27; + strFields + &#x27; FROM &#x27; + table;

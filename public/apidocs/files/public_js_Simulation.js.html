@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>public\js\Simulation.js - NodeTortoise</title>
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">NodeTortoise</h1>
+	<div class="nav"></div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Buscar clases/módulos..." data-obj='["classes/App", "classes/Controller", "classes/Controller.model", "classes/Controller.session", "classes/Entities", "classes/Entities.model", "classes/Helper", "classes/Model", "classes/Model_List", "classes/Session", "classes/Session_List", "classes/SessionController", "classes/Simulation", "classes/Sockets", "classes/Sockets.Actions", "classes/SQLite", "modules/Commons", "modules/Public", "modules/Server", "modules/Server-bl", "modules/Server-da", "modules/Server-libs"]'>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+	    <div>
+	        <div id="sidebar">
+	            <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
+	                <li class="active"><a href="#classes" data-toggle="tab">Clases</a></li>
+	                <li><a href="#modules" data-toggle="tab">Módulos</a></li>
+	            </ul>
+	    
+	            <div id="api-tabview-filter">
+	                <input type="search" placeholder="Digite para filtrar APIs">
+	            </div>
+	    
+	            <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
+	                <div class="tab-pane active" id="classes">
+	                    <ul id="api-classes" class="nav nav-list">
+	                            <li><a href="../classes/App.html">App</a></li>
+	                            <li><a href="../classes/Controller.html">Controller</a></li>
+	                            <li><a href="../classes/Controller.model.html">Controller.model</a></li>
+	                            <li><a href="../classes/Controller.session.html">Controller.session</a></li>
+	                            <li><a href="../classes/Entities.html">Entities</a></li>
+	                            <li><a href="../classes/Entities.model.html">Entities.model</a></li>
+	                            <li><a href="../classes/Helper.html">Helper</a></li>
+	                            <li><a href="../classes/Model.html">Model</a></li>
+	                            <li><a href="../classes/Model_List.html">Model_List</a></li>
+	                            <li><a href="../classes/Session.html">Session</a></li>
+	                            <li><a href="../classes/Session_List.html">Session_List</a></li>
+	                            <li><a href="../classes/SessionController.html">SessionController</a></li>
+	                            <li><a href="../classes/Simulation.html">Simulation</a></li>
+	                            <li><a href="../classes/Sockets.html">Sockets</a></li>
+	                            <li><a href="../classes/Sockets.Actions.html">Sockets.Actions</a></li>
+	                            <li><a href="../classes/SQLite.html">SQLite</a></li>
+	                    </ul>
+	                </div>
+	    
+	                <div class="tab-pane" id="modules">
+	                    <ul id="api-modules" class="nav nav-list">
+	                            <li><a href="../modules/Commons.html">Commons</a></li>
+	                            <li><a href="../modules/Public.html">Public</a></li>
+	                            <li><a href="../modules/Server.html">Server</a></li>
+	                            <li><a href="../modules/Server-bl.html">Server-bl</a></li>
+	                            <li><a href="../modules/Server-da.html">Server-da</a></li>
+	                            <li><a href="../modules/Server-libs.html">Server-libs</a></li>
+	                    </ul>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+        </div>
+        <div class="span9">
+                <form id="options-form" class="form-inline pull-right">
+                    Mostrar:
+                    <label for="api-show-inherited" class="checkbox" style="display:none">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+                    <label for="api-show-protected" class="checkbox">
+                        <input type="checkbox" id="api-show-protected">
+                        Protegidos
+                    </label>
+            
+                    <label for="api-show-private" class="checkbox">
+                        <input type="checkbox" id="api-show-private">
+                        Privados
+                    </label>
+                    <label for="api-show-deprecated" class="checkbox">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecados
+                    </label>
+                </form>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <div class="page-header">
+                            <h1>public\js\Simulation.js <small>File</small></h1>
+                        </div>
+                        
+                        <div class="file">
+                            <pre class="prettyprint linenums">
+                        /* global setup, go, io, Helper, world, Ractive, ENVIRONMENT, procedures, session, AgentStreamController */
+                        
+                        var SERVER_ = &#x27;localhost:3000&#x27;;
+                        var ENABLED_CONTROLS_ALL_USERS = true;
+                        var ENVIRONMENT = &#x27;TESTING&#x27;; // TESTING, PRODUCTION
+                        
+                        /* TODO: remove, it&#x27;s only for testing */
+                        var MAIN_BROWSER = &#x27;FIREFOX&#x27;;
+                        
+                        /**
+                         * Provee la lógica de interacción de las simulaciones con el servidor.
+                         * @class Simulation
+                         * @constructor
+                         * @module Public
+                         */
+                        Simulation = function () {
+                        
+                            var self = this;
+                            var spinner, isTimeToSendApplyUpdate;
+                            var inputsSelector = &#x27;.netlogo-widget-container input:visible&#x27;;
+                            var outputsSelector = &#x27;.netlogo-widget-container output:visible&#x27;;
+                            var buttonsSelector = &#x27;button.netlogo-widget.netlogo-button.netlogo-command, label.netlogo-widget.netlogo-button.netlogo-command input[type=&quot;checkbox&quot;]&#x27;;
+                            var speedInputSelector = &#x27;.netlogo-widget.netlogo-speed-slider input[type=range]&#x27;;
+                        
+                            this.socket = null;
+                            this.firsTime = true;
+                            this.viewController = null;
+                            this._procedures = null;
+                            this.token = null;
+                            this.isMaster = null;
+                            this.isSocketReady = false;
+                            this.enabledControls = false;
+                            this.commands = {};
+                        
+                            var sessionName, modelName, modelFile, modelControls, modelCommands, overwritedCommands;
+                        
+                            /**
+                             * Inicializa la clase, realizando las configuraciones necesarias.
+                             * @method init
+                             */
+                            this.init = function () {
+                                isTimeToSendApplyUpdate = false;
+                                /*setInterval(function(){
+                                    isTimeToSendApplyUpdate = true;
+                                }, 5000);*/
+                                doOverwriteFunctions();
+                                initWidgets();
+                                initNoMasterConnected();
+                                //initControls();
+                                sessionName = Helper.getURLParameter(&#x27;s&#x27;);
+                                modelName = Helper.getURLParameter(&#x27;n&#x27;);
+                                modelFile = Helper.getLastURLPiece();
+                                self.socket = io.connect(SERVER_);
+                                initSockets();
+                            };
+                        
+                            /**
+                             * Realiza la conexión del cliente con el servidor por medio de &lt;i&gt;web sockets&lt;/i&gt;.
+                             * @method connect
+                             * @return
+                             */
+                            var connect = function () {
+                                /* TODO: remove, it&#x27;s only for testing */
+                                var name = (Helper.getBrowser()).toUpperCase();
+                                var password = name === MAIN_BROWSER ? MAIN_BROWSER : &#x27;&#x27;;
+                                var enabledControls = ENABLED_CONTROLS_ALL_USERS;
+                                //var name = prompt(&#x27;Digite su nombre&#x27;);
+                                //var hash = prompt(&#x27;Digite su contraseña de usuario maestro&#x27;);
+                                //var enabledControls = ENABLED_CONTROLS_ALL_USERS;
+                                var params = {&#x27;session&#x27;: sessionName, &#x27;name&#x27;: name, &#x27;password&#x27;: password, &#x27;controls&#x27;: enabledControls, &#x27;modelFile&#x27;: modelFile, &#x27;modelName&#x27;: modelName};
+                                self.sendAction(&#x27;connect&#x27;, params);
+                            };
+                        
+                            /**
+                             * Este método sobre-escribe el método &lt;b&gt;AgentStreamController.prototype.applyUpdate&lt;/b&gt;
+                             * del código original de Tortoise. Se encarga de controlar la actualización
+                             * de la simulación (a nivel gráfico) y de los valores de los &lt;i&gt;outputs&lt;/i&gt;.
+                             * En el caso del cliente maestro, se envía un mensaje al servidor para que 
+                             * los clientes realicen la actualización y finalmente se ejecuta el código
+                             * original de actualización. En el caso los clientes que no son maestros, 
+                             * se ignora cualquier proceso. En caso de que aún no se hara realizado 
+                             * la conexión con el &lt;i&gt;socket&lt;/i&gt;, se ejecuta el código original de 
+                             * actualización, en ambos casos.
+                             * @method applyUpdate
+                             * @param {Object} agentStreamController El objeto AgentStreamController del modelo
+                             * @param {Object} modelUpdate El objeto que contiene las intrucciones de actualización
+                             * @return {Object} El resultado del proceso de actualiación. Este resultado proviene de
+                             * la lógica del código de Tortoise
+                             */
+                            this.applyUpdate = function (agentStreamController, modelUpdate) {
+                                /* TODO-FUTUREWORK: optimize to send less data in modelUpdate */
+                                if (!self.isSocketReady) {
+                                    return agentStreamController._applyUpdate(modelUpdate);
+                                } else if (self.isMaster &amp;&amp; isTimeToSendApplyUpdate) {
+                                    isTimeToSendApplyUpdate = false;
+                                    var outputs = new Array();
+                                    $(outputsSelector).each(function (index, value) {
+                                        var ele = $(this);
+                                        outputs.push({&#x27;name&#x27;: ele.attr(&#x27;data-name&#x27;), &#x27;value&#x27;: ele.val()});
+                                    });
+                                    self.sendAction(&#x27;applyUpdate&#x27;, {&#x27;model&#x27;: modelUpdate, &#x27;outputs&#x27;: outputs});
+                                    return agentStreamController._applyUpdate(modelUpdate);
+                                } else {
+                                    return agentStreamController._applyUpdate(modelUpdate);
+                                }
+                            };
+                        
+                            /**
+                             * Código ejecutado por los clientes no maestros al recibir un mensaje de 
+                             * actualización del modelo. Ejecuta las actualizaciones del modelo, haciendo 
+                             * la llamada al código de actualización original de &lt;b&gt;Tortoise&lt;/b&gt; y 
+                             * llevando a cabo la actualización de los &lt;i&gt;outputs&lt;/i&gt;.
+                             * @method applyUpdate_
+                             * @param {Object} modelUpdate El objeto que contiene las intrucciones de actualización
+                             * @param {Object} outputs Objeto que contiene las actualizaciones a ejecutar sobre los &lt;i&gt;outputs&lt;/i&gt;
+                             */
+                            this.applyUpdate_ = function (modelUpdate, outputs) {
+                                self.viewController._applyUpdate(modelUpdate);
+                                for (var key in outputs) {
+                                    //self.setGlobal(outputs[key].name, outputs[key].value);
+                                    $(&#x27;output[data-name=&quot;&#x27; + outputs[key].name + &#x27;&quot;]&#x27;).val(outputs[key].value);
+                                }
+                            };
+                        
+                            /**
+                             * Establece el valor de la velocidad de la simulación.
+                             * @method updateSpeed_
+                             * @param {Integer} value Valor de la velocidad
+                             */
+                            this.updateSpeed_ = function (value) {
+                                $(speedInputSelector).val(value);
+                            };
+                        
+                            /**
+                             * Dtermina si un widget es de tipo comando.
+                             * @method isCommandWidget
+                             * @param {Object} widget El widget
+                             * @return {Boolean} Verdadero o Falso
+                             */
+                            var isCommandWidget = function (widget) {
+                                return (widget.compiledSource &amp;&amp; widget.buttonType &amp;&amp; (widget.buttonType).toUpperCase() === &#x27;OBSERVER&#x27;);
+                            };
+                        
+                            /**
+                             * Ejecuta la acción de sobre-escribir las funciones originales de Tortoise, 
+                             * necesarias para la ejecución de la lógica personalizada.
+                             * @method doOverwriteFunctions
+                             */
+                            var doOverwriteFunctions = function () {
+                                world.observer[&#x27;setGlobal_&#x27;] = world.observer.setGlobal;
+                                self.commands[&#x27;setGlobal&#x27;] = function () {
+                                    var params = arguments;
+                                    world.observer.setGlobal_(params[0], params[1]);
+                                };
+                                world.observer.setGlobal = function () {
+                                    var params = arguments;
+                                    if (modelControls[params[0]]) {
+                                        var simulation = Simulation.getInstance();
+                                        if (self.isMaster || self.enabledControls) {
+                                            simulation.sendAction(&#x27;setGlobal&#x27;, {&#x27;params&#x27;: params});
+                                            simulation[&#x27;commands&#x27;][&#x27;setGlobal&#x27;].apply(this, params);
+                                        }
+                                    } else {
+                                        world.observer.setGlobal_.apply(this, params);
+                                    }
+                                };
+                                $(speedInputSelector).change(function () {
+                                    self.sendAction(&#x27;updateSpeed&#x27;, {value: $(this).val()});
+                                });
+                            };
+                        
+                            /**
+                             * Inicializa los widgets del modelo, para:
+                             * 1. Obtener los widget de tipo comando para sobre-escribir su funcionalidad
+                             * 2. Obtener y guardar los widget de tipo control para posteriormente 
+                             * sobre-escribir su funcionalidad.
+                             * @method initWidgets
+                             */
+                            var initWidgets = function () {
+                                modelControls = {};
+                                modelCommands = {};
+                                for (var i in session.widgetController.widgets) {
+                                    var widgetData = session.widgetController.widgets[i];
+                                    if (isCommandWidget(widgetData)) {
+                                        var commandData = parseCommandWidget(widgetData);
+                                        doOverwriteCommand(commandData);
+                                        modelCommands[commandData.source] = commandData;
+                                    } else if (widgetData.varName) {
+                                        modelControls[widgetData.varName] = widgetData.varName;
+                                    } else if (widgetData.source) {
+                                        modelControls[widgetData.source] = widgetData.source;
+                                    } else {
+                                        //console.log(widgetData);
+                                    }
+                                }
+                            };
+                        
+                            /**
+                             * Extrae de un &lt;i&gt;widget&lt;/i&gt; de tipo comando la información necesaria para
+                             * su posterior procesamiento.
+                             * @method parseCommandWidget
+                             * @param {Object} widgetData Los datos del &lt;i&gt;widget&lt;/i&gt;
+                             * @return {Object} result
+                             */
+                            var parseCommandWidget = function (widgetData) {
+                                var dataStr = ((widgetData.compiledSource.result).replace(&#x27;Call(&#x27;, &#x27;&#x27;)).replace(&#x27;);&#x27;, &#x27;&#x27;);
+                                var parameters = dataStr.split(&#x27;, &#x27;);
+                                var fnStr = parameters.shift().trim();
+                                var fnArr = fnStr.split(&#x27;.&#x27;);
+                                var fnParent = window;
+                                for (var i = 0; i &lt; fnArr.length - 1; ++i) {
+                                    fnParent = fnParent[fnArr[i]];
+                                }
+                                var fnName = fnArr[fnArr.length - 1];
+                                var fn = fnParent[fnName];
+                                var result = {&#x27;fnName&#x27;: fnName, &#x27;fnParent&#x27;: fnParent, &#x27;fn&#x27;: fn, &#x27;params&#x27;: parameters, &#x27;fnStr&#x27;: fnStr, &#x27;source&#x27;: widgetData.source, &#x27;isForever&#x27;: widgetData.forever, &#x27;send&#x27;: true};
+                                return result;
+                            };
+                        
+                            /**
+                             * Sobre-escribe la funcionalidad de un comando
+                             * @method doOverwriteCommand
+                             * @param {Object} commandData Los datos del comando
+                             */
+                            var doOverwriteCommand = function (commandData) {
+                                if (self.commands[commandData.fnName]) {
+                                    return;
+                                }
+                                self.commands[commandData.fnName] = commandData.fn;
+                                var fnParent = commandData.fnParent;
+                                fnParent[commandData.fnName] = function () {
+                                    var params = arguments;
+                                    var simulation = Simulation.getInstance();
+                                    if (simulation.isMaster) {
+                                        simulation.sendAction(&#x27;executeCommand&#x27;, {&#x27;command&#x27;: commandData.fnName, &#x27;params&#x27;: params});
+                                        simulation[&#x27;commands&#x27;][commandData.fnName].apply(this, params);
+                                    }
+                                };
+                            };
+                        
+                            /**
+                             * Deshabilita los controles
+                             * @method disableControls
+                             */
+                            var disableControls = function () {
+                                /* TODO: make label.input buttons look like disabled */
+                                $(buttonsSelector).attr(&#x27;disabled&#x27;, true);
+                            };
+                        
+                            /**
+                             * Inicializa 
+                             * @method initNoMasterConnected
+                             */
+                            var initNoMasterConnected = function () {
+                                spinner = new Helper.spinner(&#x27;.netlogo-widget-container&#x27;, {&#x27;bgColor&#x27;: &#x27;#000&#x27;, &#x27;opacity&#x27;: 0.8, &#x27;height&#x27;: &#x27;100%&#x27;});
+                                disableControls();
+                            };
+                        
+                            /**
+                             * Envía un mensaje de ejecutar acción al servidor por medio de web sockets, 
+                             * para que sea enviada a los demás clientes en la sesión.
+                             * @method sendAction
+                             * @param {String} action La acción a ejecutar
+                             * @param {Object} params Los parámetros de la acción
+                             */
+                            this.sendAction = function (action, params) {
+                                action += &#x27;__fromClient&#x27;;
+                                if (action !== &#x27;executeCommand&#x27;) {
+                                    self.socket.emit(action, self.token, params);
+                                }
+                            };
+                        
+                            /**
+                             * Ejecuta la acción de inicialización de la sesión se simulación
+                             * @method start
+                             */
+                            this.start = function () {
+                                if (self.isMaster) {
+                                    $(buttonsSelector).attr(&#x27;disabled&#x27;, false);
+                                    $(inputsSelector).attr(&#x27;disabled&#x27;, false);
+                                } else if (self.enabledControls) {
+                                    $(inputsSelector).attr(&#x27;disabled&#x27;, false);
+                                }
+                                spinner.remove();
+                            };
+                        
+                            /**
+                             * Ejecuta la acción de finalización de la sesión se simulación
+                             * @method end
+                             */
+                            this.end = function () {
+                                if (ENVIRONMENT === &#x27;PRODUCTION&#x27;) {
+                                    alert(&#x27;No master connected&#x27;);
+                                }
+                                //location.reload();
+                                initNoMasterConnected();
+                            };
+                        
+                            this.overwritedCommands = {
+                                /**
+                                 * Recibe del servidor la respuesta al conectarse a los web sockets
+                                 * @method overwritedCommands.connect_Response
+                                 * @param {Object} params Los parámetros recibidos
+                                 */
+                                &#x27;connect_Response&#x27;: function (params) {
+                                    self.token = params.token;
+                                    self.isMaster = params.master;
+                                    self.enabledControls = params.controls;
+                                    if (params.start) {
+                                        self.start();
+                                    }
+                                    self.isSocketReady = true;
+                                },
+                                /**
+                                 * Recibe del servidor la acción de actualizar usuarios
+                                 * @method overwritedCommands.updateUsers
+                                 * @param {Object} params Los parámetros de la acción
+                                 */
+                                &#x27;updateUsers&#x27;: function (params) {
+                                    Simulation.formatUI.users(params.users);
+                                },
+                                /**
+                                 * Recibe del servidor la acción de ejecutar comando
+                                 * @method overwritedCommands.executeCommand
+                                 * @param {Object} params Los parámetros de la acción
+                                 */
+                                &#x27;executeCommand&#x27;: function (params) {
+                                    var paramsArr = $.map(params.params, function (value, index) {
+                                        return [value];
+                                    });
+                                    self.commands[params.command].apply(this, paramsArr);
+                                },
+                                /**
+                                 * Recibe del servidor la acción de definir valor de variable global de 
+                                 * Tortoise
+                                 * @method overwritedCommands.setGlobal
+                                 * @param {Object} params Los parámetros de la acción
+                                 */
+                                &#x27;setGlobal&#x27;: function (params) {
+                                    var paramsArr = $.map(params.params, function (value, index) {
+                                        return [value];
+                                    });
+                                    self.commands[&#x27;setGlobal&#x27;].apply(this, paramsArr);
+                                },
+                                /**
+                                 * Recibe del servidor la acción de actualizar velocidad de la simulación
+                                 * @method overwritedCommands.updateSpeed
+                                 * @param {Object} params Los parámetros de la acción
+                                 */
+                                &#x27;updateSpeed&#x27;: function (params) {
+                                    self.updateSpeed_(params.value);
+                                },
+                                /**
+                                 * Recibe del servidor la acción de aplicar actualización de la simulación
+                                 * @method overwritedCommands.applyUpdate
+                                 * @param {Object} params Los parámetros de la acción
+                                 */
+                                &#x27;applyUpdate&#x27;: function (params) {
+                                    /* TODO-FUTUREWORK: optimize to receive less data in modelUpdate */
+                                    self.applyUpdate_(params.model, params.outputs);
+                                },
+                                /**
+                                 * Recibe del servidor la acción de iniciar sesión de simulación
+                                 * @method overwritedCommands.start
+                                 * @param {Boolean} enabledControls Indica si los controles están habilitados o no
+                                 */
+                                &#x27;start&#x27;: function (enabledControls) {
+                                    self.enabledControls = enabledControls;
+                                    self.start();
+                                },
+                                /**
+                                 * Recibe del servidor la acción de finalizar sesión de simulación
+                                 * @method overwritedCommands.end
+                                 */
+                                &#x27;end&#x27;: function () {
+                                    self.end();
+                                },
+                                /**
+                                 * Recibe del servidor la acción de obtener mensaje
+                                 * @method overwritedCommands.getMessage
+                                 * @param {Object} params Los parámetros de la acción
+                                 */
+                                &#x27;getMessage&#x27;: function (params) {
+                                    console.log(params);
+                                }
+                            };
+                        
+                            /**
+                             * Inicializa las acciones que se pueden recibir del servidor por medio de 
+                             * web sockets
+                             * @method initSockets
+                             */
+                            var initSockets = function () {
+                                self.socket.on(&#x27;connect&#x27;, function () {
+                                    connect();
+                                });
+                                for (var action in self.overwritedCommands) {
+                                    (function (action) {
+                                        var actionName = action + &#x27;__fromServer&#x27;;
+                                        self.socket.on(actionName, function (params) {
+                                            self[&#x27;overwritedCommands&#x27;][action](params);
+                                        });
+                                    })(action);
+                                }
+                            };
+                        
+                        };
+                        
+                        /**
+                         * Crea un objeto Simulation 
+                         * @method create
+                         * @return modelObj El objeto Simulation
+                         */
+                        Simulation.create = function () {
+                            Ractive.DEBUG = false;
+                            var simulationObj = Simulation.getInstance();
+                            Simulation.setupObject(simulationObj);
+                            return simulationObj;
+                        };
+                        
+                        /**
+                         * Sobre-escribe algunos de los métodos de Tortoise, necesarios antes de que 
+                         * se inicialice Tortoise
+                         * @method setupObject
+                         * @param {Object} modelObj Objeto Simulation
+                         */
+                        Simulation.setupObject = function (modelObj) {
+                            AgentStreamController.prototype._applyUpdate = AgentStreamController.prototype[&#x27;applyUpdate&#x27;];
+                            AgentStreamController.prototype.applyUpdate = function (modelUpdate) {
+                                return modelObj.applyUpdate(this, modelUpdate);
+                            };
+                            window.Tortoise._fromCompiledModel = window.Tortoise.fromCompiledModel;
+                            window.Tortoise.fromCompiledModel = function (container, widgets, code, info, compiledSource, readOnly) {
+                                var session = window.Tortoise._fromCompiledModel(container, widgets, code, info, compiledSource, readOnly);
+                                modelObj.viewController = session.widgetController.viewController;
+                                return session;
+                            };
+                        };
+                        
+                        /**
+                         * Basado en el patrón &lt;i&gt;Singleton&lt;/i&gt;, retorna una instancia del objeto Simulation
+                         * @method getInstance
+                         * @static
+                         * @return {Simulation} La instancia de Simulation
+                         */
+                        Simulation.getInstance = function () {
+                            if (typeof Simulation.instance !== &#x27;object&#x27;) {
+                                Simulation.instance = new Simulation();
+                            }
+                            return Simulation.instance;
+                        };
+                        
+                        /**
+                         * Formatea la interfaz de gráfica en la página de simulación, para que cuente
+                         * con el menú y las demás opciones de la interfaz gráfica del resto de la 
+                         * aplicación.
+                         * @method formatUI
+                         */
+                        Simulation.formatUI = function () {
+                            var uiResponse = $.ajax({
+                                type: &#x27;GET&#x27;,
+                                url: &#x27;/ui&#x27;,
+                                dataType: &#x27;html&#x27;,
+                                async: false
+                            }).responseText;
+                            $(&#x27;.netlogo-model&#x27;, modelContent).css(&#x27;width&#x27;, &#x27;&#x27;);
+                            var modelContent = $(&#x27;.model-main-content&#x27;).html();
+                            var layoutContent = $(uiResponse).filter(&#x27;#wrapper&#x27;);
+                            $(&#x27;.model-main-content&#x27;).append(layoutContent);
+                            $(&#x27;.model-main-content&#x27;).replaceWith(layoutContent);
+                            $(&#x27;.main-content&#x27;).html(modelContent);
+                            $(&#x27;#menu-users-model&#x27;).show();
+                            $(function () {
+                                $(&#x27;.page-header-container h1&#x27;).removeClass(&#x27;page-header&#x27;);
+                                $(&#x27;.netlogo-model&#x27;).css(&#x27;width&#x27;, &#x27;&#x27;);
+                            });
+                        };
+                        
+                        /**
+                         * Formatea la sección de Usuarios de la sesión en interfaz de gráfica.
+                         * @method users
+                         * @param {Array} users La lista de usuario
+                         */
+                        Simulation.formatUI.users = function (users) {
+                            var usersContainer = $(&#x27;#menu-users-model-container&#x27;);
+                            var userItemTemplate = $(&#x27;.menu-users-model-container.template li.simple&#x27;).clone();
+                            usersContainer.empty();
+                            for (var key in users) {
+                                var userItem;
+                                var name = users[key];
+                                if (name.indexOf(&#x27;(master)&#x27;) &gt; -1) {
+                                    name = name.replace(&#x27;(master)&#x27;, &#x27;&#x27;);
+                                    userItem = $(&#x27;.menu-users-model-container.template li.master&#x27;).clone();
+                                    $(&#x27;.menu-users-model-user-name&#x27;, userItem).addClass(&#x27;master&#x27;).text(name.trim());
+                                } else {
+                                    userItem = userItemTemplate.clone();
+                                    $(&#x27;.menu-users-model-user-name&#x27;, userItem).text(name.trim());
+                                }
+                                usersContainer.append(userItem);
+                            }
+                        };
+                        
+                        $(function () {
+                            Simulation.getInstance().init();
+                        });
+                        
+                        Simulation.formatUI();
+                            </pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>

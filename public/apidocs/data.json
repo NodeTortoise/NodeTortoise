@@ -1,11 +1,65 @@
 {
     "project": {
         "name": "NodeTortoise",
-        "description": "Proyecto Universitario para basado en archivos Galapagos independientes, ejecutado sobre una plataforma NodeJS",
+        "description": "Proyecto Universitario basado en archivos Galapagos independientes, ejecutado sobre una plataforma NodeJS",
         "version": "1.0.0",
         "url": ""
     },
     "files": {
+        "commons\\Helper.js": {
+            "name": "commons\\Helper.js",
+            "modules": {},
+            "classes": {
+                "Helper": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "commons\\_Commons.js": {
+            "name": "commons\\_Commons.js",
+            "modules": {
+                "Commons": 1
+            },
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "public\\js\\Model_List.js": {
+            "name": "public\\js\\Model_List.js",
+            "modules": {},
+            "classes": {
+                "Model_List": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "public\\js\\Session_List.js": {
+            "name": "public\\js\\Session_List.js",
+            "modules": {},
+            "classes": {
+                "Session_List": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "public\\js\\Simulation.js": {
+            "name": "public\\js\\Simulation.js",
+            "modules": {},
+            "classes": {
+                "Simulation": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "public\\js\\_Public.js": {
+            "name": "public\\js\\_Public.js",
+            "modules": {
+                "Public": 1
+            },
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
         "server\\bl\\App.js": {
             "name": "server\\bl\\App.js",
             "modules": {},
@@ -53,6 +107,15 @@
             "fors": {},
             "namespaces": {}
         },
+        "server\\bl\\_Server-bl.js": {
+            "name": "server\\bl\\_Server-bl.js",
+            "modules": {
+                "Server-bl": 1
+            },
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
         "server\\da\\Entities.js": {
             "name": "server\\da\\Entities.js",
             "modules": {},
@@ -81,18 +144,229 @@
             "fors": {},
             "namespaces": {}
         },
+        "server\\da\\_Server-bl.js": {
+            "name": "server\\da\\_Server-bl.js",
+            "modules": {
+                "Server-da": 1
+            },
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
         "server\\libs\\SQLite.js": {
             "name": "server\\libs\\SQLite.js",
             "modules": {},
             "classes": {
-                "": 1
+                "SQLite": 1
             },
+            "fors": {},
+            "namespaces": {}
+        },
+        "server\\libs\\_Server-libs.js": {
+            "name": "server\\libs\\_Server-libs.js",
+            "modules": {
+                "Server-libs": 1
+            },
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "server\\_Server.js": {
+            "name": "server\\_Server.js",
+            "modules": {
+                "Server": 1
+            },
+            "classes": {},
             "fors": {},
             "namespaces": {}
         }
     },
-    "modules": {},
+    "modules": {
+        "Commons": {
+            "name": "Commons",
+            "submodules": {},
+            "elements": {},
+            "classes": {
+                "Helper": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "main",
+            "file": "commons\\Helper.js",
+            "line": 1,
+            "description": "Provee las clases utilizadas en el <i>front-end</i> y el <i>back-end</i> de \nla aplicación. Estas clases pueden ser procesadas tanto por el servidor, como \npor los navegadores web al cargar alguna página.",
+            "itemtype": "main"
+        },
+        "Public": {
+            "name": "Public",
+            "submodules": {},
+            "elements": {},
+            "classes": {
+                "Model_List": 1,
+                "Session_List": 1,
+                "Simulation": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "main",
+            "file": "public\\js\\Simulation.js",
+            "line": 10,
+            "description": "Provee las clases utilizadas en el <i>front-end</i> de la aplicación. Estas \nclases son procesadas por los navegadores web al cargar alguna página.",
+            "itemtype": "main"
+        },
+        "Server": {
+            "name": "Server",
+            "submodules": {
+                "Server-bl": 1,
+                "Server-da": 1,
+                "Server-libs": 1
+            },
+            "elements": {},
+            "classes": {
+                "App": 1,
+                "Controller": 1,
+                "Controller.model": 1,
+                "Controller.session": 1,
+                "Model": 1,
+                "Session": 1,
+                "SessionController": 1,
+                "Entities": 1,
+                "Entities.model": 1,
+                "Sockets.Actions": 1,
+                "Sockets": 1,
+                "SQLite": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "main",
+            "file": "server\\libs\\SQLite.js",
+            "line": 3,
+            "description": "Provee las clases utilizadas en el <i>back-end</i> de la aplicación. Estas \nclases son procesadas por el servidor de NodeJS.",
+            "itemtype": "main"
+        },
+        "Server-bl": {
+            "name": "Server-bl",
+            "submodules": {},
+            "elements": {},
+            "classes": {
+                "App": 1,
+                "Controller": 1,
+                "Controller.model": 1,
+                "Controller.session": 1,
+                "Model": 1,
+                "Session": 1,
+                "SessionController": 1
+            },
+            "fors": {},
+            "is_submodule": 1,
+            "namespaces": {},
+            "module": "Server",
+            "namespace": "",
+            "file": "server\\bl\\SessionController.js",
+            "line": 3,
+            "description": "Provee las clases relacionadas con la capa de <b>Lógica de Negocio</b>, \nutilizadas en el <i>back-end</i> de la aplicación.",
+            "tag": "main",
+            "itemtype": "main"
+        },
+        "Server-da": {
+            "name": "Server-da",
+            "submodules": {},
+            "elements": {},
+            "classes": {
+                "Entities": 1,
+                "Entities.model": 1,
+                "Sockets.Actions": 1,
+                "Sockets": 1
+            },
+            "fors": {},
+            "is_submodule": 1,
+            "namespaces": {},
+            "module": "Server",
+            "namespace": "",
+            "file": "server\\da\\Sockets.js",
+            "line": 3,
+            "description": "Provee las clases relacionadas con la capa de <b>Acceso a Datos</b>, \nutilizadas en el <i>back-end</i> de la aplicación.",
+            "tag": "main",
+            "itemtype": "main"
+        },
+        "Server-libs": {
+            "name": "Server-libs",
+            "submodules": {},
+            "elements": {},
+            "classes": {
+                "SQLite": 1
+            },
+            "fors": {},
+            "is_submodule": 1,
+            "namespaces": {},
+            "module": "Server",
+            "namespace": "",
+            "file": "server\\libs\\SQLite.js",
+            "line": 3,
+            "description": "Provee las clases relacionadas librearías utilizadas en el <i>back-end</i> \nde la aplicación.",
+            "tag": "main",
+            "itemtype": "main"
+        }
+    },
     "classes": {
+        "Helper": {
+            "name": "Helper",
+            "shortname": "Helper",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Commons",
+            "file": "commons\\Helper.js",
+            "line": 1,
+            "description": "Funciones utilitarias."
+        },
+        "Model_List": {
+            "name": "Model_List",
+            "shortname": "Model_List",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Public",
+            "namespace": "",
+            "file": "public\\js\\Model_List.js",
+            "line": 1,
+            "description": "Controla las acciones que se deben ejecutar en la página de Lista de Modelos",
+            "is_constructor": 1
+        },
+        "Session_List": {
+            "name": "Session_List",
+            "shortname": "Session_List",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Public",
+            "namespace": "",
+            "file": "public\\js\\Session_List.js",
+            "line": 1,
+            "description": "Controla las acciones que se deben ejecutar en la página de Lista de Modelos",
+            "is_constructor": 1
+        },
+        "Simulation": {
+            "name": "Simulation",
+            "shortname": "Simulation",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Public",
+            "namespace": "",
+            "file": "public\\js\\Simulation.js",
+            "line": 10,
+            "description": "Provee la lógica de interacción de las simulaciones con el servidor.",
+            "is_constructor": 1
+        },
         "App": {
             "name": "App",
             "shortname": "App",
@@ -101,9 +375,12 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
+            "module": "Server",
+            "namespace": "",
             "file": "server\\bl\\App.js",
             "line": 3,
             "description": "Controlador principal de la aplicación en el lado del servidor. Se encarga de \nestablecer los parámetros de configuración, configurando el framework Express, \nlas rutas y el motor de plantillas (templates).",
+            "submodule": "Server-bl",
             "is_constructor": 1
         },
         "Controller": {
@@ -114,9 +391,12 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
+            "module": "Server",
+            "namespace": "",
             "file": "server\\bl\\Controller.js",
             "line": 36,
-            "description": "Controla la capa negocio de la aplicación, haciendo la conexión entre la capa \nde datos y las vistas y aplicando la logica de negocio necesaria."
+            "description": "Controla la capa negocio de la aplicación, haciendo la conexión entre la capa \nde datos y las vistas y aplicando la logica de negocio necesaria.",
+            "submodule": "Server-bl"
         },
         "Controller.model": {
             "name": "Controller.model",
@@ -126,8 +406,11 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
+            "module": "Server",
+            "submodule": "Server-bl",
+            "namespace": "",
             "file": "server\\bl\\Controller.js",
-            "line": 59,
+            "line": 61,
             "description": "Controla la capa de negocio que interactua con las acciones sobre los modelos."
         },
         "Controller.session": {
@@ -138,8 +421,11 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
+            "module": "Server",
+            "submodule": "Server-bl",
+            "namespace": "",
             "file": "server\\bl\\Controller.js",
-            "line": 188,
+            "line": 192,
             "description": "Controla la capa de negocio que interactua con las sesiones de simulaciones."
         },
         "Model": {
@@ -150,9 +436,12 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
+            "module": "Server",
+            "namespace": "",
             "file": "server\\bl\\Model.js",
             "line": 3,
             "description": "Controla las acciones que se pueden ejecutar sobre un modelo.",
+            "submodule": "Server-bl",
             "is_constructor": 1
         },
         "Session": {
@@ -163,9 +452,12 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
+            "module": "Server",
+            "namespace": "",
             "file": "server\\bl\\Session.js",
             "line": 3,
             "description": "Maneja una sesión individual de una simulación.",
+            "submodule": "Server-bl",
             "is_constructor": 1,
             "params": [
                 {
@@ -183,9 +475,12 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
+            "module": "Server",
+            "namespace": "",
             "file": "server\\bl\\SessionController.js",
             "line": 3,
             "description": "Controla las sesiones de creadas por los usuarios para ejecutar las simulaciones.",
+            "submodule": "Server-bl",
             "is_constructor": 1
         },
         "Entities": {
@@ -196,9 +491,12 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
+            "module": "Server",
+            "namespace": "",
             "file": "server\\da\\Entities.js",
             "line": 9,
-            "description": "Maneja la relación de las distintas entidades con la base de datos."
+            "description": "Maneja la relación de las distintas entidades con la base de datos.",
+            "submodule": "Server-da"
         },
         "Entities.model": {
             "name": "Entities.model",
@@ -208,8 +506,11 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
+            "module": "Server",
+            "submodule": "Server-da",
+            "namespace": "",
             "file": "server\\da\\Entities.js",
-            "line": 16,
+            "line": 18,
             "description": "Maneja la relación de la entidad <i>model</i> con la base de datos."
         },
         "Sockets.Actions": {
@@ -220,9 +521,12 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
+            "module": "Server",
+            "namespace": "",
             "file": "server\\da\\Sockets.Actions.js",
             "line": 6,
-            "description": "Maneja las acciones a ejecutar entre las simulacione, cuya comunicación es \nvía web sockets."
+            "description": "Maneja las acciones a ejecutar entre las simulacione, cuya comunicación es \nvía web sockets.",
+            "submodule": "Server-da"
         },
         "Sockets": {
             "name": "Sockets",
@@ -232,14 +536,28 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
+            "module": "Server",
+            "namespace": "",
             "file": "server\\da\\Sockets.js",
             "line": 3,
-            "description": "Inicializa y configura los web sockets que se utilizan para el envío de la \ninformación en el ambiente de simulación de los modelos."
+            "description": "Inicializa y configura los web sockets que se utilizan para el envío de la \ninformación en el ambiente de simulación de los modelos.",
+            "submodule": "Server-da"
         },
-        "": {
+        "SQLite": {
+            "name": "SQLite",
+            "shortname": "SQLite",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Server",
+            "namespace": "",
             "file": "server\\libs\\SQLite.js",
             "line": 3,
             "description": "Ejecuta acciones sobre una base de SQLite",
+            "submodule": "Server-libs",
+            "is_constructor": 1,
             "params": [
                 {
                     "name": "file",
@@ -252,8 +570,833 @@
     "elements": {},
     "classitems": [
         {
+            "file": "commons\\Helper.js",
+            "line": 9,
+            "description": "Genera un hash a partir de una cadena de caracteres (<i>string</i>).",
+            "itemtype": "method",
+            "name": "getHash",
+            "static": 1,
+            "params": [
+                {
+                    "name": "string",
+                    "description": "Cada de caracteres base para el hash",
+                    "type": "String"
+                },
+                {
+                    "name": "addTimestamp",
+                    "description": "Indica si se concatena la hora actual a la cadena de caracteres",
+                    "type": "Booolean"
+                }
+            ],
+            "class": "Helper",
+            "module": "Commons"
+        },
+        {
+            "file": "commons\\Helper.js",
+            "line": 26,
+            "description": "Indica si una variable tiene valor asignado.",
+            "itemtype": "method",
+            "name": "hasValue",
+            "static": 1,
+            "params": [
+                {
+                    "name": "value",
+                    "description": "Variable a analizar",
+                    "type": "String"
+                }
+            ],
+            "class": "Helper",
+            "module": "Commons"
+        },
+        {
+            "file": "commons\\Helper.js",
+            "line": 36,
+            "description": "Genera un <i>spinner</i> sobre un elemento del HTML.",
+            "itemtype": "method",
+            "name": "spinner",
+            "static": 1,
+            "params": [
+                {
+                    "name": "elementSelector",
+                    "description": "Selector del elemento HTML",
+                    "type": "String"
+                },
+                {
+                    "name": "options",
+                    "description": "Opciones para el <i>spinner</i>",
+                    "type": "Object"
+                }
+            ],
+            "class": "Helper",
+            "module": "Commons"
+        },
+        {
+            "file": "commons\\Helper.js",
+            "line": 91,
+            "description": "Ejecuta una función a partir del nombre",
+            "itemtype": "method",
+            "name": "executeFunctionByName",
+            "static": 1,
+            "params": [
+                {
+                    "name": "functionName",
+                    "description": "Nombre de la función",
+                    "type": "String"
+                },
+                {
+                    "name": "context",
+                    "description": "Contexto(s) de la función",
+                    "type": "Array|String"
+                }
+            ],
+            "class": "Helper",
+            "module": "Commons"
+        },
+        {
+            "file": "commons\\Helper.js",
+            "line": 108,
+            "description": "Obtiene el valor almacenado en una variable o un valor por defecto si esta no\nestá asignada o es nula.",
+            "itemtype": "method",
+            "name": "get",
+            "static": 1,
+            "params": [
+                {
+                    "name": "value",
+                    "description": "Variable a analizar",
+                    "type": "String"
+                },
+                {
+                    "name": "defaultValue",
+                    "description": "Valor por defecto",
+                    "type": "String"
+                }
+            ],
+            "class": "Helper",
+            "module": "Commons"
+        },
+        {
+            "file": "commons\\Helper.js",
+            "line": 120,
+            "description": "Obtiene la versión de navegador de Internet utilizada.",
+            "itemtype": "method",
+            "name": "getBrowser",
+            "static": 1,
+            "class": "Helper",
+            "module": "Commons"
+        },
+        {
+            "file": "commons\\Helper.js",
+            "line": 141,
+            "description": "Asigna la ejecución de una función, cual se termina la carga de una página.",
+            "itemtype": "method",
+            "name": "onload",
+            "static": 1,
+            "params": [
+                {
+                    "name": "functionName",
+                    "description": "Función a asignar",
+                    "type": "Function"
+                }
+            ],
+            "class": "Helper",
+            "module": "Commons"
+        },
+        {
+            "file": "commons\\Helper.js",
+            "line": 164,
+            "description": "Busca un fragmento en una cadena de caracteres y reemplaza todas las \ncoincidencias.",
+            "itemtype": "method",
+            "name": "replaceAll",
+            "static": 1,
+            "params": [
+                {
+                    "name": "string",
+                    "description": "Cadena de caracteres donde se buscarán las coincidencias",
+                    "type": "String"
+                },
+                {
+                    "name": "find",
+                    "description": "Cadena de caracteres a buscar",
+                    "type": "String"
+                },
+                {
+                    "name": "replace",
+                    "description": "Cadena de caracteres que reemplazará",
+                    "type": "String"
+                }
+            ],
+            "class": "Helper",
+            "module": "Commons"
+        },
+        {
+            "file": "commons\\Helper.js",
+            "line": 177,
+            "description": "Agrega el caracter de escape, a los caracteres especiales en una cadena.",
+            "itemtype": "method",
+            "name": "escapeRegExp",
+            "static": 1,
+            "params": [
+                {
+                    "name": "string",
+                    "description": "La cadena de caracteres",
+                    "type": "String"
+                }
+            ],
+            "class": "Helper",
+            "module": "Commons"
+        },
+        {
+            "file": "commons\\Helper.js",
+            "line": 187,
+            "description": "Formate un nombre de archivo, eliminando los caracteres especiales, \nconvirtiéndolo a minúsculas y remplazando los espaciones por guiones bajos.\nconvirtiéndole.",
+            "itemtype": "method",
+            "name": "cleanFileName",
+            "static": 1,
+            "params": [
+                {
+                    "name": "fileName",
+                    "description": "Nombre del archivo",
+                    "type": "String"
+                }
+            ],
+            "class": "Helper",
+            "module": "Commons"
+        },
+        {
+            "file": "commons\\Helper.js",
+            "line": 199,
+            "description": "Indica si una variable tiene valor asignado.",
+            "itemtype": "method",
+            "name": "getRandomNumber",
+            "static": 1,
+            "params": [
+                {
+                    "name": "min",
+                    "description": "Valor mínimo",
+                    "type": "Integer"
+                },
+                {
+                    "name": "max",
+                    "description": "Valor máximo",
+                    "type": "Integer"
+                }
+            ],
+            "class": "Helper",
+            "module": "Commons"
+        },
+        {
+            "file": "commons\\Helper.js",
+            "line": 210,
+            "description": "Obtiene un parámetro <i>GET</i> de una URL.",
+            "itemtype": "method",
+            "name": "getURLParameter",
+            "static": 1,
+            "params": [
+                {
+                    "name": "name",
+                    "description": "Nombre del parámetro",
+                    "type": "String"
+                },
+                {
+                    "name": "url",
+                    "description": "La URL",
+                    "type": "String"
+                }
+            ],
+            "class": "Helper",
+            "module": "Commons"
+        },
+        {
+            "file": "commons\\Helper.js",
+            "line": 227,
+            "description": "Obtiene la última sección de un URL.",
+            "itemtype": "method",
+            "name": "getLastURLPiece",
+            "static": 1,
+            "params": [
+                {
+                    "name": "url",
+                    "description": "La URL",
+                    "type": "String"
+                }
+            ],
+            "class": "Helper",
+            "module": "Commons"
+        },
+        {
+            "file": "commons\\Helper.js",
+            "line": 240,
+            "description": "Elimina caracteres al final de una cadena de caracteres.",
+            "itemtype": "method",
+            "name": "trimRight",
+            "static": 1,
+            "params": [
+                {
+                    "name": "string",
+                    "description": "Cadena de caracteres a la cual se le aplicara la función",
+                    "type": "String"
+                },
+                {
+                    "name": "String",
+                    "description": "string Cadena de caracteres con los caracteres a reemplazar. \nPor defecto se reemplazan los espacios.",
+                    "optional": true
+                }
+            ],
+            "class": "Helper",
+            "module": "Commons"
+        },
+        {
+            "file": "commons\\Helper.js",
+            "line": 255,
+            "description": "Elimina caracteres al inicio de una cadena de caracteres.",
+            "itemtype": "method",
+            "name": "trimLeft",
+            "static": 1,
+            "params": [
+                {
+                    "name": "string",
+                    "description": "Cadena de caracteres a la cual se le aplicara la función",
+                    "type": "String"
+                },
+                {
+                    "name": "String",
+                    "description": "string Cadena de caracteres con los caracteres a reemplazar. \nPor defecto se reemplazan los espacios.",
+                    "optional": true
+                }
+            ],
+            "class": "Helper",
+            "module": "Commons"
+        },
+        {
+            "file": "commons\\Helper.js",
+            "line": 270,
+            "description": "Convierte una cadena de caracteres a entidades HTML",
+            "itemtype": "method",
+            "name": "toHTMLEntities",
+            "static": 1,
+            "params": [
+                {
+                    "name": "string",
+                    "description": "Cadena de caracteres a la cual se le aplicara la función",
+                    "type": "String"
+                }
+            ],
+            "class": "Helper",
+            "module": "Commons"
+        },
+        {
+            "file": "commons\\Helper.js",
+            "line": 282,
+            "description": "Crea una cadena de caracteres desde una entidad HTML",
+            "itemtype": "method",
+            "name": "fromHTMLEntities",
+            "static": 1,
+            "params": [
+                {
+                    "name": "string",
+                    "description": "Cadena de caracteres a la cual se le aplicara la función",
+                    "type": "String"
+                }
+            ],
+            "class": "Helper",
+            "module": "Commons"
+        },
+        {
+            "file": "public\\js\\Model_List.js",
+            "line": 9,
+            "description": "Ejecuta las acciones de configuración necesarias",
+            "itemtype": "method",
+            "name": "init",
+            "class": "Model_List",
+            "module": "Public"
+        },
+        {
+            "file": "public\\js\\Model_List.js",
+            "line": 29,
+            "description": "Inicializa la tabla que contiene la lista de modelos",
+            "itemtype": "method",
+            "name": "initModelsTable",
+            "class": "Model_List",
+            "module": "Public"
+        },
+        {
+            "file": "public\\js\\Model_List.js",
+            "line": 51,
+            "description": "Configura la acción de borrar modelo",
+            "itemtype": "method",
+            "name": "deleteModel",
+            "return": {
+                "description": ""
+            },
+            "class": "Model_List",
+            "module": "Public"
+        },
+        {
+            "file": "public\\js\\Model_List.js",
+            "line": 83,
+            "description": "Crea e inicializa el objeto Model_List",
+            "itemtype": "method",
+            "name": "init",
+            "class": "Model_List",
+            "module": "Public"
+        },
+        {
+            "file": "public\\js\\Session_List.js",
+            "line": 9,
+            "description": "Ejecuta las acciones de configuración necesarias",
+            "itemtype": "method",
+            "name": "init",
+            "class": "Session_List",
+            "module": "Public"
+        },
+        {
+            "file": "public\\js\\Session_List.js",
+            "line": 45,
+            "description": "Inicializa la tabla que contiene la lista de sesiones",
+            "itemtype": "method",
+            "name": "initModelsTable",
+            "class": "Session_List",
+            "module": "Public"
+        },
+        {
+            "file": "public\\js\\Session_List.js",
+            "line": 66,
+            "description": "Crea e inicializa el objeto Session_List",
+            "itemtype": "method",
+            "name": "init",
+            "class": "Session_List",
+            "module": "Public"
+        },
+        {
+            "file": "public\\js\\Simulation.js",
+            "line": 37,
+            "description": "Inicializa la clase, realizando las configuraciones necesarias.",
+            "itemtype": "method",
+            "name": "init",
+            "class": "Simulation",
+            "module": "Public"
+        },
+        {
+            "file": "public\\js\\Simulation.js",
+            "line": 57,
+            "description": "Realiza la conexión del cliente con el servidor por medio de <i>web sockets</i>.",
+            "itemtype": "method",
+            "name": "connect",
+            "return": {
+                "description": ""
+            },
+            "class": "Simulation",
+            "module": "Public"
+        },
+        {
+            "file": "public\\js\\Simulation.js",
+            "line": 74,
+            "description": "Este método sobre-escribe el método <b>AgentStreamController.prototype.applyUpdate</b>\ndel código original de Tortoise. Se encarga de controlar la actualización\nde la simulación (a nivel gráfico) y de los valores de los <i>outputs</i>.\nEn el caso del cliente maestro, se envía un mensaje al servidor para que \nlos clientes realicen la actualización y finalmente se ejecuta el código\noriginal de actualización. En el caso los clientes que no son maestros, \nse ignora cualquier proceso. En caso de que aún no se hara realizado \nla conexión con el <i>socket</i>, se ejecuta el código original de \nactualización, en ambos casos.",
+            "itemtype": "method",
+            "name": "applyUpdate",
+            "params": [
+                {
+                    "name": "agentStreamController",
+                    "description": "El objeto AgentStreamController del modelo",
+                    "type": "Object"
+                },
+                {
+                    "name": "modelUpdate",
+                    "description": "El objeto que contiene las intrucciones de actualización",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "El resultado del proceso de actualiación. Este resultado proviene de\nla lógica del código de Tortoise",
+                "type": "Object"
+            },
+            "class": "Simulation",
+            "module": "Public"
+        },
+        {
+            "file": "public\\js\\Simulation.js",
+            "line": 108,
+            "description": "Código ejecutado por los clientes no maestros al recibir un mensaje de \nactualización del modelo. Ejecuta las actualizaciones del modelo, haciendo \nla llamada al código de actualización original de <b>Tortoise</b> y \nllevando a cabo la actualización de los <i>outputs</i>.",
+            "itemtype": "method",
+            "name": "applyUpdate_",
+            "params": [
+                {
+                    "name": "modelUpdate",
+                    "description": "El objeto que contiene las intrucciones de actualización",
+                    "type": "Object"
+                },
+                {
+                    "name": "outputs",
+                    "description": "Objeto que contiene las actualizaciones a ejecutar sobre los <i>outputs</i>",
+                    "type": "Object"
+                }
+            ],
+            "class": "Simulation",
+            "module": "Public"
+        },
+        {
+            "file": "public\\js\\Simulation.js",
+            "line": 125,
+            "description": "Establece el valor de la velocidad de la simulación.",
+            "itemtype": "method",
+            "name": "updateSpeed_",
+            "params": [
+                {
+                    "name": "value",
+                    "description": "Valor de la velocidad",
+                    "type": "Integer"
+                }
+            ],
+            "class": "Simulation",
+            "module": "Public"
+        },
+        {
+            "file": "public\\js\\Simulation.js",
+            "line": 134,
+            "description": "Dtermina si un widget es de tipo comando.",
+            "itemtype": "method",
+            "name": "isCommandWidget",
+            "params": [
+                {
+                    "name": "widget",
+                    "description": "El widget",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "Verdadero o Falso",
+                "type": "Boolean"
+            },
+            "class": "Simulation",
+            "module": "Public"
+        },
+        {
+            "file": "public\\js\\Simulation.js",
+            "line": 144,
+            "description": "Ejecuta la acción de sobre-escribir las funciones originales de Tortoise, \nnecesarias para la ejecución de la lógica personalizada.",
+            "itemtype": "method",
+            "name": "doOverwriteFunctions",
+            "class": "Simulation",
+            "module": "Public"
+        },
+        {
+            "file": "public\\js\\Simulation.js",
+            "line": 172,
+            "description": "Inicializa los widgets del modelo, para:\n1. Obtener los widget de tipo comando para sobre-escribir su funcionalidad\n2. Obtener y guardar los widget de tipo control para posteriormente \nsobre-escribir su funcionalidad.",
+            "itemtype": "method",
+            "name": "initWidgets",
+            "class": "Simulation",
+            "module": "Public"
+        },
+        {
+            "file": "public\\js\\Simulation.js",
+            "line": 198,
+            "description": "Extrae de un <i>widget</i> de tipo comando la información necesaria para\nsu posterior procesamiento.",
+            "itemtype": "method",
+            "name": "parseCommandWidget",
+            "params": [
+                {
+                    "name": "widgetData",
+                    "description": "Los datos del <i>widget</i>",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "result",
+                "type": "Object"
+            },
+            "class": "Simulation",
+            "module": "Public"
+        },
+        {
+            "file": "public\\js\\Simulation.js",
+            "line": 220,
+            "description": "Sobre-escribe la funcionalidad de un comando",
+            "itemtype": "method",
+            "name": "doOverwriteCommand",
+            "params": [
+                {
+                    "name": "commandData",
+                    "description": "Los datos del comando",
+                    "type": "Object"
+                }
+            ],
+            "class": "Simulation",
+            "module": "Public"
+        },
+        {
+            "file": "public\\js\\Simulation.js",
+            "line": 241,
+            "description": "Deshabilita los controles",
+            "itemtype": "method",
+            "name": "disableControls",
+            "class": "Simulation",
+            "module": "Public"
+        },
+        {
+            "file": "public\\js\\Simulation.js",
+            "line": 250,
+            "description": "Inicializa",
+            "itemtype": "method",
+            "name": "initNoMasterConnected",
+            "class": "Simulation",
+            "module": "Public"
+        },
+        {
+            "file": "public\\js\\Simulation.js",
+            "line": 259,
+            "description": "Envía un mensaje de ejecutar acción al servidor por medio de web sockets, \npara que sea enviada a los demás clientes en la sesión.",
+            "itemtype": "method",
+            "name": "sendAction",
+            "params": [
+                {
+                    "name": "action",
+                    "description": "La acción a ejecutar",
+                    "type": "String"
+                },
+                {
+                    "name": "params",
+                    "description": "Los parámetros de la acción",
+                    "type": "Object"
+                }
+            ],
+            "class": "Simulation",
+            "module": "Public"
+        },
+        {
+            "file": "public\\js\\Simulation.js",
+            "line": 273,
+            "description": "Ejecuta la acción de inicialización de la sesión se simulación",
+            "itemtype": "method",
+            "name": "start",
+            "class": "Simulation",
+            "module": "Public"
+        },
+        {
+            "file": "public\\js\\Simulation.js",
+            "line": 287,
+            "description": "Ejecuta la acción de finalización de la sesión se simulación",
+            "itemtype": "method",
+            "name": "end",
+            "class": "Simulation",
+            "module": "Public"
+        },
+        {
+            "file": "public\\js\\Simulation.js",
+            "line": 300,
+            "description": "Recibe del servidor la respuesta al conectarse a los web sockets",
+            "itemtype": "method",
+            "name": "overwritedCommands.connect_Response",
+            "params": [
+                {
+                    "name": "params",
+                    "description": "Los parámetros recibidos",
+                    "type": "Object"
+                }
+            ],
+            "class": "Simulation",
+            "module": "Public"
+        },
+        {
+            "file": "public\\js\\Simulation.js",
+            "line": 314,
+            "description": "Recibe del servidor la acción de actualizar usuarios",
+            "itemtype": "method",
+            "name": "overwritedCommands.updateUsers",
+            "params": [
+                {
+                    "name": "params",
+                    "description": "Los parámetros de la acción",
+                    "type": "Object"
+                }
+            ],
+            "class": "Simulation",
+            "module": "Public"
+        },
+        {
+            "file": "public\\js\\Simulation.js",
+            "line": 322,
+            "description": "Recibe del servidor la acción de ejecutar comando",
+            "itemtype": "method",
+            "name": "overwritedCommands.executeCommand",
+            "params": [
+                {
+                    "name": "params",
+                    "description": "Los parámetros de la acción",
+                    "type": "Object"
+                }
+            ],
+            "class": "Simulation",
+            "module": "Public"
+        },
+        {
+            "file": "public\\js\\Simulation.js",
+            "line": 333,
+            "description": "Recibe del servidor la acción de definir valor de variable global de \nTortoise",
+            "itemtype": "method",
+            "name": "overwritedCommands.setGlobal",
+            "params": [
+                {
+                    "name": "params",
+                    "description": "Los parámetros de la acción",
+                    "type": "Object"
+                }
+            ],
+            "class": "Simulation",
+            "module": "Public"
+        },
+        {
+            "file": "public\\js\\Simulation.js",
+            "line": 345,
+            "description": "Recibe del servidor la acción de actualizar velocidad de la simulación",
+            "itemtype": "method",
+            "name": "overwritedCommands.updateSpeed",
+            "params": [
+                {
+                    "name": "params",
+                    "description": "Los parámetros de la acción",
+                    "type": "Object"
+                }
+            ],
+            "class": "Simulation",
+            "module": "Public"
+        },
+        {
+            "file": "public\\js\\Simulation.js",
+            "line": 353,
+            "description": "Recibe del servidor la acción de aplicar actualización de la simulación",
+            "itemtype": "method",
+            "name": "overwritedCommands.applyUpdate",
+            "params": [
+                {
+                    "name": "params",
+                    "description": "Los parámetros de la acción",
+                    "type": "Object"
+                }
+            ],
+            "class": "Simulation",
+            "module": "Public"
+        },
+        {
+            "file": "public\\js\\Simulation.js",
+            "line": 362,
+            "description": "Recibe del servidor la acción de iniciar sesión de simulación",
+            "itemtype": "method",
+            "name": "overwritedCommands.start",
+            "params": [
+                {
+                    "name": "enabledControls",
+                    "description": "Indica si los controles están habilitados o no",
+                    "type": "Boolean"
+                }
+            ],
+            "class": "Simulation",
+            "module": "Public"
+        },
+        {
+            "file": "public\\js\\Simulation.js",
+            "line": 371,
+            "description": "Recibe del servidor la acción de finalizar sesión de simulación",
+            "itemtype": "method",
+            "name": "overwritedCommands.end",
+            "class": "Simulation",
+            "module": "Public"
+        },
+        {
+            "file": "public\\js\\Simulation.js",
+            "line": 378,
+            "description": "Recibe del servidor la acción de obtener mensaje",
+            "itemtype": "method",
+            "name": "overwritedCommands.getMessage",
+            "params": [
+                {
+                    "name": "params",
+                    "description": "Los parámetros de la acción",
+                    "type": "Object"
+                }
+            ],
+            "class": "Simulation",
+            "module": "Public"
+        },
+        {
+            "file": "public\\js\\Simulation.js",
+            "line": 388,
+            "description": "Inicializa las acciones que se pueden recibir del servidor por medio de \nweb sockets",
+            "itemtype": "method",
+            "name": "initSockets",
+            "class": "Simulation",
+            "module": "Public"
+        },
+        {
+            "file": "public\\js\\Simulation.js",
+            "line": 409,
+            "description": "Crea un objeto Simulation",
+            "itemtype": "method",
+            "name": "create",
+            "return": {
+                "description": "modelObj El objeto Simulation"
+            },
+            "class": "Simulation",
+            "module": "Public"
+        },
+        {
+            "file": "public\\js\\Simulation.js",
+            "line": 421,
+            "description": "Sobre-escribe algunos de los métodos de Tortoise, necesarios antes de que \nse inicialice Tortoise",
+            "itemtype": "method",
+            "name": "setupObject",
+            "params": [
+                {
+                    "name": "modelObj",
+                    "description": "Objeto Simulation",
+                    "type": "Object"
+                }
+            ],
+            "class": "Simulation",
+            "module": "Public"
+        },
+        {
+            "file": "public\\js\\Simulation.js",
+            "line": 440,
+            "description": "Basado en el patrón <i>Singleton</i>, retorna una instancia del objeto Simulation",
+            "itemtype": "method",
+            "name": "getInstance",
+            "static": 1,
+            "return": {
+                "description": "La instancia de Simulation",
+                "type": "Simulation"
+            },
+            "class": "Simulation",
+            "module": "Public"
+        },
+        {
+            "file": "public\\js\\Simulation.js",
+            "line": 453,
+            "description": "Formatea la interfaz de gráfica en la página de simulación, para que cuente\ncon el menú y las demás opciones de la interfaz gráfica del resto de la \naplicación.",
+            "itemtype": "method",
+            "name": "formatUI",
+            "class": "Simulation",
+            "module": "Public"
+        },
+        {
+            "file": "public\\js\\Simulation.js",
+            "line": 479,
+            "description": "Formatea la sección de Usuarios de la sesión en interfaz de gráfica.",
+            "itemtype": "method",
+            "name": "users",
+            "params": [
+                {
+                    "name": "users",
+                    "description": "La lista de usuario",
+                    "type": "Array"
+                }
+            ],
+            "class": "Simulation",
+            "module": "Public"
+        },
+        {
             "file": "server\\bl\\App.js",
-            "line": 14,
+            "line": 16,
             "description": "Inicializa el proceso de definición de los parámetros de configuración \nde la aplicación.",
             "itemtype": "method",
             "name": "init",
@@ -266,41 +1409,49 @@
                     "type": "http.Server"
                 }
             ],
-            "class": "App"
+            "class": "App",
+            "module": "Server",
+            "submodule": "Server-bl"
         },
         {
             "file": "server\\bl\\App.js",
-            "line": 28,
+            "line": 30,
             "description": "Establece los parámetros de configuración de Express y el motor de \nplantillas Swig y otros (logger, cookieParser, etc).",
             "itemtype": "method",
             "name": "setupConfig",
             "access": "private",
             "tagname": "",
-            "class": "App"
+            "class": "App",
+            "module": "Server",
+            "submodule": "Server-bl"
         },
         {
             "file": "server\\bl\\App.js",
-            "line": 68,
+            "line": 70,
             "description": "Establece los parámetros de configuración de las rutas accesibles por \nmedio del protocolo HTTP.",
             "itemtype": "method",
             "name": "setupRoutes",
             "access": "private",
             "tagname": "",
-            "class": "App"
+            "class": "App",
+            "module": "Server",
+            "submodule": "Server-bl"
         },
         {
             "file": "server\\bl\\App.js",
-            "line": 108,
+            "line": 110,
             "description": "Constructor de la clase.",
             "itemtype": "method",
             "name": "__construct",
             "access": "private",
             "tagname": "",
-            "class": "App"
+            "class": "App",
+            "module": "Server",
+            "submodule": "Server-bl"
         },
         {
             "file": "server\\bl\\App.js",
-            "line": 120,
+            "line": 122,
             "description": "Returna la instancia de Express utilizada.",
             "itemtype": "method",
             "name": "getExpress",
@@ -308,11 +1459,13 @@
                 "description": "app Instancia de express",
                 "type": "Express"
             },
-            "class": "App"
+            "class": "App",
+            "module": "Server",
+            "submodule": "Server-bl"
         },
         {
             "file": "server\\bl\\App.js",
-            "line": 133,
+            "line": 135,
             "description": "Retorn la ruta desde el directorio raíz de la aplicación basado en la ruta \nrecibida.",
             "itemtype": "method",
             "name": "getRootPath",
@@ -328,11 +1481,13 @@
                 "description": "La ruta a la raíz de la aplicación",
                 "type": "String"
             },
-            "class": "App"
+            "class": "App",
+            "module": "Server",
+            "submodule": "Server-bl"
         },
         {
             "file": "server\\bl\\App.js",
-            "line": 146,
+            "line": 148,
             "description": "Retorn la ruta desde el directorio de los archivos del servidor de la \naplicación basado en la ruta recibida.",
             "itemtype": "method",
             "name": "getPath",
@@ -348,11 +1503,13 @@
                 "description": "La ruta al directorio de los archivos del servidor de la aplicación",
                 "type": "String"
             },
-            "class": "App"
+            "class": "App",
+            "module": "Server",
+            "submodule": "Server-bl"
         },
         {
             "file": "server\\bl\\App.js",
-            "line": 159,
+            "line": 161,
             "description": "Incluye el cídigo de un archivo dentro de la aplicación.",
             "itemtype": "method",
             "name": "include",
@@ -364,11 +1521,13 @@
                     "type": "String"
                 }
             ],
-            "class": "App"
+            "class": "App",
+            "module": "Server",
+            "submodule": "Server-bl"
         },
         {
             "file": "server\\bl\\App.js",
-            "line": 170,
+            "line": 172,
             "description": "Realiza el require de cualquiera de los módulos ubicados dentro del directorio\nde los archivos del servidor de la aplicación.",
             "itemtype": "method",
             "name": "require",
@@ -384,11 +1543,13 @@
                 "description": "El <i>requite</i> del modulo",
                 "type": "Mixed"
             },
-            "class": "App"
+            "class": "App",
+            "module": "Server",
+            "submodule": "Server-bl"
         },
         {
             "file": "server\\bl\\App.js",
-            "line": 182,
+            "line": 184,
             "description": "Imprime en consola un mensaje de depuración, personalizado para la aplicación.\nLa impresión del mensaje es condicionada por el valor de la variable global  \n<i>DEBUG_MODE<i> en el archivo de configuración de la aplicación y el valor del\nparámetro <i>mode</i> recibido",
             "itemtype": "method",
             "name": "debug",
@@ -415,11 +1576,13 @@
                     "type": "String"
                 }
             ],
-            "class": "App"
+            "class": "App",
+            "module": "Server",
+            "submodule": "Server-bl"
         },
         {
             "file": "server\\bl\\App.js",
-            "line": 207,
+            "line": 209,
             "description": "Retorna la instancia del objeto Express utilizado",
             "itemtype": "method",
             "name": "getInstance",
@@ -428,11 +1591,13 @@
                 "description": "Instancia de express",
                 "type": "Express"
             },
-            "class": "App"
+            "class": "App",
+            "module": "Server",
+            "submodule": "Server-bl"
         },
         {
             "file": "server\\bl\\App.js",
-            "line": 220,
+            "line": 222,
             "description": "Determina si el usuario es master comparando con la contraseña enviada por \nparámetro con la contraseña del usuario maestro.",
             "itemtype": "method",
             "name": "isUserMaster",
@@ -448,7 +1613,9 @@
                 "description": "El resultado de la comparación de las contraseñas",
                 "type": "Boolean"
             },
-            "class": "App"
+            "class": "App",
+            "module": "Server",
+            "submodule": "Server-bl"
         },
         {
             "file": "server\\bl\\Controller.js",
@@ -487,7 +1654,8 @@
                     "optdefault": "500"
                 }
             ],
-            "class": "Controller"
+            "class": "Controller",
+            "module": "Server"
         },
         {
             "file": "server\\bl\\Controller.js",
@@ -526,11 +1694,12 @@
                     "optdefault": "400"
                 }
             ],
-            "class": "Controller"
+            "class": "Controller",
+            "module": "Server"
         },
         {
             "file": "server\\bl\\Controller.js",
-            "line": 44,
+            "line": 46,
             "description": "Despliega una página genérica con un mensaje.",
             "itemtype": "method",
             "name": "message",
@@ -557,11 +1726,13 @@
                     "type": "String"
                 }
             ],
-            "class": "Controller"
+            "class": "Controller",
+            "module": "Server",
+            "submodule": "Server-bl"
         },
         {
             "file": "server\\bl\\Controller.js",
-            "line": 66,
+            "line": 70,
             "description": "Controla la página de carga de modelos.",
             "itemtype": "method",
             "name": "upload",
@@ -583,11 +1754,13 @@
                     "type": "Function"
                 }
             ],
-            "class": "Controller.model"
+            "class": "Controller.model",
+            "module": "Server",
+            "submodule": "Server-bl"
         },
         {
             "file": "server\\bl\\Controller.js",
-            "line": 80,
+            "line": 84,
             "description": "Controla la página de modelo subido exitosamente.",
             "itemtype": "method",
             "name": "upload.success",
@@ -609,11 +1782,13 @@
                     "type": "Function"
                 }
             ],
-            "class": "Controller.model"
+            "class": "Controller.model",
+            "module": "Server",
+            "submodule": "Server-bl"
         },
         {
             "file": "server\\bl\\Controller.js",
-            "line": 94,
+            "line": 98,
             "description": "Controla la página de error al subir un modelo.",
             "itemtype": "method",
             "name": "upload.error",
@@ -635,11 +1810,13 @@
                     "type": "Function"
                 }
             ],
-            "class": "Controller.model"
+            "class": "Controller.model",
+            "module": "Server",
+            "submodule": "Server-bl"
         },
         {
             "file": "server\\bl\\Controller.js",
-            "line": 108,
+            "line": 112,
             "description": "Controla la subida de un archivo de modelo.",
             "itemtype": "method",
             "name": "onUpload",
@@ -666,11 +1843,13 @@
                     "type": "Function"
                 }
             ],
-            "class": "Controller.model"
+            "class": "Controller.model",
+            "module": "Server",
+            "submodule": "Server-bl"
         },
         {
             "file": "server\\bl\\Controller.js",
-            "line": 124,
+            "line": 128,
             "description": "Controla la página de listado de modelos.",
             "itemtype": "method",
             "name": "list",
@@ -692,11 +1871,13 @@
                     "type": "Function"
                 }
             ],
-            "class": "Controller.model"
+            "class": "Controller.model",
+            "module": "Server",
+            "submodule": "Server-bl"
         },
         {
             "file": "server\\bl\\Controller.js",
-            "line": 133,
+            "line": 137,
             "description": "Función que ejecuta después de obtener la lista de modelos.",
             "itemtype": "event",
             "name": "list.onSuccess",
@@ -707,11 +1888,13 @@
                     "type": "Array"
                 }
             ],
-            "class": "Controller.model"
+            "class": "Controller.model",
+            "module": "Server",
+            "submodule": "Server-bl"
         },
         {
             "file": "server\\bl\\Controller.js",
-            "line": 144,
+            "line": 148,
             "description": "Función que ejecuta después si hay un error al obtener la lista de modelos.",
             "itemtype": "event",
             "name": "list.onError",
@@ -722,11 +1905,13 @@
                     "type": "String"
                 }
             ],
-            "class": "Controller.model"
+            "class": "Controller.model",
+            "module": "Server",
+            "submodule": "Server-bl"
         },
         {
             "file": "server\\bl\\Controller.js",
-            "line": 156,
+            "line": 160,
             "description": "Controla el borrado de un modelo.",
             "itemtype": "method",
             "name": "delete",
@@ -748,19 +1933,23 @@
                     "type": "Function"
                 }
             ],
-            "class": "Controller.model"
+            "class": "Controller.model",
+            "module": "Server",
+            "submodule": "Server-bl"
         },
         {
             "file": "server\\bl\\Controller.js",
-            "line": 165,
+            "line": 169,
             "description": "Función que ejecuta después de obtener la lista de modelos.",
             "itemtype": "event",
             "name": "delete.onSuccess",
-            "class": "Controller.model"
+            "class": "Controller.model",
+            "module": "Server",
+            "submodule": "Server-bl"
         },
         {
             "file": "server\\bl\\Controller.js",
-            "line": 172,
+            "line": 176,
             "description": "Función que ejecuta después si hay un error al eliminar el modelo.",
             "itemtype": "event",
             "name": "delete.onError",
@@ -771,11 +1960,13 @@
                     "type": "String"
                 }
             ],
-            "class": "Controller.model"
+            "class": "Controller.model",
+            "module": "Server",
+            "submodule": "Server-bl"
         },
         {
             "file": "server\\bl\\Controller.js",
-            "line": 195,
+            "line": 201,
             "description": "Controla la página de listado de sesiones de simulación.",
             "itemtype": "method",
             "name": "list",
@@ -797,11 +1988,13 @@
                     "type": "Function"
                 }
             ],
-            "class": "Controller.session"
+            "class": "Controller.session",
+            "module": "Server",
+            "submodule": "Server-bl"
         },
         {
             "file": "server\\bl\\Controller.js",
-            "line": 204,
+            "line": 210,
             "description": "Función que ejecuta después de obtener la lista de modelos.",
             "itemtype": "event",
             "name": "list.afterGetModelsList",
@@ -812,11 +2005,13 @@
                     "type": "Array"
                 }
             ],
-            "class": "Controller.session"
+            "class": "Controller.session",
+            "module": "Server",
+            "submodule": "Server-bl"
         },
         {
             "file": "server\\bl\\Controller.js",
-            "line": 222,
+            "line": 230,
             "description": "Función para obtener la URL a un modelo.",
             "itemtype": "event",
             "name": "list.getModelURL",
@@ -824,6 +2019,11 @@
                 {
                     "name": "modelFilename",
                     "description": "El nombre de archivo del modelo sin extensión",
+                    "type": "String"
+                },
+                {
+                    "name": "modelName",
+                    "description": "El nombre del modelo",
                     "type": "String"
                 },
                 {
@@ -836,11 +2036,13 @@
                 "description": "La URL al modelo",
                 "type": "String"
             },
-            "class": "Controller.session"
+            "class": "Controller.session",
+            "module": "Server",
+            "submodule": "Server-bl"
         },
         {
             "file": "server\\bl\\Controller.js",
-            "line": 236,
+            "line": 245,
             "description": "Función que ejecuta después si hay un error al obtener la lista de modelos.",
             "itemtype": "event",
             "name": "list.onError",
@@ -851,11 +2053,13 @@
                     "type": "String"
                 }
             ],
-            "class": "Controller.session"
+            "class": "Controller.session",
+            "module": "Server",
+            "submodule": "Server-bl"
         },
         {
             "file": "server\\bl\\Model.js",
-            "line": 12,
+            "line": 14,
             "description": "Agregar un modelo al sistema.",
             "itemtype": "method",
             "name": "add",
@@ -880,11 +2084,89 @@
                 "description": "success Resultado de la adición del modelo.",
                 "type": "Boolean"
             },
-            "class": "Model"
+            "class": "Model",
+            "module": "Server",
+            "submodule": "Server-bl"
         },
         {
             "file": "server\\bl\\Model.js",
-            "line": 42,
+            "line": 44,
+            "description": "Obtiene un modelo por ID de modelo.",
+            "itemtype": "method",
+            "name": "getByID",
+            "params": [
+                {
+                    "name": "idModel",
+                    "description": "ID del modelo",
+                    "type": "Integer"
+                },
+                {
+                    "name": "onSuccess",
+                    "description": "Función a ejecutar cuando se obtiene el modelo",
+                    "type": "Function"
+                },
+                {
+                    "name": "onError",
+                    "description": "Función a ejecutar en caso de error",
+                    "type": "Function"
+                }
+            ],
+            "class": "Model",
+            "module": "Server",
+            "submodule": "Server-bl"
+        },
+        {
+            "file": "server\\bl\\Model.js",
+            "line": 55,
+            "description": "Obtiene un modelo por nombre de archivo.",
+            "itemtype": "method",
+            "name": "getByFilename",
+            "params": [
+                {
+                    "name": "filename",
+                    "description": "Nombre del archivo",
+                    "type": "Integer"
+                },
+                {
+                    "name": "onSuccess",
+                    "description": "Función a ejecutar cuando se obtiene el modelo",
+                    "type": "Function"
+                },
+                {
+                    "name": "onError",
+                    "description": "Función a ejecutar en caso de error",
+                    "type": "Function"
+                }
+            ],
+            "class": "Model",
+            "module": "Server",
+            "submodule": "Server-bl"
+        },
+        {
+            "file": "server\\bl\\Model.js",
+            "line": 67,
+            "description": "Retorna la lista de modelos disponibles en el sistema",
+            "itemtype": "method",
+            "name": "list",
+            "params": [
+                {
+                    "name": "onSuccess",
+                    "description": "Función a ejecutar cuando se ha recuperado la lista de modelos del sistema",
+                    "type": "Function"
+                },
+                {
+                    "name": "onError",
+                    "description": "Función e ejecutar si hay un error al recuperar la lista de modelos del sistema",
+                    "type": "Function"
+                }
+            ],
+            "class": "Model",
+            "module": "Server",
+            "submodule": "Server-bl"
+        },
+        {
+            "file": "server\\bl\\Model.js",
+            "line": 77,
             "description": "Elimina un modelo del sistema",
             "itemtype": "method",
             "name": "delete",
@@ -910,39 +2192,23 @@
                     "type": "Function"
                 }
             ],
-            "class": "Model"
+            "class": "Model",
+            "module": "Server",
+            "submodule": "Server-bl"
         },
         {
             "file": "server\\bl\\Model.js",
-            "line": 51,
+            "line": 86,
             "description": "Función a ejecutar cuando el modelo sea eliminado correctamente de la base de datos",
             "itemtype": "method",
             "name": "afterDeleteFromDB",
-            "class": "Model"
+            "class": "Model",
+            "module": "Server",
+            "submodule": "Server-bl"
         },
         {
             "file": "server\\bl\\Model.js",
-            "line": 66,
-            "description": "Retorna la lista de modelos disponibles en el sistema",
-            "itemtype": "method",
-            "name": "list",
-            "params": [
-                {
-                    "name": "onSuccess",
-                    "description": "Función a ejecutar cuando se ha recuperado la lista de modelos del sistema",
-                    "type": "Function"
-                },
-                {
-                    "name": "onError",
-                    "description": "Función e ejecutar si hay un error al recuperar la lista de modelos del sistema",
-                    "type": "Function"
-                }
-            ],
-            "class": "Model"
-        },
-        {
-            "file": "server\\bl\\Model.js",
-            "line": 76,
+            "line": 101,
             "description": "Retorna la ruta al archivo HTML de un modelo.",
             "itemtype": "method",
             "name": "getHTMLFile",
@@ -959,11 +2225,13 @@
                 "description": "La ruta al archivo HTML de un modelo",
                 "type": "String"
             },
-            "class": "Model"
+            "class": "Model",
+            "module": "Server",
+            "submodule": "Server-bl"
         },
         {
             "file": "server\\bl\\Model.js",
-            "line": 87,
+            "line": 112,
             "description": "Retorna la ruta al archivo JavaScript de un modelo.",
             "itemtype": "method",
             "name": "getJSFile",
@@ -980,11 +2248,13 @@
                 "description": "La ruta al archivo JavaScript de un modelo",
                 "type": "String"
             },
-            "class": "Model"
+            "class": "Model",
+            "module": "Server",
+            "submodule": "Server-bl"
         },
         {
             "file": "server\\bl\\Model.js",
-            "line": 98,
+            "line": 123,
             "description": "Intenta eliminar un archivo del sistema de archivo, si falla, envía un mensaje de depuración a la aplicación.",
             "itemtype": "method",
             "name": "tryDeleteFile",
@@ -1011,11 +2281,13 @@
                 "description": "Resultado de eliminar el archivo",
                 "type": "Boolean"
             },
-            "class": "Model"
+            "class": "Model",
+            "module": "Server",
+            "submodule": "Server-bl"
         },
         {
             "file": "server\\bl\\Model.js",
-            "line": 119,
+            "line": 144,
             "description": "Procese un modelo exportado de Galapagos, para convertirlo al formato necesario para que funcione en NodeTortoise.",
             "itemtype": "method",
             "name": "parse",
@@ -1053,12 +2325,14 @@
                     "type": "Fs"
                 }
             ],
-            "class": "Model"
+            "class": "Model",
+            "module": "Server",
+            "submodule": "Server-bl"
         },
         {
             "file": "server\\bl\\Model.js",
-            "line": 159,
-            "description": "Basado en el patrón <i>Singleton</i>, returna una instancia del objeto Model",
+            "line": 184,
+            "description": "Basado en el patrón <i>Singleton</i>, retorna una instancia del objeto Model",
             "itemtype": "method",
             "name": "getInstance",
             "static": 1,
@@ -1066,19 +2340,23 @@
                 "description": "La instancia de Model",
                 "type": "Model"
             },
-            "class": "Model"
+            "class": "Model",
+            "module": "Server",
+            "submodule": "Server-bl"
         },
         {
             "file": "server\\bl\\Session.js",
-            "line": 18,
+            "line": 20,
             "description": "Realiza el proceso de inicialización de variables necesarias por el objeto.",
             "itemtype": "method",
             "name": "init",
-            "class": "Session"
+            "class": "Session",
+            "module": "Server",
+            "submodule": "Server-bl"
         },
         {
             "file": "server\\bl\\Session.js",
-            "line": 26,
+            "line": 28,
             "description": "Agrega un usuario a la sesión.",
             "itemtype": "method",
             "name": "addUser",
@@ -1103,11 +2381,13 @@
                 "description": "Un objecto JavaScript estandar con la información sobre la sesión.",
                 "type": "Object"
             },
-            "class": "Session"
+            "class": "Session",
+            "module": "Server",
+            "submodule": "Server-bl"
         },
         {
             "file": "server\\bl\\Session.js",
-            "line": 57,
+            "line": 59,
             "description": "Elimina un usuario de una sesión de simulación.",
             "itemtype": "method",
             "name": "removeUser",
@@ -1123,11 +2403,13 @@
                     "type": "String"
                 }
             ],
-            "class": "Session"
+            "class": "Session",
+            "module": "Server",
+            "submodule": "Server-bl"
         },
         {
             "file": "server\\bl\\Session.js",
-            "line": 74,
+            "line": 76,
             "description": "Retorna el token del usuario maestro.",
             "itemtype": "method",
             "name": "getMasterToken",
@@ -1135,19 +2417,23 @@
                 "description": "El token del usuario maestro",
                 "type": "String"
             },
-            "class": "Session"
+            "class": "Session",
+            "module": "Server",
+            "submodule": "Server-bl"
         },
         {
             "file": "server\\bl\\SessionController.js",
-            "line": 14,
+            "line": 16,
             "description": "Realiza el proceso de inicialización de variables necesarias por el objeto.",
             "itemtype": "method",
             "name": "init",
-            "class": "SessionController"
+            "class": "SessionController",
+            "module": "Server",
+            "submodule": "Server-bl"
         },
         {
             "file": "server\\bl\\SessionController.js",
-            "line": 23,
+            "line": 25,
             "description": "Añade un usuario a una sesión de simulación. Si la sessión no existe, crea una nueva.",
             "itemtype": "method",
             "name": "joinSession",
@@ -1158,13 +2444,18 @@
                     "type": "String"
                 },
                 {
+                    "name": "userName",
+                    "description": "El nombre del usuario",
+                    "type": "String"
+                },
+                {
                     "name": "modelFile",
                     "description": "El archivo del modelo de la simulación que ejecutará la sesión",
                     "type": "String"
                 },
                 {
-                    "name": "userName",
-                    "description": "El nombre del usuario",
+                    "name": "modelName",
+                    "description": "El nombre del modelo de la simulación que ejecutará la sesión",
                     "type": "String"
                 },
                 {
@@ -1178,11 +2469,13 @@
                 "description": "Un objecto JavaScript estandar con la información sobre la sesión.",
                 "type": "Object"
             },
-            "class": "SessionController"
+            "class": "SessionController",
+            "module": "Server",
+            "submodule": "Server-bl"
         },
         {
             "file": "server\\bl\\SessionController.js",
-            "line": 43,
+            "line": 46,
             "description": "Elimina un usuario de una sesión de simulación.",
             "itemtype": "method",
             "name": "leaveSession",
@@ -1206,31 +2499,45 @@
             "return": {
                 "description": "diedSession Indica si la sesión murió, porque el que abandonó fue el usuario maestro."
             },
-            "class": "SessionController"
+            "class": "SessionController",
+            "module": "Server",
+            "submodule": "Server-bl"
         },
         {
             "file": "server\\bl\\SessionController.js",
-            "line": 64,
+            "line": 67,
             "description": "Establece el modelo a ejecutar en una sesión de simulación",
             "itemtype": "method",
             "name": "setSessionModel",
             "params": [
                 {
                     "name": "sessionName",
-                    "description": "",
+                    "description": "El nombre de la sesion",
+                    "type": "String"
+                },
+                {
+                    "name": "modelFile",
+                    "description": "El archivo del modelo",
                     "type": "String"
                 },
                 {
                     "name": "modelName",
-                    "description": "",
+                    "description": "El nombre del modelo",
+                    "type": "String"
+                },
+                {
+                    "name": "masterName",
+                    "description": "El nombre del usuario maestro",
                     "type": "String"
                 }
             ],
-            "class": "SessionController"
+            "class": "SessionController",
+            "module": "Server",
+            "submodule": "Server-bl"
         },
         {
             "file": "server\\bl\\SessionController.js",
-            "line": 74,
+            "line": 79,
             "description": "Devuelve el modelo que se está utilizando en una sesión.",
             "itemtype": "method",
             "name": "getSessionModel",
@@ -1245,11 +2552,13 @@
                 "description": "El nombre del modelo utilizado en la sesión",
                 "type": "String"
             },
-            "class": "SessionController"
+            "class": "SessionController",
+            "module": "Server",
+            "submodule": "Server-bl"
         },
         {
             "file": "server\\bl\\SessionController.js",
-            "line": 84,
+            "line": 89,
             "description": "Retorna la lista de las sesiones de simulación activas.",
             "itemtype": "method",
             "name": "getSessionList",
@@ -1257,11 +2566,13 @@
                 "description": "La lista de sesiones",
                 "type": "Array"
             },
-            "class": "SessionController"
+            "class": "SessionController",
+            "module": "Server",
+            "submodule": "Server-bl"
         },
         {
             "file": "server\\bl\\SessionController.js",
-            "line": 93,
+            "line": 98,
             "description": "Retorna una sesión, basado en el nombre recibido como parámetro.",
             "itemtype": "method",
             "name": "getSession",
@@ -1276,11 +2587,13 @@
                 "description": "La sessión",
                 "type": "Session"
             },
-            "class": "SessionController"
+            "class": "SessionController",
+            "module": "Server",
+            "submodule": "Server-bl"
         },
         {
             "file": "server\\bl\\SessionController.js",
-            "line": 103,
+            "line": 108,
             "description": "Retorna la cantidad de usuarios en una sesión, basado en el nombre recibido como parámetro.",
             "itemtype": "method",
             "name": "getSessionUsersQuantity",
@@ -1295,22 +2608,26 @@
                 "description": "La cantidad de usuarios en la sesión",
                 "type": "Integer"
             },
-            "class": "SessionController"
+            "class": "SessionController",
+            "module": "Server",
+            "submodule": "Server-bl"
         },
         {
             "file": "server\\bl\\SessionController.js",
-            "line": 117,
+            "line": 122,
             "description": "Constructor de la clase",
             "access": "private",
             "tagname": "",
             "itemtype": "method",
             "name": "__construct",
-            "class": "SessionController"
+            "class": "SessionController",
+            "module": "Server",
+            "submodule": "Server-bl"
         },
         {
             "file": "server\\bl\\SessionController.js",
-            "line": 130,
-            "description": "Basado en el patrón <i>Singleton</i>, returna una instancia del objeto SessionController",
+            "line": 135,
+            "description": "Basado en el patrón <i>Singleton</i>, retorna una instancia del objeto SessionController",
             "itemtype": "method",
             "name": "getInstance",
             "static": 1,
@@ -1318,11 +2635,13 @@
                 "description": "",
                 "type": "SessionController"
             },
-            "class": "SessionController"
+            "class": "SessionController",
+            "module": "Server",
+            "submodule": "Server-bl"
         },
         {
             "file": "server\\da\\Entities.js",
-            "line": 24,
+            "line": 26,
             "description": "Inserta un modelo en base de datos.",
             "itemtype": "method",
             "name": "add",
@@ -1346,11 +2665,67 @@
             "return": {
                 "description": ""
             },
-            "class": "Entities.model"
+            "class": "Entities.model",
+            "module": "Server",
+            "submodule": "Server-da"
         },
         {
             "file": "server\\da\\Entities.js",
-            "line": 37,
+            "line": 39,
+            "description": "Obtiene un modelo por ID de modelo.",
+            "itemtype": "method",
+            "name": "getByID",
+            "params": [
+                {
+                    "name": "idModel",
+                    "description": "ID del modelo",
+                    "type": "Integer"
+                },
+                {
+                    "name": "onSuccess",
+                    "description": "Función a ejecutar cuando se obtiene el modelo",
+                    "type": "Function"
+                },
+                {
+                    "name": "onError",
+                    "description": "Función a ejecutar en caso de error",
+                    "type": "Function"
+                }
+            ],
+            "class": "Entities.model",
+            "module": "Server",
+            "submodule": "Server-da"
+        },
+        {
+            "file": "server\\da\\Entities.js",
+            "line": 50,
+            "description": "Obtiene un modelo por nombre de archivo.",
+            "itemtype": "method",
+            "name": "getByFilename",
+            "params": [
+                {
+                    "name": "filename",
+                    "description": "Nombre del archivo",
+                    "type": "Integer"
+                },
+                {
+                    "name": "onSuccess",
+                    "description": "Función a ejecutar cuando se obtiene el modelo",
+                    "type": "Function"
+                },
+                {
+                    "name": "onError",
+                    "description": "Función a ejecutar en caso de error",
+                    "type": "Function"
+                }
+            ],
+            "class": "Entities.model",
+            "module": "Server",
+            "submodule": "Server-da"
+        },
+        {
+            "file": "server\\da\\Entities.js",
+            "line": 61,
             "description": "Obtiene la lista de modelos en base de datos.",
             "itemtype": "method",
             "name": "list",
@@ -1366,11 +2741,13 @@
                     "type": "Function"
                 }
             ],
-            "class": "Entities.model"
+            "class": "Entities.model",
+            "module": "Server",
+            "submodule": "Server-da"
         },
         {
             "file": "server\\da\\Entities.js",
-            "line": 47,
+            "line": 71,
             "description": "Elimina un modelo de base de datos.",
             "itemtype": "method",
             "name": "delete",
@@ -1394,23 +2771,27 @@
             "return": {
                 "description": ""
             },
-            "class": "Entities.model"
+            "class": "Entities.model",
+            "module": "Server",
+            "submodule": "Server-da"
         },
         {
             "file": "server\\da\\Entities.js",
-            "line": 63,
-            "description": "Basado en el patrón <i>Singleton</i>, returna una instancia del objeto Entities.model",
+            "line": 87,
+            "description": "Basado en el patrón <i>Singleton</i>, retorna una instancia del objeto Entities.model",
             "itemtype": "method",
             "name": "getInstance",
             "return": {
                 "description": "",
                 "type": "Entities.model"
             },
-            "class": "Entities.model"
+            "class": "Entities.model",
+            "module": "Server",
+            "submodule": "Server-da"
         },
         {
             "file": "server\\da\\Sockets.Actions.js",
-            "line": 14,
+            "line": 16,
             "description": "Conecta una nueva instancia a una sesión de simulacón",
             "itemtype": "method",
             "name": "connect",
@@ -1432,11 +2813,13 @@
                     "type": "Object"
                 }
             ],
-            "class": "Sockets.Actions"
+            "class": "Sockets.Actions",
+            "module": "Server",
+            "submodule": "Server-da"
         },
         {
             "file": "server\\da\\Sockets.Actions.js",
-            "line": 39,
+            "line": 41,
             "description": "Desconecta al dueño dle socket actual de una sesión.",
             "itemtype": "method",
             "name": "disconnect",
@@ -1457,11 +2840,13 @@
                     "type": "Object"
                 }
             ],
-            "class": "Sockets.Actions"
+            "class": "Sockets.Actions",
+            "module": "Server",
+            "submodule": "Server-da"
         },
         {
             "file": "server\\da\\Sockets.Actions.js",
-            "line": 59,
+            "line": 61,
             "description": "Envía un mensaje de <b>Ejecutar Comando</b>, para que los \nclientes ejecuten un comando, basado en los parámetros enviados.",
             "itemtype": "method",
             "name": "executeCommand",
@@ -1482,11 +2867,13 @@
                     "type": "Object"
                 }
             ],
-            "class": "Sockets.Actions"
+            "class": "Sockets.Actions",
+            "module": "Server",
+            "submodule": "Server-da"
         },
         {
             "file": "server\\da\\Sockets.Actions.js",
-            "line": 71,
+            "line": 73,
             "description": "Envía un mensaje de <b>Establecer valor de variable global</b>, para que los \nclientes establezcan un nuevo valor de variable global, basado en los \nparámetros enviados.",
             "itemtype": "method",
             "name": "setGlobal",
@@ -1507,11 +2894,13 @@
                     "type": "Object"
                 }
             ],
-            "class": "Sockets.Actions"
+            "class": "Sockets.Actions",
+            "module": "Server",
+            "submodule": "Server-da"
         },
         {
             "file": "server\\da\\Sockets.Actions.js",
-            "line": 89,
+            "line": 91,
             "description": "Envía un mensaje de <b>Actualizar Velocidad</b>, para que los clientes \nejecuten una actualización de la velocidad de la  simulación, \nbasado en los parámetros enviados.",
             "itemtype": "method",
             "name": "updateSpeed",
@@ -1532,11 +2921,13 @@
                     "type": "Object"
                 }
             ],
-            "class": "Sockets.Actions"
+            "class": "Sockets.Actions",
+            "module": "Server",
+            "submodule": "Server-da"
         },
         {
             "file": "server\\da\\Sockets.Actions.js",
-            "line": 107,
+            "line": 109,
             "description": "Envía un mensaje de <b>Aplicar actualización</b>, para que los clientes \nejecuten una actualización de la simulación, basado en los parámetros enviados.",
             "itemtype": "method",
             "name": "applyUpdate",
@@ -1557,11 +2948,13 @@
                     "type": "Object"
                 }
             ],
-            "class": "Sockets.Actions"
+            "class": "Sockets.Actions",
+            "module": "Server",
+            "submodule": "Server-da"
         },
         {
             "file": "server\\da\\Sockets.Actions.js",
-            "line": 119,
+            "line": 121,
             "description": "Envía un mensaje de <b>Enviar Mensaje</b>",
             "itemtype": "method",
             "name": "sendMessage",
@@ -1577,21 +2970,25 @@
                     "type": "Object"
                 }
             ],
-            "class": "Sockets.Actions"
+            "class": "Sockets.Actions",
+            "module": "Server",
+            "submodule": "Server-da"
         },
         {
             "file": "server\\da\\Sockets.js",
-            "line": 11,
+            "line": 13,
             "description": "Instancia de sockets.io",
             "itemtype": "attribute",
             "name": "io",
             "type": "{sockets.io}",
             "static": 1,
-            "class": "Sockets"
+            "class": "Sockets",
+            "module": "Server",
+            "submodule": "Server-da"
         },
         {
             "file": "server\\da\\Sockets.js",
-            "line": 19,
+            "line": 21,
             "description": "Envía a los demás la indicación de que se ejecute una acción.",
             "itemtype": "method",
             "name": "sendAction",
@@ -1618,11 +3015,13 @@
                     "type": "Object"
                 }
             ],
-            "class": "Sockets"
+            "class": "Sockets",
+            "module": "Server",
+            "submodule": "Server-da"
         },
         {
             "file": "server\\da\\Sockets.js",
-            "line": 38,
+            "line": 40,
             "description": "Alias de Sockets.setServerActions",
             "itemtype": "method",
             "name": "set",
@@ -1633,11 +3032,13 @@
                     "type": "Socket"
                 }
             ],
-            "class": "Sockets"
+            "class": "Sockets",
+            "module": "Server",
+            "submodule": "Server-da"
         },
         {
             "file": "server\\da\\Sockets.js",
-            "line": 47,
+            "line": 49,
             "description": "Configura las acciones que se pueden ejecutar sobre el socket actual",
             "itemtype": "method",
             "name": "setServerActions",
@@ -1649,11 +3050,13 @@
                     "type": "Socket"
                 }
             ],
-            "class": "Sockets"
+            "class": "Sockets",
+            "module": "Server",
+            "submodule": "Server-da"
         },
         {
             "file": "server\\da\\Sockets.js",
-            "line": 68,
+            "line": 70,
             "description": "Envía un mensaje al dueño del socket actual",
             "itemtype": "method",
             "name": "sendToMe",
@@ -1675,11 +3078,13 @@
                     "type": "Object"
                 }
             ],
-            "class": "Sockets"
+            "class": "Sockets",
+            "module": "Server",
+            "submodule": "Server-da"
         },
         {
             "file": "server\\da\\Sockets.js",
-            "line": 81,
+            "line": 83,
             "description": "Envía un mensaje de acción a los otros usuarios dentro de la sesión del dueño del socket actual.",
             "itemtype": "method",
             "name": "sendToOthers",
@@ -1706,11 +3111,13 @@
                     "type": "Object"
                 }
             ],
-            "class": "Sockets"
+            "class": "Sockets",
+            "module": "Server",
+            "submodule": "Server-da"
         },
         {
             "file": "server\\da\\Sockets.js",
-            "line": 95,
+            "line": 97,
             "description": "Envía un mensaje de acción a todos los usuarios dentro la sesión del dueño del socket actual.",
             "itemtype": "method",
             "name": "sendToAll",
@@ -1732,11 +3139,13 @@
                     "type": "Object"
                 }
             ],
-            "class": "Sockets"
+            "class": "Sockets",
+            "module": "Server",
+            "submodule": "Server-da"
         },
         {
             "file": "server\\da\\Sockets.js",
-            "line": 108,
+            "line": 110,
             "description": "Configura la funcionalidad de los Sockets",
             "itemtype": "method",
             "name": "init",
@@ -1748,11 +3157,13 @@
                     "type": "http.Server"
                 }
             ],
-            "class": "Sockets"
+            "class": "Sockets",
+            "module": "Server",
+            "submodule": "Server-da"
         },
         {
             "file": "server\\libs\\SQLite.js",
-            "line": 14,
+            "line": 17,
             "description": "Description",
             "itemtype": "method",
             "name": "insert",
@@ -1786,14 +3197,54 @@
             "return": {
                 "description": ""
             },
-            "class": ""
+            "class": "SQLite",
+            "module": "Server",
+            "submodule": "Server-libs"
         },
         {
             "file": "server\\libs\\SQLite.js",
-            "line": 40,
+            "line": 43,
+            "description": "Selecciona los registros de una tabla, basado en los filtros obtenidos",
+            "itemtype": "method",
+            "name": "selectAll",
+            "params": [
+                {
+                    "name": "table",
+                    "description": "La tabla sobre la cuál se ejecutará la acción",
+                    "type": "String"
+                },
+                {
+                    "name": "filters",
+                    "description": "Los filtros de la consulta (<i>where</i>)",
+                    "type": "Array"
+                },
+                {
+                    "name": "String ",
+                    "description": "fields Las columnas a seleccionar",
+                    "optional": true,
+                    "optdefault": " '*'"
+                },
+                {
+                    "name": "onSuccess",
+                    "description": "Función a ejecutar cuando el proceso en base de datos se completa exitosamente",
+                    "type": "Function"
+                },
+                {
+                    "name": "onError",
+                    "description": "Función a ejecutar en caso de error",
+                    "type": "Funtion"
+                }
+            ],
+            "class": "SQLite",
+            "module": "Server",
+            "submodule": "Server-libs"
+        },
+        {
+            "file": "server\\libs\\SQLite.js",
+            "line": 67,
             "description": "Selecciona todos los registros de una tabla.",
             "itemtype": "method",
-            "name": "select",
+            "name": "selectAll",
             "params": [
                 {
                     "name": "table",
@@ -1817,11 +3268,13 @@
                     "type": "Funtion"
                 }
             ],
-            "class": ""
+            "class": "SQLite",
+            "module": "Server",
+            "submodule": "Server-libs"
         },
         {
             "file": "server\\libs\\SQLite.js",
-            "line": 62,
+            "line": 89,
             "description": "Elimina uno o más registros de una tabla.",
             "itemtype": "method",
             "name": "delete",
@@ -1850,11 +3303,13 @@
             "return": {
                 "description": ""
             },
-            "class": ""
+            "class": "SQLite",
+            "module": "Server",
+            "submodule": "Server-libs"
         },
         {
             "file": "server\\libs\\SQLite.js",
-            "line": 88,
+            "line": 115,
             "description": "Ejecuta el <i>callback</i> indicado después de realizar una tarea de base \nde datos, ya sea este de procesos exitoso o de error.",
             "itemtype": "method",
             "name": "onCallback",
@@ -1885,11 +3340,13 @@
                     "type": "Mixed"
                 }
             ],
-            "class": ""
+            "class": "SQLite",
+            "module": "Server",
+            "submodule": "Server-libs"
         },
         {
             "file": "server\\libs\\SQLite.js",
-            "line": 108,
+            "line": 135,
             "description": "Retorna los valores necesarios para armar una consulta parametrizada con \n<i>where</i>.",
             "itemtype": "method",
             "name": "getQueryFilters",
@@ -1906,11 +3363,13 @@
                 "description": "Objetos compuesto por <b>\"where\"</b> y <b>\"values\"</b> \ndonde <b>\"where\"</b> contiene la información del <i>string</i> que se \ndebe colocar en el lugar de los valores de filtro de la consulta y \n<b>\"values\"</b> contiene los valores a ser utilizados para la consulta\nparametrizada.",
                 "type": "Object"
             },
-            "class": ""
+            "class": "SQLite",
+            "module": "Server",
+            "submodule": "Server-libs"
         },
         {
             "file": "server\\libs\\SQLite.js",
-            "line": 131,
+            "line": 158,
             "description": "Retorna los valores necesarios para armar una consulta parametrizada con \n<i>values</i> (ejemplo: ?, ?, ?).",
             "itemtype": "method",
             "name": "getQueryValues",
@@ -1927,11 +3386,13 @@
                 "description": "strValues El <i>string</i> que se debe colocar en el \nlugar de los valores de la consulta",
                 "type": "String"
             },
-            "class": ""
+            "class": "SQLite",
+            "module": "Server",
+            "submodule": "Server-libs"
         },
         {
             "file": "server\\libs\\SQLite.js",
-            "line": 149,
+            "line": 176,
             "description": "Retorna la instancia de SQLite3 utilizada",
             "itemtype": "method",
             "name": "getDB",
@@ -1939,11 +3400,13 @@
                 "description": "db Instancia de SQLite3 utilizada",
                 "type": "SQLite3"
             },
-            "class": ""
+            "class": "SQLite",
+            "module": "Server",
+            "submodule": "Server-libs"
         },
         {
             "file": "server\\libs\\SQLite.js",
-            "line": 158,
+            "line": 185,
             "description": "Imprime en consola un mensaje de error, si el atributo debug del objeto \nes <i>true</i>.",
             "itemtype": "method",
             "name": "debug",
@@ -1954,17 +3417,21 @@
                     "type": "String"
                 }
             ],
-            "class": ""
+            "class": "SQLite",
+            "module": "Server",
+            "submodule": "Server-libs"
         },
         {
             "file": "server\\libs\\SQLite.js",
-            "line": 170,
+            "line": 197,
             "description": "Constructor de la clase",
             "itemtype": "method",
             "name": "__construct",
             "access": "private",
             "tagname": "",
-            "class": ""
+            "class": "SQLite",
+            "module": "Server",
+            "submodule": "Server-libs"
         }
     ],
     "warnings": []

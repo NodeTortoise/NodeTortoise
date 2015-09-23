@@ -15,7 +15,7 @@
         <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">NodeTortoise</h1>
 	<div class="nav"></div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Buscar clases/módulos..." data-obj='["classes/App", "classes/undefined", "classes/Controller.model", "classes/Controller.session", "classes/Model", "classes/Session", "classes/Controller", "classes/Entities", "classes/Entities.model", "classes/Sockets.Actions", "classes/Sockets", "classes/SessionController"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Buscar clases/módulos..." data-obj='["classes/App", "classes/Controller", "classes/Controller.model", "classes/Controller.session", "classes/Entities", "classes/Entities.model", "classes/Helper", "classes/Model", "classes/Model_List", "classes/Session", "classes/Session_List", "classes/SessionController", "classes/Simulation", "classes/Sockets", "classes/Sockets.Actions", "classes/SQLite", "modules/Commons", "modules/Public", "modules/Server", "modules/Server-bl", "modules/Server-da", "modules/Server-libs"]'>
         </form>
     </div>
 </div>
@@ -37,22 +37,32 @@
 	                <div class="tab-pane active" id="classes">
 	                    <ul id="api-classes" class="nav nav-list">
 	                            <li><a href="../classes/App.html">App</a></li>
-	                            <li><a href="../classes/.html"></a></li>
+	                            <li><a href="../classes/Controller.html">Controller</a></li>
 	                            <li><a href="../classes/Controller.model.html">Controller.model</a></li>
 	                            <li><a href="../classes/Controller.session.html">Controller.session</a></li>
-	                            <li><a href="../classes/Model.html">Model</a></li>
-	                            <li><a href="../classes/Session.html">Session</a></li>
-	                            <li><a href="../classes/Controller.html">Controller</a></li>
 	                            <li><a href="../classes/Entities.html">Entities</a></li>
 	                            <li><a href="../classes/Entities.model.html">Entities.model</a></li>
-	                            <li><a href="../classes/Sockets.Actions.html">Sockets.Actions</a></li>
-	                            <li><a href="../classes/Sockets.html">Sockets</a></li>
+	                            <li><a href="../classes/Helper.html">Helper</a></li>
+	                            <li><a href="../classes/Model.html">Model</a></li>
+	                            <li><a href="../classes/Model_List.html">Model_List</a></li>
+	                            <li><a href="../classes/Session.html">Session</a></li>
+	                            <li><a href="../classes/Session_List.html">Session_List</a></li>
 	                            <li><a href="../classes/SessionController.html">SessionController</a></li>
+	                            <li><a href="../classes/Simulation.html">Simulation</a></li>
+	                            <li><a href="../classes/Sockets.html">Sockets</a></li>
+	                            <li><a href="../classes/Sockets.Actions.html">Sockets.Actions</a></li>
+	                            <li><a href="../classes/SQLite.html">SQLite</a></li>
 	                    </ul>
 	                </div>
 	    
 	                <div class="tab-pane" id="modules">
 	                    <ul id="api-modules" class="nav nav-list">
+	                            <li><a href="../modules/Commons.html">Commons</a></li>
+	                            <li><a href="../modules/Public.html">Public</a></li>
+	                            <li><a href="../modules/Server.html">Server</a></li>
+	                            <li><a href="../modules/Server-bl.html">Server-bl</a></li>
+	                            <li><a href="../modules/Server-da.html">Server-da</a></li>
+	                            <li><a href="../modules/Server-libs.html">Server-libs</a></li>
 	                    </ul>
 	                </div>
 	            </div>
@@ -85,16 +95,18 @@
                 <div id="docs-main">
                     <div class="content">
                         <div class="page-header">
-                            <h1>Entities.model <small>Class</small></h1>
+                            <h1>Entities.model <small>Clase</small></h1>
                         </div>
                         
                         <div class="well well-small">
                         
                         
                                 <div class="foundat">
-                                    Definido en: <a href="../files/server_da_Entities.js.html#l16"><code>server\da\Entities.js:16</code></a>
+                                    Definido en: <a href="../files/server_da_Entities.js.html#l18"><code>server\da\Entities.js:18</code></a>
                                 </div>
                         
+                                    Módulo: <a href="../modules/Server-da.html">Server-da</a><br>
+                                    Módulo Padre: <a href="../modules/Server.html">Server</a>
                         
                         </div>
                         
@@ -124,6 +136,14 @@
                                                     </li>
                                                     <li class="index-item method">
                                                         <a href="#" data-tabid="#methods" data-anchor="#method_delete" data-tablink="delete">delete</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_getByFilename" data-tablink="getByFilename">getByFilename</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_getByID" data-tablink="getByID">getByID</a>
                         
                                                     </li>
                                                     <li class="index-item method">
@@ -162,7 +182,7 @@
                                                     </div>
                                             
                                                     <span class="returns-inline">
-                                                        <span class="type"><a href="../classes/.html" class="crosslink"></a></span>
+                                                        <span class="type"></span>
                                                     </span>
                                             
                                             
@@ -174,7 +194,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/server_da_Entities.js.html#l24"><code>server\da\Entities.js:24</code></a>
+                                                    <a href="../files/server_da_Entities.js.html#l26"><code>server\da\Entities.js:26</code></a>
                                                     </p>
                                             
                                             
@@ -187,7 +207,7 @@
                                                 </div>
                                             
                                                     <div class="params">
-                                                        <h4>Parameters:</h4>
+                                                        <h4>Parámetros:</h4>
                                             
                                                         <ul class="params-list">
                                                             <li class="param">
@@ -252,7 +272,7 @@
                                                     </div>
                                             
                                                     <span class="returns-inline">
-                                                        <span class="type"><a href="../classes/.html" class="crosslink"></a></span>
+                                                        <span class="type"></span>
                                                     </span>
                                             
                                             
@@ -264,7 +284,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/server_da_Entities.js.html#l47"><code>server\da\Entities.js:47</code></a>
+                                                    <a href="../files/server_da_Entities.js.html#l71"><code>server\da\Entities.js:71</code></a>
                                                     </p>
                                             
                                             
@@ -277,7 +297,7 @@
                                                 </div>
                                             
                                                     <div class="params">
-                                                        <h4>Parameters:</h4>
+                                                        <h4>Parámetros:</h4>
                                             
                                                         <ul class="params-list">
                                                             <li class="param">
@@ -324,6 +344,168 @@
                                                     </div>
                                             
                                             </div>
+                                            <div id="method_getByFilename" class="method item">
+                                                <h3 class="name"><code>getByFilename</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>filename</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>onSuccess</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>onError</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Definido en
+                                                    <a href="../files/server_da_Entities.js.html#l50"><code>server\da\Entities.js:50</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Obtiene un modelo por nombre de archivo.</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parámetros:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">filename</code>
+                                                                    <span class="type">Integer</span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Nombre del archivo</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">onSuccess</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Función a ejecutar cuando se obtiene el modelo</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">onError</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Función a ejecutar en caso de error</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                            
+                                            </div>
+                                            <div id="method_getByID" class="method item">
+                                                <h3 class="name"><code>getByID</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>idModel</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>onSuccess</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>onError</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Definido en
+                                                    <a href="../files/server_da_Entities.js.html#l39"><code>server\da\Entities.js:39</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Obtiene un modelo por ID de modelo.</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parámetros:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">idModel</code>
+                                                                    <span class="type">Integer</span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>ID del modelo</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">onSuccess</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Función a ejecutar cuando se obtiene el modelo</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">onError</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Función a ejecutar en caso de error</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                            
+                                            </div>
                                             <div id="method_getInstance" class="method item">
                                                 <h3 class="name"><code>getInstance</code></h3>
                                             
@@ -342,7 +524,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/server_da_Entities.js.html#l63"><code>server\da\Entities.js:63</code></a>
+                                                    <a href="../files/server_da_Entities.js.html#l87"><code>server\da\Entities.js:87</code></a>
                                                     </p>
                                             
                                             
@@ -350,7 +532,7 @@
                                                 </div>
                                             
                                                 <div class="description">
-                                                    <p>Basado en el patrón <i>Singleton</i>, returna una instancia del objeto Entities.model</p>
+                                                    <p>Basado en el patrón <i>Singleton</i>, retorna una instancia del objeto Entities.model</p>
                                             
                                                 </div>
                                             
@@ -388,7 +570,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/server_da_Entities.js.html#l37"><code>server\da\Entities.js:37</code></a>
+                                                    <a href="../files/server_da_Entities.js.html#l61"><code>server\da\Entities.js:61</code></a>
                                                     </p>
                                             
                                             
@@ -401,7 +583,7 @@
                                                 </div>
                                             
                                                     <div class="params">
-                                                        <h4>Parameters:</h4>
+                                                        <h4>Parámetros:</h4>
                                             
                                                         <ul class="params-list">
                                                             <li class="param">

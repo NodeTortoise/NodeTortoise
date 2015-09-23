@@ -71,3 +71,23 @@ li.sidebar-search {
     text-align: right; 
     margin-bottom: 10px;
 }
+
+pre {
+    margin: 10px 0;
+}
+
+.install-steps {
+    margin-bottom: 30px;
+}
+
+.install-steps h3 {
+    margin: 15px 0;
+}
+
+.install-steps p {
+    margin: 10px 0;
+}
+
+.install-steps ol li {
+    margin: 5px 0;
+}

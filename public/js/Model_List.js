@@ -1,13 +1,14 @@
 /**
- * Description
- * @return
+ * Controla las acciones que se deben ejecutar en la página de Lista de Modelos
+ * @class Model_List
+ * @constructor
+ * @module Public
  */
 Model_List = function () {
 
     /**
-     * Description
+     * Ejecuta las acciones de configuración necesarias
      * @method init
-     * @return 
      */
     this.init = function () {
         initModelsTable();
@@ -26,9 +27,8 @@ Model_List = function () {
     };
 
     /**
-     * Description
+     * Inicializa la tabla que contiene la lista de modelos
      * @method initModelsTable
-     * @return 
      */
     var initModelsTable = function () {
         $('#models-list-table').DataTable({
@@ -49,7 +49,7 @@ Model_List = function () {
     };
 
     /**
-     * Description
+     * Configura la acción de borrar modelo
      * @method deleteModel
      * @return 
      */
@@ -81,10 +81,8 @@ Model_List = function () {
 };
 
 /**
- * Description
- * @return
+ * Crea e inicializa el objeto Model_List
  * @method init
- * @return 
  */
 Model_List.init = function () {
     var app = new Model_List();

@@ -6,6 +6,8 @@
  * las rutas y el motor de plantillas (templates).
  * @class App
  * @constructor
+ * @module Server
+ * @submodule Server-bl
  */
 App = function () {
 
@@ -56,7 +58,7 @@ App = function () {
             dest: App.getPath(TEMP_PATH),
             onFileUploadComplete: Controller.model.onUpload
         }));
-        app.use(logger('dev'));
+        //app.use(logger('dev'));
         app.use(bodyParser.json());
         app.use(bodyParser.urlencoded({extended: false}));
         app.use(cookieParser());

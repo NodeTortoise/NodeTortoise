@@ -7,6 +7,8 @@ var SessionController = App.require('/bl/SessionController');
  * Maneja las acciones a ejecutar entre las simulacione, cuya comunicación es 
  * vía web sockets.
  * @class Sockets.Actions
+ * @module Server
+ * @submodule Server-da
  */
 Sockets.Actions = function () {
 };
@@ -21,7 +23,7 @@ Sockets.Actions = function () {
  */
 Sockets.Actions.connect = function (socket, token, params) {
     var sessionName = params.session;
-    var response = SessionController.getInstance().joinSession(sessionName, params.modelFile, params.name, params.controls);
+    var response = SessionController.getInstance().joinSession(sessionName, params.name, params.modelFile, params.modelName, params.controls);
     socket.username = response.name;
     socket.token = response.token;
     socket.master = response.master;

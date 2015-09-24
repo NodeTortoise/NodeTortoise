@@ -13,7 +13,9 @@
     }
 </style>
 {% endblock %}
+
 {% block main_content %}
+
 <h4>Índice de Contenido</h4>
 <ol>
     <li><a href="#download-model">Descargar un modelo desde Galapagos</a></li>
@@ -25,13 +27,13 @@
     <li><a href="#view-galapagos-install">Ver información de instalación de Galapagos</a></li>
     <li><a href="#view-nodetortoise-install">Ver información de instalación de NodeTortoise</a></li>
 </ol>
+
 <div>
     <div>
         <h4><a name="download-model">Descargar un modelo desde Galapagos</a></h4>
         <ul>
             <li>
                 Ingrese a la <a href="http://li425-91.members.linode.com:9000/create-standalone">página de generación de modelos</a> de Galapagos
-                <img src="/img/user-doc/download-model-01.PNG" alt="Pagina de Generación de Modelos de Galapagos" />
             </li>
             <li>Suba o seleccione un modelo de la lista</li>
             <li>Haga click en el botón <i>Submit</i></li>
@@ -39,21 +41,17 @@
             <li>Guarde el modelo, presionando las teclas <kbd>Ctrl</kbd> y <kbd>s</kbd> y seleccione la opción de guardar en la ventana emergente</li>
         </ul>
     </div>
-    <div>
-        <h4><a name="upload-model">Subir un modelo</a></h4>
-        <ul>
-            <li>Ingrese a NodeTortoise</li>
-            <li></li>
-        </ul>
-    </div>
+    <h4><a name="upload-model">Subir un modelo</a></h4>
     <h4><a name="view-models">Listar los modelos disponibles</a></h4>
     <h4><a name="delete-model">Eliminar un modelo</a></h4>
+
     <div>
         <h4><a name="join-session">Crear una nueva sesión de simulación</a></h4>
         <ol>
             <li>Ingrese a NodeTortoise.</li>
             <li>
                 <p>Haga clic en la opción "Crear o unirse a una sesión", en el menú principal.</p>
+                <img class="fancybox" data-big="/img/user-doc/join-session-01-big.jpg" src="/img/user-doc/join-session-01-small.jpg" alt="" />
             </li>
             <li>Haga clic en la opción "Nueva sesión", en el menú ubicado en la parte superior derecha de la tabla de sesiones activas.</li>
             <li>Haga clic en la opción "Iniciar", al lado del modelo que desee.</li>
@@ -70,6 +68,7 @@
     <h4><a name="view-galapagos-install">Ver información de instalación de Galapagos</a></h4>
     <h4><a name="view-nodetortoise-install">Ver información de instalación de NodeTortoise</a></h4>
 </div>
+
 {% endblock %}
 {% block extra_js %}
 <script type="text/javascript" src="/js/jquery.fancybox-1.3.4.pack.js"></script>

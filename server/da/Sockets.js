@@ -1,4 +1,4 @@
-/* global app, MAIN_BROWSER, DEBUG, Helper, Sockets.Actions, server, App, module, require */
+/* global app, MAIN_BROWSER, DEBUG, Helper, ModelActions, server, App, module, require, Model */
 
 /**
  * Inicializa y configura los web sockets que se utilizan para el envío de la 
@@ -53,15 +53,15 @@ Sockets.set = function (socket) {
  * @param {Socket} socket El web socket para la instancia actual
  */
 Sockets.setServerActions = function (socket) {
-    Sockets.Actions = App.require('/da/Sockets.Actions');
+    var ModelActions = App.require('/bl/Model.Actions');
     socket.on('disconnect', function () {
-        Sockets.Actions.disconnect(socket);
+        ModelActions.disconnect(socket);
     });
-    for (var action in Sockets.Actions) {
+    for (var action in ModelActions) {
         (function (action) {
             var actionName = action + '__fromClient';
             socket.on(actionName, function (token, params) {
-                Sockets.Actions[action](socket, token, params);
+                ModelActions[action](socket, token, params);
             });
         })(action);
     }

@@ -1,16 +1,16 @@
 /* global Sockets, App, module */
 
-var Sockets = App.require('/da/Sockets');
+var Model = App.require('/bl/Model');
 var SessionController = App.require('/bl/SessionController');
 
 /**
  * Maneja las acciones a ejecutar entre las simulacione, cuya comunicación es 
  * vía web sockets.
- * @class Sockets.Actions
+ * @class Model.Actions
  * @module Server
  * @submodule Server-da
  */
-Sockets.Actions = function () {
+Model.Actions = function () {
 };
 
 /**
@@ -21,7 +21,7 @@ Sockets.Actions = function () {
  * @param {String} token Token del usuario
  * @param {Object} params Parámetros de la acción
  */
-Sockets.Actions.connect = function (socket, token, params) {
+Model.Actions.connect = function (socket, token, params) {
     var sessionName = params.session;
     var response = SessionController.getInstance().joinSession(sessionName, params.name, params.modelFile, params.modelName, params.controls);
     socket.username = response.name;
@@ -45,7 +45,7 @@ Sockets.Actions.connect = function (socket, token, params) {
  * @param {String} token Token del usuario
  * @param {Object} params Parámetros de la acción
  */
-Sockets.Actions.disconnect = function (socket, token, params) {
+Model.Actions.disconnect = function (socket, token, params) {
     var diedSession = SessionController.getInstance().leaveSession(socket.session, socket.username, socket.token);
     if (diedSession) {
         Sockets.sendToAll(socket.session, 'end');
@@ -66,7 +66,7 @@ Sockets.Actions.disconnect = function (socket, token, params) {
  * @param {String} token Token del usuario
  * @param {Object} params Parámetros de la acción
  */
-Sockets.Actions.executeCommand = function (socket, token, params) {
+Model.Actions.executeCommand = function (socket, token, params) {
     Sockets.sendAction(socket, socket.session, 'executeCommand', params);
 };
 
@@ -79,7 +79,7 @@ Sockets.Actions.executeCommand = function (socket, token, params) {
  * @param {String} token Token del usuario
  * @param {Object} params Parámetros de la acción
  */
-Sockets.Actions.setGlobal = function (socket, token, params) {
+Model.Actions.setGlobal = function (socket, token, params) {
     if (SessionController.getInstance().getSession(socket.session).enabledControls) {
         Sockets.sendToOthers(socket, socket.session, 'setGlobal', params);
         App.debug('setGlobal', socket.session, socket.username, 2);
@@ -97,7 +97,7 @@ Sockets.Actions.setGlobal = function (socket, token, params) {
  * @param {String} token Token del usuario
  * @param {Object} params Parámetros de la acción
  */
-Sockets.Actions.updateSpeed = function (socket, token, params) {
+Model.Actions.updateSpeed = function (socket, token, params) {
     if (SessionController.getInstance().getSession(socket.session).enabledControls) {
         Sockets.sendToOthers(socket, socket.session, 'updateSpeed', params);
         App.debug('updateSpeed', socket.session, socket.username, 2);
@@ -114,7 +114,7 @@ Sockets.Actions.updateSpeed = function (socket, token, params) {
  * @param {String} token Token del usuario
  * @param {Object} params Parámetros de la acción
  */
-Sockets.Actions.applyUpdate = function (socket, token, params) {
+Model.Actions.applyUpdate = function (socket, token, params) {
     Sockets.sendAction(socket, socket.session, 'applyUpdate', params);
 };
 
@@ -124,9 +124,9 @@ Sockets.Actions.applyUpdate = function (socket, token, params) {
  * @param {Socket} socket El web socket para la instancia actual
  * @param {Object} params Parámetros de la acción
  */
-Sockets.Actions.sendMessage = function (socket, params) {
+Model.Actions.sendMessage = function (socket, params) {
     Sockets.sendAction(socket, socket.session, 'getMessage', params);
     App.debug('sendMessage', socket.session, socket.username, 2);
 };
 
-module.exports = Sockets.Actions;
+module.exports = Model.Actions;

@@ -29,6 +29,8 @@
                             <tr>
                                 <th>Nombre</th>
                                 <th>Usuarios en la sesión</th>
+                                <th>Inicio de Actividad</th>
+                                <th>Última Actividad</th>
                                 <th>Unirse</th>
                             </tr>
                         </thead>
@@ -37,6 +39,8 @@
                             <tr class="{% if loop.index0 % 2 === 0 %}even{% else %}odd{% endif %}">
                                 <td>{@ session.name @}</td>
                                 <td>{@ session.users @}</td>
+                                <td>{@ session.firstActivity @}</td>
+                                <td>{@ session.lastActivity @}</td>
                                 <td>
                                     <a href="{@session.url@}" class="no-underline" target="_blank">
                                         <i class="fa fa-sign-in fa-fw"></i>&nbsp;Unirse

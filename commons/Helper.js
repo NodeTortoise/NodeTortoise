@@ -162,7 +162,7 @@ Helper.onload = function (functionName) {
 };
 
 /**
- * Busca un fragmento en una cadena de caracteres y reemplaza todas las 
+ * Busca un fragmento en una cadena de caracteres y reemplaza todas las
  * coincidencias.
  * @method replaceAll
  * @static
@@ -185,7 +185,7 @@ Helper.escapeRegExp = function (string) {
 };
 
 /**
- * Formate un nombre de archivo, eliminando los caracteres especiales, 
+ * Formate un nombre de archivo, eliminando los caracteres especiales,
  * convirtiéndolo a minúsculas y remplazando los espaciones por guiones bajos.
  * convirtiéndole.
  * @method cleanFileName
@@ -242,7 +242,7 @@ Helper.getLastURLPiece = function (url) {
  * @method trimRight
  * @static
  * @param {String} string Cadena de caracteres a la cual se le aplicara la función
- * @param [String] string Cadena de caracteres con los caracteres a reemplazar. 
+ * @param [String] string Cadena de caracteres con los caracteres a reemplazar.
  * Por defecto se reemplazan los espacios.
  */
 Helper.trimRight = function (string, charlist) {
@@ -257,13 +257,13 @@ Helper.trimRight = function (string, charlist) {
  * @method trimLeft
  * @static
  * @param {String} string Cadena de caracteres a la cual se le aplicara la función
- * @param [String] string Cadena de caracteres con los caracteres a reemplazar. 
+ * @param [String] string Cadena de caracteres con los caracteres a reemplazar.
  * Por defecto se reemplazan los espacios.
  */
 Helper.trimLeft = function (string, charlist) {
-    if (charlist === undefined)
+    if (charlist === undefined) {
         charlist = "\s";
-
+    }
     return string.replace(new RegExp("^[" + charlist + "]+"), "");
 };
 
@@ -288,5 +288,96 @@ Helper.toHTMLEntities = function (string) {
 Helper.fromHTMLEntities = function (string) {
     return (string + "").replace(/&#\d+;/gm, function (s) {
         return String.fromCharCode(s.match(/\d+/gm)[0]);
-    })
+    });
 };
+
+/*
+ * Le da format a un número, completando con zeros a la izquierda la cantidad 
+ * de dígitos indicada.
+ * @method pad
+ * @static
+ * @param {Int} num El numero
+ * @param {Int} La cantidad de digitos que debe contener el número
+ * @return {String} El número formateado
+ */
+function pad(num, size) {
+    var s = "000000000" + num;
+    return s.substr(s.length - size);
+}
+
+/**
+ * Da formato a una fecha.
+ * @class formatDate
+ * @module Commons
+ */
+Helper.formatDate = function(){  
+};
+
+/*
+ * Da formato YYYY-MM-DD HH:MM a una fecha.
+ * @method formatDate.YYYYMMDDHHMM24H
+ * @static
+ * @param {Date} date La fecha
+ * @param [String] dateSeparator El separador para los valores de la fecha
+ * @param [String] dateTimeSeparator El separador entre la fecha y la hora
+ * @param [String] timeSeparator El separador para los valores de la hora
+ * @return {String} La fecha en formato "YYYY-MM-DD HH:MM"
+ */
+Helper.formatDate.YYYYMMDDHHMM24H = function (date, dateSeparator, dateTimeSeparator, timeSeparator) {
+    if (!dateSeparator) {
+        dateSeparator = '-';
+    }
+    if (!dateTimeSeparator) {
+        dateTimeSeparator = ' ';
+    }
+    if (!timeSeparator) {
+        timeSeparator = ':';
+    }
+    return date.getFullYear() + dateSeparator + pad(date.getMonth() + 1, 2) + dateSeparator + pad(date.getDate(), 2) + dateTimeSeparator + pad(date.getHours(), 2) + timeSeparator + pad(date.getMinutes(), 2);
+};
+
+/*
+ * Da formato "YYYY-MM-DD HH:MM AM/PM" a una fecha.
+ * @method formatDate.YYYYMMDDHHMM12H
+ * @static
+ * @param {Date} date La fecha
+ * @param [String] dateSeparator El separador para los valores de la fecha
+ * @param [String] dateTimeSeparator El separador entre la fecha y la hora
+ * @param [String] timeSeparator El separador para los valores de la hora
+ * @return {String} La fecha en formato "YYYY-MM-DD HH:MM AM/PM"
+ */
+Helper.formatDate.YYYYMMDDHHMM12H = function (date, dateSeparator, dateTimeSeparator, timeSeparator) {
+    if (!dateSeparator) {
+        dateSeparator = '-';
+    }
+    if (!dateTimeSeparator) {
+        dateTimeSeparator = ' ';
+    }
+    if (!timeSeparator) {
+        timeSeparator = ':';
+    }
+    return date.getFullYear() + dateSeparator + pad(date.getMonth() + 1, 2) + dateSeparator + pad(date.getDate(), 2) + dateTimeSeparator + Helper.formatDate.HHMMAMPM(date);
+};
+
+/*
+ * Da formato de 12 horas a la hora de una fecha.
+ * @method formatDate.HHMMAMPM
+ * @static
+ * @param {Date} datetime La fecha
+ * @param [String] timeSeparator El separador para los valores de la hora
+ * @param [String] El separador para los valores de la hora
+ * @return {String} La fecha en formato "HH:MM AM/PM"
+ */
+Helper.formatDate.HHMMAMPM = function(date, timeSeparator) {
+    if (!timeSeparator) {
+        timeSeparator = ':';
+    }
+    var hours = date.getHours();
+    var minutes = date.getMinutes();
+    var ampm = hours >= 12 ? 'pm' : 'am';
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    var strTime = pad(hours, 2) + timeSeparator + pad(minutes, 2) + ' ' + ampm;
+    return strTime;
+}

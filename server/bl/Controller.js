@@ -214,17 +214,20 @@ Controller.session.list = function (req, res, next) {
      */
     var afterGetModelsList = function (modelsList) {
         var SessionController = App.require('/bl/SessionController');
-        var controller = SessionController.getInstance();
-        var sessionsData = controller.getSessionList();
+        var sessionController = SessionController.getInstance();
+        var sessions = sessionController.getSessionList();
         var token = Helper.getHash(Helper.getRandomNumber(1, 1000), true);
-        var sessions = {};
-        for (var sessionName in sessionsData) {
-            var usersInSession = controller.getSessionUsersQuantity(sessionName);
+        var sessionsData = {};
+        for (var sessionName in sessions) {
+            var usersInSession = sessions[sessionName].getUsersQuantity();
             if(usersInSession > 0){
-                var sessionData = sessionsData[sessionName];
-                var url = MODEL_URL_TEMPLATE.replace('@session@', sessionName).replace('@model@', controller.getSessionModel(sessionName));
+                var sessionData = sessions[sessionName].getSessionInfo();
+                var url = MODEL_URL_TEMPLATE.replace('@session@', sessionName).replace('@model@', sessionController.getSessionModel(sessionName));
                 var sessionName = unescape(sessionData.name) + ' (' + sessionData.master + ')';
-                sessions[sessionName] = {'name': sessionName, 'url': url.replace('.html.html', '.html'), 'users': usersInSession};
+                sessionsData[sessionName] = {
+                    'name': unescape(sessionData.model), 'url': url.replace('.html.html', '.html'), 'users': usersInSession, 
+                    'firstActivity': Helper.formatDate.YYYYMMDDHHMM12H(sessionData.firstActivity), 'lastActivity': Helper.formatDate.YYYYMMDDHHMM12H(sessionData.lastActivity)
+                };
             }
         }
         /**
@@ -239,7 +242,7 @@ Controller.session.list = function (req, res, next) {
             return (MODEL_URL_TEMPLATE.replace('@session@', token).replace('@model@', modelFilename).replace('@name@', escape(modelName)));
         };
         var page = {'title': 'Unirse o iniciar sesión', 'content_title': 'Unirse o iniciar sesión'};
-        var data = {'sessions': sessions, 'models': modelsList, 'token': token, 'getModelURL': getModelURL};
+        var data = {'sessions': sessionsData, 'models': modelsList, 'token': token, 'getModelURL': getModelURL};
         res.render('session/list.html', {'page': page, 'data': data});
     };
     /**

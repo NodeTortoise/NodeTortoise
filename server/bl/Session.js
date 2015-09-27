@@ -17,12 +17,21 @@ Session = function (name) {
     this.isMasterOnline = false;
     this.enabledControls = false;
 
+    var sessionInfo = null;
+
     /**
      * Realiza el proceso de inicialización de variables necesarias por el objeto.
      * @method init
+     * @param {String} modelFile El archivo del modelo
+     * @param {String} modelName El nombre del modelo
+     * @param {String} masterName El nombre del usuario maestro
      */
-    this.init = function () {
+    this.init = function (modelFile, modelName, masterName) {
         self.users = {};
+        sessionInfo = {
+            'name': name, 'model': modelName, 'file': modelFile,
+             master: masterName, 'firstActivity': new Date(), 'lastActivity': new Date()
+        };
     };
 
     /**
@@ -31,7 +40,7 @@ Session = function (name) {
      * @param {String} username
      * @param {String} masterPassword
      * @param {Boolean} enabledControls
-     * @return {Object} Un objecto JavaScript estandar con la información sobre la sesión. 
+     * @return {Object} Un objecto JavaScript estandar con la información sobre la sesión.
      */
     this.addUser = function (username, masterPassword, enabledControls) {
         if (self.users[username] === username) {
@@ -53,11 +62,12 @@ Session = function (name) {
             self.isMasterOnline = false;
         }
         var canStart = self.isMasterOnline;
+        self.updateLastActivityDate();
         return {'token': token, 'master': isMaster, 'name': username, 'controls': self.enabledControls, 'start': canStart, 'users': self.users};
     };
 
     /**
-     * Elimina un usuario de una sesión de simulación. 
+     * Elimina un usuario de una sesión de simulación.
      * @method removeUser
      * @param {String} userName El nombre del usuario
      * @param {String} token El token de sesión del usuario
@@ -80,6 +90,33 @@ Session = function (name) {
      */
     this.getMasterToken = function () {
         return (self.master === null) ? null : self.master.token;
+    };
+
+    /**
+     * Actualiza la fecha de ultima actividad.
+     * @method updateLastActivityDate
+     */
+    this.updateLastActivityDate = function () {
+        sessionInfo.lastActivity = new Date();
+    };
+
+    /**
+     * Retorna la información de la sesión.
+     * @method getSessionInfo
+     * @return {Object} Objeto estándar de NodeJS que contiene la información 
+     * de la sesión
+     */
+    this.getSessionInfo = function () {
+        return sessionInfo;
+    };
+    
+    /**
+     * Retorna la cantidad de usuarios en una sesión.
+     * @method getUsersQuantity
+     * @return {Integer} La cantidad de usuarios en la sesión
+     */
+    this.getUsersQuantity = function () {
+        return (Object.keys(self.users).length);
     };
 
 };

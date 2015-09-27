@@ -53,15 +53,15 @@ Sockets.set = function (socket) {
  * @param {Socket} socket El web socket para la instancia actual
  */
 Sockets.setServerActions = function (socket) {
-    var ModelActions = App.require('/bl/Model.Actions');
+    var Simulation = App.require('/bl/Simulation');
     socket.on('disconnect', function () {
-        ModelActions.disconnect(socket);
+        Simulation.disconnect(socket);
     });
-    for (var action in ModelActions) {
+    for (var action in Simulation) {
         (function (action) {
             var actionName = action + '__fromClient';
             socket.on(actionName, function (token, params) {
-                ModelActions[action](socket, token, params);
+                Simulation[action](socket, token, params);
             });
         })(action);
     }

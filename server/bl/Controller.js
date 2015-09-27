@@ -241,8 +241,17 @@ Controller.session.list = function (req, res, next) {
         var getModelURL = function (modelFilename, modelName, token) {
             return (MODEL_URL_TEMPLATE.replace('@session@', token).replace('@model@', modelFilename).replace('@name@', escape(modelName)));
         };
+        /**
+         * Función para obtener la URL a una sesión.
+         * @event list.getSessionURL
+         * @param {String} sessionURL El URL de la sesión
+         * @return {String} La URL de la sesión correctamente formateada
+         */
+        var getSessionURL = function (sessionURL) {
+            return (sessionURL.replace('@session@', token).replace('@name@', ''));
+        };        
         var page = {'title': 'Unirse o iniciar sesión', 'content_title': 'Unirse o iniciar sesión'};
-        var data = {'sessions': sessionsData, 'models': modelsList, 'token': token, 'getModelURL': getModelURL};
+        var data = {'sessions': sessionsData, 'models': modelsList, 'token': token, 'getModelURL': getModelURL, 'getSessionURL': getSessionURL};
         res.render('session/list.html', {'page': page, 'data': data});
     };
     /**

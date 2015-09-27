@@ -23,8 +23,8 @@
             <div class="panel-heading">Seleccione una de las sesiones activas</div>
             <!-- /.panel-heading -->
             <div class="panel-body">
-                <div class="dataTable_wrapper">
-                    <table class="table table-striped table-bordered table-hover" id="session-list-table">
+                <div class="dataTable_wrapper" id="sessions-list-table-container">
+                    <table class="table table-striped table-bordered table-hover" id="sessions-list-table">
                         <thead>
                             <tr>
                                 <th>Nombre</th>
@@ -42,7 +42,7 @@
                                 <td>{@ session.firstActivity @}</td>
                                 <td>{@ session.lastActivity @}</td>
                                 <td>
-                                    <a href="{@session.url@}" class="no-underline" target="_blank">
+                                    <a href="{data.getSessionURL(@session.url@)}" class="no-underline" target="_blank">
                                         <i class="fa fa-sign-in fa-fw"></i>&nbsp;Unirse
                                     </a>
                                 </td>
@@ -60,7 +60,7 @@
             <div class="panel-heading">Seleccione uno de los modelos disponibles</div>
             <!-- /.panel-heading -->
             <div class="panel-body">
-                <div class="dataTable_wrapper">
+                <div class="dataTable_wrapper" id="models-list-table-container">
                     <table class="table table-striped table-bordered table-hover" id="models-list-table">
                         <thead>
                             <tr>

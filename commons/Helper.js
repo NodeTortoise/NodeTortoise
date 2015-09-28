@@ -292,7 +292,7 @@ Helper.fromHTMLEntities = function (string) {
 };
 
 /*
- * Le da format a un número, completando con zeros a la izquierda la cantidad 
+ * Da formato a un número, completando con zeros a la izquierda la cantidad 
  * de dígitos indicada.
  * @method pad
  * @static
@@ -300,10 +300,21 @@ Helper.fromHTMLEntities = function (string) {
  * @param {Int} La cantidad de digitos que debe contener el número
  * @return {String} El número formateado
  */
-function pad(num, size) {
+Helper.pad = function (num, size) {
     var s = "000000000" + num;
     return s.substr(s.length - size);
-}
+};
+
+/*
+ * Convierte un valor en minutos a milisegundos.
+ * @method minutesToMiliseconds
+ * @static
+ * @param {Int} minutes El valor en minutos
+ * @return {Int} El valor en milisegundos
+ */
+Helper.minutesToMiliseconds = function (minutes) {
+    return (minutes * 60 * 1000);
+};
 
 /**
  * Da formato a una fecha.
@@ -333,7 +344,7 @@ Helper.formatDate.YYYYMMDDHHMM24H = function (date, dateSeparator, dateTimeSepar
     if (!timeSeparator) {
         timeSeparator = ':';
     }
-    return date.getFullYear() + dateSeparator + pad(date.getMonth() + 1, 2) + dateSeparator + pad(date.getDate(), 2) + dateTimeSeparator + pad(date.getHours(), 2) + timeSeparator + pad(date.getMinutes(), 2);
+    return date.getFullYear() + dateSeparator + Helper.pad(date.getMonth() + 1, 2) + dateSeparator + Helper.pad(date.getDate(), 2) + dateTimeSeparator + Helper.pad(date.getHours(), 2) + timeSeparator + Helper.pad(date.getMinutes(), 2);
 };
 
 /*
@@ -356,7 +367,7 @@ Helper.formatDate.YYYYMMDDHHMM12H = function (date, dateSeparator, dateTimeSepar
     if (!timeSeparator) {
         timeSeparator = ':';
     }
-    return date.getFullYear() + dateSeparator + pad(date.getMonth() + 1, 2) + dateSeparator + pad(date.getDate(), 2) + dateTimeSeparator + Helper.formatDate.HHMMAMPM(date);
+    return date.getFullYear() + dateSeparator + Helper.pad(date.getMonth() + 1, 2) + dateSeparator + Helper.pad(date.getDate(), 2) + dateTimeSeparator + Helper.formatDate.HHMMAMPM(date);
 };
 
 /*
@@ -378,6 +389,6 @@ Helper.formatDate.HHMMAMPM = function(date, timeSeparator) {
     hours = hours % 12;
     hours = hours ? hours : 12; // the hour '0' should be '12'
     minutes = minutes < 10 ? '0' + minutes : minutes;
-    var strTime = pad(hours, 2) + timeSeparator + pad(minutes, 2) + ' ' + ampm;
+    var strTime = Helper.pad(hours, 2) + timeSeparator + Helper.pad(minutes, 2) + ' ' + ampm;
     return strTime;
 }

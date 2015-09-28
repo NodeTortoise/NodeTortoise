@@ -25,7 +25,7 @@ Simulation.connect = function (socket, token, params) {
     socket.username = response.name;
     socket.token = response.token;
     socket.master = response.master;
-    socket.session = params.session;
+    socket.session = sessionName;
     socket.join(sessionName);
     Sockets.sendToAll(socket.session, 'updateUsers', {'users': response.users});
     Sockets.sendToMe(socket, 'connect_Response', response);
@@ -34,6 +34,7 @@ Simulation.connect = function (socket, token, params) {
         App.debug('start', socket.session, socket.username, 2);
     }
     App.debug('connect', socket.session, socket.username, 3);
+    SessionController.getInstance().updateActivityDate(socket.session);
 };
 
 /**
@@ -54,6 +55,7 @@ Simulation.disconnect = function (socket, token, params) {
     var currentUsers = session ? session.users : '';
     Sockets.sendToAll(socket.session, 'updateUsers', {'users': currentUsers});
     App.debug('disconnect', socket.session, socket.username, 3);
+    SessionController.getInstance().updateActivityDate(socket.session);
 };
 
 /**
@@ -66,6 +68,7 @@ Simulation.disconnect = function (socket, token, params) {
  */
 Simulation.executeCommand = function (socket, token, params) {
     Sockets.sendAction(socket, socket.session, 'executeCommand', params);
+    SessionController.getInstance().updateActivityDate(socket.session);
 };
 
 /**
@@ -84,6 +87,7 @@ Simulation.setGlobal = function (socket, token, params) {
     } else {
         Sockets.sendAction(socket, socket.session, 'setGlobal', params);
     }
+    SessionController.getInstance().updateActivityDate(socket.session);
 };
 
 /**
@@ -102,6 +106,7 @@ Simulation.updateSpeed = function (socket, token, params) {
     } else {
         Sockets.sendAction(socket, socket.session, 'updateSpeed', params);
     }
+    SessionController.getInstance().updateActivityDate(socket.session);
 };
 
 /**
@@ -125,6 +130,7 @@ Simulation.applyUpdate = function (socket, token, params) {
 Simulation.sendMessage = function (socket, params) {
     Sockets.sendAction(socket, socket.session, 'getMessage', params);
     App.debug('sendMessage', socket.session, socket.username, 2);
+    SessionController.getInstance().updateActivityDate(socket.session);
 };
 
 module.exports = Simulation;

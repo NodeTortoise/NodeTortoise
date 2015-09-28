@@ -29,8 +29,8 @@ Session = function (name) {
     this.init = function (modelFile, modelName, masterName) {
         self.users = {};
         sessionInfo = {
-            'name': name, 'model': modelName, 'file': modelFile,
-             master: masterName, 'firstActivity': new Date(), 'lastActivity': new Date()
+            'name': name, 'model': modelName, 'file': modelFile, 'master': masterName, 
+            'firstActivity': new Date(), 'lastActivity': new Date()
         };
     };
 
@@ -62,7 +62,6 @@ Session = function (name) {
             self.isMasterOnline = false;
         }
         var canStart = self.isMasterOnline;
-        self.updateLastActivityDate();
         return {'token': token, 'master': isMaster, 'name': username, 'controls': self.enabledControls, 'start': canStart, 'users': self.users};
     };
 

@@ -1,4 +1,4 @@
-/* global App, Sockets, Helper, module, MASTER_PASSWORD, MODELS_PATH, TORTOISE_SET_SESSION_STRING  */
+/* global App, Sockets, Helper, module, MASTER_PASSWORD, MODELS_PATH, TORTOISE_SET_SESSION_STRING, SESSION_MAX_INACTIVITY_MINUTES  */
 
 /**
  * Controla las sesiones de creadas por los usuarios para ejecutar las simulaciones.
@@ -18,6 +18,7 @@ SessionController = function () {
      */
     this.init = function () {
         sessions = {};
+        setInterval(checkSessionsActivity, Helper.minutesToMiliseconds(SESSION_CHECK_INACTIVITY_MINUTES));
     };
 
     /**
@@ -77,10 +78,6 @@ SessionController = function () {
      * @return {Array} La lista de sesiones
      */
     this.getSessionList = function () {
-        /*var sessionsInfo = new Array();
-        for(var sessionName in sessions){
-            sessionsInfo.push(sessions[sessionName].getSessionInfo());
-        }*/
         return sessions;
     };
 
@@ -101,9 +98,36 @@ SessionController = function () {
      * @return {Integer} La cantidad de usuarios en la sesión
      */
     this.getSessionUsersQuantity = function (sessionName) {
-        return (sessions[sessionName] ? sessions[sessionName].getUsersQuantity() : 0);
+        return (sessions[sessionName] ? sessions[sessionName].getUsersQuantity() : -1);
     };
-    
+
+    /**
+     * Actualiza la fecha de ultima actividad.
+     * @method updateActivityDate
+     * @param {String} sessionName El nombre de la sesión
+     */
+    this.updateActivityDate = function (sessionName) {
+        if (sessions[sessionName]) {
+            sessions[sessionName].updateLastActivityDate();
+        }
+    };
+
+    /**
+     * Revisa la actividad de las sesiones. Si alguna tiene más de cierta 
+     * cantidad de minutos sin actividad.
+     * @method checkSessionsActivity
+     */
+    var checkSessionsActivity = function (){
+        for (var sessionName in sessions){
+            var sessionData = sessions[sessionName].getSessionInfo();
+            if(sessionData.getUsersQuantity() < 1){
+                delete sessions[sessionName];
+            } else if(((new Date) - sessionData.lastActivity) > Helper.minutesToMiliseconds(SESSION_MAX_INACTIVITY_MINUTES)){
+                delete sessions[sessionName];
+            }
+        }
+    };
+
     /**
      * Constructor de la clase
      * @private

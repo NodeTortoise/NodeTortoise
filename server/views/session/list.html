@@ -28,6 +28,7 @@
                         <thead>
                             <tr>
                                 <th>Nombre</th>
+                                <th>Usuario Maestro</th>
                                 <th>Usuarios en la sesión</th>
                                 <th>Inicio de Actividad</th>
                                 <th>Última Actividad</th>
@@ -38,6 +39,7 @@
                             {% for session in data.sessions %}
                             <tr class="{% if loop.index0 % 2 === 0 %}even{% else %}odd{% endif %}">
                                 <td>{@ session.name @}</td>
+                                <td>{@ session.master @}</td>
                                 <td>{@ session.users @}</td>
                                 <td>{@ session.firstActivity @}</td>
                                 <td>{@ session.lastActivity @}</td>

@@ -225,8 +225,10 @@ Controller.session.list = function (req, res, next) {
                 var url = MODEL_URL_TEMPLATE.replace('@session@', sessionName).replace('@model@', sessionController.getSessionModel(sessionName));
                 var sessionName = unescape(sessionData.name) + ' (' + sessionData.master + ')';
                 sessionsData[sessionName] = {
-                    'name': unescape(sessionData.model), 'url': url.replace('.html.html', '.html'), 'users': usersInSession, 
-                    'firstActivity': Helper.formatDate.YYYYMMDDHHMM12H(sessionData.firstActivity), 'lastActivity': Helper.formatDate.YYYYMMDDHHMM12H(sessionData.lastActivity)
+                    'name': unescape(sessionData.model), 'url': url.replace('.html.html', '.html'), 
+                    'master': sessionData.master, 'users': usersInSession, 
+                    'firstActivity': Helper.formatDate.YYYYMMDDHHMM12H(sessionData.firstActivity), 
+                    'lastActivity': Helper.formatDate.YYYYMMDDHHMM12H(sessionData.lastActivity)
                 };
             }
         }

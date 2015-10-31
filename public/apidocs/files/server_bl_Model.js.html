@@ -124,7 +124,7 @@
                             this.add = function (originalFile, modelName, description) {
                                 var Entities = App.require(&#x27;/da/Entities&#x27;);
                                 var originalFilePath = Helper.replaceAll(originalFile.path, &#x27;\\&#x27;, &#x27;/&#x27;);
-                                var fileName = Helper.cleanFileName(modelName) + &#x27;_&#x27; + Date.now();
+                                var fileName = Helper.removeSpecialChars(modelName) + &#x27;_&#x27; + Date.now();
                                 var htmlNewFilePath = getHTMLFile(fileName);
                                 var jsNewFilePath = getJSFile(fileName);
                                 var fs = require(&#x27;fs&#x27;);

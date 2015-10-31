@@ -48,10 +48,10 @@ Simulation = function () {
         initNoMasterConnected();
         //initControls();
         sessionName = Helper.getURLParameter('s');
-        modelName = Helper.getURLParameter('n');
         modelFile = Helper.getLastURLPiece();
         self.socket = io.connect(SERVER_);
         initSockets();
+        initOutputs();
     };
 
     /**
@@ -91,7 +91,7 @@ Simulation = function () {
         /* TODO-FUTUREWORK: optimize to send less data in modelUpdate */
         if (!self.isSocketReady) {
             return agentStreamController._applyUpdate(modelUpdate);
-        } else if (self.isMaster && isTimeToSendApplyUpdate) {
+        } else if (self.isMaster) {
             isTimeToSendApplyUpdate = false;
             var outputs = new Array();
             $(outputsSelector).each(function (index, value) {
@@ -101,7 +101,7 @@ Simulation = function () {
             self.sendAction('applyUpdate', {'model': modelUpdate, 'outputs': outputs});
             return agentStreamController._applyUpdate(modelUpdate);
         } else {
-            return agentStreamController._applyUpdate(modelUpdate);
+            return true;
         }
     };
 
@@ -114,10 +114,11 @@ Simulation = function () {
      * @param {Object} modelUpdate El objeto que contiene las intrucciones de actualización
      * @param {Object} outputs Objeto que contiene las actualizaciones a ejecutar sobre los <i>outputs</i>
      */
-    this.applyUpdate_ = function (modelUpdate, outputs) {
-        self.viewController._applyUpdate(modelUpdate);
+    this.applyUpdate_ = function (model, outputs) {
+        self.viewController._applyUpdate(model);
         for (var key in outputs) {
             //self.setGlobal(outputs[key].name, outputs[key].value);
+            console.log($('output[data-name="' + outputs[key].name + '"]').get(0));
             $('output[data-name="' + outputs[key].name + '"]').val(outputs[key].value);
         }
     };
@@ -184,10 +185,13 @@ Simulation = function () {
             if (isCommandWidget(widgetData)) {
                 var commandData = parseCommandWidget(widgetData);
                 doOverwriteCommand(commandData);
+                console.log('commandData.source = ' + commandData.source);
                 modelCommands[commandData.source] = commandData;
             } else if (widgetData.varName) {
+                console.log('widgetData.varName = ' + commandData.source);
                 modelControls[widgetData.varName] = widgetData.varName;
             } else if (widgetData.source) {
+                console.log('widgetData.source = ' + commandData.source);
                 modelControls[widgetData.source] = widgetData.source;
             } else {
                 //console.log(widgetData);
@@ -236,6 +240,16 @@ Simulation = function () {
                 simulation['commands'][commandData.fnName].apply(this, params);
             }
         };
+    };
+
+    var initOutputs = function(){
+        $(outputsSelector).each(function(){
+            var ele = $(this);
+            var nameEle = $('.netlogo-label', ele.parent());
+            var name = Helper.removeSpecialChars(nameEle.text());
+            console.log(name);
+            ele.attr('data-name', name);
+        });
     };
 
     /**

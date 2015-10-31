@@ -188,11 +188,11 @@ Helper.escapeRegExp = function (string) {
  * Formate un nombre de archivo, eliminando los caracteres especiales, 
  * convirtiéndolo a minúsculas y remplazando los espaciones por guiones bajos.
  * convirtiéndole.
- * @method cleanFileName
+ * @method removeSpecialChars
  * @static
  * @param {String} fileName Nombre del archivo
  */
-Helper.cleanFileName = function (fileName) {
+Helper.removeSpecialChars = function (fileName) {
     return Helper.replaceAll(fileName, ' ', '_').replace(/[^a-zA-Z0-9-_]/g, '').toLowerCase();
 };
 

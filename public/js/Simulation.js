@@ -51,7 +51,7 @@ Simulation = function () {
         modelFile = Helper.getLastURLPiece();
         self.socket = io.connect(SERVER_);
         initSockets();
-        initOutputs();
+        //initOutputs();
     };
 
     /**
@@ -94,10 +94,11 @@ Simulation = function () {
         } else if (self.isMaster) {
             isTimeToSendApplyUpdate = false;
             var outputs = new Array();
+            /*var outputs = new Array();
             $(outputsSelector).each(function (index, value) {
                 var ele = $(this);
                 outputs.push({'name': ele.attr('data-name'), 'value': ele.val()});
-            });
+            });*/
             self.sendAction('applyUpdate', {'model': modelUpdate, 'outputs': outputs});
             return agentStreamController._applyUpdate(modelUpdate);
         } else {
@@ -116,10 +117,10 @@ Simulation = function () {
      */
     this.applyUpdate_ = function (model, outputs) {
         self.viewController._applyUpdate(model);
-        for (var key in outputs) {
+        /*for (var key in outputs) {
             //self.setGlobal(outputs[key].name, outputs[key].value);
             $('output[data-name="' + outputs[key].name + '"]').val(outputs[key].value);
-        }
+        }*/
     };
 
     /**
@@ -204,13 +205,10 @@ Simulation = function () {
             if (isCommandWidget(widgetData)) {
                 var commandData = parseCommandWidget(widgetData);
                 doOverwriteCommand(commandData);
-                //console.log('commandData.source = ' + commandData.source);
                 modelCommands[commandData.source] = commandData;
             } else if (widgetData.varName) {
-                //console.log('widgetData.varName = ' + commandData.source);
                 modelControls[widgetData.varName] = widgetData.varName;
             } else if (widgetData.source) {
-                //console.log('widgetData.source = ' + commandData.source);
                 modelControls[widgetData.source] = widgetData.source;
             } else {
                 //console.log(widgetData);
@@ -265,7 +263,7 @@ Simulation = function () {
         $(outputsSelector).each(function(){
             var ele = $(this);
             var nameEle = $('.netlogo-label', ele.parent());
-            ele.attr('data-name', Helper.removeSpecialChars(nameEle.text()));
+            ele.attr('data-name', nameEle.text());
         });
     };
 

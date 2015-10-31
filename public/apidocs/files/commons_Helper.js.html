@@ -290,11 +290,11 @@
                          * Formate un nombre de archivo, eliminando los caracteres especiales, 
                          * convirtiéndolo a minúsculas y remplazando los espaciones por guiones bajos.
                          * convirtiéndole.
-                         * @method cleanFileName
+                         * @method removeSpecialChars
                          * @static
                          * @param {String} fileName Nombre del archivo
                          */
-                        Helper.cleanFileName = function (fileName) {
+                        Helper.removeSpecialChars = function (fileName) {
                             return Helper.replaceAll(fileName, &#x27; &#x27;, &#x27;_&#x27;).replace(/[^a-zA-Z0-9-_]/g, &#x27;&#x27;).toLowerCase();
                         };
                         

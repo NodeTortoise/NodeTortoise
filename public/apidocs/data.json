@@ -750,7 +750,7 @@
             "line": 187,
             "description": "Formate un nombre de archivo, eliminando los caracteres especiales, \nconvirtiéndolo a minúsculas y remplazando los espaciones por guiones bajos.\nconvirtiéndole.",
             "itemtype": "method",
-            "name": "cleanFileName",
+            "name": "removeSpecialChars",
             "static": 1,
             "params": [
                 {

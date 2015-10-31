@@ -147,6 +147,7 @@ Simulation = function () {
      * @method doOverwriteFunctions
      */
     var doOverwriteFunctions = function () {
+        var simulation = Simulation.getInstance();
         world.observer['setGlobal_'] = world.observer.setGlobal;
         self.commands['setGlobal'] = function () {
             var params = arguments;
@@ -155,17 +156,36 @@ Simulation = function () {
         world.observer.setGlobal = function () {
             var params = arguments;
             if (modelControls[params[0]]) {
-                var simulation = Simulation.getInstance();
                 if (self.isMaster || self.enabledControls) {
-                    simulation.sendAction('setGlobal', {'params': params});
+                    //simulation.sendAction('setGlobal', {'params': params});
+                    //var simulation = Simulation.getInstance();
                     simulation['commands']['setGlobal'].apply(this, params);
                 }
             } else {
                 world.observer.setGlobal_.apply(this, params);
             }
         };
+        var onChangeInput = function(ele){
+            if (self.isMaster || self.enabledControls) {
+                var params = [ele.attr('data-label'), ele.val()];
+                simulation.sendAction('setGlobal', {'params': params});
+                simulation['commands']['setGlobal'].apply(this, params);
+            }
+        };
+        $(inputsSelector).each(function(){
+            var ele = $(this);
+            var label = ele.parent().find('.netlogo-label').text();
+            if(label){
+                ele.attr('data-label', label);
+                ele.change(function(){
+                    onChangeInput(ele);
+                });
+            }
+        });
         $(speedInputSelector).change(function () {
-            self.sendAction('updateSpeed', {value: $(this).val()});
+            if (self.isMaster || self.enabledControls) {
+                self.sendAction('updateSpeed', {value: $(this).val()});
+            }
         });
     };
 

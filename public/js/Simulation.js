@@ -118,7 +118,6 @@ Simulation = function () {
         self.viewController._applyUpdate(model);
         for (var key in outputs) {
             //self.setGlobal(outputs[key].name, outputs[key].value);
-            console.log($('output[data-name="' + outputs[key].name + '"]').get(0));
             $('output[data-name="' + outputs[key].name + '"]').val(outputs[key].value);
         }
     };
@@ -185,13 +184,13 @@ Simulation = function () {
             if (isCommandWidget(widgetData)) {
                 var commandData = parseCommandWidget(widgetData);
                 doOverwriteCommand(commandData);
-                console.log('commandData.source = ' + commandData.source);
+                //console.log('commandData.source = ' + commandData.source);
                 modelCommands[commandData.source] = commandData;
             } else if (widgetData.varName) {
-                console.log('widgetData.varName = ' + commandData.source);
+                //console.log('widgetData.varName = ' + commandData.source);
                 modelControls[widgetData.varName] = widgetData.varName;
             } else if (widgetData.source) {
-                console.log('widgetData.source = ' + commandData.source);
+                //console.log('widgetData.source = ' + commandData.source);
                 modelControls[widgetData.source] = widgetData.source;
             } else {
                 //console.log(widgetData);
@@ -246,9 +245,7 @@ Simulation = function () {
         $(outputsSelector).each(function(){
             var ele = $(this);
             var nameEle = $('.netlogo-label', ele.parent());
-            var name = Helper.removeSpecialChars(nameEle.text());
-            console.log(name);
-            ele.attr('data-name', name);
+            ele.attr('data-name', Helper.removeSpecialChars(nameEle.text()));
         });
     };
 

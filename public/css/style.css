@@ -91,3 +91,13 @@ pre {
 .install-steps ol li {
     margin: 5px 0;
 }
+
+.button-disabled {
+    color: #999 !important;
+    background-color: #ccc !important;
+    cursor: not-allowed !important;
+}
+
+.button-disabled:hover {
+    box-shadow: none !important;
+}

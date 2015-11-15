@@ -19,7 +19,7 @@ Simulation = function () {
     var spinner, isTimeToSendApplyUpdate;
     var inputsSelector = '.netlogo-widget-container input:visible';
     var outputsSelector = '.netlogo-widget-container output:visible';
-    var buttonsSelector = 'button.netlogo-widget.netlogo-button.netlogo-command, label.netlogo-widget.netlogo-button.netlogo-command input[type="checkbox"]';
+    var buttonsSelector = 'button.netlogo-widget.netlogo-button.netlogo-command, label.netlogo-widget.netlogo-button.netlogo-command, label.netlogo-widget.netlogo-button.netlogo-command input[type="checkbox"]';
     var speedInputSelector = '.netlogo-widget.netlogo-speed-slider input[type=range]';
 
     this.socket = null;
@@ -40,9 +40,6 @@ Simulation = function () {
      */
     this.init = function () {
         isTimeToSendApplyUpdate = false;
-        /*setInterval(function(){
-            isTimeToSendApplyUpdate = true;
-        }, 5000);*/
         doOverwriteFunctions();
         initWidgets();
         initNoMasterConnected();
@@ -271,9 +268,17 @@ Simulation = function () {
      * Deshabilita los controles
      * @method disableControls
      */
-    var disableControls = function () {
+    var disableButtons = function () {
         /* TODO: make label.input buttons look like disabled */
-        $(buttonsSelector).attr('disabled', true);
+        $(buttonsSelector).attr('disabled', true).addClass('button-disabled');
+    };
+    
+    /**
+     * Deshabilita los controles
+     * @method disableControls
+     */
+    var enableButtons = function () {
+        $(buttonsSelector).attr('disabled', false).removeClass('button-disabled');
     };
 
     /**
@@ -282,7 +287,7 @@ Simulation = function () {
      */
     var initNoMasterConnected = function () {
         spinner = new Helper.spinner('.netlogo-widget-container', {'bgColor': '#000', 'opacity': 0.8, 'height': '100%'});
-        disableControls();
+        disableButtons();
     };
 
     /**
@@ -305,7 +310,7 @@ Simulation = function () {
      */
     this.start = function () {
         if (self.isMaster) {
-            $(buttonsSelector).attr('disabled', false);
+            enableButtons();
             $(inputsSelector).attr('disabled', false);
         } else if (self.enabledControls) {
             $(inputsSelector).attr('disabled', false);

@@ -241,7 +241,8 @@ Controller.session.list = function (req, res, next) {
          * @return {String} La URL al modelo
          */
         var getModelURL = function (modelFilename, modelName, token) {
-            return (MODEL_URL_TEMPLATE.replace('@session@', token).replace('@model@', modelFilename).replace('@name@', escape(modelName)));
+            var sessionName = Helper.getHash(token + modelName, true);
+            return (MODEL_URL_TEMPLATE.replace('@session@', sessionName).replace('@model@', modelFilename).replace('@name@', escape(modelName)));
         };
         /**
          * Función para obtener la URL a una sesión.

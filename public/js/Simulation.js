@@ -8,7 +8,7 @@ var ENVIRONMENT = 'TESTING'; // TESTING, PRODUCTION
 var MAIN_BROWSER = 'FIREFOX';
 
 /**
- * Provee la lógica de interacción de las simulaciones con el servidor.
+ * Provee la logica de interaccion de las simulaciones con el servidor.
  * @class Simulation
  * @constructor
  * @module Public
@@ -21,6 +21,7 @@ Simulation = function () {
     var outputsSelector = '.netlogo-widget-container output:visible';
     var buttonsSelector = 'button.netlogo-widget.netlogo-button.netlogo-command, label.netlogo-widget.netlogo-button.netlogo-command, label.netlogo-widget.netlogo-button.netlogo-command input[type="checkbox"]';
     var speedInputSelector = '.netlogo-widget.netlogo-speed-slider input[type=range]';
+    var goButtonCheckboxSelector = 'label.netlogo-widget.netlogo-button.netlogo-forever-button.netlogo-command input[type="checkbox"]';
 
     this.socket = null;
     this.firsTime = true;
@@ -45,44 +46,54 @@ Simulation = function () {
         initNoMasterConnected();
         //initControls();
         sessionName = Helper.getURLParameter('s');
+        modelName = Helper.getURLParameter('n');
         modelFile = Helper.getLastURLPiece();
         self.socket = io.connect(SERVER_);
         initSockets();
+        var goButton = $(goButtonCheckboxSelector).parent();
+        goButton.click(function(event){
+            //event.preventDefault();
+            event.run();
+            console.log(goButton.hasClass('netlogo-active'));
+            if(!goButton.hasClass('netlogo-active')){
+                disableInputs();
+            } else {
+                enableInputs();
+            }
+        });
         //initOutputs();
     };
 
     /**
-     * Realiza la conexión del cliente con el servidor por medio de <i>web sockets</i>.
+     * Realiza la conexion del cliente con el servidor por medio de <i>web sockets</i>.
      * @method connect
      * @return
      */
     var connect = function () {
         /* TODO: remove, it's only for testing */
         var name = (Helper.getBrowser()).toUpperCase();
+        //var name = prompt('Digite su nombre');
         var password = name === MAIN_BROWSER ? MAIN_BROWSER : '';
         var enabledControls = ENABLED_CONTROLS_ALL_USERS;
-        //var name = prompt('Digite su nombre');
-        //var hash = prompt('Digite su contraseña de usuario maestro');
-        //var enabledControls = ENABLED_CONTROLS_ALL_USERS;
         var params = {'session': sessionName, 'name': name, 'password': password, 'controls': enabledControls, 'modelFile': modelFile, 'modelName': modelName};
         self.sendAction('connect', params);
     };
 
     /**
-     * Este método sobre-escribe el método <b>AgentStreamController.prototype.applyUpdate</b>
-     * del código original de Tortoise. Se encarga de controlar la actualización
-     * de la simulación (a nivel gráfico) y de los valores de los <i>outputs</i>.
-     * En el caso del cliente maestro, se envía un mensaje al servidor para que 
-     * los clientes realicen la actualización y finalmente se ejecuta el código
-     * original de actualización. En el caso los clientes que no son maestros, 
-     * se ignora cualquier proceso. En caso de que aún no se hara realizado 
-     * la conexión con el <i>socket</i>, se ejecuta el código original de 
-     * actualización, en ambos casos.
+     * Este metodo sobre-escribe el metodo <b>AgentStreamController.prototype.applyUpdate</b>
+     * del codigo original de Tortoise. Se encarga de controlar la actualizacion
+     * de la simulacion (a nivel grafico) y de los valores de los <i>outputs</i>.
+     * En el caso del cliente maestro, se envia un mensaje al servidor para que 
+     * los clientes realicen la actualizacion y finalmente se ejecuta el codigo
+     * original de actualizacion. En el caso los clientes que no son maestros, 
+     * se ignora cualquier proceso. En caso de que aun no se hara realizado 
+     * la conexion con el <i>socket</i>, se ejecuta el codigo original de 
+     * actualizacion, en ambos casos.
      * @method applyUpdate
      * @param {Object} agentStreamController El objeto AgentStreamController del modelo
-     * @param {Object} modelUpdate El objeto que contiene las intrucciones de actualización
-     * @return {Object} El resultado del proceso de actualiación. Este resultado proviene de
-     * la lógica del código de Tortoise
+     * @param {Object} modelUpdate El objeto que contiene las intrucciones de actualizacion
+     * @return {Object} El resultado del proceso de actualiacion. Este resultado proviene de
+     * la logica del codigo de Tortoise
      */
     this.applyUpdate = function (agentStreamController, modelUpdate) {
         /* TODO-FUTUREWORK: optimize to send less data in modelUpdate */
@@ -104,12 +115,12 @@ Simulation = function () {
     };
 
     /**
-     * Código ejecutado por los clientes no maestros al recibir un mensaje de 
-     * actualización del modelo. Ejecuta las actualizaciones del modelo, haciendo 
-     * la llamada al código de actualización original de <b>Tortoise</b> y 
-     * llevando a cabo la actualización de los <i>outputs</i>.
+     * Codigo ejecutado por los clientes no maestros al recibir un mensaje de 
+     * actualizacion del modelo. Ejecuta las actualizaciones del modelo, haciendo 
+     * la llamada al codigo de actualizacion original de <b>Tortoise</b> y 
+     * llevando a cabo la actualizacion de los <i>outputs</i>.
      * @method applyUpdate_
-     * @param {Object} modelUpdate El objeto que contiene las intrucciones de actualización
+     * @param {Object} modelUpdate El objeto que contiene las intrucciones de actualizacion
      * @param {Object} outputs Objeto que contiene las actualizaciones a ejecutar sobre los <i>outputs</i>
      */
     this.applyUpdate_ = function (model, outputs) {
@@ -121,7 +132,7 @@ Simulation = function () {
     };
 
     /**
-     * Establece el valor de la velocidad de la simulación.
+     * Establece el valor de la velocidad de la simulacion.
      * @method updateSpeed_
      * @param {Integer} value Valor de la velocidad
      */
@@ -140,8 +151,8 @@ Simulation = function () {
     };
 
     /**
-     * Ejecuta la acción de sobre-escribir las funciones originales de Tortoise, 
-     * necesarias para la ejecución de la lógica personalizada.
+     * Ejecuta la accion de sobre-escribir las funciones originales de Tortoise, 
+     * necesarias para la ejecucion de la logica personalizada.
      * @method doOverwriteFunctions
      */
     var doOverwriteFunctions = function () {
@@ -214,7 +225,7 @@ Simulation = function () {
     };
 
     /**
-     * Extrae de un <i>widget</i> de tipo comando la información necesaria para
+     * Extrae de un <i>widget</i> de tipo comando la informacion necesaria para
      * su posterior procesamiento.
      * @method parseCommandWidget
      * @param {Object} widgetData Los datos del <i>widget</i>
@@ -265,20 +276,35 @@ Simulation = function () {
     };
 
     /**
-     * Deshabilita los controles
-     * @method disableControls
+     * Deshabilita los botones
+     * @method disableButtons
      */
     var disableButtons = function () {
-        /* TODO: make label.input buttons look like disabled */
         $(buttonsSelector).attr('disabled', true).addClass('button-disabled');
     };
     
     /**
-     * Deshabilita los controles
-     * @method disableControls
+     * Habilita los botones
+     * @method enableButtons
      */
     var enableButtons = function () {
         $(buttonsSelector).attr('disabled', false).removeClass('button-disabled');
+    };
+
+    /**
+     * Deshabilita los controles de entrada
+     * @method disableInputs
+     */
+    var disableInputs = function () {
+        $(inputsSelector).attr('disabled', true);
+    };
+    
+    /**
+     * Habilita los controles de entrada
+     * @method enableInputs
+     */
+    var enableInputs = function () {
+        $(inputsSelector).attr('disabled', false);
     };
 
     /**
@@ -291,11 +317,11 @@ Simulation = function () {
     };
 
     /**
-     * Envía un mensaje de ejecutar acción al servidor por medio de web sockets, 
-     * para que sea enviada a los demás clientes en la sesión.
+     * Envia un mensaje de ejecutar accion al servidor por medio de web sockets, 
+     * para que sea enviada a los demas clientes en la sesion.
      * @method sendAction
-     * @param {String} action La acción a ejecutar
-     * @param {Object} params Los parámetros de la acción
+     * @param {String} action La accion a ejecutar
+     * @param {Object} params Los parametros de la accion
      */
     this.sendAction = function (action, params) {
         action += '__fromClient';
@@ -305,21 +331,21 @@ Simulation = function () {
     };
 
     /**
-     * Ejecuta la acción de inicialización de la sesión se simulación
+     * Ejecuta la accion de inicializacion de la sesion se simulacion
      * @method start
      */
     this.start = function () {
         if (self.isMaster) {
             enableButtons();
-            $(inputsSelector).attr('disabled', false);
+            enableInputs();
         } else if (self.enabledControls) {
-            $(inputsSelector).attr('disabled', false);
+            enableInputs();
         }
         spinner.remove();
     };
 
     /**
-     * Ejecuta la acción de finalización de la sesión se simulación
+     * Ejecuta la accion de finalizacion de la sesion se simulacion
      * @method end
      */
     this.end = function () {
@@ -334,7 +360,7 @@ Simulation = function () {
         /**
          * Recibe del servidor la respuesta al conectarse a los web sockets
          * @method overwritedCommands.connect_Response
-         * @param {Object} params Los parámetros recibidos
+         * @param {Object} params Los parametros recibidos
          */
         'connect_Response': function (params) {
             self.token = params.token;
@@ -346,17 +372,17 @@ Simulation = function () {
             self.isSocketReady = true;
         },
         /**
-         * Recibe del servidor la acción de actualizar usuarios
+         * Recibe del servidor la accion de actualizar usuarios
          * @method overwritedCommands.updateUsers
-         * @param {Object} params Los parámetros de la acción
+         * @param {Object} params Los parametros de la accion
          */
         'updateUsers': function (params) {
             Simulation.formatUI.users(params.users);
         },
         /**
-         * Recibe del servidor la acción de ejecutar comando
+         * Recibe del servidor la accion de ejecutar comando
          * @method overwritedCommands.executeCommand
-         * @param {Object} params Los parámetros de la acción
+         * @param {Object} params Los parametros de la accion
          */
         'executeCommand': function (params) {
             var paramsArr = $.map(params.params, function (value, index) {
@@ -365,10 +391,10 @@ Simulation = function () {
             self.commands[params.command].apply(this, paramsArr);
         },
         /**
-         * Recibe del servidor la acción de definir valor de variable global de 
+         * Recibe del servidor la accion de definir valor de variable global de 
          * Tortoise
          * @method overwritedCommands.setGlobal
-         * @param {Object} params Los parámetros de la acción
+         * @param {Object} params Los parametros de la accion
          */
         'setGlobal': function (params) {
             var paramsArr = $.map(params.params, function (value, index) {
@@ -377,42 +403,42 @@ Simulation = function () {
             self.commands['setGlobal'].apply(this, paramsArr);
         },
         /**
-         * Recibe del servidor la acción de actualizar velocidad de la simulación
+         * Recibe del servidor la accion de actualizar velocidad de la simulacion
          * @method overwritedCommands.updateSpeed
-         * @param {Object} params Los parámetros de la acción
+         * @param {Object} params Los parametros de la accion
          */
         'updateSpeed': function (params) {
             self.updateSpeed_(params.value);
         },
         /**
-         * Recibe del servidor la acción de aplicar actualización de la simulación
+         * Recibe del servidor la accion de aplicar actualizacion de la simulacion
          * @method overwritedCommands.applyUpdate
-         * @param {Object} params Los parámetros de la acción
+         * @param {Object} params Los parametros de la accion
          */
         'applyUpdate': function (params) {
             /* TODO-FUTUREWORK: optimize to receive less data in modelUpdate */
             self.applyUpdate_(params.model, params.outputs);
         },
         /**
-         * Recibe del servidor la acción de iniciar sesión de simulación
+         * Recibe del servidor la accion de iniciar sesion de simulacion
          * @method overwritedCommands.start
-         * @param {Boolean} enabledControls Indica si los controles están habilitados o no
+         * @param {Boolean} enabledControls Indica si los controles estan habilitados o no
          */
         'start': function (enabledControls) {
             self.enabledControls = enabledControls;
             self.start();
         },
         /**
-         * Recibe del servidor la acción de finalizar sesión de simulación
+         * Recibe del servidor la accion de finalizar sesion de simulacion
          * @method overwritedCommands.end
          */
         'end': function () {
             self.end();
         },
         /**
-         * Recibe del servidor la acción de obtener mensaje
+         * Recibe del servidor la accion de obtener mensaje
          * @method overwritedCommands.getMessage
-         * @param {Object} params Los parámetros de la acción
+         * @param {Object} params Los parametros de la accion
          */
         'getMessage': function (params) {
             console.log(params);
@@ -453,7 +479,7 @@ Simulation.create = function () {
 };
 
 /**
- * Sobre-escribe algunos de los métodos de Tortoise, necesarios antes de que 
+ * Sobre-escribe algunos de los metodos de Tortoise, necesarios antes de que 
  * se inicialice Tortoise
  * @method setupObject
  * @param {Object} modelObj Objeto Simulation
@@ -472,7 +498,7 @@ Simulation.setupObject = function (modelObj) {
 };
 
 /**
- * Basado en el patrón <i>Singleton</i>, retorna una instancia del objeto Simulation
+ * Basado en el patron <i>Singleton</i>, retorna una instancia del objeto Simulation
  * @method getInstance
  * @static
  * @return {Simulation} La instancia de Simulation
@@ -485,9 +511,9 @@ Simulation.getInstance = function () {
 };
 
 /**
- * Formatea la interfaz de gráfica en la página de simulación, para que cuente
- * con el menú y las demás opciones de la interfaz gráfica del resto de la 
- * aplicación.
+ * Formatea la interfaz de grafica en la pagina de simulacion, para que cuente
+ * con el menu y las demas opciones de la interfaz grafica del resto de la 
+ * aplicacion.
  * @method formatUI
  */
 Simulation.formatUI = function () {
@@ -511,7 +537,7 @@ Simulation.formatUI = function () {
 };
 
 /**
- * Formatea la sección de Usuarios de la sesión en interfaz de gráfica.
+ * Formatea la seccion de Usuarios de la sesion en interfaz de grafica.
  * @method users
  * @param {Array} users La lista de usuario
  */

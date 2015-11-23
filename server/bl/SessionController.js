@@ -120,7 +120,7 @@ SessionController = function () {
     var checkSessionsActivity = function (){
         for (var sessionName in sessions){
             var sessionData = sessions[sessionName].getSessionInfo();
-            if(sessionData && sessionData.getUsersQuantity() < 1){
+            if(sessionData && sessions[sessionName].getUsersQuantity() < 1){
                 delete sessions[sessionName];
             } else if(((new Date) - sessionData.lastActivity) > Helper.minutesToMiliseconds(SESSION_MAX_INACTIVITY_MINUTES)){
                 delete sessions[sessionName];

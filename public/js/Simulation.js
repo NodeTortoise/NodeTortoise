@@ -16,7 +16,7 @@ var MAIN_BROWSER = 'FIREFOX';
 Simulation = function () {
 
     var self = this;
-    var spinner, isTimeToSendApplyUpdate;
+    var spinner;
     var inputsSelector = '.netlogo-widget-container input:visible';
     var outputsSelector = '.netlogo-widget-container output:visible';
     var buttonsSelector = 'button.netlogo-widget.netlogo-button.netlogo-command, label.netlogo-widget.netlogo-button.netlogo-command, label.netlogo-widget.netlogo-button.netlogo-command input[type="checkbox"]';
@@ -40,9 +40,8 @@ Simulation = function () {
      * @method init
      */
     this.init = function () {
-        isTimeToSendApplyUpdate = false;
-        doOverwriteFunctions();
         initWidgets();
+        overwriteControls();
         initNoMasterConnected();
         //initControls();
         sessionName = Helper.getURLParameter('s');
@@ -71,7 +70,6 @@ Simulation = function () {
      * @return
      */
     var connect = function () {
-        /* TODO: remove, it's only for testing */
         var name = (Helper.getBrowser()).toUpperCase();
         //var name = prompt('Digite su nombre');
         var password = name === MAIN_BROWSER ? MAIN_BROWSER : '';
@@ -101,7 +99,6 @@ Simulation = function () {
         if (!self.isSocketReady) {
             return agentStreamController._applyUpdate(modelUpdate);
         } else if (self.isMaster) {
-            isTimeToSendApplyUpdate = false;
             var outputs = new Array();
             /*var outputs = new Array();
              $(outputsSelector).each(function (index, value) {
@@ -152,47 +149,6 @@ Simulation = function () {
     };
 
     /**
-     * Ejecuta la accion de sobre-escribir las funciones originales de Tortoise, 
-     * necesarias para la ejecucion de la logica personalizada.
-     * @method doOverwriteFunctions
-     */
-    var doOverwriteFunctions = function () {
-        $(inputsSelector).each(function () {
-            var ele = $(this);
-            var label = ele.parent().find('.netlogo-label').text();
-            if (!label) {
-                label = ele.parent().parent().find('.netlogo-label').text();
-            }
-            if (label) {
-                ele.attr('data-name', label);
-                ele.change(function () {
-                    sendInputValue(ele.attr('data-name'));
-                });
-            }
-        });
-        $(speedInputSelector).change(function () {
-            if (self.isMaster || self.enabledControls) {
-                self.sendAction('updateSpeed', {value: $(this).val()});
-            }
-        });
-    };
-
-    var sendInputValue = function (name) {
-        if (self.isMaster || self.enabledControls) {
-            var value = world.observer.getGlobal(name);
-            Simulation.getInstance().sendAction('setGlobal', {'name': name, 'value': value});
-        }
-    };
-
-    setInputValue = function (name, value) {
-        if (self.isMaster) {
-            world.observer.setGlobal(name, value);
-        } else {
-            $('input[data-name="' + name + '"]').val(value);
-        }
-    };
-
-    /**
      * Inicializa los widgets del modelo, para:
      * 1. Obtener los widget de tipo comando para sobre-escribir su funcionalidad
      * 2. Obtener y guardar los widget de tipo control para posteriormente 
@@ -206,7 +162,7 @@ Simulation = function () {
             var widgetData = session.widgetController.widgets[i];
             if (isCommandWidget(widgetData)) {
                 var commandData = parseCommandWidget(widgetData);
-                doOverwriteCommand(commandData);
+                overwriteCommand(commandData);
                 modelCommands[commandData.source] = commandData;
             } else if (widgetData.varName) {
                 modelControls.push(widgetData.varName);
@@ -242,10 +198,10 @@ Simulation = function () {
 
     /**
      * Sobre-escribe la funcionalidad de un comando
-     * @method doOverwriteCommand
+     * @method overwriteCommand
      * @param {Object} commandData Los datos del comando
      */
-    var doOverwriteCommand = function (commandData) {
+    var overwriteCommand = function (commandData) {
         if (self.commands[commandData.fnName]) {
             return;
         }
@@ -259,6 +215,47 @@ Simulation = function () {
                 simulation['commands'][commandData.fnName].apply(this, params);
             }
         };
+    };
+
+    /**
+     * Ejecuta la accion de sobre-escribir las funciones originales de Tortoise, 
+     * necesarias para la ejecucion de la logica personalizada.
+     * @method overwriteControls
+     */
+    var overwriteControls = function () {
+        $(inputsSelector).each(function () {
+            var ele = $(this);
+            var label = ele.parent().find('.netlogo-label').text();
+            if (!label) {
+                label = ele.parent().parent().find('.netlogo-label').text();
+            }
+            if (label) {
+                ele.attr('data-name', label);
+                ele.change(function () {
+                    sendInputValue(ele.attr('data-name'));
+                });
+            }
+        });
+        $(speedInputSelector).change(function () {
+            if (self.isMaster || self.enabledControls) {
+                self.sendAction('updateSpeed', {value: $(this).val()});
+            }
+        });
+    };
+
+    var sendInputValue = function (name) {
+        if (self.isMaster || self.enabledControls) {
+            var value = world.observer.getGlobal(name);
+            Simulation.getInstance().sendAction('setGlobal', {'name': name, 'value': value});
+        }
+    };
+
+    var setInputValue = function (name, value) {
+        if (self.isMaster) {
+            world.observer.setGlobal(name, value);
+        } else {
+            $('input[data-name="' + name + '"]').val(value);
+        }
     };
 
     var initOutputs = function () {

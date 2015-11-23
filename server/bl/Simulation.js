@@ -75,17 +75,17 @@ Simulation.executeCommand = function (socket, token, params) {
  * Envía un mensaje de <b>Establecer valor de variable global</b>, para que los 
  * clientes establezcan un nuevo valor de variable global, basado en los 
  * parámetros enviados.
- * @method setGlobal
+ * @method setControl
  * @param {Socket} socket El web socket para la instancia actual
  * @param {String} token Token del usuario
  * @param {Object} params Parámetros de la acción
  */
-Simulation.setGlobal = function (socket, token, params) {
+Simulation.setControl = function (socket, token, params) {
     if (SessionController.getInstance().getSession(socket.session).enabledControls) {
-        Sockets.sendToOthers(socket, socket.session, 'setGlobal', params);
-        App.debug('setGlobal', socket.session, socket.username, 2);
+        Sockets.sendToOthers(socket, socket.session, 'setControl', params);
+        App.debug('setControl', socket.session, socket.username, 2);
     } else {
-        Sockets.sendAction(socket, socket.session, 'setGlobal', params);
+        Sockets.sendAction(socket, socket.session, 'setControl', params);
     }
     SessionController.getInstance().updateActivityDate(socket.session);
 };

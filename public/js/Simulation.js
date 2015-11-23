@@ -60,7 +60,6 @@ Simulation = function () {
          enableInputs();
          }
          });*/
-        //world.observer.setGlobal("kick-line", 4);
         //initOutputs();
     };
 
@@ -124,7 +123,7 @@ Simulation = function () {
     this.applyUpdate_ = function (model, outputs) {
         self.viewController._applyUpdate(model);
         /*for (var key in outputs) {
-         //self.setGlobal(outputs[key].name, outputs[key].value);
+         //self.setControl(outputs[key].name, outputs[key].value);
          $('output[data-name="' + outputs[key].name + '"]').val(outputs[key].value);
          }*/
     };
@@ -165,8 +164,10 @@ Simulation = function () {
                 overwriteCommand(commandData);
                 modelCommands[commandData.source] = commandData;
             } else if (widgetData.varName) {
+                //console.log('widgetData.varName = ' + widgetData.varName);
                 modelControls.push(widgetData.varName);
             } else if (widgetData.source) {
+                //console.log('widgetData.source = ' + widgetData.source);
                 modelControls.push(widgetData.source);
             } else {
                 //console.log(widgetData);
@@ -246,7 +247,7 @@ Simulation = function () {
     var sendInputValue = function (name) {
         if (self.isMaster || self.enabledControls) {
             var value = world.observer.getGlobal(name);
-            Simulation.getInstance().sendAction('setGlobal', {'name': name, 'value': value});
+            Simulation.getInstance().sendAction('setControl', {'name': name, 'value': value});
         }
     };
 
@@ -384,10 +385,10 @@ Simulation = function () {
         /**
          * Recibe del servidor la accion de definir valor de variable global de 
          * Tortoise
-         * @method overwritedCommands.setGlobal
+         * @method overwritedCommands.setControl
          * @param {Object} params Los parametros de la accion
          */
-        'setGlobal': function (params) {
+        'setControl': function (params) {
             setInputValue(params.name, params.value);
         },
         /**

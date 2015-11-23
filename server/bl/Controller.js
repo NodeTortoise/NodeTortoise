@@ -248,10 +248,11 @@ Controller.session.list = function (req, res, next) {
          * Función para obtener la URL a una sesión.
          * @event list.getSessionURL
          * @param {String} sessionURL El URL de la sesión
+         * @param {String} sessionName El nombre de la sesión
          * @return {String} La URL de la sesión correctamente formateada
          */
-        var getSessionURL = function (sessionURL) {
-            return (sessionURL.replace('@session@', token).replace('@name@', ''));
+        var getSessionURL = function (sessionURL, sessionName) {
+            return (sessionURL.replace('@session@', token).replace('@name@', sessionName));
         };        
         var page = {'title': 'Unirse o iniciar sesión', 'content_title': 'Unirse o iniciar sesión'};
         var data = {'sessions': sessionsData, 'models': modelsList, 'token': token, 'getModelURL': getModelURL, 'getSessionURL': getSessionURL};

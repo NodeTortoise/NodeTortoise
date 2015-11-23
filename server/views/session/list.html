@@ -44,7 +44,7 @@
                                 <td>{@ session.firstActivity @}</td>
                                 <td>{@ session.lastActivity @}</td>
                                 <td>
-                                    <a href="{@ data.getSessionURL(session.url) @}" class="no-underline" target="_blank">
+                                    <a href="{@ data.getSessionURL(session.url, session.name) @}" class="no-underline">
                                         <i class="fa fa-sign-in fa-fw"></i>&nbsp;Unirse
                                     </a>
                                 </td>

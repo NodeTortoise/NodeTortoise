@@ -51,16 +51,17 @@ Simulation = function () {
         self.socket = io.connect(SERVER_);
         initSockets();
         var goButton = $(goButtonCheckboxSelector).parent();
-        goButton.click(function(event){
-            //event.preventDefault();
-            event.run();
-            console.log(goButton.hasClass('netlogo-active'));
-            if(!goButton.hasClass('netlogo-active')){
-                disableInputs();
-            } else {
-                enableInputs();
-            }
-        });
+        /*goButton.click(function (event) {
+         //event.preventDefault();
+         event.run();
+         console.log(goButton.hasClass('netlogo-active'));
+         if (!goButton.hasClass('netlogo-active')) {
+         disableInputs();
+         } else {
+         enableInputs();
+         }
+         });*/
+        //world.observer.setGlobal("kick-line", 4);
         //initOutputs();
     };
 
@@ -103,10 +104,10 @@ Simulation = function () {
             isTimeToSendApplyUpdate = false;
             var outputs = new Array();
             /*var outputs = new Array();
-            $(outputsSelector).each(function (index, value) {
-                var ele = $(this);
-                outputs.push({'name': ele.attr('data-name'), 'value': ele.val()});
-            });*/
+             $(outputsSelector).each(function (index, value) {
+             var ele = $(this);
+             outputs.push({'name': ele.attr('data-name'), 'value': ele.val()});
+             });*/
             self.sendAction('applyUpdate', {'model': modelUpdate, 'outputs': outputs});
             return agentStreamController._applyUpdate(modelUpdate);
         } else {
@@ -126,9 +127,9 @@ Simulation = function () {
     this.applyUpdate_ = function (model, outputs) {
         self.viewController._applyUpdate(model);
         /*for (var key in outputs) {
-            //self.setGlobal(outputs[key].name, outputs[key].value);
-            $('output[data-name="' + outputs[key].name + '"]').val(outputs[key].value);
-        }*/
+         //self.setGlobal(outputs[key].name, outputs[key].value);
+         $('output[data-name="' + outputs[key].name + '"]').val(outputs[key].value);
+         }*/
     };
 
     /**
@@ -156,38 +157,16 @@ Simulation = function () {
      * @method doOverwriteFunctions
      */
     var doOverwriteFunctions = function () {
-        var simulation = Simulation.getInstance();
-        world.observer['setGlobal_'] = world.observer.setGlobal;
-        self.commands['setGlobal'] = function () {
-            var params = arguments;
-            world.observer.setGlobal_(params[0], params[1]);
-        };
-        world.observer.setGlobal = function () {
-            var params = arguments;
-            if (modelControls[params[0]]) {
-                if (self.isMaster || self.enabledControls) {
-                    //simulation.sendAction('setGlobal', {'params': params});
-                    //var simulation = Simulation.getInstance();
-                    simulation['commands']['setGlobal'].apply(this, params);
-                }
-            } else {
-                world.observer.setGlobal_.apply(this, params);
-            }
-        };
-        var onChangeInput = function(ele){
-            if (self.isMaster || self.enabledControls) {
-                var params = [ele.attr('data-label'), ele.val()];
-                simulation.sendAction('setGlobal', {'params': params});
-                simulation['commands']['setGlobal'].apply(this, params);
-            }
-        };
-        $(inputsSelector).each(function(){
+        $(inputsSelector).each(function () {
             var ele = $(this);
             var label = ele.parent().find('.netlogo-label').text();
-            if(label){
-                ele.attr('data-label', label);
-                ele.change(function(){
-                    onChangeInput(ele);
+            if (!label) {
+                label = ele.parent().parent().find('.netlogo-label').text();
+            }
+            if (label) {
+                ele.attr('data-name', label);
+                ele.change(function () {
+                    sendInputValue(ele.attr('data-name'));
                 });
             }
         });
@@ -198,6 +177,21 @@ Simulation = function () {
         });
     };
 
+    var sendInputValue = function (name) {
+        if (self.isMaster || self.enabledControls) {
+            var value = world.observer.getGlobal(name);
+            Simulation.getInstance().sendAction('setGlobal', {'name': name, 'value': value});
+        }
+    };
+
+    setInputValue = function (name, value) {
+        if (self.isMaster) {
+            world.observer.setGlobal(name, value);
+        } else {
+            $('input[data-name="' + name + '"]').val(value);
+        }
+    };
+
     /**
      * Inicializa los widgets del modelo, para:
      * 1. Obtener los widget de tipo comando para sobre-escribir su funcionalidad
@@ -206,8 +200,8 @@ Simulation = function () {
      * @method initWidgets
      */
     var initWidgets = function () {
-        modelControls = {};
         modelCommands = {};
+        modelControls = new Array();
         for (var i in session.widgetController.widgets) {
             var widgetData = session.widgetController.widgets[i];
             if (isCommandWidget(widgetData)) {
@@ -215,9 +209,9 @@ Simulation = function () {
                 doOverwriteCommand(commandData);
                 modelCommands[commandData.source] = commandData;
             } else if (widgetData.varName) {
-                modelControls[widgetData.varName] = widgetData.varName;
+                modelControls.push(widgetData.varName);
             } else if (widgetData.source) {
-                modelControls[widgetData.source] = widgetData.source;
+                modelControls.push(widgetData.source);
             } else {
                 //console.log(widgetData);
             }
@@ -267,8 +261,8 @@ Simulation = function () {
         };
     };
 
-    var initOutputs = function(){
-        $(outputsSelector).each(function(){
+    var initOutputs = function () {
+        $(outputsSelector).each(function () {
             var ele = $(this);
             var nameEle = $('.netlogo-label', ele.parent());
             ele.attr('data-name', nameEle.text());
@@ -282,7 +276,7 @@ Simulation = function () {
     var disableButtons = function () {
         $(buttonsSelector).attr('disabled', true).addClass('button-disabled');
     };
-    
+
     /**
      * Habilita los botones
      * @method enableButtons
@@ -298,7 +292,7 @@ Simulation = function () {
     var disableInputs = function () {
         $(inputsSelector).attr('disabled', true);
     };
-    
+
     /**
      * Habilita los controles de entrada
      * @method enableInputs
@@ -397,10 +391,7 @@ Simulation = function () {
          * @param {Object} params Los parametros de la accion
          */
         'setGlobal': function (params) {
-            var paramsArr = $.map(params.params, function (value, index) {
-                return [value];
-            });
-            self.commands['setGlobal'].apply(this, paramsArr);
+            setInputValue(params.name, params.value);
         },
         /**
          * Recibe del servidor la accion de actualizar velocidad de la simulacion

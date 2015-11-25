@@ -1,4 +1,4 @@
-/* global app, MAIN_BROWSER, DEBUG, Helper, ModelActions, server, App, module, require, Model */
+/* global app, DEBUG, Helper, ModelActions, server, App, module, require, Model */
 
 /**
  * Inicializa y configura los web sockets que se utilizan para el envío de la 

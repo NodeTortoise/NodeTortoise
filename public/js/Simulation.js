@@ -3,15 +3,12 @@
  * _ENVIRONMENT, ENVIRONMENT_DEVELOPMENT, ENVIRONMENT_PRODUCTION, MESSAGE_STATUS_INITIALIZING, 
  * MESSAGE_STATUS_READY, MESSAGE_STATUS_RUNNING, MESSAGE_STATUS_ENDED, MESSAGE_STATUS_READY */
 
-/* TODO: remove, it's only for testing */
-var MAIN_BROWSER = 'FIREFOX';
-
 if (typeof _SERVER === 'undefined') {
     _SERVER = DEFAULT_SERVER;
 }
 
 if (typeof _ENVIRONMENT === 'undefined') {
-    _ENVIRONMENT = ENVIRONMENT_PRODUCTION;
+    _ENVIRONMENT = ENVIRONMENT_DEVELOPMENT;
 }
 
 /**
@@ -46,8 +43,7 @@ Simulation = function () {
     this.status = STATUS_INITIALIZING;
     this.commands = {};
 
-    var spinner, oldStatus;
-    var sessionName, modelName, modelFile, modelControls, modelCommands, overwritedCommands;
+    var spinner, sessionName, modelName, modelFile, modelControls, modelCommands, overwritedCommands;
 
     /**
      * Inicializa la clase, realizando las configuraciones necesarias.
@@ -83,17 +79,23 @@ Simulation = function () {
      * @return
      */
     var connect = function () {
+        var name;
         if (_ENVIRONMENT === ENVIRONMENT_DEVELOPMENT) {
-            var name = (Helper.getBrowser()).toUpperCase();
+            name = (Helper.getBrowser()).toUpperCase();
         } else {
-            var name = prompt('Digite su nombre');
+            name = prompt('Digite su nombre');
         }
-        var password = (name === MAIN_BROWSER) ? MAIN_BROWSER : '';
         var enabledControls = ENABLED_CONTROLS_ALL_USERS;
-        var params = {'session': sessionName, 'name': name, 'password': password, 'controls': enabledControls, 'modelFile': modelFile, 'modelName': modelName};
+        var params = {'session': sessionName, 'name': name, 'password': '', 'controls': enabledControls, 'modelFile': modelFile, 'modelName': modelName};
         self.sendAction('connect', params);
     };
 
+    /**
+     * Establece la funcion que se ejecuta cada cierto tiempo, para determinar
+     * el estado de la simulacion.
+     * @method setCheckStatus
+     * @return
+     */
     var setCheckStatus = function () {
         if (self.isMaster) {
             setInterval(function () {
@@ -112,6 +114,11 @@ Simulation = function () {
         }
     };
 
+    /**
+     * Establece el mensaje del estatus actual de la simulacion.
+     * @method setCheckStatus
+     * @return
+     */
     var displayStatus = function () {
         var statusText;
         switch (self.status) {

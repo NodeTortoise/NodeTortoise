@@ -414,9 +414,7 @@ Simulation = function () {
      * @method end
      */
     this.end = function () {
-        if (_ENVIRONMENT !== ENVIRONMENT_DEVELOPMENT) {
-            $('#no-master-modal').modal('show');
-        }
+        $('#no-master-modal').modal('show');
         //location.reload();
         initNoMasterConnected();
         self.sessionEnded = true;

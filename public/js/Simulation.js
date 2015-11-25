@@ -1,11 +1,12 @@
-/* global setup, go, io, Helper, world, Ractive, ENVIRONMENT, procedures, session, AgentStreamController */
-
-var SERVER_ = 'localhost:3000';
-var ENABLED_CONTROLS_ALL_USERS = true;
-var ENVIRONMENT = 'TESTING'; // TESTING, PRODUCTION
+/* global setup, go, io, Helper, world, Ractive, procedures, session, AgentStreamController, 
+ * ENVIRONMENT, ENABLED_CONTROLS_ALL_USERS, DEFAULT_SERVER, MESSAGE_NO_MASTER_CONNECTED, ENVIRONMENT */
 
 /* TODO: remove, it's only for testing */
 var MAIN_BROWSER = 'FIREFOX';
+
+if (typeof SERVER_ === 'undefined'){
+    SERVER_ = DEFAULT_SERVER;
+}
 
 /**
  * Provee la logica de interaccion de las simulaciones con el servidor.
@@ -352,7 +353,7 @@ Simulation = function () {
      */
     this.end = function () {
         if (ENVIRONMENT === 'PRODUCTION') {
-            alert('No master connected');
+            $('#no-master-modal').modal('show');
         }
         //location.reload();
         initNoMasterConnected();
@@ -532,6 +533,9 @@ Simulation.formatUI = function () {
         $('.page-header-container h1').removeClass('page-header');
         $('.netlogo-model').css('width', '');
     });
+    //--> No master connected modal
+    console.log($('#no-master-modal p.no-master-connected-message').get(0));
+    $('#no-master-modal p.no-master-connected-message').text(MESSAGE_NO_MASTER_CONNECTED);
 };
 
 /**

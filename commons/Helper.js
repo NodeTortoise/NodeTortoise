@@ -68,7 +68,7 @@ Helper.spinner = function (elementSelector, options) {
             'position': this.options.position,
             'top': this.options.top,
             'left': this.options.left,
-            'z-index': 99999
+            'z-index': 99998
         }).addClass('ajax_overlay');
         // add an overiding class name to set new loader style
         if (this.options.classOveride) {

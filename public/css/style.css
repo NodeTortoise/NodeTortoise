@@ -120,3 +120,7 @@ pre {
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
+#no-master-modal {
+    z-index: 99999 !important;
+}

@@ -1,4 +1,4 @@
-/* global __dirname, module, ROOT_DIR, DEBUG_MODE, MASTER_PASSWORD, TEMP_PATH, LIBS_PATH */
+/* global __dirname, module, ROOT_DIR, DEBUG_MODE, MASTER_PASSWORD, TEMP_PATH, LIBS_PATH, PUBLIC_CONFIG_PATH */
 
 /**
  * Controlador principal de la aplicación en el lado del servidor. Se encarga de 
@@ -12,6 +12,20 @@
 App = function () {
 
     var app;
+
+    /**
+     * Constructor de la clase.
+     * @method __construct
+     * @private
+     */
+    var __construct = function () {
+        App.include('/server/constants');
+        App.include('/config/server/main');
+        App.include('/commons/Helper');
+        setupConfig();
+        setupRoutes();
+        app.init_ = init;
+    };
 
     /**
      * Inicializa el proceso de definición de los parámetros de configuración 
@@ -78,6 +92,7 @@ App = function () {
         var express = require('express');
         app.use(express.static(App.getRootPath('public')));
         app.use('/libs', express.static(App.getRootPath(LIBS_PATH)));
+        app.use('/config', express.static(App.getRootPath(PUBLIC_CONFIG_PATH)));
         //--> App routes
         var index = App.require('/routes/index');
         var model = App.require('/routes/model');
@@ -105,18 +120,6 @@ App = function () {
             res.status(err.status || 500);
             res.render('error', {message: err.message, error: {}});
         });
-    };
-
-    /**
-     * Constructor de la clase.
-     * @method __construct
-     * @private
-     */
-    var __construct = function () {
-        App.include('/commons/Helper');
-        setupConfig();
-        setupRoutes();
-        app.init_ = init;
     };
 
     /**

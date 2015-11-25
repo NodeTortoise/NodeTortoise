@@ -56,7 +56,7 @@ SessionController = function () {
             if (!sessions[sessionName].isMasterOnline || self.getSessionUsersQuantity(sessionName) === 0) {
                 delete sessions[sessionName];
                 diedSession = true;
-                App.debug('Died Session', sessionName, userName, 1);
+                App.debug('Died Session', sessionName, userName, 2);
             }
         }
         return diedSession;

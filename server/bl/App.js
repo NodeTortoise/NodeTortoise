@@ -98,10 +98,12 @@ App = function () {
         var model = App.require('/routes/model');
         var session = App.require('/routes/session');
         var info = App.require('/routes/info');
+        var simulation = App.require('/routes/simulation');
         app.use('/', index);
         app.use('/model', model);
         app.use('/session', session);
         app.use('/info', info);
+        app.use('/simulation', simulation);
         //--> Catch 404 and forward to error handler
         app.use(function (req, res, next) {
             var err = new Error('Not Found');

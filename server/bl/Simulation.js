@@ -72,8 +72,7 @@ Simulation.executeCommand = function (socket, token, params) {
 };
 
 /**
- * Envía un mensaje de <b>Establecer valor de variable global</b>, para que los 
- * clientes establezcan un nuevo valor de variable global, basado en los 
+ * Envía un mensaje de <b>Establecer valor de control</b> basado en los 
  * parámetros enviados.
  * @method setControl
  * @param {Socket} socket El web socket para la instancia actual
@@ -119,6 +118,17 @@ Simulation.updateSpeed = function (socket, token, params) {
  */
 Simulation.applyUpdate = function (socket, token, params) {
     Sockets.sendAction(socket, socket.session, 'applyUpdate', params);
+};
+
+/**
+ * Envía un mensaje de <b>establecer status</b> basado en los parámetros enviados.
+ * @method setStatus
+ * @param {Socket} socket El web socket para la instancia actual
+ * @param {String} token Token del usuario
+ * @param {Object} params Parámetros de la acción
+ */
+Simulation.setStatus = function (socket, token, params) {
+    Sockets.sendAction(socket, socket.session, 'setStatus', params);
 };
 
 /**

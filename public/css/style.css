@@ -124,3 +124,20 @@ pre {
 #no-master-modal {
     z-index: 99999 !important;
 }
+
+.simulation-status.panel {
+    width: 180px;
+    position: fixed;
+    top: 5px;
+    right: 15px;
+    z-index: 9999;
+    opacity: 0.9;
+    filter: alpha(opacity=90); /* For IE8 and earlier */
+}
+.simulation-status .panel-heading {
+    padding: 5px 0;
+    text-align: center;
+}
+.simulation-status .panel-body {
+    padding: 8px;
+}

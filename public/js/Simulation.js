@@ -1,11 +1,17 @@
-/* global setup, go, io, Helper, world, Ractive, procedures, session, AgentStreamController, 
- * ENVIRONMENT, ENABLED_CONTROLS_ALL_USERS, DEFAULT_SERVER, MESSAGE_NO_MASTER_CONNECTED, ENVIRONMENT */
+/* global setup, go, io, Helper, world, Ractive, procedures, session, AgentStreamController,
+ * _ENVIRONMENT, ENABLED_CONTROLS_ALL_USERS, DEFAULT_SERVER, MESSAGE_NO_MASTER_CONNECTED,
+ * _ENVIRONMENT, ENVIRONMENT_DEVELOPMENT, ENVIRONMENT_PRODUCTION, MESSAGE_STATUS_INITIALIZING, 
+ * MESSAGE_STATUS_READY, MESSAGE_STATUS_RUNNING, MESSAGE_STATUS_ENDED, MESSAGE_STATUS_READY */
 
 /* TODO: remove, it's only for testing */
 var MAIN_BROWSER = 'FIREFOX';
 
-if (typeof SERVER_ === 'undefined'){
-    SERVER_ = DEFAULT_SERVER;
+if (typeof _SERVER === 'undefined') {
+    _SERVER = DEFAULT_SERVER;
+}
+
+if (typeof _ENVIRONMENT === 'undefined') {
+    _ENVIRONMENT = ENVIRONMENT_PRODUCTION;
 }
 
 /**
@@ -17,12 +23,16 @@ if (typeof SERVER_ === 'undefined'){
 Simulation = function () {
 
     var self = this;
-    var spinner;
     var inputsSelector = '.netlogo-widget-container input:visible';
     var outputsSelector = '.netlogo-widget-container output:visible';
     var buttonsSelector = 'button.netlogo-widget.netlogo-button.netlogo-command, label.netlogo-widget.netlogo-button.netlogo-command, label.netlogo-widget.netlogo-button.netlogo-command input[type="checkbox"]';
     var speedInputSelector = '.netlogo-widget.netlogo-speed-slider input[type=range]';
     var goButtonCheckboxSelector = 'label.netlogo-widget.netlogo-button.netlogo-forever-button.netlogo-command input[type="checkbox"]';
+
+    var STATUS_INITIALIZING = 1;
+    var STATUS_READY = 2;
+    var STATUS_RUNNING = 3;
+    var STATUS_ENDED = 4;
 
     this.socket = null;
     this.firsTime = true;
@@ -31,9 +41,12 @@ Simulation = function () {
     this.token = null;
     this.isMaster = null;
     this.isSocketReady = false;
+    this.sessionEnded = false;
     this.enabledControls = false;
+    this.status = STATUS_INITIALIZING;
     this.commands = {};
 
+    var spinner, oldStatus;
     var sessionName, modelName, modelFile, modelControls, modelCommands, overwritedCommands;
 
     /**
@@ -41,17 +54,17 @@ Simulation = function () {
      * @method init
      */
     this.init = function () {
+        self.status = STATUS_INITIALIZING;
+        setInterval(displayStatus, 1000);
         initWidgets();
         overwriteControls();
         initNoMasterConnected();
-        //initControls();
         sessionName = Helper.getURLParameter('s');
         modelName = Helper.getURLParameter('n');
         modelFile = Helper.getLastURLPiece();
-        self.socket = io.connect(SERVER_);
+        self.socket = io.connect(_SERVER);
         initSockets();
-        var goButton = $(goButtonCheckboxSelector).parent();
-        /*goButton.click(function (event) {
+        /*$(goButtonCheckboxSelector).parent().click(function (event) {
          //event.preventDefault();
          event.run();
          console.log(goButton.hasClass('netlogo-active'));
@@ -70,12 +83,54 @@ Simulation = function () {
      * @return
      */
     var connect = function () {
-        //var name = (Helper.getBrowser()).toUpperCase();
-        var name = prompt('Digite su nombre');
-        var password = name === MAIN_BROWSER ? MAIN_BROWSER : '';
+        if (_ENVIRONMENT === ENVIRONMENT_DEVELOPMENT) {
+            var name = (Helper.getBrowser()).toUpperCase();
+        } else {
+            var name = prompt('Digite su nombre');
+        }
+        var password = (name === MAIN_BROWSER) ? MAIN_BROWSER : '';
         var enabledControls = ENABLED_CONTROLS_ALL_USERS;
         var params = {'session': sessionName, 'name': name, 'password': password, 'controls': enabledControls, 'modelFile': modelFile, 'modelName': modelName};
         self.sendAction('connect', params);
+    };
+
+    var setCheckStatus = function () {
+        if (self.isMaster) {
+            setInterval(function () {
+                var newStatus;
+                var oldStatus = self.status;
+                if ($(goButtonCheckboxSelector).is(':checked')) {
+                    newStatus = STATUS_RUNNING;
+                } else if (self.isSocketReady && !self.sessionEnded) {
+                    newStatus = STATUS_READY;
+                }
+                if(oldStatus !== newStatus){
+                    self.status = newStatus;
+                    self.sendAction('setStatus', {'status': self.status});
+                }
+            }, 1500);
+        }
+    };
+
+    var displayStatus = function () {
+        var statusText;
+        switch (self.status) {
+            case STATUS_INITIALIZING:
+                statusText = MESSAGE_STATUS_INITIALIZING;
+                break;
+            case STATUS_READY:
+                statusText = MESSAGE_STATUS_READY;
+                break;
+            case STATUS_RUNNING:
+                statusText = MESSAGE_STATUS_RUNNING;
+                break;
+            case STATUS_ENDED:
+                statusText = MESSAGE_STATUS_ENDED;
+                break;
+            default:
+                statusText = '';
+        }
+        $('.simulation-status-text').text(statusText);
     };
 
     /**
@@ -95,7 +150,6 @@ Simulation = function () {
      * la logica del codigo de Tortoise
      */
     this.applyUpdate = function (agentStreamController, modelUpdate) {
-        /* TODO-FUTUREWORK: optimize to send less data in modelUpdate */
         if (!self.isSocketReady) {
             return agentStreamController._applyUpdate(modelUpdate);
         } else if (self.isMaster) {
@@ -105,7 +159,7 @@ Simulation = function () {
              var ele = $(this);
              outputs.push({'name': ele.attr('data-name'), 'value': ele.val()});
              });*/
-            self.sendAction('applyUpdate', {'model': modelUpdate, 'outputs': outputs});
+            self.sendAction('applyUpdate', {'model': modelUpdate, 'outputs': outputs, 'status': self.status});
             return agentStreamController._applyUpdate(modelUpdate);
         } else {
             return true;
@@ -120,9 +174,11 @@ Simulation = function () {
      * @method applyUpdate_
      * @param {Object} modelUpdate El objeto que contiene las intrucciones de actualizacion
      * @param {Object} outputs Objeto que contiene las actualizaciones a ejecutar sobre los <i>outputs</i>
+     * @param {Integer} status El status de la simulacion
      */
-    this.applyUpdate_ = function (model, outputs) {
+    this.applyUpdate_ = function (model, outputs, status) {
         self.viewController._applyUpdate(model);
+        //self.status = status;
         /*for (var key in outputs) {
          //self.setControl(outputs[key].name, outputs[key].value);
          $('output[data-name="' + outputs[key].name + '"]').val(outputs[key].value);
@@ -165,10 +221,8 @@ Simulation = function () {
                 overwriteCommand(commandData);
                 modelCommands[commandData.source] = commandData;
             } else if (widgetData.varName) {
-                //console.log('widgetData.varName = ' + widgetData.varName);
                 modelControls.push(widgetData.varName);
             } else if (widgetData.source) {
-                //console.log('widgetData.source = ' + widgetData.source);
                 modelControls.push(widgetData.source);
             } else {
                 //console.log(widgetData);
@@ -345,6 +399,7 @@ Simulation = function () {
             enableInputs();
         }
         spinner.remove();
+        self.status = STATUS_READY;
     };
 
     /**
@@ -352,11 +407,13 @@ Simulation = function () {
      * @method end
      */
     this.end = function () {
-        if (ENVIRONMENT === 'PRODUCTION') {
+        if (_ENVIRONMENT !== ENVIRONMENT_DEVELOPMENT) {
             $('#no-master-modal').modal('show');
         }
         //location.reload();
         initNoMasterConnected();
+        self.sessionEnded = true;
+        self.status = STATUS_ENDED;
     };
 
     this.overwritedCommands = {
@@ -373,6 +430,9 @@ Simulation = function () {
                 self.start();
             }
             self.isSocketReady = true;
+            if (self.isMaster) {
+                setCheckStatus();
+            }
         },
         /**
          * Recibe del servidor la accion de actualizar usuarios
@@ -416,7 +476,15 @@ Simulation = function () {
          */
         'applyUpdate': function (params) {
             /* TODO-FUTUREWORK: optimize to receive less data in modelUpdate */
-            self.applyUpdate_(params.model, params.outputs);
+            self.applyUpdate_(params.model, params.outputs, params.status);
+        },
+        /**
+         * Recibe del servidor la accion de actualizar el status
+         * @method overwritedCommands.setStatus
+         * @param {Object} params Los parametros de la accion
+         */
+        'setStatus': function (params) {
+            self.status = params.status;
         },
         /**
          * Recibe del servidor la accion de iniciar sesion de simulacion
@@ -518,7 +586,7 @@ Simulation.getInstance = function () {
 Simulation.formatUI = function () {
     var uiResponse = $.ajax({
         type: 'GET',
-        url: '/ui',
+        url: '/simulation/ui',
         dataType: 'html',
         async: false
     }).responseText;
@@ -527,14 +595,13 @@ Simulation.formatUI = function () {
     var layoutContent = $(uiResponse).filter('#wrapper');
     $('.model-main-content').append(layoutContent);
     $('.model-main-content').replaceWith(layoutContent);
-    $('.main-content').html(modelContent);
+    $('.simulation-content').html(modelContent);
     $('#menu-users-model').show();
     $(function () {
         $('.page-header-container h1').removeClass('page-header');
         $('.netlogo-model').css('width', '');
     });
     //--> No master connected modal
-    console.log($('#no-master-modal p.no-master-connected-message').get(0));
     $('#no-master-modal p.no-master-connected-message').text(MESSAGE_NO_MASTER_CONNECTED);
 };
 

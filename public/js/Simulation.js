@@ -69,8 +69,8 @@ Simulation = function () {
      * @return
      */
     var connect = function () {
-        var name = (Helper.getBrowser()).toUpperCase();
-        //var name = prompt('Digite su nombre');
+        //var name = (Helper.getBrowser()).toUpperCase();
+        var name = prompt('Digite su nombre');
         var password = name === MAIN_BROWSER ? MAIN_BROWSER : '';
         var enabledControls = ENABLED_CONTROLS_ALL_USERS;
         var params = {'session': sessionName, 'name': name, 'password': password, 'controls': enabledControls, 'modelFile': modelFile, 'modelName': modelName};

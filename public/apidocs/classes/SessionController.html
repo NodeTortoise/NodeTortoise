@@ -15,7 +15,7 @@
         <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">NodeTortoise</h1>
 	<div class="nav"></div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Buscar clases/módulos..." data-obj='["classes/App", "classes/Controller", "classes/Controller.model", "classes/Controller.session", "classes/Entities", "classes/Entities.model", "classes/Helper", "classes/Model", "classes/Model_List", "classes/Session", "classes/Session_List", "classes/SessionController", "classes/Simulation", "classes/Sockets", "classes/Sockets.Actions", "classes/SQLite", "modules/Commons", "modules/Public", "modules/Server", "modules/Server-bl", "modules/Server-da", "modules/Server-libs"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Buscar clases/módulos..." data-obj='["classes/App", "classes/Controller", "classes/Controller.model", "classes/Controller.session", "classes/Entities", "classes/Entities.model", "classes/formatDate", "classes/Helper", "classes/Model", "classes/Model_List", "classes/Session", "classes/Session_List", "classes/SessionController", "classes/Simulation", "classes/Sockets", "classes/SQLite", "modules/Commons", "modules/Public", "modules/Server", "modules/Server-bl", "modules/Server-da", "modules/Server-libs"]'>
         </form>
     </div>
 </div>
@@ -42,6 +42,7 @@
 	                            <li><a href="../classes/Controller.session.html">Controller.session</a></li>
 	                            <li><a href="../classes/Entities.html">Entities</a></li>
 	                            <li><a href="../classes/Entities.model.html">Entities.model</a></li>
+	                            <li><a href="../classes/formatDate.html">formatDate</a></li>
 	                            <li><a href="../classes/Helper.html">Helper</a></li>
 	                            <li><a href="../classes/Model.html">Model</a></li>
 	                            <li><a href="../classes/Model_List.html">Model_List</a></li>
@@ -50,7 +51,6 @@
 	                            <li><a href="../classes/SessionController.html">SessionController</a></li>
 	                            <li><a href="../classes/Simulation.html">Simulation</a></li>
 	                            <li><a href="../classes/Sockets.html">Sockets</a></li>
-	                            <li><a href="../classes/Sockets.Actions.html">Sockets.Actions</a></li>
 	                            <li><a href="../classes/SQLite.html">SQLite</a></li>
 	                    </ul>
 	                </div>
@@ -167,6 +167,10 @@
                         
                                                     </li>
                                                     <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_checkSessionsActivity" data-tablink="checkSessionsActivity">checkSessionsActivity</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
                                                         <a href="#" data-tabid="#methods" data-anchor="#method_getInstance" data-tablink="getInstance">getInstance</a>
                         
                                                             <span class="flag static">static</span>
@@ -200,7 +204,7 @@
                         
                                                     </li>
                                                     <li class="index-item method">
-                                                        <a href="#" data-tabid="#methods" data-anchor="#method_setSessionModel" data-tablink="setSessionModel">setSessionModel</a>
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_updateActivityDate" data-tablink="updateActivityDate">updateActivityDate</a>
                         
                                                     </li>
                                             </ul>
@@ -229,7 +233,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/server_bl_SessionController.js.html#l122"><code>server\bl\SessionController.js:122</code></a>
+                                                    <a href="../files/server_bl_SessionController.js.html#l131"><code>server\bl\SessionController.js:131</code></a>
                                                     </p>
                                             
                                             
@@ -238,6 +242,37 @@
                                             
                                                 <div class="description">
                                                     <p>Constructor de la clase</p>
+                                            
+                                                </div>
+                                            
+                                            
+                                            
+                                            </div>
+                                            <div id="method_checkSessionsActivity" class="method item">
+                                                <h3 class="name"><code>checkSessionsActivity</code></h3>
+                                            
+                                                    <span class="paren">()</span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Definido en
+                                                    <a href="../files/server_bl_SessionController.js.html#l115"><code>server\bl\SessionController.js:115</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Revisa la actividad de las sesiones. Si alguna tiene más de cierta
+                                            cantidad de minutos sin actividad.</p>
                                             
                                                 </div>
                                             
@@ -263,7 +298,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/server_bl_SessionController.js.html#l135"><code>server\bl\SessionController.js:135</code></a>
+                                                    <a href="../files/server_bl_SessionController.js.html#l144"><code>server\bl\SessionController.js:144</code></a>
                                                     </p>
                                             
                                             
@@ -309,7 +344,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/server_bl_SessionController.js.html#l98"><code>server\bl\SessionController.js:98</code></a>
+                                                    <a href="../files/server_bl_SessionController.js.html#l84"><code>server\bl\SessionController.js:84</code></a>
                                                     </p>
                                             
                                             
@@ -344,7 +379,7 @@
                                             
                                                         <div class="returns-description">
                                                                     <span class="type"><a href="../classes/Session.html" class="crosslink">Session</a></span>:
-                                                                <p>La sessión</p>
+                                                                <p>La sesión</p>
                                             
                                                         </div>
                                                     </div>
@@ -368,7 +403,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/server_bl_SessionController.js.html#l89"><code>server\bl\SessionController.js:89</code></a>
+                                                    <a href="../files/server_bl_SessionController.js.html#l75"><code>server\bl\SessionController.js:75</code></a>
                                                     </p>
                                             
                                             
@@ -416,7 +451,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/server_bl_SessionController.js.html#l79"><code>server\bl\SessionController.js:79</code></a>
+                                                    <a href="../files/server_bl_SessionController.js.html#l65"><code>server\bl\SessionController.js:65</code></a>
                                                     </p>
                                             
                                             
@@ -481,7 +516,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/server_bl_SessionController.js.html#l108"><code>server\bl\SessionController.js:108</code></a>
+                                                    <a href="../files/server_bl_SessionController.js.html#l94"><code>server\bl\SessionController.js:94</code></a>
                                                     </p>
                                             
                                             
@@ -537,7 +572,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/server_bl_SessionController.js.html#l16"><code>server\bl\SessionController.js:16</code></a>
+                                                    <a href="../files/server_bl_SessionController.js.html#l15"><code>server\bl\SessionController.js:15</code></a>
                                                     </p>
                                             
                                             
@@ -588,7 +623,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/server_bl_SessionController.js.html#l25"><code>server\bl\SessionController.js:25</code></a>
+                                                    <a href="../files/server_bl_SessionController.js.html#l24"><code>server\bl\SessionController.js:24</code></a>
                                                     </p>
                                             
                                             
@@ -668,7 +703,7 @@
                                             
                                                         <div class="returns-description">
                                                                     <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
-                                                                <p>Un objecto JavaScript estandar con la información sobre la sesión.</p>
+                                                                <p>Objecto JavaScript estandar con información del usuario en la sesión.</p>
                                             
                                                         </div>
                                                     </div>
@@ -704,7 +739,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/server_bl_SessionController.js.html#l46"><code>server\bl\SessionController.js:46</code></a>
+                                                    <a href="../files/server_bl_SessionController.js.html#l44"><code>server\bl\SessionController.js:44</code></a>
                                                     </p>
                                             
                                             
@@ -766,22 +801,13 @@
                                                     </div>
                                             
                                             </div>
-                                            <div id="method_setSessionModel" class="method item">
-                                                <h3 class="name"><code>setSessionModel</code></h3>
+                                            <div id="method_updateActivityDate" class="method item">
+                                                <h3 class="name"><code>updateActivityDate</code></h3>
                                             
                                                     <div class="args">
                                                         <span class="paren">(</span><ul class="args-list inline commas">
                                                             <li class="arg">
                                                                     <code>sessionName</code>
-                                                            </li>
-                                                            <li class="arg">
-                                                                    <code>modelFile</code>
-                                                            </li>
-                                                            <li class="arg">
-                                                                    <code>modelName</code>
-                                                            </li>
-                                                            <li class="arg">
-                                                                    <code>masterName</code>
                                                             </li>
                                                         </ul><span class="paren">)</span>
                                                     </div>
@@ -796,7 +822,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/server_bl_SessionController.js.html#l67"><code>server\bl\SessionController.js:67</code></a>
+                                                    <a href="../files/server_bl_SessionController.js.html#l104"><code>server\bl\SessionController.js:104</code></a>
                                                     </p>
                                             
                                             
@@ -804,7 +830,7 @@
                                                 </div>
                                             
                                                 <div class="description">
-                                                    <p>Establece el modelo a ejecutar en una sesión de simulación</p>
+                                                    <p>Actualiza la fecha de ultima actividad.</p>
                                             
                                                 </div>
                                             
@@ -818,40 +844,7 @@
                                             
                                             
                                                                 <div class="param-description">
-                                                                    <p>El nombre de la sesion</p>
-                                            
-                                                                </div>
-                                            
-                                                            </li>
-                                                            <li class="param">
-                                                                    <code class="param-name">modelFile</code>
-                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                                            
-                                            
-                                                                <div class="param-description">
-                                                                    <p>El archivo del modelo</p>
-                                            
-                                                                </div>
-                                            
-                                                            </li>
-                                                            <li class="param">
-                                                                    <code class="param-name">modelName</code>
-                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                                            
-                                            
-                                                                <div class="param-description">
-                                                                    <p>El nombre del modelo</p>
-                                            
-                                                                </div>
-                                            
-                                                            </li>
-                                                            <li class="param">
-                                                                    <code class="param-name">masterName</code>
-                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                                            
-                                            
-                                                                <div class="param-description">
-                                                                    <p>El nombre del usuario maestro</p>
+                                                                    <p>El nombre de la sesión</p>
                                             
                                                                 </div>
                                             

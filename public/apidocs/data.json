@@ -10,7 +10,8 @@
             "name": "commons\\Helper.js",
             "modules": {},
             "classes": {
-                "Helper": 1
+                "Helper": 1,
+                "formatDate": 1
             },
             "fors": {},
             "namespaces": {}
@@ -45,9 +46,7 @@
         "public\\js\\Simulation.js": {
             "name": "public\\js\\Simulation.js",
             "modules": {},
-            "classes": {
-                "Simulation": 1
-            },
+            "classes": {},
             "fors": {},
             "namespaces": {}
         },
@@ -107,6 +106,15 @@
             "fors": {},
             "namespaces": {}
         },
+        "server\\bl\\Simulation.js": {
+            "name": "server\\bl\\Simulation.js",
+            "modules": {},
+            "classes": {
+                "Simulation": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "server\\bl\\_Server-bl.js": {
             "name": "server\\bl\\_Server-bl.js",
             "modules": {
@@ -122,15 +130,6 @@
             "classes": {
                 "Entities": 1,
                 "Entities.model": 1
-            },
-            "fors": {},
-            "namespaces": {}
-        },
-        "server\\da\\Sockets.Actions.js": {
-            "name": "server\\da\\Sockets.Actions.js",
-            "modules": {},
-            "classes": {
-                "Sockets.Actions": 1
             },
             "fors": {},
             "namespaces": {}
@@ -187,13 +186,14 @@
             "submodules": {},
             "elements": {},
             "classes": {
-                "Helper": 1
+                "Helper": 1,
+                "formatDate": 1
             },
             "fors": {},
             "namespaces": {},
             "tag": "main",
             "file": "commons\\Helper.js",
-            "line": 1,
+            "line": 319,
             "description": "Provee las clases utilizadas en el <i>front-end</i> y el <i>back-end</i> de \nla aplicación. Estas clases pueden ser procesadas tanto por el servidor, como \npor los navegadores web al cargar alguna página.",
             "itemtype": "main"
         },
@@ -203,14 +203,13 @@
             "elements": {},
             "classes": {
                 "Model_List": 1,
-                "Session_List": 1,
-                "Simulation": 1
+                "Session_List": 1
             },
             "fors": {},
             "namespaces": {},
             "tag": "main",
-            "file": "public\\js\\Simulation.js",
-            "line": 10,
+            "file": "public\\js\\Session_List.js",
+            "line": 1,
             "description": "Provee las clases utilizadas en el <i>front-end</i> de la aplicación. Estas \nclases son procesadas por los navegadores web al cargar alguna página.",
             "itemtype": "main"
         },
@@ -223,6 +222,7 @@
             },
             "elements": {},
             "classes": {
+                "Simulation": 1,
                 "App": 1,
                 "Controller": 1,
                 "Controller.model": 1,
@@ -232,7 +232,6 @@
                 "SessionController": 1,
                 "Entities": 1,
                 "Entities.model": 1,
-                "Sockets.Actions": 1,
                 "Sockets": 1,
                 "SQLite": 1
             },
@@ -249,6 +248,7 @@
             "submodules": {},
             "elements": {},
             "classes": {
+                "Simulation": 1,
                 "App": 1,
                 "Controller": 1,
                 "Controller.model": 1,
@@ -275,7 +275,6 @@
             "classes": {
                 "Entities": 1,
                 "Entities.model": 1,
-                "Sockets.Actions": 1,
                 "Sockets": 1
             },
             "fors": {},
@@ -322,6 +321,20 @@
             "line": 1,
             "description": "Funciones utilitarias."
         },
+        "formatDate": {
+            "name": "formatDate",
+            "shortname": "formatDate",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Commons",
+            "namespace": "",
+            "file": "commons\\Helper.js",
+            "line": 319,
+            "description": "Da formato a una fecha."
+        },
         "Model_List": {
             "name": "Model_List",
             "shortname": "Model_List",
@@ -360,12 +373,13 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "Public",
+            "module": "Server",
             "namespace": "",
-            "file": "public\\js\\Simulation.js",
-            "line": 10,
-            "description": "Provee la lógica de interacción de las simulaciones con el servidor.",
-            "is_constructor": 1
+            "file": "server\\bl\\Simulation.js",
+            "line": 5,
+            "description": "Maneja las acciones a ejecutar entre las simulaciones.",
+            "is_constructor": 1,
+            "submodule": "Server-bl"
         },
         "App": {
             "name": "App",
@@ -512,21 +526,6 @@
             "file": "server\\da\\Entities.js",
             "line": 18,
             "description": "Maneja la relación de la entidad <i>model</i> con la base de datos."
-        },
-        "Sockets.Actions": {
-            "name": "Sockets.Actions",
-            "shortname": "Sockets.Actions",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "Server",
-            "namespace": "",
-            "file": "server\\da\\Sockets.Actions.js",
-            "line": 6,
-            "description": "Maneja las acciones a ejecutar entre las simulacione, cuya comunicación es \nvía web sockets.",
-            "submodule": "Server-da"
         },
         "Sockets": {
             "name": "Sockets",
@@ -704,7 +703,7 @@
         {
             "file": "commons\\Helper.js",
             "line": 164,
-            "description": "Busca un fragmento en una cadena de caracteres y reemplaza todas las \ncoincidencias.",
+            "description": "Busca un fragmento en una cadena de caracteres y reemplaza todas las\ncoincidencias.",
             "itemtype": "method",
             "name": "replaceAll",
             "static": 1,
@@ -748,7 +747,7 @@
         {
             "file": "commons\\Helper.js",
             "line": 187,
-            "description": "Formate un nombre de archivo, eliminando los caracteres especiales, \nconvirtiéndolo a minúsculas y remplazando los espaciones por guiones bajos.\nconvirtiéndole.",
+            "description": "Formate un nombre de archivo, eliminando los caracteres especiales,\nconvirtiéndolo a minúsculas y remplazando los espaciones por guiones bajos.\nconvirtiéndole.",
             "itemtype": "method",
             "name": "removeSpecialChars",
             "static": 1,
@@ -838,7 +837,7 @@
                 },
                 {
                     "name": "String",
-                    "description": "string Cadena de caracteres con los caracteres a reemplazar. \nPor defecto se reemplazan los espacios.",
+                    "description": "string Cadena de caracteres con los caracteres a reemplazar.\nPor defecto se reemplazan los espacios.",
                     "optional": true
                 }
             ],
@@ -860,7 +859,7 @@
                 },
                 {
                     "name": "String",
-                    "description": "string Cadena de caracteres con los caracteres a reemplazar. \nPor defecto se reemplazan los espacios.",
+                    "description": "string Cadena de caracteres con los caracteres a reemplazar.\nPor defecto se reemplazan los espacios.",
                     "optional": true
                 }
             ],
@@ -942,7 +941,7 @@
         },
         {
             "file": "public\\js\\Session_List.js",
-            "line": 9,
+            "line": 12,
             "description": "Ejecuta las acciones de configuración necesarias",
             "itemtype": "method",
             "name": "init",
@@ -951,7 +950,16 @@
         },
         {
             "file": "public\\js\\Session_List.js",
-            "line": 45,
+            "line": 49,
+            "description": "Recarga las tablas de lista de sesiones y lista de modelos",
+            "itemtype": "method",
+            "name": "reloadSessionsData",
+            "class": "Session_List",
+            "module": "Public"
+        },
+        {
+            "file": "public\\js\\Session_List.js",
+            "line": 78,
             "description": "Inicializa la tabla que contiene la lista de sesiones",
             "itemtype": "method",
             "name": "initModelsTable",
@@ -960,7 +968,7 @@
         },
         {
             "file": "public\\js\\Session_List.js",
-            "line": 66,
+            "line": 105,
             "description": "Crea e inicializa el objeto Session_List",
             "itemtype": "method",
             "name": "init",
@@ -969,7 +977,7 @@
         },
         {
             "file": "public\\js\\Simulation.js",
-            "line": 37,
+            "line": 38,
             "description": "Inicializa la clase, realizando las configuraciones necesarias.",
             "itemtype": "method",
             "name": "init",
@@ -978,8 +986,8 @@
         },
         {
             "file": "public\\js\\Simulation.js",
-            "line": 57,
-            "description": "Realiza la conexión del cliente con el servidor por medio de <i>web sockets</i>.",
+            "line": 66,
+            "description": "Realiza la conexion del cliente con el servidor por medio de <i>web sockets</i>.",
             "itemtype": "method",
             "name": "connect",
             "return": {
@@ -990,8 +998,8 @@
         },
         {
             "file": "public\\js\\Simulation.js",
-            "line": 74,
-            "description": "Este método sobre-escribe el método <b>AgentStreamController.prototype.applyUpdate</b>\ndel código original de Tortoise. Se encarga de controlar la actualización\nde la simulación (a nivel gráfico) y de los valores de los <i>outputs</i>.\nEn el caso del cliente maestro, se envía un mensaje al servidor para que \nlos clientes realicen la actualización y finalmente se ejecuta el código\noriginal de actualización. En el caso los clientes que no son maestros, \nse ignora cualquier proceso. En caso de que aún no se hara realizado \nla conexión con el <i>socket</i>, se ejecuta el código original de \nactualización, en ambos casos.",
+            "line": 80,
+            "description": "Este metodo sobre-escribe el metodo <b>AgentStreamController.prototype.applyUpdate</b>\ndel codigo original de Tortoise. Se encarga de controlar la actualizacion\nde la simulacion (a nivel grafico) y de los valores de los <i>outputs</i>.\nEn el caso del cliente maestro, se envia un mensaje al servidor para que\nlos clientes realicen la actualizacion y finalmente se ejecuta el codigo\noriginal de actualizacion. En el caso los clientes que no son maestros,\nse ignora cualquier proceso. En caso de que aun no se hara realizado\nla conexion con el <i>socket</i>, se ejecuta el codigo original de\nactualizacion, en ambos casos.",
             "itemtype": "method",
             "name": "applyUpdate",
             "params": [
@@ -1002,12 +1010,12 @@
                 },
                 {
                     "name": "modelUpdate",
-                    "description": "El objeto que contiene las intrucciones de actualización",
+                    "description": "El objeto que contiene las intrucciones de actualizacion",
                     "type": "Object"
                 }
             ],
             "return": {
-                "description": "El resultado del proceso de actualiación. Este resultado proviene de\nla lógica del código de Tortoise",
+                "description": "El resultado del proceso de actualiacion. Este resultado proviene de\nla logica del codigo de Tortoise",
                 "type": "Object"
             },
             "class": "Simulation",
@@ -1015,14 +1023,14 @@
         },
         {
             "file": "public\\js\\Simulation.js",
-            "line": 108,
-            "description": "Código ejecutado por los clientes no maestros al recibir un mensaje de \nactualización del modelo. Ejecuta las actualizaciones del modelo, haciendo \nla llamada al código de actualización original de <b>Tortoise</b> y \nllevando a cabo la actualización de los <i>outputs</i>.",
+            "line": 114,
+            "description": "Codigo ejecutado por los clientes no maestros al recibir un mensaje de\nactualizacion del modelo. Ejecuta las actualizaciones del modelo, haciendo\nla llamada al codigo de actualizacion original de <b>Tortoise</b> y\nllevando a cabo la actualizacion de los <i>outputs</i>.",
             "itemtype": "method",
             "name": "applyUpdate_",
             "params": [
                 {
                     "name": "modelUpdate",
-                    "description": "El objeto que contiene las intrucciones de actualización",
+                    "description": "El objeto que contiene las intrucciones de actualizacion",
                     "type": "Object"
                 },
                 {
@@ -1036,8 +1044,8 @@
         },
         {
             "file": "public\\js\\Simulation.js",
-            "line": 125,
-            "description": "Establece el valor de la velocidad de la simulación.",
+            "line": 131,
+            "description": "Establece el valor de la velocidad de la simulacion.",
             "itemtype": "method",
             "name": "updateSpeed_",
             "params": [
@@ -1052,7 +1060,7 @@
         },
         {
             "file": "public\\js\\Simulation.js",
-            "line": 134,
+            "line": 140,
             "description": "Dtermina si un widget es de tipo comando.",
             "itemtype": "method",
             "name": "isCommandWidget",
@@ -1072,17 +1080,8 @@
         },
         {
             "file": "public\\js\\Simulation.js",
-            "line": 144,
-            "description": "Ejecuta la acción de sobre-escribir las funciones originales de Tortoise, \nnecesarias para la ejecución de la lógica personalizada.",
-            "itemtype": "method",
-            "name": "doOverwriteFunctions",
-            "class": "Simulation",
-            "module": "Public"
-        },
-        {
-            "file": "public\\js\\Simulation.js",
-            "line": 172,
-            "description": "Inicializa los widgets del modelo, para:\n1. Obtener los widget de tipo comando para sobre-escribir su funcionalidad\n2. Obtener y guardar los widget de tipo control para posteriormente \nsobre-escribir su funcionalidad.",
+            "line": 150,
+            "description": "Inicializa los widgets del modelo, para:\n1. Obtener los widget de tipo comando para sobre-escribir su funcionalidad\n2. Obtener y guardar los widget de tipo control para posteriormente\nsobre-escribir su funcionalidad.",
             "itemtype": "method",
             "name": "initWidgets",
             "class": "Simulation",
@@ -1090,8 +1089,8 @@
         },
         {
             "file": "public\\js\\Simulation.js",
-            "line": 198,
-            "description": "Extrae de un <i>widget</i> de tipo comando la información necesaria para\nsu posterior procesamiento.",
+            "line": 178,
+            "description": "Extrae de un <i>widget</i> de tipo comando la informacion necesaria para\nsu posterior procesamiento.",
             "itemtype": "method",
             "name": "parseCommandWidget",
             "params": [
@@ -1110,10 +1109,10 @@
         },
         {
             "file": "public\\js\\Simulation.js",
-            "line": 220,
+            "line": 200,
             "description": "Sobre-escribe la funcionalidad de un comando",
             "itemtype": "method",
-            "name": "doOverwriteCommand",
+            "name": "overwriteCommand",
             "params": [
                 {
                     "name": "commandData",
@@ -1126,16 +1125,89 @@
         },
         {
             "file": "public\\js\\Simulation.js",
-            "line": 241,
-            "description": "Deshabilita los controles",
+            "line": 221,
+            "description": "Agrega funcionalidad a los controles de la simulacion.",
             "itemtype": "method",
-            "name": "disableControls",
+            "name": "overwriteControls",
             "class": "Simulation",
             "module": "Public"
         },
         {
             "file": "public\\js\\Simulation.js",
-            "line": 250,
+            "line": 246,
+            "description": "Envia al servidor al valor de un control.",
+            "itemtype": "method",
+            "name": "sendInputValue",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "El nombre del control",
+                    "type": "String"
+                }
+            ],
+            "class": "Simulation",
+            "module": "Public"
+        },
+        {
+            "file": "public\\js\\Simulation.js",
+            "line": 258,
+            "description": "Establece el valor de un control.",
+            "itemtype": "method",
+            "name": "sendInputValue",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "El nombre del control",
+                    "type": "String"
+                },
+                {
+                    "name": "name",
+                    "description": "El valor del control",
+                    "type": "String"
+                }
+            ],
+            "class": "Simulation",
+            "module": "Public"
+        },
+        {
+            "file": "public\\js\\Simulation.js",
+            "line": 280,
+            "description": "Deshabilita los botones",
+            "itemtype": "method",
+            "name": "disableButtons",
+            "class": "Simulation",
+            "module": "Public"
+        },
+        {
+            "file": "public\\js\\Simulation.js",
+            "line": 288,
+            "description": "Habilita los botones",
+            "itemtype": "method",
+            "name": "enableButtons",
+            "class": "Simulation",
+            "module": "Public"
+        },
+        {
+            "file": "public\\js\\Simulation.js",
+            "line": 296,
+            "description": "Deshabilita los controles de entrada",
+            "itemtype": "method",
+            "name": "disableInputs",
+            "class": "Simulation",
+            "module": "Public"
+        },
+        {
+            "file": "public\\js\\Simulation.js",
+            "line": 304,
+            "description": "Habilita los controles de entrada",
+            "itemtype": "method",
+            "name": "enableInputs",
+            "class": "Simulation",
+            "module": "Public"
+        },
+        {
+            "file": "public\\js\\Simulation.js",
+            "line": 312,
             "description": "Inicializa",
             "itemtype": "method",
             "name": "initNoMasterConnected",
@@ -1144,19 +1216,19 @@
         },
         {
             "file": "public\\js\\Simulation.js",
-            "line": 259,
-            "description": "Envía un mensaje de ejecutar acción al servidor por medio de web sockets, \npara que sea enviada a los demás clientes en la sesión.",
+            "line": 321,
+            "description": "Envia un mensaje de ejecutar accion al servidor por medio de web sockets,\npara que sea enviada a los demas clientes en la sesion.",
             "itemtype": "method",
             "name": "sendAction",
             "params": [
                 {
                     "name": "action",
-                    "description": "La acción a ejecutar",
+                    "description": "La accion a ejecutar",
                     "type": "String"
                 },
                 {
                     "name": "params",
-                    "description": "Los parámetros de la acción",
+                    "description": "Los parametros de la accion",
                     "type": "Object"
                 }
             ],
@@ -1165,8 +1237,8 @@
         },
         {
             "file": "public\\js\\Simulation.js",
-            "line": 273,
-            "description": "Ejecuta la acción de inicialización de la sesión se simulación",
+            "line": 335,
+            "description": "Ejecuta la accion de inicializacion de la sesion se simulacion",
             "itemtype": "method",
             "name": "start",
             "class": "Simulation",
@@ -1174,8 +1246,8 @@
         },
         {
             "file": "public\\js\\Simulation.js",
-            "line": 287,
-            "description": "Ejecuta la acción de finalización de la sesión se simulación",
+            "line": 349,
+            "description": "Ejecuta la accion de finalizacion de la sesion se simulacion",
             "itemtype": "method",
             "name": "end",
             "class": "Simulation",
@@ -1183,14 +1255,14 @@
         },
         {
             "file": "public\\js\\Simulation.js",
-            "line": 300,
+            "line": 362,
             "description": "Recibe del servidor la respuesta al conectarse a los web sockets",
             "itemtype": "method",
             "name": "overwritedCommands.connect_Response",
             "params": [
                 {
                     "name": "params",
-                    "description": "Los parámetros recibidos",
+                    "description": "Los parametros recibidos",
                     "type": "Object"
                 }
             ],
@@ -1199,14 +1271,14 @@
         },
         {
             "file": "public\\js\\Simulation.js",
-            "line": 314,
-            "description": "Recibe del servidor la acción de actualizar usuarios",
+            "line": 376,
+            "description": "Recibe del servidor la accion de actualizar usuarios",
             "itemtype": "method",
             "name": "overwritedCommands.updateUsers",
             "params": [
                 {
                     "name": "params",
-                    "description": "Los parámetros de la acción",
+                    "description": "Los parametros de la accion",
                     "type": "Object"
                 }
             ],
@@ -1215,14 +1287,14 @@
         },
         {
             "file": "public\\js\\Simulation.js",
-            "line": 322,
-            "description": "Recibe del servidor la acción de ejecutar comando",
+            "line": 384,
+            "description": "Recibe del servidor la accion de ejecutar comando",
             "itemtype": "method",
             "name": "overwritedCommands.executeCommand",
             "params": [
                 {
                     "name": "params",
-                    "description": "Los parámetros de la acción",
+                    "description": "Los parametros de la accion",
                     "type": "Object"
                 }
             ],
@@ -1231,14 +1303,14 @@
         },
         {
             "file": "public\\js\\Simulation.js",
-            "line": 333,
-            "description": "Recibe del servidor la acción de definir valor de variable global de \nTortoise",
+            "line": 395,
+            "description": "Recibe del servidor la accion de establecer el valor de un control",
             "itemtype": "method",
-            "name": "overwritedCommands.setGlobal",
+            "name": "overwritedCommands.setControl",
             "params": [
                 {
                     "name": "params",
-                    "description": "Los parámetros de la acción",
+                    "description": "Los parametros de la accion",
                     "type": "Object"
                 }
             ],
@@ -1247,14 +1319,14 @@
         },
         {
             "file": "public\\js\\Simulation.js",
-            "line": 345,
-            "description": "Recibe del servidor la acción de actualizar velocidad de la simulación",
+            "line": 403,
+            "description": "Recibe del servidor la accion de actualizar velocidad de la simulacion",
             "itemtype": "method",
             "name": "overwritedCommands.updateSpeed",
             "params": [
                 {
                     "name": "params",
-                    "description": "Los parámetros de la acción",
+                    "description": "Los parametros de la accion",
                     "type": "Object"
                 }
             ],
@@ -1263,14 +1335,14 @@
         },
         {
             "file": "public\\js\\Simulation.js",
-            "line": 353,
-            "description": "Recibe del servidor la acción de aplicar actualización de la simulación",
+            "line": 411,
+            "description": "Recibe del servidor la accion de aplicar actualizacion de la simulacion",
             "itemtype": "method",
             "name": "overwritedCommands.applyUpdate",
             "params": [
                 {
                     "name": "params",
-                    "description": "Los parámetros de la acción",
+                    "description": "Los parametros de la accion",
                     "type": "Object"
                 }
             ],
@@ -1279,14 +1351,14 @@
         },
         {
             "file": "public\\js\\Simulation.js",
-            "line": 362,
-            "description": "Recibe del servidor la acción de iniciar sesión de simulación",
+            "line": 420,
+            "description": "Recibe del servidor la accion de iniciar sesion de simulacion",
             "itemtype": "method",
             "name": "overwritedCommands.start",
             "params": [
                 {
                     "name": "enabledControls",
-                    "description": "Indica si los controles están habilitados o no",
+                    "description": "Indica si los controles estan habilitados o no",
                     "type": "Boolean"
                 }
             ],
@@ -1295,8 +1367,8 @@
         },
         {
             "file": "public\\js\\Simulation.js",
-            "line": 371,
-            "description": "Recibe del servidor la acción de finalizar sesión de simulación",
+            "line": 429,
+            "description": "Recibe del servidor la accion de finalizar sesion de simulacion",
             "itemtype": "method",
             "name": "overwritedCommands.end",
             "class": "Simulation",
@@ -1304,14 +1376,14 @@
         },
         {
             "file": "public\\js\\Simulation.js",
-            "line": 378,
-            "description": "Recibe del servidor la acción de obtener mensaje",
+            "line": 436,
+            "description": "Recibe del servidor la accion de obtener mensaje",
             "itemtype": "method",
             "name": "overwritedCommands.getMessage",
             "params": [
                 {
                     "name": "params",
-                    "description": "Los parámetros de la acción",
+                    "description": "Los parametros de la accion",
                     "type": "Object"
                 }
             ],
@@ -1320,8 +1392,8 @@
         },
         {
             "file": "public\\js\\Simulation.js",
-            "line": 388,
-            "description": "Inicializa las acciones que se pueden recibir del servidor por medio de \nweb sockets",
+            "line": 446,
+            "description": "Inicializa las acciones que se pueden recibir del servidor por medio de\nweb sockets",
             "itemtype": "method",
             "name": "initSockets",
             "class": "Simulation",
@@ -1329,7 +1401,7 @@
         },
         {
             "file": "public\\js\\Simulation.js",
-            "line": 409,
+            "line": 467,
             "description": "Crea un objeto Simulation",
             "itemtype": "method",
             "name": "create",
@@ -1341,8 +1413,8 @@
         },
         {
             "file": "public\\js\\Simulation.js",
-            "line": 421,
-            "description": "Sobre-escribe algunos de los métodos de Tortoise, necesarios antes de que \nse inicialice Tortoise",
+            "line": 479,
+            "description": "Sobre-escribe algunos de los metodos de Tortoise, necesarios antes de que\nse inicialice Tortoise",
             "itemtype": "method",
             "name": "setupObject",
             "params": [
@@ -1357,8 +1429,8 @@
         },
         {
             "file": "public\\js\\Simulation.js",
-            "line": 440,
-            "description": "Basado en el patrón <i>Singleton</i>, retorna una instancia del objeto Simulation",
+            "line": 498,
+            "description": "Basado en el patron <i>Singleton</i>, retorna una instancia del objeto Simulation",
             "itemtype": "method",
             "name": "getInstance",
             "static": 1,
@@ -1371,8 +1443,8 @@
         },
         {
             "file": "public\\js\\Simulation.js",
-            "line": 453,
-            "description": "Formatea la interfaz de gráfica en la página de simulación, para que cuente\ncon el menú y las demás opciones de la interfaz gráfica del resto de la \naplicación.",
+            "line": 511,
+            "description": "Formatea la interfaz de grafica en la pagina de simulacion, para que cuente\ncon el menu y las demas opciones de la interfaz grafica del resto de la\naplicacion.",
             "itemtype": "method",
             "name": "formatUI",
             "class": "Simulation",
@@ -1380,8 +1452,8 @@
         },
         {
             "file": "public\\js\\Simulation.js",
-            "line": 479,
-            "description": "Formatea la sección de Usuarios de la sesión en interfaz de gráfica.",
+            "line": 537,
+            "description": "Formatea la seccion de Usuarios de la sesion en interfaz de grafica.",
             "itemtype": "method",
             "name": "users",
             "params": [
@@ -2011,7 +2083,7 @@
         },
         {
             "file": "server\\bl\\Controller.js",
-            "line": 230,
+            "line": 235,
             "description": "Función para obtener la URL a un modelo.",
             "itemtype": "event",
             "name": "list.getModelURL",
@@ -2042,7 +2114,33 @@
         },
         {
             "file": "server\\bl\\Controller.js",
-            "line": 245,
+            "line": 247,
+            "description": "Función para obtener la URL a una sesión.",
+            "itemtype": "event",
+            "name": "list.getSessionURL",
+            "params": [
+                {
+                    "name": "sessionURL",
+                    "description": "El URL de la sesión",
+                    "type": "String"
+                },
+                {
+                    "name": "sessionName",
+                    "description": "El nombre de la sesión",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "La URL de la sesión correctamente formateada",
+                "type": "String"
+            },
+            "class": "Controller.session",
+            "module": "Server",
+            "submodule": "Server-bl"
+        },
+        {
+            "file": "server\\bl\\Controller.js",
+            "line": 261,
             "description": "Función que ejecuta después si hay un error al obtener la lista de modelos.",
             "itemtype": "event",
             "name": "list.onError",
@@ -2346,17 +2444,34 @@
         },
         {
             "file": "server\\bl\\Session.js",
-            "line": 20,
+            "line": 22,
             "description": "Realiza el proceso de inicialización de variables necesarias por el objeto.",
             "itemtype": "method",
             "name": "init",
+            "params": [
+                {
+                    "name": "modelFile",
+                    "description": "El archivo del modelo",
+                    "type": "String"
+                },
+                {
+                    "name": "modelName",
+                    "description": "El nombre del modelo",
+                    "type": "String"
+                },
+                {
+                    "name": "masterName",
+                    "description": "El nombre del usuario maestro",
+                    "type": "String"
+                }
+            ],
             "class": "Session",
             "module": "Server",
             "submodule": "Server-bl"
         },
         {
             "file": "server\\bl\\Session.js",
-            "line": 28,
+            "line": 37,
             "description": "Agrega un usuario a la sesión.",
             "itemtype": "method",
             "name": "addUser",
@@ -2387,7 +2502,7 @@
         },
         {
             "file": "server\\bl\\Session.js",
-            "line": 59,
+            "line": 68,
             "description": "Elimina un usuario de una sesión de simulación.",
             "itemtype": "method",
             "name": "removeUser",
@@ -2409,7 +2524,7 @@
         },
         {
             "file": "server\\bl\\Session.js",
-            "line": 76,
+            "line": 85,
             "description": "Retorna el token del usuario maestro.",
             "itemtype": "method",
             "name": "getMasterToken",
@@ -2422,8 +2537,46 @@
             "submodule": "Server-bl"
         },
         {
+            "file": "server\\bl\\Session.js",
+            "line": 94,
+            "description": "Actualiza la fecha de ultima actividad.",
+            "itemtype": "method",
+            "name": "updateLastActivityDate",
+            "class": "Session",
+            "module": "Server",
+            "submodule": "Server-bl"
+        },
+        {
+            "file": "server\\bl\\Session.js",
+            "line": 102,
+            "description": "Retorna la información de la sesión.",
+            "itemtype": "method",
+            "name": "getSessionInfo",
+            "return": {
+                "description": "Objeto estándar de NodeJS que contiene la información \nde la sesión",
+                "type": "Object"
+            },
+            "class": "Session",
+            "module": "Server",
+            "submodule": "Server-bl"
+        },
+        {
+            "file": "server\\bl\\Session.js",
+            "line": 112,
+            "description": "Retorna la cantidad de usuarios en una sesión.",
+            "itemtype": "method",
+            "name": "getUsersQuantity",
+            "return": {
+                "description": "La cantidad de usuarios en la sesión",
+                "type": "Integer"
+            },
+            "class": "Session",
+            "module": "Server",
+            "submodule": "Server-bl"
+        },
+        {
             "file": "server\\bl\\SessionController.js",
-            "line": 16,
+            "line": 15,
             "description": "Realiza el proceso de inicialización de variables necesarias por el objeto.",
             "itemtype": "method",
             "name": "init",
@@ -2433,7 +2586,7 @@
         },
         {
             "file": "server\\bl\\SessionController.js",
-            "line": 25,
+            "line": 24,
             "description": "Añade un usuario a una sesión de simulación. Si la sessión no existe, crea una nueva.",
             "itemtype": "method",
             "name": "joinSession",
@@ -2466,7 +2619,7 @@
                 }
             ],
             "return": {
-                "description": "Un objecto JavaScript estandar con la información sobre la sesión.",
+                "description": "Objecto JavaScript estandar con información del usuario en la sesión.",
                 "type": "Object"
             },
             "class": "SessionController",
@@ -2475,7 +2628,7 @@
         },
         {
             "file": "server\\bl\\SessionController.js",
-            "line": 46,
+            "line": 44,
             "description": "Elimina un usuario de una sesión de simulación.",
             "itemtype": "method",
             "name": "leaveSession",
@@ -2505,39 +2658,7 @@
         },
         {
             "file": "server\\bl\\SessionController.js",
-            "line": 67,
-            "description": "Establece el modelo a ejecutar en una sesión de simulación",
-            "itemtype": "method",
-            "name": "setSessionModel",
-            "params": [
-                {
-                    "name": "sessionName",
-                    "description": "El nombre de la sesion",
-                    "type": "String"
-                },
-                {
-                    "name": "modelFile",
-                    "description": "El archivo del modelo",
-                    "type": "String"
-                },
-                {
-                    "name": "modelName",
-                    "description": "El nombre del modelo",
-                    "type": "String"
-                },
-                {
-                    "name": "masterName",
-                    "description": "El nombre del usuario maestro",
-                    "type": "String"
-                }
-            ],
-            "class": "SessionController",
-            "module": "Server",
-            "submodule": "Server-bl"
-        },
-        {
-            "file": "server\\bl\\SessionController.js",
-            "line": 79,
+            "line": 65,
             "description": "Devuelve el modelo que se está utilizando en una sesión.",
             "itemtype": "method",
             "name": "getSessionModel",
@@ -2558,7 +2679,7 @@
         },
         {
             "file": "server\\bl\\SessionController.js",
-            "line": 89,
+            "line": 75,
             "description": "Retorna la lista de las sesiones de simulación activas.",
             "itemtype": "method",
             "name": "getSessionList",
@@ -2572,7 +2693,7 @@
         },
         {
             "file": "server\\bl\\SessionController.js",
-            "line": 98,
+            "line": 84,
             "description": "Retorna una sesión, basado en el nombre recibido como parámetro.",
             "itemtype": "method",
             "name": "getSession",
@@ -2584,7 +2705,7 @@
                 }
             ],
             "return": {
-                "description": "La sessión",
+                "description": "La sesión",
                 "type": "Session"
             },
             "class": "SessionController",
@@ -2593,7 +2714,7 @@
         },
         {
             "file": "server\\bl\\SessionController.js",
-            "line": 108,
+            "line": 94,
             "description": "Retorna la cantidad de usuarios en una sesión, basado en el nombre recibido como parámetro.",
             "itemtype": "method",
             "name": "getSessionUsersQuantity",
@@ -2614,7 +2735,34 @@
         },
         {
             "file": "server\\bl\\SessionController.js",
-            "line": 122,
+            "line": 104,
+            "description": "Actualiza la fecha de ultima actividad.",
+            "itemtype": "method",
+            "name": "updateActivityDate",
+            "params": [
+                {
+                    "name": "sessionName",
+                    "description": "El nombre de la sesión",
+                    "type": "String"
+                }
+            ],
+            "class": "SessionController",
+            "module": "Server",
+            "submodule": "Server-bl"
+        },
+        {
+            "file": "server\\bl\\SessionController.js",
+            "line": 115,
+            "description": "Revisa la actividad de las sesiones. Si alguna tiene más de cierta \ncantidad de minutos sin actividad.",
+            "itemtype": "method",
+            "name": "checkSessionsActivity",
+            "class": "SessionController",
+            "module": "Server",
+            "submodule": "Server-bl"
+        },
+        {
+            "file": "server\\bl\\SessionController.js",
+            "line": 131,
             "description": "Constructor de la clase",
             "access": "private",
             "tagname": "",
@@ -2626,7 +2774,7 @@
         },
         {
             "file": "server\\bl\\SessionController.js",
-            "line": 135,
+            "line": 144,
             "description": "Basado en el patrón <i>Singleton</i>, retorna una instancia del objeto SessionController",
             "itemtype": "method",
             "name": "getInstance",
@@ -2636,6 +2784,191 @@
                 "type": "SessionController"
             },
             "class": "SessionController",
+            "module": "Server",
+            "submodule": "Server-bl"
+        },
+        {
+            "file": "server\\bl\\Simulation.js",
+            "line": 14,
+            "description": "Conecta una nueva instancia a una sesión de simulacón",
+            "itemtype": "method",
+            "name": "connect",
+            "static": 1,
+            "params": [
+                {
+                    "name": "socket",
+                    "description": "El web socket para la instancia actual",
+                    "type": "Socket"
+                },
+                {
+                    "name": "token",
+                    "description": "Token del usuario",
+                    "type": "String"
+                },
+                {
+                    "name": "params",
+                    "description": "Parámetros de la acción",
+                    "type": "Object"
+                }
+            ],
+            "class": "Simulation",
+            "module": "Server",
+            "submodule": "Server-bl"
+        },
+        {
+            "file": "server\\bl\\Simulation.js",
+            "line": 40,
+            "description": "Desconecta al dueño dle socket actual de una sesión.",
+            "itemtype": "method",
+            "name": "disconnect",
+            "params": [
+                {
+                    "name": "socket",
+                    "description": "El web socket para la instancia actual",
+                    "type": "Socket"
+                },
+                {
+                    "name": "token",
+                    "description": "Token del usuario",
+                    "type": "String"
+                },
+                {
+                    "name": "params",
+                    "description": "Parámetros de la acción",
+                    "type": "Object"
+                }
+            ],
+            "class": "Simulation",
+            "module": "Server",
+            "submodule": "Server-bl"
+        },
+        {
+            "file": "server\\bl\\Simulation.js",
+            "line": 61,
+            "description": "Envía un mensaje de <b>Ejecutar Comando</b>, para que los \nclientes ejecuten un comando, basado en los parámetros enviados.",
+            "itemtype": "method",
+            "name": "executeCommand",
+            "params": [
+                {
+                    "name": "socket",
+                    "description": "El web socket para la instancia actual",
+                    "type": "Socket"
+                },
+                {
+                    "name": "token",
+                    "description": "Token del usuario",
+                    "type": "String"
+                },
+                {
+                    "name": "params",
+                    "description": "Parámetros de la acción",
+                    "type": "Object"
+                }
+            ],
+            "class": "Simulation",
+            "module": "Server",
+            "submodule": "Server-bl"
+        },
+        {
+            "file": "server\\bl\\Simulation.js",
+            "line": 74,
+            "description": "Envía un mensaje de <b>Establecer valor de variable global</b>, para que los \nclientes establezcan un nuevo valor de variable global, basado en los \nparámetros enviados.",
+            "itemtype": "method",
+            "name": "setControl",
+            "params": [
+                {
+                    "name": "socket",
+                    "description": "El web socket para la instancia actual",
+                    "type": "Socket"
+                },
+                {
+                    "name": "token",
+                    "description": "Token del usuario",
+                    "type": "String"
+                },
+                {
+                    "name": "params",
+                    "description": "Parámetros de la acción",
+                    "type": "Object"
+                }
+            ],
+            "class": "Simulation",
+            "module": "Server",
+            "submodule": "Server-bl"
+        },
+        {
+            "file": "server\\bl\\Simulation.js",
+            "line": 93,
+            "description": "Envía un mensaje de <b>Actualizar Velocidad</b>, para que los clientes \nejecuten una actualización de la velocidad de la  simulación, \nbasado en los parámetros enviados.",
+            "itemtype": "method",
+            "name": "updateSpeed",
+            "params": [
+                {
+                    "name": "socket",
+                    "description": "El web socket para la instancia actual",
+                    "type": "Socket"
+                },
+                {
+                    "name": "token",
+                    "description": "Token del usuario",
+                    "type": "String"
+                },
+                {
+                    "name": "params",
+                    "description": "Parámetros de la acción",
+                    "type": "Object"
+                }
+            ],
+            "class": "Simulation",
+            "module": "Server",
+            "submodule": "Server-bl"
+        },
+        {
+            "file": "server\\bl\\Simulation.js",
+            "line": 112,
+            "description": "Envía un mensaje de <b>Aplicar actualización</b>, para que los clientes \nejecuten una actualización de la simulación, basado en los parámetros enviados.",
+            "itemtype": "method",
+            "name": "applyUpdate",
+            "params": [
+                {
+                    "name": "socket",
+                    "description": "El web socket para la instancia actual",
+                    "type": "Socket"
+                },
+                {
+                    "name": "token",
+                    "description": "Token del usuario",
+                    "type": "String"
+                },
+                {
+                    "name": "params",
+                    "description": "Parámetros de la acción",
+                    "type": "Object"
+                }
+            ],
+            "class": "Simulation",
+            "module": "Server",
+            "submodule": "Server-bl"
+        },
+        {
+            "file": "server\\bl\\Simulation.js",
+            "line": 124,
+            "description": "Envía un mensaje de <b>Enviar Mensaje</b>",
+            "itemtype": "method",
+            "name": "sendMessage",
+            "params": [
+                {
+                    "name": "socket",
+                    "description": "El web socket para la instancia actual",
+                    "type": "Socket"
+                },
+                {
+                    "name": "params",
+                    "description": "Parámetros de la acción",
+                    "type": "Object"
+                }
+            ],
+            "class": "Simulation",
             "module": "Server",
             "submodule": "Server-bl"
         },
@@ -2786,191 +3119,6 @@
                 "type": "Entities.model"
             },
             "class": "Entities.model",
-            "module": "Server",
-            "submodule": "Server-da"
-        },
-        {
-            "file": "server\\da\\Sockets.Actions.js",
-            "line": 16,
-            "description": "Conecta una nueva instancia a una sesión de simulacón",
-            "itemtype": "method",
-            "name": "connect",
-            "static": 1,
-            "params": [
-                {
-                    "name": "socket",
-                    "description": "El web socket para la instancia actual",
-                    "type": "Socket"
-                },
-                {
-                    "name": "token",
-                    "description": "Token del usuario",
-                    "type": "String"
-                },
-                {
-                    "name": "params",
-                    "description": "Parámetros de la acción",
-                    "type": "Object"
-                }
-            ],
-            "class": "Sockets.Actions",
-            "module": "Server",
-            "submodule": "Server-da"
-        },
-        {
-            "file": "server\\da\\Sockets.Actions.js",
-            "line": 41,
-            "description": "Desconecta al dueño dle socket actual de una sesión.",
-            "itemtype": "method",
-            "name": "disconnect",
-            "params": [
-                {
-                    "name": "socket",
-                    "description": "El web socket para la instancia actual",
-                    "type": "Socket"
-                },
-                {
-                    "name": "token",
-                    "description": "Token del usuario",
-                    "type": "String"
-                },
-                {
-                    "name": "params",
-                    "description": "Parámetros de la acción",
-                    "type": "Object"
-                }
-            ],
-            "class": "Sockets.Actions",
-            "module": "Server",
-            "submodule": "Server-da"
-        },
-        {
-            "file": "server\\da\\Sockets.Actions.js",
-            "line": 61,
-            "description": "Envía un mensaje de <b>Ejecutar Comando</b>, para que los \nclientes ejecuten un comando, basado en los parámetros enviados.",
-            "itemtype": "method",
-            "name": "executeCommand",
-            "params": [
-                {
-                    "name": "socket",
-                    "description": "El web socket para la instancia actual",
-                    "type": "Socket"
-                },
-                {
-                    "name": "token",
-                    "description": "Token del usuario",
-                    "type": "String"
-                },
-                {
-                    "name": "params",
-                    "description": "Parámetros de la acción",
-                    "type": "Object"
-                }
-            ],
-            "class": "Sockets.Actions",
-            "module": "Server",
-            "submodule": "Server-da"
-        },
-        {
-            "file": "server\\da\\Sockets.Actions.js",
-            "line": 73,
-            "description": "Envía un mensaje de <b>Establecer valor de variable global</b>, para que los \nclientes establezcan un nuevo valor de variable global, basado en los \nparámetros enviados.",
-            "itemtype": "method",
-            "name": "setGlobal",
-            "params": [
-                {
-                    "name": "socket",
-                    "description": "El web socket para la instancia actual",
-                    "type": "Socket"
-                },
-                {
-                    "name": "token",
-                    "description": "Token del usuario",
-                    "type": "String"
-                },
-                {
-                    "name": "params",
-                    "description": "Parámetros de la acción",
-                    "type": "Object"
-                }
-            ],
-            "class": "Sockets.Actions",
-            "module": "Server",
-            "submodule": "Server-da"
-        },
-        {
-            "file": "server\\da\\Sockets.Actions.js",
-            "line": 91,
-            "description": "Envía un mensaje de <b>Actualizar Velocidad</b>, para que los clientes \nejecuten una actualización de la velocidad de la  simulación, \nbasado en los parámetros enviados.",
-            "itemtype": "method",
-            "name": "updateSpeed",
-            "params": [
-                {
-                    "name": "socket",
-                    "description": "El web socket para la instancia actual",
-                    "type": "Socket"
-                },
-                {
-                    "name": "token",
-                    "description": "Token del usuario",
-                    "type": "String"
-                },
-                {
-                    "name": "params",
-                    "description": "Parámetros de la acción",
-                    "type": "Object"
-                }
-            ],
-            "class": "Sockets.Actions",
-            "module": "Server",
-            "submodule": "Server-da"
-        },
-        {
-            "file": "server\\da\\Sockets.Actions.js",
-            "line": 109,
-            "description": "Envía un mensaje de <b>Aplicar actualización</b>, para que los clientes \nejecuten una actualización de la simulación, basado en los parámetros enviados.",
-            "itemtype": "method",
-            "name": "applyUpdate",
-            "params": [
-                {
-                    "name": "socket",
-                    "description": "El web socket para la instancia actual",
-                    "type": "Socket"
-                },
-                {
-                    "name": "token",
-                    "description": "Token del usuario",
-                    "type": "String"
-                },
-                {
-                    "name": "params",
-                    "description": "Parámetros de la acción",
-                    "type": "Object"
-                }
-            ],
-            "class": "Sockets.Actions",
-            "module": "Server",
-            "submodule": "Server-da"
-        },
-        {
-            "file": "server\\da\\Sockets.Actions.js",
-            "line": 121,
-            "description": "Envía un mensaje de <b>Enviar Mensaje</b>",
-            "itemtype": "method",
-            "name": "sendMessage",
-            "params": [
-                {
-                    "name": "socket",
-                    "description": "El web socket para la instancia actual",
-                    "type": "Socket"
-                },
-                {
-                    "name": "params",
-                    "description": "Parámetros de la acción",
-                    "type": "Object"
-                }
-            ],
-            "class": "Sockets.Actions",
             "module": "Server",
             "submodule": "Server-da"
         },

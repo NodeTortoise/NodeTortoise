@@ -15,7 +15,7 @@
         <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">NodeTortoise</h1>
 	<div class="nav"></div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Buscar clases/módulos..." data-obj='["classes/App", "classes/Controller", "classes/Controller.model", "classes/Controller.session", "classes/Entities", "classes/Entities.model", "classes/Helper", "classes/Model", "classes/Model_List", "classes/Session", "classes/Session_List", "classes/SessionController", "classes/Simulation", "classes/Sockets", "classes/Sockets.Actions", "classes/SQLite", "modules/Commons", "modules/Public", "modules/Server", "modules/Server-bl", "modules/Server-da", "modules/Server-libs"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Buscar clases/módulos..." data-obj='["classes/App", "classes/Controller", "classes/Controller.model", "classes/Controller.session", "classes/Entities", "classes/Entities.model", "classes/formatDate", "classes/Helper", "classes/Model", "classes/Model_List", "classes/Session", "classes/Session_List", "classes/SessionController", "classes/Simulation", "classes/Sockets", "classes/SQLite", "modules/Commons", "modules/Public", "modules/Server", "modules/Server-bl", "modules/Server-da", "modules/Server-libs"]'>
         </form>
     </div>
 </div>
@@ -42,6 +42,7 @@
 	                            <li><a href="../classes/Controller.session.html">Controller.session</a></li>
 	                            <li><a href="../classes/Entities.html">Entities</a></li>
 	                            <li><a href="../classes/Entities.model.html">Entities.model</a></li>
+	                            <li><a href="../classes/formatDate.html">formatDate</a></li>
 	                            <li><a href="../classes/Helper.html">Helper</a></li>
 	                            <li><a href="../classes/Model.html">Model</a></li>
 	                            <li><a href="../classes/Model_List.html">Model_List</a></li>
@@ -50,7 +51,6 @@
 	                            <li><a href="../classes/SessionController.html">SessionController</a></li>
 	                            <li><a href="../classes/Simulation.html">Simulation</a></li>
 	                            <li><a href="../classes/Sockets.html">Sockets</a></li>
-	                            <li><a href="../classes/Sockets.Actions.html">Sockets.Actions</a></li>
 	                            <li><a href="../classes/SQLite.html">SQLite</a></li>
 	                    </ul>
 	                </div>
@@ -264,7 +264,7 @@
                         };
                         
                         /**
-                         * Busca un fragmento en una cadena de caracteres y reemplaza todas las 
+                         * Busca un fragmento en una cadena de caracteres y reemplaza todas las
                          * coincidencias.
                          * @method replaceAll
                          * @static
@@ -287,7 +287,7 @@
                         };
                         
                         /**
-                         * Formate un nombre de archivo, eliminando los caracteres especiales, 
+                         * Formate un nombre de archivo, eliminando los caracteres especiales,
                          * convirtiéndolo a minúsculas y remplazando los espaciones por guiones bajos.
                          * convirtiéndole.
                          * @method removeSpecialChars
@@ -344,7 +344,7 @@
                          * @method trimRight
                          * @static
                          * @param {String} string Cadena de caracteres a la cual se le aplicara la función
-                         * @param [String] string Cadena de caracteres con los caracteres a reemplazar. 
+                         * @param [String] string Cadena de caracteres con los caracteres a reemplazar.
                          * Por defecto se reemplazan los espacios.
                          */
                         Helper.trimRight = function (string, charlist) {
@@ -359,13 +359,13 @@
                          * @method trimLeft
                          * @static
                          * @param {String} string Cadena de caracteres a la cual se le aplicara la función
-                         * @param [String] string Cadena de caracteres con los caracteres a reemplazar. 
+                         * @param [String] string Cadena de caracteres con los caracteres a reemplazar.
                          * Por defecto se reemplazan los espacios.
                          */
                         Helper.trimLeft = function (string, charlist) {
-                            if (charlist === undefined)
+                            if (charlist === undefined) {
                                 charlist = &quot;\s&quot;;
-                        
+                            }
                             return string.replace(new RegExp(&quot;^[&quot; + charlist + &quot;]+&quot;), &quot;&quot;);
                         };
                         
@@ -390,8 +390,111 @@
                         Helper.fromHTMLEntities = function (string) {
                             return (string + &quot;&quot;).replace(/&amp;#\d+;/gm, function (s) {
                                 return String.fromCharCode(s.match(/\d+/gm)[0]);
-                            })
+                            });
                         };
+                        
+                        /*
+                         * Da formato a un número, completando con zeros a la izquierda la cantidad 
+                         * de dígitos indicada.
+                         * @method pad
+                         * @static
+                         * @param {Int} num El numero
+                         * @param {Int} La cantidad de digitos que debe contener el número
+                         * @return {String} El número formateado
+                         */
+                        Helper.pad = function (num, size) {
+                            var s = &quot;000000000&quot; + num;
+                            return s.substr(s.length - size);
+                        };
+                        
+                        /*
+                         * Convierte un valor en minutos a milisegundos.
+                         * @method minutesToMiliseconds
+                         * @static
+                         * @param {Int} minutes El valor en minutos
+                         * @return {Int} El valor en milisegundos
+                         */
+                        Helper.minutesToMiliseconds = function (minutes) {
+                            return (minutes * 60 * 1000);
+                        };
+                        
+                        /**
+                         * Da formato a una fecha.
+                         * @class formatDate
+                         * @module Commons
+                         */
+                        Helper.formatDate = function(){  
+                        };
+                        
+                        /*
+                         * Da formato YYYY-MM-DD HH:MM a una fecha.
+                         * @method formatDate.YYYYMMDDHHMM24H
+                         * @static
+                         * @param {Date} date La fecha
+                         * @param [String] dateSeparator El separador para los valores de la fecha
+                         * @param [String] dateTimeSeparator El separador entre la fecha y la hora
+                         * @param [String] timeSeparator El separador para los valores de la hora
+                         * @return {String} La fecha en formato &quot;YYYY-MM-DD HH:MM&quot;
+                         */
+                        Helper.formatDate.YYYYMMDDHHMM24H = function (date, dateSeparator, dateTimeSeparator, timeSeparator) {
+                            if (!dateSeparator) {
+                                dateSeparator = &#x27;-&#x27;;
+                            }
+                            if (!dateTimeSeparator) {
+                                dateTimeSeparator = &#x27; &#x27;;
+                            }
+                            if (!timeSeparator) {
+                                timeSeparator = &#x27;:&#x27;;
+                            }
+                            return date.getFullYear() + dateSeparator + Helper.pad(date.getMonth() + 1, 2) + dateSeparator + Helper.pad(date.getDate(), 2) + dateTimeSeparator + Helper.pad(date.getHours(), 2) + timeSeparator + Helper.pad(date.getMinutes(), 2);
+                        };
+                        
+                        /*
+                         * Da formato &quot;YYYY-MM-DD HH:MM AM/PM&quot; a una fecha.
+                         * @method formatDate.YYYYMMDDHHMM12H
+                         * @static
+                         * @param {Date} date La fecha
+                         * @param [String] dateSeparator El separador para los valores de la fecha
+                         * @param [String] dateTimeSeparator El separador entre la fecha y la hora
+                         * @param [String] timeSeparator El separador para los valores de la hora
+                         * @return {String} La fecha en formato &quot;YYYY-MM-DD HH:MM AM/PM&quot;
+                         */
+                        Helper.formatDate.YYYYMMDDHHMM12H = function (date, dateSeparator, dateTimeSeparator, timeSeparator) {
+                            if (!dateSeparator) {
+                                dateSeparator = &#x27;-&#x27;;
+                            }
+                            if (!dateTimeSeparator) {
+                                dateTimeSeparator = &#x27; &#x27;;
+                            }
+                            if (!timeSeparator) {
+                                timeSeparator = &#x27;:&#x27;;
+                            }
+                            return date.getFullYear() + dateSeparator + Helper.pad(date.getMonth() + 1, 2) + dateSeparator + Helper.pad(date.getDate(), 2) + dateTimeSeparator + Helper.formatDate.HHMMAMPM(date);
+                        };
+                        
+                        /*
+                         * Da formato de 12 horas a la hora de una fecha.
+                         * @method formatDate.HHMMAMPM
+                         * @static
+                         * @param {Date} datetime La fecha
+                         * @param [String] timeSeparator El separador para los valores de la hora
+                         * @param [String] El separador para los valores de la hora
+                         * @return {String} La fecha en formato &quot;HH:MM AM/PM&quot;
+                         */
+                        Helper.formatDate.HHMMAMPM = function(date, timeSeparator) {
+                            if (!timeSeparator) {
+                                timeSeparator = &#x27;:&#x27;;
+                            }
+                            var hours = date.getHours();
+                            var minutes = date.getMinutes();
+                            var ampm = hours &gt;= 12 ? &#x27;pm&#x27; : &#x27;am&#x27;;
+                            hours = hours % 12;
+                            hours = hours ? hours : 12; // the hour &#x27;0&#x27; should be &#x27;12&#x27;
+                            minutes = minutes &lt; 10 ? &#x27;0&#x27; + minutes : minutes;
+                            var strTime = Helper.pad(hours, 2) + timeSeparator + Helper.pad(minutes, 2) + &#x27; &#x27; + ampm;
+                            return strTime;
+                        }
+                        
                             </pre>
                         </div>
                     </div>

@@ -16,7 +16,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "Session_List",
         "Simulation",
         "Sockets",
-        "Sockets.Actions"
+        "formatDate"
     ],
     "modules": [
         "Commons",

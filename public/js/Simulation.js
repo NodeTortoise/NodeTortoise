@@ -81,11 +81,11 @@ Simulation = function () {
      * Este metodo sobre-escribe el metodo <b>AgentStreamController.prototype.applyUpdate</b>
      * del codigo original de Tortoise. Se encarga de controlar la actualizacion
      * de la simulacion (a nivel grafico) y de los valores de los <i>outputs</i>.
-     * En el caso del cliente maestro, se envia un mensaje al servidor para que 
+     * En el caso del cliente maestro, se envia un mensaje al servidor para que
      * los clientes realicen la actualizacion y finalmente se ejecuta el codigo
-     * original de actualizacion. En el caso los clientes que no son maestros, 
-     * se ignora cualquier proceso. En caso de que aun no se hara realizado 
-     * la conexion con el <i>socket</i>, se ejecuta el codigo original de 
+     * original de actualizacion. En el caso los clientes que no son maestros,
+     * se ignora cualquier proceso. En caso de que aun no se hara realizado
+     * la conexion con el <i>socket</i>, se ejecuta el codigo original de
      * actualizacion, en ambos casos.
      * @method applyUpdate
      * @param {Object} agentStreamController El objeto AgentStreamController del modelo
@@ -112,9 +112,9 @@ Simulation = function () {
     };
 
     /**
-     * Codigo ejecutado por los clientes no maestros al recibir un mensaje de 
-     * actualizacion del modelo. Ejecuta las actualizaciones del modelo, haciendo 
-     * la llamada al codigo de actualizacion original de <b>Tortoise</b> y 
+     * Codigo ejecutado por los clientes no maestros al recibir un mensaje de
+     * actualizacion del modelo. Ejecuta las actualizaciones del modelo, haciendo
+     * la llamada al codigo de actualizacion original de <b>Tortoise</b> y
      * llevando a cabo la actualizacion de los <i>outputs</i>.
      * @method applyUpdate_
      * @param {Object} modelUpdate El objeto que contiene las intrucciones de actualizacion
@@ -150,7 +150,7 @@ Simulation = function () {
     /**
      * Inicializa los widgets del modelo, para:
      * 1. Obtener los widget de tipo comando para sobre-escribir su funcionalidad
-     * 2. Obtener y guardar los widget de tipo control para posteriormente 
+     * 2. Obtener y guardar los widget de tipo control para posteriormente
      * sobre-escribir su funcionalidad.
      * @method initWidgets
      */
@@ -219,8 +219,7 @@ Simulation = function () {
     };
 
     /**
-     * Ejecuta la accion de sobre-escribir las funciones originales de Tortoise, 
-     * necesarias para la ejecucion de la logica personalizada.
+     * Agrega funcionalidad a los controles de la simulacion.
      * @method overwriteControls
      */
     var overwriteControls = function () {
@@ -244,6 +243,11 @@ Simulation = function () {
         });
     };
 
+    /**
+     * Envia al servidor al valor de un control.
+     * @method sendInputValue
+     * @param {String} name El nombre del control
+     */
     var sendInputValue = function (name) {
         if (self.isMaster || self.enabledControls) {
             var value = world.observer.getGlobal(name);
@@ -251,6 +255,12 @@ Simulation = function () {
         }
     };
 
+    /**
+     * Establece el valor de un control.
+     * @method sendInputValue
+     * @param {String} name El nombre del control
+     * @param {String} name El valor del control
+     */
     var setInputValue = function (name, value) {
         if (self.isMaster) {
             world.observer.setGlobal(name, value);
@@ -300,7 +310,7 @@ Simulation = function () {
     };
 
     /**
-     * Inicializa 
+     * Inicializa
      * @method initNoMasterConnected
      */
     var initNoMasterConnected = function () {
@@ -309,7 +319,7 @@ Simulation = function () {
     };
 
     /**
-     * Envia un mensaje de ejecutar accion al servidor por medio de web sockets, 
+     * Envia un mensaje de ejecutar accion al servidor por medio de web sockets,
      * para que sea enviada a los demas clientes en la sesion.
      * @method sendAction
      * @param {String} action La accion a ejecutar
@@ -383,8 +393,7 @@ Simulation = function () {
             self.commands[params.command].apply(this, paramsArr);
         },
         /**
-         * Recibe del servidor la accion de definir valor de variable global de 
-         * Tortoise
+         * Recibe del servidor la accion de establecer el valor de un control
          * @method overwritedCommands.setControl
          * @param {Object} params Los parametros de la accion
          */
@@ -435,7 +444,7 @@ Simulation = function () {
     };
 
     /**
-     * Inicializa las acciones que se pueden recibir del servidor por medio de 
+     * Inicializa las acciones que se pueden recibir del servidor por medio de
      * web sockets
      * @method initSockets
      */
@@ -456,7 +465,7 @@ Simulation = function () {
 };
 
 /**
- * Crea un objeto Simulation 
+ * Crea un objeto Simulation
  * @method create
  * @return modelObj El objeto Simulation
  */
@@ -468,7 +477,7 @@ Simulation.create = function () {
 };
 
 /**
- * Sobre-escribe algunos de los metodos de Tortoise, necesarios antes de que 
+ * Sobre-escribe algunos de los metodos de Tortoise, necesarios antes de que
  * se inicialice Tortoise
  * @method setupObject
  * @param {Object} modelObj Objeto Simulation
@@ -501,7 +510,7 @@ Simulation.getInstance = function () {
 
 /**
  * Formatea la interfaz de grafica en la pagina de simulacion, para que cuente
- * con el menu y las demas opciones de la interfaz grafica del resto de la 
+ * con el menu y las demas opciones de la interfaz grafica del resto de la
  * aplicacion.
  * @method formatUI
  */

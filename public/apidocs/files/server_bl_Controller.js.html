@@ -15,7 +15,7 @@
         <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">NodeTortoise</h1>
 	<div class="nav"></div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Buscar clases/módulos..." data-obj='["classes/App", "classes/Controller", "classes/Controller.model", "classes/Controller.session", "classes/Entities", "classes/Entities.model", "classes/Helper", "classes/Model", "classes/Model_List", "classes/Session", "classes/Session_List", "classes/SessionController", "classes/Simulation", "classes/Sockets", "classes/Sockets.Actions", "classes/SQLite", "modules/Commons", "modules/Public", "modules/Server", "modules/Server-bl", "modules/Server-da", "modules/Server-libs"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Buscar clases/módulos..." data-obj='["classes/App", "classes/Controller", "classes/Controller.model", "classes/Controller.session", "classes/Entities", "classes/Entities.model", "classes/formatDate", "classes/Helper", "classes/Model", "classes/Model_List", "classes/Session", "classes/Session_List", "classes/SessionController", "classes/Simulation", "classes/Sockets", "classes/SQLite", "modules/Commons", "modules/Public", "modules/Server", "modules/Server-bl", "modules/Server-da", "modules/Server-libs"]'>
         </form>
     </div>
 </div>
@@ -42,6 +42,7 @@
 	                            <li><a href="../classes/Controller.session.html">Controller.session</a></li>
 	                            <li><a href="../classes/Entities.html">Entities</a></li>
 	                            <li><a href="../classes/Entities.model.html">Entities.model</a></li>
+	                            <li><a href="../classes/formatDate.html">formatDate</a></li>
 	                            <li><a href="../classes/Helper.html">Helper</a></li>
 	                            <li><a href="../classes/Model.html">Model</a></li>
 	                            <li><a href="../classes/Model_List.html">Model_List</a></li>
@@ -50,7 +51,6 @@
 	                            <li><a href="../classes/SessionController.html">SessionController</a></li>
 	                            <li><a href="../classes/Simulation.html">Simulation</a></li>
 	                            <li><a href="../classes/Sockets.html">Sockets</a></li>
-	                            <li><a href="../classes/Sockets.Actions.html">Sockets.Actions</a></li>
 	                            <li><a href="../classes/SQLite.html">SQLite</a></li>
 	                    </ul>
 	                </div>
@@ -316,17 +316,22 @@
                              */
                             var afterGetModelsList = function (modelsList) {
                                 var SessionController = App.require(&#x27;/bl/SessionController&#x27;);
-                                var controller = SessionController.getInstance();
-                                var sessionsData = controller.getSessionList();
+                                var sessionController = SessionController.getInstance();
+                                var sessions = sessionController.getSessionList();
                                 var token = Helper.getHash(Helper.getRandomNumber(1, 1000), true);
-                                var sessions = {};
-                                for (var sessionName in sessionsData) {
-                                    var usersInSession = controller.getSessionUsersQuantity(sessionName);
+                                var sessionsData = {};
+                                for (var sessionName in sessions) {
+                                    var usersInSession = sessions[sessionName].getUsersQuantity();
                                     if(usersInSession &gt; 0){
-                                        var sessionData = sessionsData[sessionName];
-                                        var url = MODEL_URL_TEMPLATE.replace(&#x27;@session@&#x27;, sessionName).replace(&#x27;@model@&#x27;, controller.getSessionModel(sessionName));
+                                        var sessionData = sessions[sessionName].getSessionInfo();
+                                        var url = MODEL_URL_TEMPLATE.replace(&#x27;@session@&#x27;, sessionName).replace(&#x27;@model@&#x27;, sessionController.getSessionModel(sessionName));
                                         var sessionName = unescape(sessionData.name) + &#x27; (&#x27; + sessionData.master + &#x27;)&#x27;;
-                                        sessions[sessionName] = {&#x27;name&#x27;: sessionName, &#x27;url&#x27;: url.replace(&#x27;.html.html&#x27;, &#x27;.html&#x27;), &#x27;users&#x27;: usersInSession};
+                                        sessionsData[sessionName] = {
+                                            &#x27;name&#x27;: unescape(sessionData.model), &#x27;url&#x27;: url.replace(&#x27;.html.html&#x27;, &#x27;.html&#x27;), 
+                                            &#x27;master&#x27;: sessionData.master, &#x27;users&#x27;: usersInSession, 
+                                            &#x27;firstActivity&#x27;: Helper.formatDate.YYYYMMDDHHMM12H(sessionData.firstActivity), 
+                                            &#x27;lastActivity&#x27;: Helper.formatDate.YYYYMMDDHHMM12H(sessionData.lastActivity)
+                                        };
                                     }
                                 }
                                 /**
@@ -338,10 +343,21 @@
                                  * @return {String} La URL al modelo
                                  */
                                 var getModelURL = function (modelFilename, modelName, token) {
-                                    return (MODEL_URL_TEMPLATE.replace(&#x27;@session@&#x27;, token).replace(&#x27;@model@&#x27;, modelFilename).replace(&#x27;@name@&#x27;, escape(modelName)));
+                                    var sessionName = Helper.getHash(token + modelName, true);
+                                    return (MODEL_URL_TEMPLATE.replace(&#x27;@session@&#x27;, sessionName).replace(&#x27;@model@&#x27;, modelFilename).replace(&#x27;@name@&#x27;, escape(modelName)));
                                 };
+                                /**
+                                 * Función para obtener la URL a una sesión.
+                                 * @event list.getSessionURL
+                                 * @param {String} sessionURL El URL de la sesión
+                                 * @param {String} sessionName El nombre de la sesión
+                                 * @return {String} La URL de la sesión correctamente formateada
+                                 */
+                                var getSessionURL = function (sessionURL, sessionName) {
+                                    return (sessionURL.replace(&#x27;@session@&#x27;, token).replace(&#x27;@name@&#x27;, sessionName));
+                                };        
                                 var page = {&#x27;title&#x27;: &#x27;Unirse o iniciar sesión&#x27;, &#x27;content_title&#x27;: &#x27;Unirse o iniciar sesión&#x27;};
-                                var data = {&#x27;sessions&#x27;: sessions, &#x27;models&#x27;: modelsList, &#x27;token&#x27;: token, &#x27;getModelURL&#x27;: getModelURL};
+                                var data = {&#x27;sessions&#x27;: sessionsData, &#x27;models&#x27;: modelsList, &#x27;token&#x27;: token, &#x27;getModelURL&#x27;: getModelURL, &#x27;getSessionURL&#x27;: getSessionURL};
                                 res.render(&#x27;session/list.html&#x27;, {&#x27;page&#x27;: page, &#x27;data&#x27;: data});
                             };
                             /**

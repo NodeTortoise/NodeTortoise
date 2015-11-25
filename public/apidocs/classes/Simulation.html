@@ -15,7 +15,7 @@
         <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">NodeTortoise</h1>
 	<div class="nav"></div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Buscar clases/módulos..." data-obj='["classes/App", "classes/Controller", "classes/Controller.model", "classes/Controller.session", "classes/Entities", "classes/Entities.model", "classes/Helper", "classes/Model", "classes/Model_List", "classes/Session", "classes/Session_List", "classes/SessionController", "classes/Simulation", "classes/Sockets", "classes/Sockets.Actions", "classes/SQLite", "modules/Commons", "modules/Public", "modules/Server", "modules/Server-bl", "modules/Server-da", "modules/Server-libs"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Buscar clases/módulos..." data-obj='["classes/App", "classes/Controller", "classes/Controller.model", "classes/Controller.session", "classes/Entities", "classes/Entities.model", "classes/formatDate", "classes/Helper", "classes/Model", "classes/Model_List", "classes/Session", "classes/Session_List", "classes/SessionController", "classes/Simulation", "classes/Sockets", "classes/SQLite", "modules/Commons", "modules/Public", "modules/Server", "modules/Server-bl", "modules/Server-da", "modules/Server-libs"]'>
         </form>
     </div>
 </div>
@@ -42,6 +42,7 @@
 	                            <li><a href="../classes/Controller.session.html">Controller.session</a></li>
 	                            <li><a href="../classes/Entities.html">Entities</a></li>
 	                            <li><a href="../classes/Entities.model.html">Entities.model</a></li>
+	                            <li><a href="../classes/formatDate.html">formatDate</a></li>
 	                            <li><a href="../classes/Helper.html">Helper</a></li>
 	                            <li><a href="../classes/Model.html">Model</a></li>
 	                            <li><a href="../classes/Model_List.html">Model_List</a></li>
@@ -50,7 +51,6 @@
 	                            <li><a href="../classes/SessionController.html">SessionController</a></li>
 	                            <li><a href="../classes/Simulation.html">Simulation</a></li>
 	                            <li><a href="../classes/Sockets.html">Sockets</a></li>
-	                            <li><a href="../classes/Sockets.Actions.html">Sockets.Actions</a></li>
 	                            <li><a href="../classes/SQLite.html">SQLite</a></li>
 	                    </ul>
 	                </div>
@@ -102,16 +102,17 @@
                         
                         
                                 <div class="foundat">
-                                    Definido en: <a href="../files/public_js_Simulation.js.html#l10"><code>public\js\Simulation.js:10</code></a>
+                                    Definido en: <a href="../files/server_bl_Simulation.js.html#l5"><code>server\bl\Simulation.js:5</code></a>
                                 </div>
                         
-                                    Módulo: <a href="../modules/Public.html">Public</a>
+                                    Módulo: <a href="../modules/Server-bl.html">Server-bl</a><br>
+                                    Módulo Padre: <a href="../modules/Server.html">Server</a>
                         
                         </div>
                         
                         
                         <div class="well well-small">
-                            <p>Provee la lógica de interacción de las simulaciones con el servidor.</p>
+                            <p>Maneja las acciones a ejecutar entre las simulaciones.</p>
                         
                         </div>
                         
@@ -132,7 +133,7 @@
                                     <div class="meta">
                                                 <p>
                                                 Definido en
-                                        <a href="../files/public_js_Simulation.js.html#l10"><code>public\js\Simulation.js:10</code></a>
+                                        <a href="../files/server_bl_Simulation.js.html#l5"><code>server\bl\Simulation.js:5</code></a>
                                         </p>
                                 
                                 
@@ -166,6 +167,10 @@
                         
                                                     </li>
                                                     <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_applyUpdate" data-tablink="applyUpdate">applyUpdate</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
                                                         <a href="#" data-tabid="#methods" data-anchor="#method_applyUpdate_" data-tablink="applyUpdate_">applyUpdate_</a>
                         
                                                     </li>
@@ -174,23 +179,40 @@
                         
                                                     </li>
                                                     <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_connect" data-tablink="connect">connect</a>
+                        
+                                                            <span class="flag static">static</span>
+                                                    </li>
+                                                    <li class="index-item method">
                                                         <a href="#" data-tabid="#methods" data-anchor="#method_create" data-tablink="create">create</a>
                         
                                                     </li>
                                                     <li class="index-item method">
-                                                        <a href="#" data-tabid="#methods" data-anchor="#method_disableControls" data-tablink="disableControls">disableControls</a>
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_disableButtons" data-tablink="disableButtons">disableButtons</a>
                         
                                                     </li>
                                                     <li class="index-item method">
-                                                        <a href="#" data-tabid="#methods" data-anchor="#method_doOverwriteCommand" data-tablink="doOverwriteCommand">doOverwriteCommand</a>
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_disableInputs" data-tablink="disableInputs">disableInputs</a>
                         
                                                     </li>
                                                     <li class="index-item method">
-                                                        <a href="#" data-tabid="#methods" data-anchor="#method_doOverwriteFunctions" data-tablink="doOverwriteFunctions">doOverwriteFunctions</a>
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_disconnect" data-tablink="disconnect">disconnect</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_enableButtons" data-tablink="enableButtons">enableButtons</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_enableInputs" data-tablink="enableInputs">enableInputs</a>
                         
                                                     </li>
                                                     <li class="index-item method">
                                                         <a href="#" data-tabid="#methods" data-anchor="#method_end" data-tablink="end">end</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_executeCommand" data-tablink="executeCommand">executeCommand</a>
                         
                                                     </li>
                                                     <li class="index-item method">
@@ -223,6 +245,14 @@
                         
                                                     </li>
                                                     <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_overwriteCommand" data-tablink="overwriteCommand">overwriteCommand</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_overwriteControls" data-tablink="overwriteControls">overwriteControls</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
                                                         <a href="#" data-tabid="#methods" data-anchor="#method_overwritedCommands.applyUpdate" data-tablink="overwritedCommands.applyUpdate">overwritedCommands.applyUpdate</a>
                         
                                                     </li>
@@ -243,7 +273,7 @@
                         
                                                     </li>
                                                     <li class="index-item method">
-                                                        <a href="#" data-tabid="#methods" data-anchor="#method_overwritedCommands.setGlobal" data-tablink="overwritedCommands.setGlobal">overwritedCommands.setGlobal</a>
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_overwritedCommands.setControl" data-tablink="overwritedCommands.setControl">overwritedCommands.setControl</a>
                         
                                                     </li>
                                                     <li class="index-item method">
@@ -267,11 +297,31 @@
                         
                                                     </li>
                                                     <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_sendInputValue" data-tablink="sendInputValue">sendInputValue</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_sendInputValue" data-tablink="sendInputValue">sendInputValue</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_sendMessage" data-tablink="sendMessage">sendMessage</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_setControl" data-tablink="setControl">setControl</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
                                                         <a href="#" data-tabid="#methods" data-anchor="#method_setupObject" data-tablink="setupObject">setupObject</a>
                         
                                                     </li>
                                                     <li class="index-item method">
                                                         <a href="#" data-tabid="#methods" data-anchor="#method_start" data-tablink="start">start</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_updateSpeed" data-tablink="updateSpeed">updateSpeed</a>
                         
                                                     </li>
                                                     <li class="index-item method">
@@ -317,9 +367,10 @@
                                             
                                             
                                                 <div class="meta">
+                                                                <p>Provided by the <a href="../modules/Public.html">Public</a> module.</p>
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/public_js_Simulation.js.html#l74"><code>public\js\Simulation.js:74</code></a>
+                                                    <a href="../files/public_js_Simulation.js.html#l80"><code>public\js\Simulation.js:80</code></a>
                                                     </p>
                                             
                                             
@@ -327,15 +378,15 @@
                                                 </div>
                                             
                                                 <div class="description">
-                                                    <p>Este método sobre-escribe el método <b>AgentStreamController.prototype.applyUpdate</b>
-                                            del código original de Tortoise. Se encarga de controlar la actualización
-                                            de la simulación (a nivel gráfico) y de los valores de los <i>outputs</i>.
-                                            En el caso del cliente maestro, se envía un mensaje al servidor para que
-                                            los clientes realicen la actualización y finalmente se ejecuta el código
-                                            original de actualización. En el caso los clientes que no son maestros,
-                                            se ignora cualquier proceso. En caso de que aún no se hara realizado
-                                            la conexión con el <i>socket</i>, se ejecuta el código original de
-                                            actualización, en ambos casos.</p>
+                                                    <p>Este metodo sobre-escribe el metodo <b>AgentStreamController.prototype.applyUpdate</b>
+                                            del codigo original de Tortoise. Se encarga de controlar la actualizacion
+                                            de la simulacion (a nivel grafico) y de los valores de los <i>outputs</i>.
+                                            En el caso del cliente maestro, se envia un mensaje al servidor para que
+                                            los clientes realicen la actualizacion y finalmente se ejecuta el codigo
+                                            original de actualizacion. En el caso los clientes que no son maestros,
+                                            se ignora cualquier proceso. En caso de que aun no se hara realizado
+                                            la conexion con el <i>socket</i>, se ejecuta el codigo original de
+                                            actualizacion, en ambos casos.</p>
                                             
                                                 </div>
                                             
@@ -360,7 +411,7 @@
                                             
                                             
                                                                 <div class="param-description">
-                                                                    <p>El objeto que contiene las intrucciones de actualización</p>
+                                                                    <p>El objeto que contiene las intrucciones de actualizacion</p>
                                             
                                                                 </div>
                                             
@@ -373,11 +424,93 @@
                                             
                                                         <div class="returns-description">
                                                                     <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
-                                                                <p>El resultado del proceso de actualiación. Este resultado proviene de
-                                            la lógica del código de Tortoise</p>
+                                                                <p>El resultado del proceso de actualiacion. Este resultado proviene de
+                                            la logica del codigo de Tortoise</p>
                                             
                                                         </div>
                                                     </div>
+                                            
+                                            </div>
+                                            <div id="method_applyUpdate" class="method item">
+                                                <h3 class="name"><code>applyUpdate</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>socket</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>token</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>params</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Definido en
+                                                    <a href="../files/server_bl_Simulation.js.html#l112"><code>server\bl\Simulation.js:112</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Envía un mensaje de <b>Aplicar actualización</b>, para que los clientes
+                                            ejecuten una actualización de la simulación, basado en los parámetros enviados.</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parámetros:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">socket</code>
+                                                                    <span class="type">Socket</span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>El web socket para la instancia actual</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">token</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Token del usuario</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">params</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Parámetros de la acción</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
                                             
                                             </div>
                                             <div id="method_applyUpdate_" class="method item">
@@ -402,9 +535,10 @@
                                             
                                             
                                                 <div class="meta">
+                                                                <p>Provided by the <a href="../modules/Public.html">Public</a> module.</p>
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/public_js_Simulation.js.html#l108"><code>public\js\Simulation.js:108</code></a>
+                                                    <a href="../files/public_js_Simulation.js.html#l114"><code>public\js\Simulation.js:114</code></a>
                                                     </p>
                                             
                                             
@@ -412,10 +546,10 @@
                                                 </div>
                                             
                                                 <div class="description">
-                                                    <p>Código ejecutado por los clientes no maestros al recibir un mensaje de
-                                            actualización del modelo. Ejecuta las actualizaciones del modelo, haciendo
-                                            la llamada al código de actualización original de <b>Tortoise</b> y
-                                            llevando a cabo la actualización de los <i>outputs</i>.</p>
+                                                    <p>Codigo ejecutado por los clientes no maestros al recibir un mensaje de
+                                            actualizacion del modelo. Ejecuta las actualizaciones del modelo, haciendo
+                                            la llamada al codigo de actualizacion original de <b>Tortoise</b> y
+                                            llevando a cabo la actualizacion de los <i>outputs</i>.</p>
                                             
                                                 </div>
                                             
@@ -429,7 +563,7 @@
                                             
                                             
                                                                 <div class="param-description">
-                                                                    <p>El objeto que contiene las intrucciones de actualización</p>
+                                                                    <p>El objeto que contiene las intrucciones de actualizacion</p>
                                             
                                                                 </div>
                                             
@@ -466,9 +600,10 @@
                                             
                                             
                                                 <div class="meta">
+                                                                <p>Provided by the <a href="../modules/Public.html">Public</a> module.</p>
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/public_js_Simulation.js.html#l57"><code>public\js\Simulation.js:57</code></a>
+                                                    <a href="../files/public_js_Simulation.js.html#l66"><code>public\js\Simulation.js:66</code></a>
                                                     </p>
                                             
                                             
@@ -476,7 +611,7 @@
                                                 </div>
                                             
                                                 <div class="description">
-                                                    <p>Realiza la conexión del cliente con el servidor por medio de <i>web sockets</i>.</p>
+                                                    <p>Realiza la conexion del cliente con el servidor por medio de <i>web sockets</i>.</p>
                                             
                                                 </div>
                                             
@@ -487,6 +622,88 @@
                                                         <div class="returns-description">
                                                         </div>
                                                     </div>
+                                            
+                                            </div>
+                                            <div id="method_connect" class="method item">
+                                                <h3 class="name"><code>connect</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>socket</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>token</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>params</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                    <span class="flag static">static</span>
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Definido en
+                                                    <a href="../files/server_bl_Simulation.js.html#l14"><code>server\bl\Simulation.js:14</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Conecta una nueva instancia a una sesión de simulacón</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parámetros:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">socket</code>
+                                                                    <span class="type">Socket</span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>El web socket para la instancia actual</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">token</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Token del usuario</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">params</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Parámetros de la acción</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
                                             
                                             </div>
                                             <div id="method_create" class="method item">
@@ -505,9 +722,10 @@
                                             
                                             
                                                 <div class="meta">
+                                                                <p>Provided by the <a href="../modules/Public.html">Public</a> module.</p>
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/public_js_Simulation.js.html#l409"><code>public\js\Simulation.js:409</code></a>
+                                                    <a href="../files/public_js_Simulation.js.html#l467"><code>public\js\Simulation.js:467</code></a>
                                                     </p>
                                             
                                             
@@ -530,8 +748,8 @@
                                                     </div>
                                             
                                             </div>
-                                            <div id="method_disableControls" class="method item">
-                                                <h3 class="name"><code>disableControls</code></h3>
+                                            <div id="method_disableButtons" class="method item">
+                                                <h3 class="name"><code>disableButtons</code></h3>
                                             
                                                     <span class="paren">()</span>
                                             
@@ -543,9 +761,10 @@
                                             
                                             
                                                 <div class="meta">
+                                                                <p>Provided by the <a href="../modules/Public.html">Public</a> module.</p>
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/public_js_Simulation.js.html#l241"><code>public\js\Simulation.js:241</code></a>
+                                                    <a href="../files/public_js_Simulation.js.html#l280"><code>public\js\Simulation.js:280</code></a>
                                                     </p>
                                             
                                             
@@ -553,20 +772,57 @@
                                                 </div>
                                             
                                                 <div class="description">
-                                                    <p>Deshabilita los controles</p>
+                                                    <p>Deshabilita los botones</p>
                                             
                                                 </div>
                                             
                                             
                                             
                                             </div>
-                                            <div id="method_doOverwriteCommand" class="method item">
-                                                <h3 class="name"><code>doOverwriteCommand</code></h3>
+                                            <div id="method_disableInputs" class="method item">
+                                                <h3 class="name"><code>disableInputs</code></h3>
+                                            
+                                                    <span class="paren">()</span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                                <p>Provided by the <a href="../modules/Public.html">Public</a> module.</p>
+                                                            <p>
+                                                            Definido en
+                                                    <a href="../files/public_js_Simulation.js.html#l296"><code>public\js\Simulation.js:296</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Deshabilita los controles de entrada</p>
+                                            
+                                                </div>
+                                            
+                                            
+                                            
+                                            </div>
+                                            <div id="method_disconnect" class="method item">
+                                                <h3 class="name"><code>disconnect</code></h3>
                                             
                                                     <div class="args">
                                                         <span class="paren">(</span><ul class="args-list inline commas">
                                                             <li class="arg">
-                                                                    <code>commandData</code>
+                                                                    <code>socket</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>token</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>params</code>
                                                             </li>
                                                         </ul><span class="paren">)</span>
                                                     </div>
@@ -581,7 +837,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/public_js_Simulation.js.html#l220"><code>public\js\Simulation.js:220</code></a>
+                                                    <a href="../files/server_bl_Simulation.js.html#l40"><code>server\bl\Simulation.js:40</code></a>
                                                     </p>
                                             
                                             
@@ -589,7 +845,7 @@
                                                 </div>
                                             
                                                 <div class="description">
-                                                    <p>Sobre-escribe la funcionalidad de un comando</p>
+                                                    <p>Desconecta al dueño dle socket actual de una sesión.</p>
                                             
                                                 </div>
                                             
@@ -598,12 +854,34 @@
                                             
                                                         <ul class="params-list">
                                                             <li class="param">
-                                                                    <code class="param-name">commandData</code>
+                                                                    <code class="param-name">socket</code>
+                                                                    <span class="type">Socket</span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>El web socket para la instancia actual</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">token</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Token del usuario</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">params</code>
                                                                     <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                                             
                                             
                                                                 <div class="param-description">
-                                                                    <p>Los datos del comando</p>
+                                                                    <p>Parámetros de la acción</p>
                                             
                                                                 </div>
                                             
@@ -613,8 +891,8 @@
                                             
                                             
                                             </div>
-                                            <div id="method_doOverwriteFunctions" class="method item">
-                                                <h3 class="name"><code>doOverwriteFunctions</code></h3>
+                                            <div id="method_enableButtons" class="method item">
+                                                <h3 class="name"><code>enableButtons</code></h3>
                                             
                                                     <span class="paren">()</span>
                                             
@@ -626,9 +904,10 @@
                                             
                                             
                                                 <div class="meta">
+                                                                <p>Provided by the <a href="../modules/Public.html">Public</a> module.</p>
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/public_js_Simulation.js.html#l144"><code>public\js\Simulation.js:144</code></a>
+                                                    <a href="../files/public_js_Simulation.js.html#l288"><code>public\js\Simulation.js:288</code></a>
                                                     </p>
                                             
                                             
@@ -636,8 +915,38 @@
                                                 </div>
                                             
                                                 <div class="description">
-                                                    <p>Ejecuta la acción de sobre-escribir las funciones originales de Tortoise,
-                                            necesarias para la ejecución de la lógica personalizada.</p>
+                                                    <p>Habilita los botones</p>
+                                            
+                                                </div>
+                                            
+                                            
+                                            
+                                            </div>
+                                            <div id="method_enableInputs" class="method item">
+                                                <h3 class="name"><code>enableInputs</code></h3>
+                                            
+                                                    <span class="paren">()</span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                                <p>Provided by the <a href="../modules/Public.html">Public</a> module.</p>
+                                                            <p>
+                                                            Definido en
+                                                    <a href="../files/public_js_Simulation.js.html#l304"><code>public\js\Simulation.js:304</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Habilita los controles de entrada</p>
                                             
                                                 </div>
                                             
@@ -657,9 +966,10 @@
                                             
                                             
                                                 <div class="meta">
+                                                                <p>Provided by the <a href="../modules/Public.html">Public</a> module.</p>
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/public_js_Simulation.js.html#l287"><code>public\js\Simulation.js:287</code></a>
+                                                    <a href="../files/public_js_Simulation.js.html#l349"><code>public\js\Simulation.js:349</code></a>
                                                     </p>
                                             
                                             
@@ -667,10 +977,92 @@
                                                 </div>
                                             
                                                 <div class="description">
-                                                    <p>Ejecuta la acción de finalización de la sesión se simulación</p>
+                                                    <p>Ejecuta la accion de finalizacion de la sesion se simulacion</p>
                                             
                                                 </div>
                                             
+                                            
+                                            
+                                            </div>
+                                            <div id="method_executeCommand" class="method item">
+                                                <h3 class="name"><code>executeCommand</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>socket</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>token</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>params</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Definido en
+                                                    <a href="../files/server_bl_Simulation.js.html#l61"><code>server\bl\Simulation.js:61</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Envía un mensaje de <b>Ejecutar Comando</b>, para que los
+                                            clientes ejecuten un comando, basado en los parámetros enviados.</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parámetros:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">socket</code>
+                                                                    <span class="type">Socket</span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>El web socket para la instancia actual</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">token</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Token del usuario</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">params</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Parámetros de la acción</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
                                             
                                             
                                             </div>
@@ -687,9 +1079,10 @@
                                             
                                             
                                                 <div class="meta">
+                                                                <p>Provided by the <a href="../modules/Public.html">Public</a> module.</p>
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/public_js_Simulation.js.html#l453"><code>public\js\Simulation.js:453</code></a>
+                                                    <a href="../files/public_js_Simulation.js.html#l511"><code>public\js\Simulation.js:511</code></a>
                                                     </p>
                                             
                                             
@@ -697,9 +1090,9 @@
                                                 </div>
                                             
                                                 <div class="description">
-                                                    <p>Formatea la interfaz de gráfica en la página de simulación, para que cuente
-                                            con el menú y las demás opciones de la interfaz gráfica del resto de la
-                                            aplicación.</p>
+                                                    <p>Formatea la interfaz de grafica en la pagina de simulacion, para que cuente
+                                            con el menu y las demas opciones de la interfaz grafica del resto de la
+                                            aplicacion.</p>
                                             
                                                 </div>
                                             
@@ -723,9 +1116,10 @@
                                             
                                             
                                                 <div class="meta">
+                                                                <p>Provided by the <a href="../modules/Public.html">Public</a> module.</p>
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/public_js_Simulation.js.html#l440"><code>public\js\Simulation.js:440</code></a>
+                                                    <a href="../files/public_js_Simulation.js.html#l498"><code>public\js\Simulation.js:498</code></a>
                                                     </p>
                                             
                                             
@@ -733,7 +1127,7 @@
                                                 </div>
                                             
                                                 <div class="description">
-                                                    <p>Basado en el patrón <i>Singleton</i>, retorna una instancia del objeto Simulation</p>
+                                                    <p>Basado en el patron <i>Singleton</i>, retorna una instancia del objeto Simulation</p>
                                             
                                                 </div>
                                             
@@ -762,9 +1156,10 @@
                                             
                                             
                                                 <div class="meta">
+                                                                <p>Provided by the <a href="../modules/Public.html">Public</a> module.</p>
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/public_js_Simulation.js.html#l37"><code>public\js\Simulation.js:37</code></a>
+                                                    <a href="../files/public_js_Simulation.js.html#l38"><code>public\js\Simulation.js:38</code></a>
                                                     </p>
                                             
                                             
@@ -792,9 +1187,10 @@
                                             
                                             
                                                 <div class="meta">
+                                                                <p>Provided by the <a href="../modules/Public.html">Public</a> module.</p>
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/public_js_Simulation.js.html#l250"><code>public\js\Simulation.js:250</code></a>
+                                                    <a href="../files/public_js_Simulation.js.html#l312"><code>public\js\Simulation.js:312</code></a>
                                                     </p>
                                             
                                             
@@ -822,9 +1218,10 @@
                                             
                                             
                                                 <div class="meta">
+                                                                <p>Provided by the <a href="../modules/Public.html">Public</a> module.</p>
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/public_js_Simulation.js.html#l388"><code>public\js\Simulation.js:388</code></a>
+                                                    <a href="../files/public_js_Simulation.js.html#l446"><code>public\js\Simulation.js:446</code></a>
                                                     </p>
                                             
                                             
@@ -853,9 +1250,10 @@
                                             
                                             
                                                 <div class="meta">
+                                                                <p>Provided by the <a href="../modules/Public.html">Public</a> module.</p>
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/public_js_Simulation.js.html#l172"><code>public\js\Simulation.js:172</code></a>
+                                                    <a href="../files/public_js_Simulation.js.html#l150"><code>public\js\Simulation.js:150</code></a>
                                                     </p>
                                             
                                             
@@ -897,9 +1295,10 @@
                                             
                                             
                                                 <div class="meta">
+                                                                <p>Provided by the <a href="../modules/Public.html">Public</a> module.</p>
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/public_js_Simulation.js.html#l134"><code>public\js\Simulation.js:134</code></a>
+                                                    <a href="../files/public_js_Simulation.js.html#l140"><code>public\js\Simulation.js:140</code></a>
                                                     </p>
                                             
                                             
@@ -940,6 +1339,91 @@
                                                     </div>
                                             
                                             </div>
+                                            <div id="method_overwriteCommand" class="method item">
+                                                <h3 class="name"><code>overwriteCommand</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>commandData</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                                <p>Provided by the <a href="../modules/Public.html">Public</a> module.</p>
+                                                            <p>
+                                                            Definido en
+                                                    <a href="../files/public_js_Simulation.js.html#l200"><code>public\js\Simulation.js:200</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Sobre-escribe la funcionalidad de un comando</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parámetros:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">commandData</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Los datos del comando</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                            
+                                            </div>
+                                            <div id="method_overwriteControls" class="method item">
+                                                <h3 class="name"><code>overwriteControls</code></h3>
+                                            
+                                                    <span class="paren">()</span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                                <p>Provided by the <a href="../modules/Public.html">Public</a> module.</p>
+                                                            <p>
+                                                            Definido en
+                                                    <a href="../files/public_js_Simulation.js.html#l221"><code>public\js\Simulation.js:221</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Agrega funcionalidad a los controles de la simulacion.</p>
+                                            
+                                                </div>
+                                            
+                                            
+                                            
+                                            </div>
                                             <div id="method_overwritedCommands.applyUpdate" class="method item">
                                                 <h3 class="name"><code>overwritedCommands.applyUpdate</code></h3>
                                             
@@ -959,9 +1443,10 @@
                                             
                                             
                                                 <div class="meta">
+                                                                <p>Provided by the <a href="../modules/Public.html">Public</a> module.</p>
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/public_js_Simulation.js.html#l353"><code>public\js\Simulation.js:353</code></a>
+                                                    <a href="../files/public_js_Simulation.js.html#l411"><code>public\js\Simulation.js:411</code></a>
                                                     </p>
                                             
                                             
@@ -969,7 +1454,7 @@
                                                 </div>
                                             
                                                 <div class="description">
-                                                    <p>Recibe del servidor la acción de aplicar actualización de la simulación</p>
+                                                    <p>Recibe del servidor la accion de aplicar actualizacion de la simulacion</p>
                                             
                                                 </div>
                                             
@@ -983,7 +1468,7 @@
                                             
                                             
                                                                 <div class="param-description">
-                                                                    <p>Los parámetros de la acción</p>
+                                                                    <p>Los parametros de la accion</p>
                                             
                                                                 </div>
                                             
@@ -1012,9 +1497,10 @@
                                             
                                             
                                                 <div class="meta">
+                                                                <p>Provided by the <a href="../modules/Public.html">Public</a> module.</p>
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/public_js_Simulation.js.html#l300"><code>public\js\Simulation.js:300</code></a>
+                                                    <a href="../files/public_js_Simulation.js.html#l362"><code>public\js\Simulation.js:362</code></a>
                                                     </p>
                                             
                                             
@@ -1036,7 +1522,7 @@
                                             
                                             
                                                                 <div class="param-description">
-                                                                    <p>Los parámetros recibidos</p>
+                                                                    <p>Los parametros recibidos</p>
                                             
                                                                 </div>
                                             
@@ -1059,9 +1545,10 @@
                                             
                                             
                                                 <div class="meta">
+                                                                <p>Provided by the <a href="../modules/Public.html">Public</a> module.</p>
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/public_js_Simulation.js.html#l371"><code>public\js\Simulation.js:371</code></a>
+                                                    <a href="../files/public_js_Simulation.js.html#l429"><code>public\js\Simulation.js:429</code></a>
                                                     </p>
                                             
                                             
@@ -1069,7 +1556,7 @@
                                                 </div>
                                             
                                                 <div class="description">
-                                                    <p>Recibe del servidor la acción de finalizar sesión de simulación</p>
+                                                    <p>Recibe del servidor la accion de finalizar sesion de simulacion</p>
                                             
                                                 </div>
                                             
@@ -1095,9 +1582,10 @@
                                             
                                             
                                                 <div class="meta">
+                                                                <p>Provided by the <a href="../modules/Public.html">Public</a> module.</p>
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/public_js_Simulation.js.html#l322"><code>public\js\Simulation.js:322</code></a>
+                                                    <a href="../files/public_js_Simulation.js.html#l384"><code>public\js\Simulation.js:384</code></a>
                                                     </p>
                                             
                                             
@@ -1105,7 +1593,7 @@
                                                 </div>
                                             
                                                 <div class="description">
-                                                    <p>Recibe del servidor la acción de ejecutar comando</p>
+                                                    <p>Recibe del servidor la accion de ejecutar comando</p>
                                             
                                                 </div>
                                             
@@ -1119,7 +1607,7 @@
                                             
                                             
                                                                 <div class="param-description">
-                                                                    <p>Los parámetros de la acción</p>
+                                                                    <p>Los parametros de la accion</p>
                                             
                                                                 </div>
                                             
@@ -1148,9 +1636,10 @@
                                             
                                             
                                                 <div class="meta">
+                                                                <p>Provided by the <a href="../modules/Public.html">Public</a> module.</p>
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/public_js_Simulation.js.html#l378"><code>public\js\Simulation.js:378</code></a>
+                                                    <a href="../files/public_js_Simulation.js.html#l436"><code>public\js\Simulation.js:436</code></a>
                                                     </p>
                                             
                                             
@@ -1158,7 +1647,7 @@
                                                 </div>
                                             
                                                 <div class="description">
-                                                    <p>Recibe del servidor la acción de obtener mensaje</p>
+                                                    <p>Recibe del servidor la accion de obtener mensaje</p>
                                             
                                                 </div>
                                             
@@ -1172,7 +1661,7 @@
                                             
                                             
                                                                 <div class="param-description">
-                                                                    <p>Los parámetros de la acción</p>
+                                                                    <p>Los parametros de la accion</p>
                                             
                                                                 </div>
                                             
@@ -1182,8 +1671,8 @@
                                             
                                             
                                             </div>
-                                            <div id="method_overwritedCommands.setGlobal" class="method item">
-                                                <h3 class="name"><code>overwritedCommands.setGlobal</code></h3>
+                                            <div id="method_overwritedCommands.setControl" class="method item">
+                                                <h3 class="name"><code>overwritedCommands.setControl</code></h3>
                                             
                                                     <div class="args">
                                                         <span class="paren">(</span><ul class="args-list inline commas">
@@ -1201,9 +1690,10 @@
                                             
                                             
                                                 <div class="meta">
+                                                                <p>Provided by the <a href="../modules/Public.html">Public</a> module.</p>
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/public_js_Simulation.js.html#l333"><code>public\js\Simulation.js:333</code></a>
+                                                    <a href="../files/public_js_Simulation.js.html#l395"><code>public\js\Simulation.js:395</code></a>
                                                     </p>
                                             
                                             
@@ -1211,8 +1701,7 @@
                                                 </div>
                                             
                                                 <div class="description">
-                                                    <p>Recibe del servidor la acción de definir valor de variable global de
-                                            Tortoise</p>
+                                                    <p>Recibe del servidor la accion de establecer el valor de un control</p>
                                             
                                                 </div>
                                             
@@ -1226,7 +1715,7 @@
                                             
                                             
                                                                 <div class="param-description">
-                                                                    <p>Los parámetros de la acción</p>
+                                                                    <p>Los parametros de la accion</p>
                                             
                                                                 </div>
                                             
@@ -1255,9 +1744,10 @@
                                             
                                             
                                                 <div class="meta">
+                                                                <p>Provided by the <a href="../modules/Public.html">Public</a> module.</p>
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/public_js_Simulation.js.html#l362"><code>public\js\Simulation.js:362</code></a>
+                                                    <a href="../files/public_js_Simulation.js.html#l420"><code>public\js\Simulation.js:420</code></a>
                                                     </p>
                                             
                                             
@@ -1265,7 +1755,7 @@
                                                 </div>
                                             
                                                 <div class="description">
-                                                    <p>Recibe del servidor la acción de iniciar sesión de simulación</p>
+                                                    <p>Recibe del servidor la accion de iniciar sesion de simulacion</p>
                                             
                                                 </div>
                                             
@@ -1279,7 +1769,7 @@
                                             
                                             
                                                                 <div class="param-description">
-                                                                    <p>Indica si los controles están habilitados o no</p>
+                                                                    <p>Indica si los controles estan habilitados o no</p>
                                             
                                                                 </div>
                                             
@@ -1308,9 +1798,10 @@
                                             
                                             
                                                 <div class="meta">
+                                                                <p>Provided by the <a href="../modules/Public.html">Public</a> module.</p>
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/public_js_Simulation.js.html#l345"><code>public\js\Simulation.js:345</code></a>
+                                                    <a href="../files/public_js_Simulation.js.html#l403"><code>public\js\Simulation.js:403</code></a>
                                                     </p>
                                             
                                             
@@ -1318,7 +1809,7 @@
                                                 </div>
                                             
                                                 <div class="description">
-                                                    <p>Recibe del servidor la acción de actualizar velocidad de la simulación</p>
+                                                    <p>Recibe del servidor la accion de actualizar velocidad de la simulacion</p>
                                             
                                                 </div>
                                             
@@ -1332,7 +1823,7 @@
                                             
                                             
                                                                 <div class="param-description">
-                                                                    <p>Los parámetros de la acción</p>
+                                                                    <p>Los parametros de la accion</p>
                                             
                                                                 </div>
                                             
@@ -1361,9 +1852,10 @@
                                             
                                             
                                                 <div class="meta">
+                                                                <p>Provided by the <a href="../modules/Public.html">Public</a> module.</p>
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/public_js_Simulation.js.html#l314"><code>public\js\Simulation.js:314</code></a>
+                                                    <a href="../files/public_js_Simulation.js.html#l376"><code>public\js\Simulation.js:376</code></a>
                                                     </p>
                                             
                                             
@@ -1371,7 +1863,7 @@
                                                 </div>
                                             
                                                 <div class="description">
-                                                    <p>Recibe del servidor la acción de actualizar usuarios</p>
+                                                    <p>Recibe del servidor la accion de actualizar usuarios</p>
                                             
                                                 </div>
                                             
@@ -1385,7 +1877,7 @@
                                             
                                             
                                                                 <div class="param-description">
-                                                                    <p>Los parámetros de la acción</p>
+                                                                    <p>Los parametros de la accion</p>
                                             
                                                                 </div>
                                             
@@ -1417,9 +1909,10 @@
                                             
                                             
                                                 <div class="meta">
+                                                                <p>Provided by the <a href="../modules/Public.html">Public</a> module.</p>
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/public_js_Simulation.js.html#l198"><code>public\js\Simulation.js:198</code></a>
+                                                    <a href="../files/public_js_Simulation.js.html#l178"><code>public\js\Simulation.js:178</code></a>
                                                     </p>
                                             
                                             
@@ -1427,7 +1920,7 @@
                                                 </div>
                                             
                                                 <div class="description">
-                                                    <p>Extrae de un <i>widget</i> de tipo comando la información necesaria para
+                                                    <p>Extrae de un <i>widget</i> de tipo comando la informacion necesaria para
                                             su posterior procesamiento.</p>
                                             
                                                 </div>
@@ -1483,9 +1976,10 @@
                                             
                                             
                                                 <div class="meta">
+                                                                <p>Provided by the <a href="../modules/Public.html">Public</a> module.</p>
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/public_js_Simulation.js.html#l259"><code>public\js\Simulation.js:259</code></a>
+                                                    <a href="../files/public_js_Simulation.js.html#l321"><code>public\js\Simulation.js:321</code></a>
                                                     </p>
                                             
                                             
@@ -1493,8 +1987,8 @@
                                                 </div>
                                             
                                                 <div class="description">
-                                                    <p>Envía un mensaje de ejecutar acción al servidor por medio de web sockets,
-                                            para que sea enviada a los demás clientes en la sesión.</p>
+                                                    <p>Envia un mensaje de ejecutar accion al servidor por medio de web sockets,
+                                            para que sea enviada a los demas clientes en la sesion.</p>
                                             
                                                 </div>
                                             
@@ -1508,7 +2002,7 @@
                                             
                                             
                                                                 <div class="param-description">
-                                                                    <p>La acción a ejecutar</p>
+                                                                    <p>La accion a ejecutar</p>
                                             
                                                                 </div>
                                             
@@ -1519,7 +2013,279 @@
                                             
                                             
                                                                 <div class="param-description">
-                                                                    <p>Los parámetros de la acción</p>
+                                                                    <p>Los parametros de la accion</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                            
+                                            </div>
+                                            <div id="method_sendInputValue" class="method item">
+                                                <h3 class="name"><code>sendInputValue</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>name</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                                <p>Provided by the <a href="../modules/Public.html">Public</a> module.</p>
+                                                            <p>
+                                                            Definido en
+                                                    <a href="../files/public_js_Simulation.js.html#l246"><code>public\js\Simulation.js:246</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Envia al servidor al valor de un control.</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parámetros:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">name</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>El nombre del control</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                            
+                                            </div>
+                                            <div id="method_sendInputValue" class="method item">
+                                                <h3 class="name"><code>sendInputValue</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>name</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>name</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                                <p>Provided by the <a href="../modules/Public.html">Public</a> module.</p>
+                                                            <p>
+                                                            Definido en
+                                                    <a href="../files/public_js_Simulation.js.html#l258"><code>public\js\Simulation.js:258</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Establece el valor de un control.</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parámetros:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">name</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>El nombre del control</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">name</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>El valor del control</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                            
+                                            </div>
+                                            <div id="method_sendMessage" class="method item">
+                                                <h3 class="name"><code>sendMessage</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>socket</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>params</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Definido en
+                                                    <a href="../files/server_bl_Simulation.js.html#l124"><code>server\bl\Simulation.js:124</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Envía un mensaje de <b>Enviar Mensaje</b></p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parámetros:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">socket</code>
+                                                                    <span class="type">Socket</span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>El web socket para la instancia actual</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">params</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Parámetros de la acción</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                            
+                                            </div>
+                                            <div id="method_setControl" class="method item">
+                                                <h3 class="name"><code>setControl</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>socket</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>token</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>params</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Definido en
+                                                    <a href="../files/server_bl_Simulation.js.html#l74"><code>server\bl\Simulation.js:74</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Envía un mensaje de <b>Establecer valor de variable global</b>, para que los
+                                            clientes establezcan un nuevo valor de variable global, basado en los
+                                            parámetros enviados.</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parámetros:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">socket</code>
+                                                                    <span class="type">Socket</span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>El web socket para la instancia actual</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">token</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Token del usuario</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">params</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Parámetros de la acción</p>
                                             
                                                                 </div>
                                             
@@ -1548,9 +2314,10 @@
                                             
                                             
                                                 <div class="meta">
+                                                                <p>Provided by the <a href="../modules/Public.html">Public</a> module.</p>
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/public_js_Simulation.js.html#l421"><code>public\js\Simulation.js:421</code></a>
+                                                    <a href="../files/public_js_Simulation.js.html#l479"><code>public\js\Simulation.js:479</code></a>
                                                     </p>
                                             
                                             
@@ -1558,7 +2325,7 @@
                                                 </div>
                                             
                                                 <div class="description">
-                                                    <p>Sobre-escribe algunos de los métodos de Tortoise, necesarios antes de que
+                                                    <p>Sobre-escribe algunos de los metodos de Tortoise, necesarios antes de que
                                             se inicialice Tortoise</p>
                                             
                                                 </div>
@@ -1596,9 +2363,10 @@
                                             
                                             
                                                 <div class="meta">
+                                                                <p>Provided by the <a href="../modules/Public.html">Public</a> module.</p>
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/public_js_Simulation.js.html#l273"><code>public\js\Simulation.js:273</code></a>
+                                                    <a href="../files/public_js_Simulation.js.html#l335"><code>public\js\Simulation.js:335</code></a>
                                                     </p>
                                             
                                             
@@ -1606,10 +2374,93 @@
                                                 </div>
                                             
                                                 <div class="description">
-                                                    <p>Ejecuta la acción de inicialización de la sesión se simulación</p>
+                                                    <p>Ejecuta la accion de inicializacion de la sesion se simulacion</p>
                                             
                                                 </div>
                                             
+                                            
+                                            
+                                            </div>
+                                            <div id="method_updateSpeed" class="method item">
+                                                <h3 class="name"><code>updateSpeed</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>socket</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>token</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>params</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Definido en
+                                                    <a href="../files/server_bl_Simulation.js.html#l93"><code>server\bl\Simulation.js:93</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Envía un mensaje de <b>Actualizar Velocidad</b>, para que los clientes
+                                            ejecuten una actualización de la velocidad de la  simulación,
+                                            basado en los parámetros enviados.</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parámetros:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">socket</code>
+                                                                    <span class="type">Socket</span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>El web socket para la instancia actual</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">token</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Token del usuario</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">params</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Parámetros de la acción</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
                                             
                                             
                                             </div>
@@ -1632,9 +2483,10 @@
                                             
                                             
                                                 <div class="meta">
+                                                                <p>Provided by the <a href="../modules/Public.html">Public</a> module.</p>
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/public_js_Simulation.js.html#l125"><code>public\js\Simulation.js:125</code></a>
+                                                    <a href="../files/public_js_Simulation.js.html#l131"><code>public\js\Simulation.js:131</code></a>
                                                     </p>
                                             
                                             
@@ -1642,7 +2494,7 @@
                                                 </div>
                                             
                                                 <div class="description">
-                                                    <p>Establece el valor de la velocidad de la simulación.</p>
+                                                    <p>Establece el valor de la velocidad de la simulacion.</p>
                                             
                                                 </div>
                                             
@@ -1685,9 +2537,10 @@
                                             
                                             
                                                 <div class="meta">
+                                                                <p>Provided by the <a href="../modules/Public.html">Public</a> module.</p>
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/public_js_Simulation.js.html#l479"><code>public\js\Simulation.js:479</code></a>
+                                                    <a href="../files/public_js_Simulation.js.html#l537"><code>public\js\Simulation.js:537</code></a>
                                                     </p>
                                             
                                             
@@ -1695,7 +2548,7 @@
                                                 </div>
                                             
                                                 <div class="description">
-                                                    <p>Formatea la sección de Usuarios de la sesión en interfaz de gráfica.</p>
+                                                    <p>Formatea la seccion de Usuarios de la sesion en interfaz de grafica.</p>
                                             
                                                 </div>
                                             

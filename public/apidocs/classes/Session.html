@@ -15,7 +15,7 @@
         <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">NodeTortoise</h1>
 	<div class="nav"></div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Buscar clases/módulos..." data-obj='["classes/App", "classes/Controller", "classes/Controller.model", "classes/Controller.session", "classes/Entities", "classes/Entities.model", "classes/Helper", "classes/Model", "classes/Model_List", "classes/Session", "classes/Session_List", "classes/SessionController", "classes/Simulation", "classes/Sockets", "classes/Sockets.Actions", "classes/SQLite", "modules/Commons", "modules/Public", "modules/Server", "modules/Server-bl", "modules/Server-da", "modules/Server-libs"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Buscar clases/módulos..." data-obj='["classes/App", "classes/Controller", "classes/Controller.model", "classes/Controller.session", "classes/Entities", "classes/Entities.model", "classes/formatDate", "classes/Helper", "classes/Model", "classes/Model_List", "classes/Session", "classes/Session_List", "classes/SessionController", "classes/Simulation", "classes/Sockets", "classes/SQLite", "modules/Commons", "modules/Public", "modules/Server", "modules/Server-bl", "modules/Server-da", "modules/Server-libs"]'>
         </form>
     </div>
 </div>
@@ -42,6 +42,7 @@
 	                            <li><a href="../classes/Controller.session.html">Controller.session</a></li>
 	                            <li><a href="../classes/Entities.html">Entities</a></li>
 	                            <li><a href="../classes/Entities.model.html">Entities.model</a></li>
+	                            <li><a href="../classes/formatDate.html">formatDate</a></li>
 	                            <li><a href="../classes/Helper.html">Helper</a></li>
 	                            <li><a href="../classes/Model.html">Model</a></li>
 	                            <li><a href="../classes/Model_List.html">Model_List</a></li>
@@ -50,7 +51,6 @@
 	                            <li><a href="../classes/SessionController.html">SessionController</a></li>
 	                            <li><a href="../classes/Simulation.html">Simulation</a></li>
 	                            <li><a href="../classes/Sockets.html">Sockets</a></li>
-	                            <li><a href="../classes/Sockets.Actions.html">Sockets.Actions</a></li>
 	                            <li><a href="../classes/SQLite.html">SQLite</a></li>
 	                    </ul>
 	                </div>
@@ -194,11 +194,23 @@
                         
                                                     </li>
                                                     <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_getSessionInfo" data-tablink="getSessionInfo">getSessionInfo</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_getUsersQuantity" data-tablink="getUsersQuantity">getUsersQuantity</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
                                                         <a href="#" data-tabid="#methods" data-anchor="#method_init" data-tablink="init">init</a>
                         
                                                     </li>
                                                     <li class="index-item method">
                                                         <a href="#" data-tabid="#methods" data-anchor="#method_removeUser" data-tablink="removeUser">removeUser</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_updateLastActivityDate" data-tablink="updateLastActivityDate">updateLastActivityDate</a>
                         
                                                     </li>
                                             </ul>
@@ -241,7 +253,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/server_bl_Session.js.html#l28"><code>server\bl\Session.js:28</code></a>
+                                                    <a href="../files/server_bl_Session.js.html#l37"><code>server\bl\Session.js:37</code></a>
                                                     </p>
                                             
                                             
@@ -319,7 +331,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/server_bl_Session.js.html#l76"><code>server\bl\Session.js:76</code></a>
+                                                    <a href="../files/server_bl_Session.js.html#l85"><code>server\bl\Session.js:85</code></a>
                                                     </p>
                                             
                                             
@@ -343,10 +355,107 @@
                                                     </div>
                                             
                                             </div>
+                                            <div id="method_getSessionInfo" class="method item">
+                                                <h3 class="name"><code>getSessionInfo</code></h3>
+                                            
+                                                    <span class="paren">()</span>
+                                            
+                                                    <span class="returns-inline">
+                                                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                                    </span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Definido en
+                                                    <a href="../files/server_bl_Session.js.html#l102"><code>server\bl\Session.js:102</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Retorna la información de la sesión.</p>
+                                            
+                                                </div>
+                                            
+                                            
+                                                    <div class="returns">
+                                                        <h4>Returns:</h4>
+                                            
+                                                        <div class="returns-description">
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
+                                                                <p>Objeto estándar de NodeJS que contiene la información
+                                            de la sesión</p>
+                                            
+                                                        </div>
+                                                    </div>
+                                            
+                                            </div>
+                                            <div id="method_getUsersQuantity" class="method item">
+                                                <h3 class="name"><code>getUsersQuantity</code></h3>
+                                            
+                                                    <span class="paren">()</span>
+                                            
+                                                    <span class="returns-inline">
+                                                        <span class="type">Integer</span>
+                                                    </span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Definido en
+                                                    <a href="../files/server_bl_Session.js.html#l112"><code>server\bl\Session.js:112</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Retorna la cantidad de usuarios en una sesión.</p>
+                                            
+                                                </div>
+                                            
+                                            
+                                                    <div class="returns">
+                                                        <h4>Returns:</h4>
+                                            
+                                                        <div class="returns-description">
+                                                                    <span class="type">Integer</span>:
+                                                                <p>La cantidad de usuarios en la sesión</p>
+                                            
+                                                        </div>
+                                                    </div>
+                                            
+                                            </div>
                                             <div id="method_init" class="method item">
                                                 <h3 class="name"><code>init</code></h3>
                                             
-                                                    <span class="paren">()</span>
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>modelFile</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>modelName</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>masterName</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
                                             
                                             
                                             
@@ -358,7 +467,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/server_bl_Session.js.html#l20"><code>server\bl\Session.js:20</code></a>
+                                                    <a href="../files/server_bl_Session.js.html#l22"><code>server\bl\Session.js:22</code></a>
                                                     </p>
                                             
                                             
@@ -370,6 +479,45 @@
                                             
                                                 </div>
                                             
+                                                    <div class="params">
+                                                        <h4>Parámetros:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">modelFile</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>El archivo del modelo</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">modelName</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>El nombre del modelo</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">masterName</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>El nombre del usuario maestro</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
                                             
                                             
                                             </div>
@@ -397,7 +545,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/server_bl_Session.js.html#l59"><code>server\bl\Session.js:59</code></a>
+                                                    <a href="../files/server_bl_Session.js.html#l68"><code>server\bl\Session.js:68</code></a>
                                                     </p>
                                             
                                             
@@ -437,6 +585,36 @@
                                                             </li>
                                                         </ul>
                                                     </div>
+                                            
+                                            
+                                            </div>
+                                            <div id="method_updateLastActivityDate" class="method item">
+                                                <h3 class="name"><code>updateLastActivityDate</code></h3>
+                                            
+                                                    <span class="paren">()</span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Definido en
+                                                    <a href="../files/server_bl_Session.js.html#l94"><code>server\bl\Session.js:94</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Actualiza la fecha de ultima actividad.</p>
+                                            
+                                                </div>
+                                            
                                             
                                             
                                             </div>

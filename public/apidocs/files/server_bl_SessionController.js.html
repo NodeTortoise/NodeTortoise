@@ -15,7 +15,7 @@
         <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">NodeTortoise</h1>
 	<div class="nav"></div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Buscar clases/módulos..." data-obj='["classes/App", "classes/Controller", "classes/Controller.model", "classes/Controller.session", "classes/Entities", "classes/Entities.model", "classes/Helper", "classes/Model", "classes/Model_List", "classes/Session", "classes/Session_List", "classes/SessionController", "classes/Simulation", "classes/Sockets", "classes/Sockets.Actions", "classes/SQLite", "modules/Commons", "modules/Public", "modules/Server", "modules/Server-bl", "modules/Server-da", "modules/Server-libs"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Buscar clases/módulos..." data-obj='["classes/App", "classes/Controller", "classes/Controller.model", "classes/Controller.session", "classes/Entities", "classes/Entities.model", "classes/formatDate", "classes/Helper", "classes/Model", "classes/Model_List", "classes/Session", "classes/Session_List", "classes/SessionController", "classes/Simulation", "classes/Sockets", "classes/SQLite", "modules/Commons", "modules/Public", "modules/Server", "modules/Server-bl", "modules/Server-da", "modules/Server-libs"]'>
         </form>
     </div>
 </div>
@@ -42,6 +42,7 @@
 	                            <li><a href="../classes/Controller.session.html">Controller.session</a></li>
 	                            <li><a href="../classes/Entities.html">Entities</a></li>
 	                            <li><a href="../classes/Entities.model.html">Entities.model</a></li>
+	                            <li><a href="../classes/formatDate.html">formatDate</a></li>
 	                            <li><a href="../classes/Helper.html">Helper</a></li>
 	                            <li><a href="../classes/Model.html">Model</a></li>
 	                            <li><a href="../classes/Model_List.html">Model_List</a></li>
@@ -50,7 +51,6 @@
 	                            <li><a href="../classes/SessionController.html">SessionController</a></li>
 	                            <li><a href="../classes/Simulation.html">Simulation</a></li>
 	                            <li><a href="../classes/Sockets.html">Sockets</a></li>
-	                            <li><a href="../classes/Sockets.Actions.html">Sockets.Actions</a></li>
 	                            <li><a href="../classes/SQLite.html">SQLite</a></li>
 	                    </ul>
 	                </div>
@@ -100,7 +100,7 @@
                         
                         <div class="file">
                             <pre class="prettyprint linenums">
-                        /* global App, Sockets, Helper, module, MASTER_PASSWORD, MODELS_PATH, TORTOISE_SET_SESSION_STRING  */
+                        /* global App, Sockets, Helper, module, MASTER_PASSWORD, MODELS_PATH, TORTOISE_SET_SESSION_STRING, SESSION_MAX_INACTIVITY_MINUTES  */
                         
                         /**
                          * Controla las sesiones de creadas por los usuarios para ejecutar las simulaciones.
@@ -112,8 +112,7 @@
                         SessionController = function () {
                         
                             var self = this;
-                            var Sockets, Session;
-                            var sessions, sessionData;
+                            var Sockets, Session, sessions;
                         
                             /**
                              * Realiza el proceso de inicialización de variables necesarias por el objeto.
@@ -121,7 +120,7 @@
                              */
                             this.init = function () {
                                 sessions = {};
-                                sessionData = {};
+                                setInterval(checkSessionsActivity, Helper.minutesToMiliseconds(SESSION_CHECK_INACTIVITY_MINUTES));
                             };
                         
                             /**
@@ -132,13 +131,12 @@
                              * @param {String} modelFile El archivo del modelo de la simulación que ejecutará la sesión
                              * @param {String} modelName El nombre del modelo de la simulación que ejecutará la sesión
                              * @param {Boolean} [enabledControls] Determinar si la sesión habilita o no los controles a otros usuarios distintos del maestro. Parámetro obligatorio solo para el usuario maestro.
-                             * @return {Object} Un objecto JavaScript estandar con la información sobre la sesión. 
+                             * @return {Object} Objecto JavaScript estandar con información del usuario en la sesión. 
                              */
                             this.joinSession = function (sessionName, userName, modelFile, modelName, enabledControls) {
                                 if (!sessions[sessionName]) {
                                     sessions[sessionName] = new Session(sessionName);
-                                    sessions[sessionName].init();
-                                    self.setSessionModel(sessionName, modelFile, modelName, userName);
+                                    sessions[sessionName].init(modelFile, modelName, userName);
                                     return sessions[sessionName].addUser(userName, MASTER_PASSWORD, enabledControls);
                                 } else {
                                     return sessions[sessionName].addUser(userName, null, null);
@@ -167,25 +165,13 @@
                             };
                         
                             /**
-                             * Establece el modelo a ejecutar en una sesión de simulación
-                             * @method setSessionModel
-                             * @param {String} sessionName El nombre de la sesion
-                             * @param {String} modelFile El archivo del modelo
-                             * @param {String} modelName El nombre del modelo
-                             * @param {String} masterName El nombre del usuario maestro
-                             */
-                            this.setSessionModel = function (sessionName, modelFile, modelName, masterName) {
-                                sessionData[sessionName] = {&#x27;file&#x27;: modelFile, &#x27;name&#x27;: modelName, &#x27;master&#x27;: masterName};
-                            };
-                        
-                            /**
                              * Devuelve el modelo que se está utilizando en una sesión.
                              * @method getSessionModel
                              * @param {String} sessionName El nombre de la sesión
                              * @return {String} El nombre del modelo utilizado en la sesión
                              */
                             this.getSessionModel = function (sessionName) {
-                                return sessionData[sessionName].file;
+                                return sessions[sessionName].getSessionInfo().file;
                             };
                         
                             /**
@@ -194,14 +180,14 @@
                              * @return {Array} La lista de sesiones
                              */
                             this.getSessionList = function () {
-                                return sessionData;
+                                return sessions;
                             };
                         
                             /**
                              * Retorna una sesión, basado en el nombre recibido como parámetro.
                              * @method getSession
                              * @param {String} sessionName Nombre de la sesión
-                             * @return {Session} La sessión
+                             * @return {Session} La sesión
                              */
                             this.getSession = function (sessionName) {
                                 return sessions[sessionName];
@@ -214,13 +200,36 @@
                              * @return {Integer} La cantidad de usuarios en la sesión
                              */
                             this.getSessionUsersQuantity = function (sessionName) {
-                                if (!sessions[sessionName]) {
-                                    return 0;
-                                } else {
-                                    return Object.keys(sessions[sessionName].users).length;
+                                return (sessions[sessionName] ? sessions[sessionName].getUsersQuantity() : -1);
+                            };
+                        
+                            /**
+                             * Actualiza la fecha de ultima actividad.
+                             * @method updateActivityDate
+                             * @param {String} sessionName El nombre de la sesión
+                             */
+                            this.updateActivityDate = function (sessionName) {
+                                if (sessions[sessionName]) {
+                                    sessions[sessionName].updateLastActivityDate();
                                 }
                             };
-                            
+                        
+                            /**
+                             * Revisa la actividad de las sesiones. Si alguna tiene más de cierta 
+                             * cantidad de minutos sin actividad.
+                             * @method checkSessionsActivity
+                             */
+                            var checkSessionsActivity = function (){
+                                for (var sessionName in sessions){
+                                    var sessionData = sessions[sessionName].getSessionInfo();
+                                    if(sessionData &amp;&amp; sessions[sessionName].getUsersQuantity() &lt; 1){
+                                        delete sessions[sessionName];
+                                    } else if(((new Date) - sessionData.lastActivity) &gt; Helper.minutesToMiliseconds(SESSION_MAX_INACTIVITY_MINUTES)){
+                                        delete sessions[sessionName];
+                                    }
+                                }
+                            };
+                        
                             /**
                              * Constructor de la clase
                              * @private

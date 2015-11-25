@@ -15,7 +15,7 @@
         <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">NodeTortoise</h1>
 	<div class="nav"></div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Buscar clases/módulos..." data-obj='["classes/App", "classes/Controller", "classes/Controller.model", "classes/Controller.session", "classes/Entities", "classes/Entities.model", "classes/Helper", "classes/Model", "classes/Model_List", "classes/Session", "classes/Session_List", "classes/SessionController", "classes/Simulation", "classes/Sockets", "classes/Sockets.Actions", "classes/SQLite", "modules/Commons", "modules/Public", "modules/Server", "modules/Server-bl", "modules/Server-da", "modules/Server-libs"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Buscar clases/módulos..." data-obj='["classes/App", "classes/Controller", "classes/Controller.model", "classes/Controller.session", "classes/Entities", "classes/Entities.model", "classes/formatDate", "classes/Helper", "classes/Model", "classes/Model_List", "classes/Session", "classes/Session_List", "classes/SessionController", "classes/Simulation", "classes/Sockets", "classes/SQLite", "modules/Commons", "modules/Public", "modules/Server", "modules/Server-bl", "modules/Server-da", "modules/Server-libs"]'>
         </form>
     </div>
 </div>
@@ -42,6 +42,7 @@
 	                            <li><a href="../classes/Controller.session.html">Controller.session</a></li>
 	                            <li><a href="../classes/Entities.html">Entities</a></li>
 	                            <li><a href="../classes/Entities.model.html">Entities.model</a></li>
+	                            <li><a href="../classes/formatDate.html">formatDate</a></li>
 	                            <li><a href="../classes/Helper.html">Helper</a></li>
 	                            <li><a href="../classes/Model.html">Model</a></li>
 	                            <li><a href="../classes/Model_List.html">Model_List</a></li>
@@ -50,7 +51,6 @@
 	                            <li><a href="../classes/SessionController.html">SessionController</a></li>
 	                            <li><a href="../classes/Simulation.html">Simulation</a></li>
 	                            <li><a href="../classes/Sockets.html">Sockets</a></li>
-	                            <li><a href="../classes/Sockets.Actions.html">Sockets.Actions</a></li>
 	                            <li><a href="../classes/SQLite.html">SQLite</a></li>
 	                    </ul>
 	                </div>
@@ -151,6 +151,10 @@
                                                     </li>
                                                     <li class="index-item event">
                                                         <a href="#" data-tabid="#events" data-anchor="#event_list.getModelURL" data-tablink="list.getModelURL">list.getModelURL</a>
+                        
+                                                    </li>
+                                                    <li class="index-item event">
+                                                        <a href="#" data-tabid="#events" data-anchor="#event_list.getSessionURL" data-tablink="list.getSessionURL">list.getSessionURL</a>
                         
                                                     </li>
                                                     <li class="index-item event">
@@ -306,7 +310,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/server_bl_Controller.js.html#l230"><code>server\bl\Controller.js:230</code></a>
+                                                    <a href="../files/server_bl_Controller.js.html#l235"><code>server\bl\Controller.js:235</code></a>
                                                     </p>
                                             
                                             
@@ -359,6 +363,59 @@
                                             
                                             
                                             </div>
+                                            <div id="event_list.getSessionURL" class="events item">
+                                                <h3 class="name"><code>list.getSessionURL</code></h3>
+                                                <span class="type"></span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Definido en
+                                                    <a href="../files/server_bl_Controller.js.html#l247"><code>server\bl\Controller.js:247</code></a>
+                                                    </p>
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Función para obtener la URL a una sesión.</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Event Payload:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">sessionURL</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>El URL de la sesión</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">sessionName</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>El nombre de la sesión</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                            
+                                            </div>
                                             <div id="event_list.onError" class="events item">
                                                 <h3 class="name"><code>list.onError</code></h3>
                                                 <span class="type"></span>
@@ -370,7 +427,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Definido en
-                                                    <a href="../files/server_bl_Controller.js.html#l245"><code>server\bl\Controller.js:245</code></a>
+                                                    <a href="../files/server_bl_Controller.js.html#l261"><code>server\bl\Controller.js:261</code></a>
                                                     </p>
                                             
                                             

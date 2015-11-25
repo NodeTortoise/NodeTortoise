@@ -15,7 +15,7 @@
         <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">NodeTortoise</h1>
 	<div class="nav"></div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Buscar clases/módulos..." data-obj='["classes/App", "classes/Controller", "classes/Controller.model", "classes/Controller.session", "classes/Entities", "classes/Entities.model", "classes/Helper", "classes/Model", "classes/Model_List", "classes/Session", "classes/Session_List", "classes/SessionController", "classes/Simulation", "classes/Sockets", "classes/Sockets.Actions", "classes/SQLite", "modules/Commons", "modules/Public", "modules/Server", "modules/Server-bl", "modules/Server-da", "modules/Server-libs"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Buscar clases/módulos..." data-obj='["classes/App", "classes/Controller", "classes/Controller.model", "classes/Controller.session", "classes/Entities", "classes/Entities.model", "classes/formatDate", "classes/Helper", "classes/Model", "classes/Model_List", "classes/Session", "classes/Session_List", "classes/SessionController", "classes/Simulation", "classes/Sockets", "classes/SQLite", "modules/Commons", "modules/Public", "modules/Server", "modules/Server-bl", "modules/Server-da", "modules/Server-libs"]'>
         </form>
     </div>
 </div>
@@ -42,6 +42,7 @@
 	                            <li><a href="../classes/Controller.session.html">Controller.session</a></li>
 	                            <li><a href="../classes/Entities.html">Entities</a></li>
 	                            <li><a href="../classes/Entities.model.html">Entities.model</a></li>
+	                            <li><a href="../classes/formatDate.html">formatDate</a></li>
 	                            <li><a href="../classes/Helper.html">Helper</a></li>
 	                            <li><a href="../classes/Model.html">Model</a></li>
 	                            <li><a href="../classes/Model_List.html">Model_List</a></li>
@@ -50,7 +51,6 @@
 	                            <li><a href="../classes/SessionController.html">SessionController</a></li>
 	                            <li><a href="../classes/Simulation.html">Simulation</a></li>
 	                            <li><a href="../classes/Sockets.html">Sockets</a></li>
-	                            <li><a href="../classes/Sockets.Actions.html">Sockets.Actions</a></li>
 	                            <li><a href="../classes/SQLite.html">SQLite</a></li>
 	                    </ul>
 	                </div>
@@ -119,12 +119,21 @@
                             this.isMasterOnline = false;
                             this.enabledControls = false;
                         
+                            var sessionInfo = null;
+                        
                             /**
                              * Realiza el proceso de inicialización de variables necesarias por el objeto.
                              * @method init
+                             * @param {String} modelFile El archivo del modelo
+                             * @param {String} modelName El nombre del modelo
+                             * @param {String} masterName El nombre del usuario maestro
                              */
-                            this.init = function () {
+                            this.init = function (modelFile, modelName, masterName) {
                                 self.users = {};
+                                sessionInfo = {
+                                    &#x27;name&#x27;: name, &#x27;model&#x27;: modelName, &#x27;file&#x27;: modelFile, &#x27;master&#x27;: masterName, 
+                                    &#x27;firstActivity&#x27;: new Date(), &#x27;lastActivity&#x27;: new Date()
+                                };
                             };
                         
                             /**
@@ -133,7 +142,7 @@
                              * @param {String} username
                              * @param {String} masterPassword
                              * @param {Boolean} enabledControls
-                             * @return {Object} Un objecto JavaScript estandar con la información sobre la sesión. 
+                             * @return {Object} Un objecto JavaScript estandar con la información sobre la sesión.
                              */
                             this.addUser = function (username, masterPassword, enabledControls) {
                                 if (self.users[username] === username) {
@@ -159,7 +168,7 @@
                             };
                         
                             /**
-                             * Elimina un usuario de una sesión de simulación. 
+                             * Elimina un usuario de una sesión de simulación.
                              * @method removeUser
                              * @param {String} userName El nombre del usuario
                              * @param {String} token El token de sesión del usuario
@@ -182,6 +191,33 @@
                              */
                             this.getMasterToken = function () {
                                 return (self.master === null) ? null : self.master.token;
+                            };
+                        
+                            /**
+                             * Actualiza la fecha de ultima actividad.
+                             * @method updateLastActivityDate
+                             */
+                            this.updateLastActivityDate = function () {
+                                sessionInfo.lastActivity = new Date();
+                            };
+                        
+                            /**
+                             * Retorna la información de la sesión.
+                             * @method getSessionInfo
+                             * @return {Object} Objeto estándar de NodeJS que contiene la información 
+                             * de la sesión
+                             */
+                            this.getSessionInfo = function () {
+                                return sessionInfo;
+                            };
+                            
+                            /**
+                             * Retorna la cantidad de usuarios en una sesión.
+                             * @method getUsersQuantity
+                             * @return {Integer} La cantidad de usuarios en la sesión
+                             */
+                            this.getUsersQuantity = function () {
+                                return (Object.keys(self.users).length);
                             };
                         
                         };

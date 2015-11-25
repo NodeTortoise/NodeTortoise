@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>server\da\Sockets.Actions.js - NodeTortoise</title>
+    <title>server\bl\Simulation.js - NodeTortoise</title>
     <link rel="stylesheet" href="">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -15,7 +15,7 @@
         <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">NodeTortoise</h1>
 	<div class="nav"></div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Buscar clases/módulos..." data-obj='["classes/App", "classes/Controller", "classes/Controller.model", "classes/Controller.session", "classes/Entities", "classes/Entities.model", "classes/Helper", "classes/Model", "classes/Model_List", "classes/Session", "classes/Session_List", "classes/SessionController", "classes/Simulation", "classes/Sockets", "classes/Sockets.Actions", "classes/SQLite", "modules/Commons", "modules/Public", "modules/Server", "modules/Server-bl", "modules/Server-da", "modules/Server-libs"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Buscar clases/módulos..." data-obj='["classes/App", "classes/Controller", "classes/Controller.model", "classes/Controller.session", "classes/Entities", "classes/Entities.model", "classes/formatDate", "classes/Helper", "classes/Model", "classes/Model_List", "classes/Session", "classes/Session_List", "classes/SessionController", "classes/Simulation", "classes/Sockets", "classes/SQLite", "modules/Commons", "modules/Public", "modules/Server", "modules/Server-bl", "modules/Server-da", "modules/Server-libs"]'>
         </form>
     </div>
 </div>
@@ -42,6 +42,7 @@
 	                            <li><a href="../classes/Controller.session.html">Controller.session</a></li>
 	                            <li><a href="../classes/Entities.html">Entities</a></li>
 	                            <li><a href="../classes/Entities.model.html">Entities.model</a></li>
+	                            <li><a href="../classes/formatDate.html">formatDate</a></li>
 	                            <li><a href="../classes/Helper.html">Helper</a></li>
 	                            <li><a href="../classes/Model.html">Model</a></li>
 	                            <li><a href="../classes/Model_List.html">Model_List</a></li>
@@ -50,7 +51,6 @@
 	                            <li><a href="../classes/SessionController.html">SessionController</a></li>
 	                            <li><a href="../classes/Simulation.html">Simulation</a></li>
 	                            <li><a href="../classes/Sockets.html">Sockets</a></li>
-	                            <li><a href="../classes/Sockets.Actions.html">Sockets.Actions</a></li>
 	                            <li><a href="../classes/SQLite.html">SQLite</a></li>
 	                    </ul>
 	                </div>
@@ -95,24 +95,22 @@
                 <div id="docs-main">
                     <div class="content">
                         <div class="page-header">
-                            <h1>server\da\Sockets.Actions.js <small>File</small></h1>
+                            <h1>server\bl\Simulation.js <small>File</small></h1>
                         </div>
                         
                         <div class="file">
                             <pre class="prettyprint linenums">
                         /* global Sockets, App, module */
                         
-                        var Sockets = App.require(&#x27;/da/Sockets&#x27;);
                         var SessionController = App.require(&#x27;/bl/SessionController&#x27;);
                         
                         /**
-                         * Maneja las acciones a ejecutar entre las simulacione, cuya comunicación es 
-                         * vía web sockets.
-                         * @class Sockets.Actions
+                         * Maneja las acciones a ejecutar entre las simulaciones.
+                         * @class Simulation
                          * @module Server
-                         * @submodule Server-da
+                         * @submodule Server-bl
                          */
-                        Sockets.Actions = function () {
+                        Simulation = function () {
                         };
                         
                         /**
@@ -123,13 +121,13 @@
                          * @param {String} token Token del usuario
                          * @param {Object} params Parámetros de la acción
                          */
-                        Sockets.Actions.connect = function (socket, token, params) {
+                        Simulation.connect = function (socket, token, params) {
                             var sessionName = params.session;
                             var response = SessionController.getInstance().joinSession(sessionName, params.name, params.modelFile, params.modelName, params.controls);
                             socket.username = response.name;
                             socket.token = response.token;
                             socket.master = response.master;
-                            socket.session = params.session;
+                            socket.session = sessionName;
                             socket.join(sessionName);
                             Sockets.sendToAll(socket.session, &#x27;updateUsers&#x27;, {&#x27;users&#x27;: response.users});
                             Sockets.sendToMe(socket, &#x27;connect_Response&#x27;, response);
@@ -138,6 +136,7 @@
                                 App.debug(&#x27;start&#x27;, socket.session, socket.username, 2);
                             }
                             App.debug(&#x27;connect&#x27;, socket.session, socket.username, 3);
+                            SessionController.getInstance().updateActivityDate(socket.session);
                         };
                         
                         /**
@@ -147,7 +146,7 @@
                          * @param {String} token Token del usuario
                          * @param {Object} params Parámetros de la acción
                          */
-                        Sockets.Actions.disconnect = function (socket, token, params) {
+                        Simulation.disconnect = function (socket, token, params) {
                             var diedSession = SessionController.getInstance().leaveSession(socket.session, socket.username, socket.token);
                             if (diedSession) {
                                 Sockets.sendToAll(socket.session, &#x27;end&#x27;);
@@ -158,6 +157,7 @@
                             var currentUsers = session ? session.users : &#x27;&#x27;;
                             Sockets.sendToAll(socket.session, &#x27;updateUsers&#x27;, {&#x27;users&#x27;: currentUsers});
                             App.debug(&#x27;disconnect&#x27;, socket.session, socket.username, 3);
+                            SessionController.getInstance().updateActivityDate(socket.session);
                         };
                         
                         /**
@@ -168,26 +168,28 @@
                          * @param {String} token Token del usuario
                          * @param {Object} params Parámetros de la acción
                          */
-                        Sockets.Actions.executeCommand = function (socket, token, params) {
+                        Simulation.executeCommand = function (socket, token, params) {
                             Sockets.sendAction(socket, socket.session, &#x27;executeCommand&#x27;, params);
+                            SessionController.getInstance().updateActivityDate(socket.session);
                         };
                         
                         /**
                          * Envía un mensaje de &lt;b&gt;Establecer valor de variable global&lt;/b&gt;, para que los 
                          * clientes establezcan un nuevo valor de variable global, basado en los 
                          * parámetros enviados.
-                         * @method setGlobal
+                         * @method setControl
                          * @param {Socket} socket El web socket para la instancia actual
                          * @param {String} token Token del usuario
                          * @param {Object} params Parámetros de la acción
                          */
-                        Sockets.Actions.setGlobal = function (socket, token, params) {
+                        Simulation.setControl = function (socket, token, params) {
                             if (SessionController.getInstance().getSession(socket.session).enabledControls) {
-                                Sockets.sendToOthers(socket, socket.session, &#x27;setGlobal&#x27;, params);
-                                App.debug(&#x27;setGlobal&#x27;, socket.session, socket.username, 2);
+                                Sockets.sendToOthers(socket, socket.session, &#x27;setControl&#x27;, params);
+                                App.debug(&#x27;setControl&#x27;, socket.session, socket.username, 2);
                             } else {
-                                Sockets.sendAction(socket, socket.session, &#x27;setGlobal&#x27;, params);
+                                Sockets.sendAction(socket, socket.session, &#x27;setControl&#x27;, params);
                             }
+                            SessionController.getInstance().updateActivityDate(socket.session);
                         };
                         
                         /**
@@ -199,13 +201,14 @@
                          * @param {String} token Token del usuario
                          * @param {Object} params Parámetros de la acción
                          */
-                        Sockets.Actions.updateSpeed = function (socket, token, params) {
+                        Simulation.updateSpeed = function (socket, token, params) {
                             if (SessionController.getInstance().getSession(socket.session).enabledControls) {
                                 Sockets.sendToOthers(socket, socket.session, &#x27;updateSpeed&#x27;, params);
                                 App.debug(&#x27;updateSpeed&#x27;, socket.session, socket.username, 2);
                             } else {
                                 Sockets.sendAction(socket, socket.session, &#x27;updateSpeed&#x27;, params);
                             }
+                            SessionController.getInstance().updateActivityDate(socket.session);
                         };
                         
                         /**
@@ -216,7 +219,7 @@
                          * @param {String} token Token del usuario
                          * @param {Object} params Parámetros de la acción
                          */
-                        Sockets.Actions.applyUpdate = function (socket, token, params) {
+                        Simulation.applyUpdate = function (socket, token, params) {
                             Sockets.sendAction(socket, socket.session, &#x27;applyUpdate&#x27;, params);
                         };
                         
@@ -226,12 +229,13 @@
                          * @param {Socket} socket El web socket para la instancia actual
                          * @param {Object} params Parámetros de la acción
                          */
-                        Sockets.Actions.sendMessage = function (socket, params) {
+                        Simulation.sendMessage = function (socket, params) {
                             Sockets.sendAction(socket, socket.session, &#x27;getMessage&#x27;, params);
                             App.debug(&#x27;sendMessage&#x27;, socket.session, socket.username, 2);
+                            SessionController.getInstance().updateActivityDate(socket.session);
                         };
                         
-                        module.exports = Sockets.Actions;
+                        module.exports = Simulation;
                             </pre>
                         </div>
                     </div>

@@ -92,16 +92,6 @@ pre {
     margin: 5px 0;
 }
 
-.button-disabled {
-    color: #999 !important;
-    background-color: #ccc !important;
-    cursor: not-allowed !important;
-}
-
-.button-disabled:hover {
-    box-shadow: none !important;
-}
-
 .help-container ol li {
     line-height: 35px;
 }
@@ -140,4 +130,14 @@ pre {
 }
 .simulation-status .panel-body {
     padding: 8px;
+}
+
+.button-disabled, input[disabled="disabled"], label.netlogo-input[data-disabled="disabled"] {
+    color: #999 !important;
+    background-color: #ccc !important;
+    cursor: not-allowed !important;
+}
+
+.button-disabled:hover, input[disabled="disabled"]:hover, label.netlogo-input[data-disabled="disabled"]:hover {
+    box-shadow: none !important;
 }

@@ -1,6 +1,6 @@
 /* global setup, go, io, Helper, world, Ractive, procedures, session, AgentStreamController,
  * _ENVIRONMENT, ENABLED_CONTROLS_ALL_USERS, DEFAULT_SERVER, MESSAGE_NO_MASTER_CONNECTED,
- * _ENVIRONMENT, ENVIRONMENT_DEVELOPMENT, ENVIRONMENT_PRODUCTION, MESSAGE_STATUS_INITIALIZING, 
+ * _ENVIRONMENT, ENVIRONMENT_DEVELOPMENT, ENVIRONMENT_PRODUCTION, MESSAGE_STATUS_INITIALIZING,
  * MESSAGE_STATUS_READY, MESSAGE_STATUS_RUNNING, MESSAGE_STATUS_ENDED, MESSAGE_STATUS_READY */
 
 if (typeof _SERVER === 'undefined') {
@@ -21,7 +21,7 @@ Simulation = function () {
 
     var self = this;
     var inputsSelector = '.netlogo-widget-container input:visible';
-    var outputsSelector = '.netlogo-widget-container output:visible';
+    var outputsSelector = 'output.netlogo-value:visible';
     var buttonsSelector = 'button.netlogo-widget.netlogo-button.netlogo-command, label.netlogo-widget.netlogo-button.netlogo-command, label.netlogo-widget.netlogo-button.netlogo-command input[type="checkbox"]';
     var speedInputSelector = '.netlogo-widget.netlogo-speed-slider input[type=range]';
     var goButtonCheckboxSelector = 'label.netlogo-widget.netlogo-button.netlogo-forever-button.netlogo-command input[type="checkbox"]';
@@ -50,8 +50,8 @@ Simulation = function () {
      * @method init
      */
     this.init = function () {
-        self.status = STATUS_INITIALIZING;
-        setInterval(displayStatus, 1000);
+        self.setStatus(STATUS_INITIALIZING);
+        setInterval(displayStatus, 1500);
         initWidgets();
         overwriteControls();
         initNoMasterConnected();
@@ -60,17 +60,7 @@ Simulation = function () {
         modelFile = Helper.getLastURLPiece();
         self.socket = io.connect(_SERVER);
         initSockets();
-        /*$(goButtonCheckboxSelector).parent().click(function (event) {
-         //event.preventDefault();
-         event.run();
-         console.log(goButton.hasClass('netlogo-active'));
-         if (!goButton.hasClass('netlogo-active')) {
-         disableInputs();
-         } else {
-         enableInputs();
-         }
-         });*/
-        //initOutputs();
+        initOutputs();
     };
 
     /**
@@ -100,15 +90,17 @@ Simulation = function () {
         if (self.isMaster) {
             setInterval(function () {
                 var newStatus;
+                var outputs = {};
                 var oldStatus = self.status;
                 if ($(goButtonCheckboxSelector).is(':checked')) {
                     newStatus = STATUS_RUNNING;
                 } else if (self.isSocketReady && !self.sessionEnded) {
                     newStatus = STATUS_READY;
+                    outputs = getOutputsValues();
                 }
                 if(oldStatus !== newStatus){
-                    self.status = newStatus;
-                    self.sendAction('setStatus', {'status': self.status});
+                    self.setStatus(newStatus);
+                    self.sendAction('setStatus', {'status': self.status, 'outputs': outputs});
                 }
             }, 1500);
         }
@@ -161,11 +153,6 @@ Simulation = function () {
             return agentStreamController._applyUpdate(modelUpdate);
         } else if (self.isMaster) {
             var outputs = new Array();
-            /*var outputs = new Array();
-             $(outputsSelector).each(function (index, value) {
-             var ele = $(this);
-             outputs.push({'name': ele.attr('data-name'), 'value': ele.val()});
-             });*/
             self.sendAction('applyUpdate', {'model': modelUpdate, 'outputs': outputs, 'status': self.status});
             return agentStreamController._applyUpdate(modelUpdate);
         } else {
@@ -199,6 +186,33 @@ Simulation = function () {
      */
     this.updateSpeed_ = function (value) {
         $(speedInputSelector).val(value);
+    };
+
+    /**
+     * Ejecuta acciones relacionadas con el estatus de la simulacion.
+     * @method setStatus
+     * @param {Integer} status El estatus de la simulacion
+     */
+    this.setStatus = function (status) {
+        self.status = status;
+        switch (status){
+            case STATUS_INITIALIZING:
+                disableInputs();
+                break;
+            case STATUS_READY:
+                if(self.isMaster || self.enabledControls){
+                    enableInputs();
+                }
+                break;
+            case STATUS_RUNNING:
+                disableInputs();
+                break;
+            case STATUS_ENDED:
+                disableInputs();
+                break;
+            default:
+                disableInputs();
+        }
     };
 
     /**
@@ -334,9 +348,25 @@ Simulation = function () {
     var initOutputs = function () {
         $(outputsSelector).each(function () {
             var ele = $(this);
-            var nameEle = $('.netlogo-label', ele.parent());
-            ele.attr('data-name', nameEle.text());
+            var name = $('.netlogo-label', ele.parent()).text();
+            ele.attr('data-name', name.replace(/[^a-z0-9]/gi,'_'));
         });
+    };
+
+    var getOutputsValues = function () {
+        var outputs = {};
+        $(outputsSelector).each(function () {
+            var ele = $(this);
+            outputs[ele.attr('data-name')] = ele.val();
+        });
+        return outputs;
+    };
+
+    var setOutputsValues = function (outputs) {
+        for (var key in outputs) {
+            console.log(key +' = '+outputs[key]);
+            $('output[data-name="'+key+'"]').val(outputs[key]);
+        }
     };
 
     /**
@@ -361,6 +391,7 @@ Simulation = function () {
      */
     var disableInputs = function () {
         $(inputsSelector).attr('disabled', true);
+        $('label.netlogo-input').attr('data-disabled', 'disabled');
     };
 
     /**
@@ -369,6 +400,7 @@ Simulation = function () {
      */
     var enableInputs = function () {
         $(inputsSelector).attr('disabled', false);
+        $('label.netlogo-input').attr('data-disabled', '');
     };
 
     /**
@@ -406,7 +438,7 @@ Simulation = function () {
             enableInputs();
         }
         spinner.remove();
-        self.status = STATUS_READY;
+        self.setStatus(STATUS_READY);
     };
 
     /**
@@ -418,7 +450,7 @@ Simulation = function () {
         //location.reload();
         initNoMasterConnected();
         self.sessionEnded = true;
-        self.status = STATUS_ENDED;
+        self.setStatus(STATUS_ENDED);
     };
 
     this.overwritedCommands = {
@@ -489,7 +521,8 @@ Simulation = function () {
          * @param {Object} params Los parametros de la accion
          */
         'setStatus': function (params) {
-            self.status = params.status;
+            self.setStatus(params.status);
+            setOutputsValues(params.outputs);
         },
         /**
          * Recibe del servidor la accion de iniciar sesion de simulacion

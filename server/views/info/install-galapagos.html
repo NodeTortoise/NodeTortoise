@@ -75,11 +75,11 @@ apt-get install sbt</pre>
         </li>
         <li>
             Crear link simbólico a Play Framework dentro de Galapagos
-            <pre>ln -s ../activator-1.3.5-minimal/activator start</pre>
+            <pre>ln -s ../activator-1.3.5-minimal/activator play</pre>
         </li>
         <li>
-            Instalar UnZip
-            <pre>apt-get install unzip</pre>
+            Iniciar el servidor de Galapagos con permisos de administrador
+            <pre>./play start -Dhttp.port=80</pre>
         </li>
     </ol>
 </div>
@@ -92,8 +92,8 @@ apt-get install sbt</pre>
             <pre>cd Galapagos</pre>
         </li>
         <li>
-            Ejecutar el archivo start, con derechos de root
-            <pre>sudo ./start run</pre>
+            Ejecutar el archivo run con permisos de administrador
+            <pre>./run</pre>
         </li>
     </ol>
     {% endblock %}

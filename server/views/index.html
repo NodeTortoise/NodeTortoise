@@ -1,1 +1,73 @@
 {% extends 'layout.html' %}
+{% block main_content %}
+
+<div>
+    <h3>¿Qué es NodeTortoise?</h3>
+    <p>
+        NodeTortoise fue elaborado por el costarricense Oscar Martínez Mora y forma 
+        parte del Trabajo Final de Investigación Aplicada de la Maestría Profesional en 
+        Ciencias de la Computación e Informática de la Universidad de Costa Rica.
+    </p>
+    <p>
+        Con este proyecto se pretendió el desarrollo de una aplicación web para NetLogo, que 
+        permita al acceso por medio de Internet, implementada de forma simple, utilizando una 
+        única tecnología, con código fuente y documentación de acceso público, para que pueda 
+        ser fácilmente utilizado y extendido a las necesidades, en el campo académico y científico.
+    </p>
+    <p>
+        NodeTortoise hace uso de las tecnologías de NetLogo y de NetLogo Web (Tortoise/Galapagos).
+        Se utilizan los modelos de NetLogo, los cuáles deben ser convertidos a HTML haciendo uso de
+        la funcionalidad que brinda NetLogo Web.
+    </p>
+</div>
+<hr/>
+<div>
+    <h3>¿Por qué NodeTortoise?</h3>
+    <p>
+        La plataforma propuesta se ha denominado NodeTortoise, relacionándola así con el proyecto 
+        llevado a cabo por Jason Bertsche y equipo, que permite generar código de NetLogo 
+        ejecutable desde cualquier navegador web, el cual sirve de base de base al proyecto 
+        actual, y NodeJS, tecnología utilizada para la implementación de la plataforma propuesta.     
+    </p>
+    <p>
+        Este Trabajo Final de Investigación Aplicada plantea aún más que facilidad para el usuario. 
+        Se propone crear una plataforma que permita a otros estudiantes y personas en general a 
+        modificar y extender las funcionalidades. Esta herramienta será dependiente de Tortoise/Galapagos, 
+        pero únicamente en el proceso de generación de los modelos. El manejo de usuarios, interacción, 
+        interfaz gráficos y casi cualquier otra funcionalidad extra, es manejada por esta herramienta. 
+    </p>
+    <p>
+        El código fuente de NodeTortoise se colocará en un repositorio público de GitHub, bajo 
+        licencia GNU , permitiendo así su libre descarga, distribución y modificación. De forma 
+        adicional, se propone crear y mantener de forma pública la documentación de usuario y 
+        técnica necesaria que permita sacarle el mayor de los provechos a la plataforma.
+    </p>
+</div>
+<hr/>
+<div>
+    <h3>¿Por qué utilizar Tortoise/Galapagos como base?</h3>
+    <p>
+        No debemos reinventar la rueda. Esta es una metáfora comúnmente utilizada en el 
+        mundo de la computación e indica que si ya existe algo que tiene la funcionalidad 
+        que necesitamos y tenemos los permisos para utilizarla, por qué no utilizarlo en 
+        lugar de estar consumiendo recursos en hacerlo desde cero. 
+    </p>
+    <p>
+        Tortoise/Galapagos es un proyecto serio, gestado desde la Northwestern University 
+        y que forma parte de los proyectos oficiales de NetLogo (Bertsche, 2012). El código 
+        fuente es de libre distribución y modificación (Bertsche, 2012) y tiene una actividad 
+        constante . Se espera que el código generado y exportado de Galapagos sea de calidad, 
+        además de que estos contarían con un proceso oficial y constante de actualización 
+        con respecto a las funcionalidades de NetLogo. 
+    </p>
+    <p>
+        Adicionalmente se podría perfectamente utilizar el servidor oficial de Galapagos 
+        y de acceso público, para generar los modelos, los cuáles serán importados a 
+        NodeTortoise, evitando así la instalación y configuración de Galapagos y tener 
+        que contar con un servidor con recursos considerables. De manera adicional, se 
+        documentará el proceso de instalación de Galapagos y se creará un script de Linux 
+        que facilite este proceso, en caso de que se desee mantener en un servidor propio.
+    </p>
+</div>
+<div>&nbsp;<br/></div>
+{% endblock %}

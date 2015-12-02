@@ -1,14 +1,12 @@
 /* global setup, go, io, Helper, world, Ractive, procedures, session, AgentStreamController,
- * _ENVIRONMENT, ENABLED_CONTROLS_ALL_USERS, DEFAULT_SERVER, MESSAGE_NO_MASTER_CONNECTED,
- * _ENVIRONMENT, ENVIRONMENT_DEVELOPMENT, ENVIRONMENT_PRODUCTION, MESSAGE_STATUS_INITIALIZING,
- * MESSAGE_STATUS_READY, MESSAGE_STATUS_RUNNING, MESSAGE_STATUS_ENDED, MESSAGE_STATUS_READY */
+ * _ENVIRONMENT, _ENVIRONMENT, CONSTANTS, CONFIG */
 
 if (typeof _SERVER === 'undefined') {
-    _SERVER = DEFAULT_SERVER;
+    _SERVER = CONSTANTS.DEFAULT_SERVER;
 }
 
 if (typeof _ENVIRONMENT === 'undefined') {
-    _ENVIRONMENT = ENVIRONMENT_DEVELOPMENT;
+    _ENVIRONMENT = CONSTANTS.ENVIRONMENT_DEVELOPMENT;
 }
 
 /**
@@ -29,7 +27,8 @@ Simulation = function () {
     var STATUS_INITIALIZING = 1;
     var STATUS_READY = 2;
     var STATUS_RUNNING = 3;
-    var STATUS_ENDED = 4;
+    var STATUS_STOPPED = 4;
+    var STATUS_ENDED = 5;
 
     this.socket = null;
     this.firsTime = true;
@@ -41,15 +40,19 @@ Simulation = function () {
     this.sessionEnded = false;
     this.enabledControls = false;
     this.status = STATUS_INITIALIZING;
+    this.hasSetup = false;
     this.commands = {};
 
-    var spinner, sessionName, modelName, modelFile, modelControls, modelCommands, overwritedCommands;
+    var spinner, sessionName, modelName, modelFile, modelControls, modelCommands;
+    var overwritedCommands, waitingSessionRestart;
 
     /**
      * Inicializa la clase, realizando las configuraciones necesarias.
      * @method init
      */
     this.init = function () {
+        self.hasSetup = false;
+        waitingSessionRestart = false;
         self.setStatus(STATUS_INITIALIZING);
         setInterval(displayStatus, 1500);
         initWidgets();
@@ -70,12 +73,12 @@ Simulation = function () {
      */
     var connect = function () {
         var name;
-        if (_ENVIRONMENT === ENVIRONMENT_DEVELOPMENT) {
+        if (_ENVIRONMENT === CONSTANTS.ENVIRONMENT_DEVELOPMENT) {
             name = (Helper.getBrowser()).toUpperCase();
         } else {
             name = prompt('Digite su nombre');
         }
-        var enabledControls = ENABLED_CONTROLS_ALL_USERS;
+        var enabledControls = CONFIG.ENABLED_CONTROLS_ALL_USERS;
         var params = {'session': sessionName, 'name': name, 'password': '', 'controls': enabledControls, 'modelFile': modelFile, 'modelName': modelName};
         self.sendAction('connect', params);
     };
@@ -84,7 +87,6 @@ Simulation = function () {
      * Establece la funcion que se ejecuta cada cierto tiempo, para determinar
      * el estado de la simulacion.
      * @method setCheckStatus
-     * @return
      */
     var setCheckStatus = function () {
         if (self.isMaster) {
@@ -94,11 +96,13 @@ Simulation = function () {
                 var oldStatus = self.status;
                 if ($(goButtonCheckboxSelector).is(':checked')) {
                     newStatus = STATUS_RUNNING;
-                } else if (self.isSocketReady && !self.sessionEnded) {
-                    newStatus = STATUS_READY;
+                } else if (self.hasSetup && !self.sessionEnded) {
+                    newStatus = STATUS_STOPPED;
                     outputs = getOutputsValues();
+                } else {
+                    newStatus = STATUS_READY;
                 }
-                if(oldStatus !== newStatus){
+                if (oldStatus !== newStatus) {
                     self.setStatus(newStatus);
                     self.sendAction('setStatus', {'status': self.status, 'outputs': outputs});
                 }
@@ -115,16 +119,19 @@ Simulation = function () {
         var statusText;
         switch (self.status) {
             case STATUS_INITIALIZING:
-                statusText = MESSAGE_STATUS_INITIALIZING;
+                statusText = CONFIG.MESSAGE_STATUS_INITIALIZING;
                 break;
             case STATUS_READY:
-                statusText = MESSAGE_STATUS_READY;
+                statusText = CONFIG.MESSAGE_STATUS_READY;
                 break;
             case STATUS_RUNNING:
-                statusText = MESSAGE_STATUS_RUNNING;
+                statusText = CONFIG.MESSAGE_STATUS_RUNNING;
+                break;
+            case STATUS_STOPPED:
+                statusText = CONFIG.MESSAGE_STATUS_STOPPED;
                 break;
             case STATUS_ENDED:
-                statusText = MESSAGE_STATUS_ENDED;
+                statusText = CONFIG.MESSAGE_STATUS_ENDED;
                 break;
             default:
                 statusText = '';
@@ -195,16 +202,27 @@ Simulation = function () {
      */
     this.setStatus = function (status) {
         self.status = status;
-        switch (status){
+        switch (status) {
             case STATUS_INITIALIZING:
                 disableInputs();
                 break;
             case STATUS_READY:
-                if(self.isMaster || self.enabledControls){
+                if (self.isMaster || self.enabledControls) {
+                    enableInputs();
+                }
+                break;
+            case STATUS_STOPPED:
+                if (!self.hasSetup) {
+                    doIfSessionStarted();
+                }
+                if (self.isMaster || self.enabledControls) {
                     enableInputs();
                 }
                 break;
             case STATUS_RUNNING:
+                if (!self.hasSetup) {
+                    doIfSessionStarted();
+                }
                 disableInputs();
                 break;
             case STATUS_ENDED:
@@ -282,16 +300,35 @@ Simulation = function () {
         if (self.commands[commandData.fnName]) {
             return;
         }
-        self.commands[commandData.fnName] = commandData.fn;
+        var functionName = commandData.fnName;
         var fnParent = commandData.fnParent;
-        fnParent[commandData.fnName] = function () {
+        var extraFn = function () {
+        };
+        if (overwriteCommand.extra.hasOwnProperty(functionName)) {
+            extraFn = overwriteCommand.extra[functionName];
+        }
+        self.commands[functionName] = function () {
+            extraFn();
+            commandData.fn();
+        };
+        fnParent[functionName] = function () {
             var params = arguments;
             var simulation = Simulation.getInstance();
             if (simulation.isMaster) {
-                simulation.sendAction('executeCommand', {'command': commandData.fnName, 'params': params});
-                simulation['commands'][commandData.fnName].apply(this, params);
+                simulation.sendAction('executeCommand', {'command': functionName, 'params': params});
+                simulation['commands'][functionName].apply(this, params);
             }
         };
+    };
+
+    /**
+     * Funcionalidad adicional que se ejecuta para los comandos definidos
+     */
+    overwriteCommand.extra = {
+        'setup': function () {
+            Simulation.getInstance().hasSetup = true;
+            doIfSessionRestarted();
+        }
     };
 
     /**
@@ -349,7 +386,7 @@ Simulation = function () {
         $(outputsSelector).each(function () {
             var ele = $(this);
             var name = $('.netlogo-label', ele.parent()).text();
-            ele.attr('data-name', name.replace(/[^a-z0-9]/gi,'_'));
+            ele.attr('data-name', name.replace(/[^a-z0-9]/gi, '_'));
         });
     };
 
@@ -364,8 +401,7 @@ Simulation = function () {
 
     var setOutputsValues = function (outputs) {
         for (var key in outputs) {
-            console.log(key +' = '+outputs[key]);
-            $('output[data-name="'+key+'"]').val(outputs[key]);
+            $('output[data-name="' + key + '"]').val(outputs[key]);
         }
     };
 
@@ -446,11 +482,33 @@ Simulation = function () {
      * @method end
      */
     this.end = function () {
+        $('#no-setup-modal').modal('hide');
         $('#no-master-modal').modal('show');
         //location.reload();
         initNoMasterConnected();
         self.sessionEnded = true;
         self.setStatus(STATUS_ENDED);
+    };
+
+    var doIfSessionStarted = function () {
+        if(!waitingSessionRestart){
+            waitingSessionRestart = true;
+            spinner.show();
+            $('#no-setup-modal').modal('show');
+        }
+    };
+    
+    var doIfSessionRestarted = function () {
+        waitingSessionRestart = false;
+        spinner.remove();
+        $('#no-setup-modal').modal('hide');
+    };
+
+    var doWhenNewuser = function (usersList) {
+        if(self.isMaster){
+            self.sendAction('setStatus', {'status': self.status, 'outputs': {}});
+        }
+        Simulation.formatUI.users(usersList);
     };
 
     this.overwritedCommands = {
@@ -467,6 +525,7 @@ Simulation = function () {
                 self.start();
             }
             self.isSocketReady = true;
+            self.setStatus(STATUS_READY);
             if (self.isMaster) {
                 setCheckStatus();
             }
@@ -477,7 +536,7 @@ Simulation = function () {
          * @param {Object} params Los parametros de la accion
          */
         'updateUsers': function (params) {
-            Simulation.formatUI.users(params.users);
+            doWhenNewuser(params.users);
         },
         /**
          * Recibe del servidor la accion de ejecutar comando
@@ -640,7 +699,7 @@ Simulation.formatUI = function () {
         $('.netlogo-model').css('width', '');
     });
     //--> No master connected modal
-    $('#no-master-modal p.no-master-connected-message').text(MESSAGE_NO_MASTER_CONNECTED);
+    $('#no-master-modal p.no-master-connected-message').text(CONFIG.MESSAGE_NO_MASTER_CONNECTED);
 };
 
 /**

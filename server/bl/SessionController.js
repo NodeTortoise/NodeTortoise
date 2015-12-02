@@ -1,4 +1,4 @@
-/* global App, Sockets, Helper, module, MASTER_PASSWORD, MODELS_PATH, TORTOISE_SET_SESSION_STRING, SESSION_MAX_INACTIVITY_MINUTES  */
+/* global App, Sockets, Helper, module, MASTER_PASSWORD, MODELS_PATH, TORTOISE_SET_SESSION_STRING, CONFIG  */
 
 /**
  * Controla las sesiones de creadas por los usuarios para ejecutar las simulaciones.
@@ -18,7 +18,7 @@ SessionController = function () {
      */
     this.init = function () {
         sessions = {};
-        setInterval(checkSessionsActivity, Helper.minutesToMiliseconds(SESSION_CHECK_INACTIVITY_MINUTES));
+        setInterval(checkSessionsActivity, Helper.minutesToMiliseconds(CONFIG.SESSION_CHECK_INACTIVITY_MINUTES));
     };
 
     /**
@@ -122,7 +122,7 @@ SessionController = function () {
             var sessionData = sessions[sessionName].getSessionInfo();
             if(sessionData && sessions[sessionName].getUsersQuantity() < 1){
                 delete sessions[sessionName];
-            } else if(((new Date) - sessionData.lastActivity) > Helper.minutesToMiliseconds(SESSION_MAX_INACTIVITY_MINUTES)){
+            } else if(((new Date) - sessionData.lastActivity) > Helper.minutesToMiliseconds(CONFIG.SESSION_MAX_INACTIVITY_MINUTES)){
                 delete sessions[sessionName];
             }
         }

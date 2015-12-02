@@ -85,6 +85,10 @@ Helper.spinner = function (elementSelector, options) {
             });
         }
     };
+    this.show = function(){
+        this.remove();
+        this.init();
+    };
     this.init();
 };
 

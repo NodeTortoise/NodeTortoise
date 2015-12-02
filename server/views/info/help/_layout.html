@@ -1,0 +1,41 @@
+{% extends '../../layout.html' %}
+{% block extra_css %}
+<link rel="stylesheet" href="/css/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
+{% endblock %}
+
+{% block main_content %}
+
+<div class="help-container">
+    {% block help_content %}{% endblock %}
+</div>
+
+<div class="more-help">    
+    <h4>Más ayuda</h4>
+    <ul>
+        <li><a href="/info/help/download-model">Convertir Modelo NetLogo a HTML</a></li>
+        <li><a href="/info/help/upload-model">Importar un modelo</a></li>
+        <li><a href="/info/help/list-models">Listar los modelos disponibles</a></li>
+        <li><a href="/info/help/delete-model">Eliminar un modelo</a></li>
+        <li><a href="/info/help/create-session">Crear una nueva sesión de simulación</a></li>
+        <li><a href="/info/help/join-session">Unirse a una sesión de simulación existente</a></li>
+    </ul>
+</div>
+
+{% endblock %}
+{% block extra_js %}
+<script type="text/javascript" src="/js/jquery.fancybox-1.3.4.pack.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('img.fancybox').each(function () {
+            var $this = $(this);
+            var title = $this.attr('title');
+            var src = $this.attr('data-big') || $this.attr('src');
+            var a = $('<a href="#" class="fancybox"></a>').attr('href', src).attr('title', title);
+            $this.wrap(a);
+        });
+        $('a.fancybox').fancybox({
+            'hideOnContentClick': true
+        });
+    });
+</script>
+{% endblock %}

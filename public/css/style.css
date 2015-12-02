@@ -141,3 +141,7 @@ pre {
 .button-disabled:hover, input[disabled="disabled"]:hover, label.netlogo-input[data-disabled="disabled"]:hover {
     box-shadow: none !important;
 }
+
+#no-setup-modal {
+    z-index: 99999 !important;
+}

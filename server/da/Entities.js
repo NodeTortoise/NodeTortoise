@@ -1,8 +1,8 @@
-/* global DB_PATH, Helper, DEBUG_MODE, App, module */
+/* global DB_PATH, Helper, App, module, CONFIG */
 
 App.include('/server/libs/SQLite');
 var db = new SQLite(App.getPath(DB_PATH));
-db.debug = (DEBUG_MODE > 1);
+db.debug = (CONFIG.DEBUG_MODE > 1);
 
 var dateFormat = require('dateformat');
 

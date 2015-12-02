@@ -1,4 +1,4 @@
-/* global __dirname, module, ROOT_DIR, DEBUG_MODE, MASTER_PASSWORD, TEMP_PATH, LIBS_PATH, PUBLIC_CONFIG_PATH */
+/* global __dirname, module, ROOT_DIR, MASTER_PASSWORD, TEMP_PATH, LIBS_PATH, PUBLIC_CONFIG_PATH, CONFIG */
 
 /**
  * Controlador principal de la aplicación en el lado del servidor. Se encarga de 
@@ -189,7 +189,7 @@ App.require = function (module) {
 /**
  * Imprime en consola un mensaje de depuración, personalizado para la aplicación.
  * La impresión del mensaje es condicionada por el valor de la variable global  
- * <i>DEBUG_MODE<i> en el archivo de configuración de la aplicación y el valor del
+ * <i>CONFIG.DEBUG_MODE<i> en el archivo de configuración de la aplicación y el valor del
  * parámetro <i>mode</i> recibido
  * @method debug
  * @static
@@ -202,7 +202,7 @@ App.debug = function (message, user, session, mode) {
     if (!mode) {
         mode = 1;
     }
-    if (mode <= DEBUG_MODE) {
+    if (mode <= CONFIG.DEBUG_MODE) {
         if (session) {
             console.log('DEBUG =>', session, '=>', user, '=>', message);
         } else {

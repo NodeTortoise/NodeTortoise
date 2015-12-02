@@ -103,7 +103,7 @@
                         /* global setup, go, io, Helper, world, Ractive, ENVIRONMENT, procedures, session, AgentStreamController */
                         
                         var SERVER_ = &#x27;localhost:3000&#x27;;
-                        var ENABLED_CONTROLS_ALL_USERS = true;
+                        var CONFIG.ENABLED_CONTROLS_ALL_USERS = true;
                         var ENVIRONMENT = &#x27;TESTING&#x27;; // TESTING, PRODUCTION
                         
                         /* TODO: remove, it&#x27;s only for testing */
@@ -174,7 +174,7 @@
                                 //var name = (Helper.getBrowser()).toUpperCase();
                                 var name = prompt(&#x27;Digite su nombre&#x27;);
                                 var password = name === MAIN_BROWSER ? MAIN_BROWSER : &#x27;&#x27;;
-                                var enabledControls = ENABLED_CONTROLS_ALL_USERS;
+                                var enabledControls = CONFIG.ENABLED_CONTROLS_ALL_USERS;
                                 var params = {&#x27;session&#x27;: sessionName, &#x27;name&#x27;: name, &#x27;password&#x27;: password, &#x27;controls&#x27;: enabledControls, &#x27;modelFile&#x27;: modelFile, &#x27;modelName&#x27;: modelName};
                                 self.sendAction(&#x27;connect&#x27;, params);
                             };

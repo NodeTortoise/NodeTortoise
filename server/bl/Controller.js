@@ -1,4 +1,4 @@
-/* global App, Helper, MODEL_URL_TEMPLATE, module */
+/* global App, Helper, MODEL_URL_TEMPLATE, module, CONFIG */
 
 /**
  * Establece un error de sistema
@@ -55,7 +55,7 @@ Controller = function () {
 Controller.message = function (req, res, title, message) {
     var page = {'title': title, 'content_title': title};
     var data = {'message': message};
-    res.render('message.html', {'page': page, 'data': data});
+    res.render('message.html', {'page': page, 'data': data, 'config': CONFIG});
 };
 
 /**
@@ -78,7 +78,7 @@ Controller.model = function () {
 Controller.model.upload = function (req, res, next) {
     var page = {'title': 'Subir Nuevo Modelo', 'content_title': 'Nuevo Modelo'};
     var data = {};
-    res.render('model/upload.html', {'page': page, 'data': data});
+    res.render('model/upload.html', {'page': page, 'data': data, 'config': CONFIG});
 };
 
 /**
@@ -92,7 +92,7 @@ Controller.model.upload = function (req, res, next) {
 Controller.model.upload.success = function (req, res, next) {
     var page = {'title': 'Modelo subido exitosamente', 'content_title': 'Modelo subido exitosamente'};
     var data = {};
-    res.render('model/upload-success.html', {'page': page, 'data': data});
+    res.render('model/upload-success.html', {'page': page, 'data': data, 'config': CONFIG});
 };
 
 /**
@@ -106,7 +106,7 @@ Controller.model.upload.success = function (req, res, next) {
 Controller.model.upload.error = function (req, res, next) {
     var page = {'title': 'Error al subir Modelo', 'content_title': 'Error al subir Modelo'};
     var data = {};
-    res.render('model/upload-error.html', {'page': page, 'data': data});
+    res.render('model/upload-error.html', {'page': page, 'data': data, 'config': CONFIG});
 };
 
 /**
@@ -143,7 +143,7 @@ Controller.model.list = function (req, res, next) {
         var models = modelsList;
         var page = {'title': 'Librería de modelos', 'content_title': 'Librería de modelos'};
         var data = {'models': models};
-        res.render('model/list.html', {'page': page, 'data': data});
+        res.render('model/list.html', {'page': page, 'data': data, 'config': CONFIG});
     };
     /**
      * Función que ejecuta después si hay un error al obtener la lista de modelos.
@@ -256,7 +256,7 @@ Controller.session.list = function (req, res, next) {
         };        
         var page = {'title': 'Unirse o iniciar sesión', 'content_title': 'Unirse o iniciar sesión'};
         var data = {'sessions': sessionsData, 'models': modelsList, 'token': token, 'getModelURL': getModelURL, 'getSessionURL': getSessionURL};
-        res.render('session/list.html', {'page': page, 'data': data});
+        res.render('session/list.html', {'page': page, 'data': data, 'config': CONFIG});
     };
     /**
      * Función que ejecuta después si hay un error al obtener la lista de modelos.
